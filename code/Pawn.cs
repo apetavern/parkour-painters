@@ -1,31 +1,23 @@
-﻿using Sandbox;
-using System;
-using System.Linq;
+﻿namespace GangJam;
 
-namespace Sandbox;
-
-partial class Pawn : AnimatedEntity
+public partial class Pawn : AnimatedEntity
 {
-	/// <summary>
-	/// Called when the entity is first created 
-	/// </summary>
+	[ClientInput]
+	public Vector3 InputDirection { get; protected set; }
+
+	[ClientInput]
+	public Angles ViewAngles { get; set; }
+
 	public override void Spawn()
 	{
 		base.Spawn();
 
-		//
-		// Use a watermelon model
-		//
 		SetModel( "models/sbox_props/watermelon/watermelon.vmdl" );
 
 		EnableDrawing = true;
 		EnableHideInFirstPerson = true;
 		EnableShadowInFirstPerson = true;
 	}
-
-	// An example BuildInput method within a player's Pawn class.
-	[ClientInput] public Vector3 InputDirection { get; protected set; }
-	[ClientInput] public Angles ViewAngles { get; set; }
 
 	public override void BuildInput()
 	{
@@ -38,9 +30,6 @@ partial class Pawn : AnimatedEntity
 		ViewAngles = viewAngles.Normal;
 	}
 
-	/// <summary>
-	/// Called every tick, clientside and serverside.
-	/// </summary>
 	public override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );
@@ -77,9 +66,6 @@ partial class Pawn : AnimatedEntity
 		}
 	}
 
-	/// <summary>
-	/// Called every frame on the client
-	/// </summary>
 	public override void FrameSimulate( IClient cl )
 	{
 		base.FrameSimulate( cl );
