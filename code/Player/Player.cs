@@ -45,6 +45,7 @@ public partial class Player : AnimatedEntity
 		Components.Create<WalkMechanic>();
 		Components.Create<AirMoveMechanic>();
 		Components.Create<JumpMechanic>();
+		Components.Create<UnstuckMechanic>();
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();
@@ -54,7 +55,6 @@ public partial class Player : AnimatedEntity
 		GameManager.Current?.MoveToSpawnpoint( this );
 		ResetInterpolation();
 	}
-
 
 	/// <summary>
 	/// Called every server and client tick.
