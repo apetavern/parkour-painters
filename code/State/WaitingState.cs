@@ -10,7 +10,15 @@ internal class WaitingState : Entity, IGameState
 	/// </summary>
 	internal static WaitingState Instance => GangJam.Current.CurrentState as WaitingState;
 
+	/// <summary>
+	/// Contains all of the clients that have been selected to be apart of team one.
+	/// This can only be accessed on the server after the state has exited.
+	/// </summary>
 	internal ImmutableArray<IClient> TeamOne { get; private set; }
+	/// <summary>
+	/// Contains all of the clients that have been selected to be a part of team two.
+	/// This can only be accessed on the server after the state has exited.
+	/// </summary>
 	internal ImmutableArray<IClient> TeamTwo { get; private set; }
 
 	/// <inheritdoc/>
@@ -21,6 +29,21 @@ internal class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
+		var teamOneBuilder = ImmutableArray.CreateBuilder<IClient>();
+		var teamTwoBuilder = ImmutableArray.CreateBuilder<IClient>();
+
+		for ( var i = 0; i < Game.Clients.Count; i++ )
+		{
+			var cl = Game.Clients.ElementAt( i );
+
+			if ( i % 2 != 0 )
+				teamOneBuilder.Add( cl );
+			else
+				teamTwoBuilder.Add( cl );
+		}
+
+		TeamOne = teamOneBuilder.ToImmutable();
+		TeamTwo = teamTwoBuilder.ToImmutable();
 	}
 
 	/// <inheritdoc/>
@@ -46,6 +69,8 @@ internal class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
+		if ( Game.Clients.Count >= 2 )
+			PlayState.SetActive();
 	}
 
 	/// <summary>
