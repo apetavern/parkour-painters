@@ -27,6 +27,20 @@
       "RootNamespace": "GangJam",
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
       "NoWarn": "1701;1702;1591;"
-    }
+    },
+    "PackageSettings": [
+      {
+        "DisplayType": "Float",
+        "Choices": [],
+        "ConVarName": "gj_gamelength",
+        "DisplayName": "Game Length",
+        "DefaultValue": "300",
+        "Description": "",
+        "Group": "",
+        "Minimum": 30,
+        "Maximum": 600,
+        "Step": 5
+      }
+    ]
   }
 }
