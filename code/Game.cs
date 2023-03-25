@@ -15,14 +15,14 @@ public partial class GangJam : GameManager
 	{
 		base.ClientJoined( client );
 
-		// Create a pawn for this client to play with
-		var pawn = new Pawn();
-		client.Pawn = pawn;
+		var player = new Player();
+		client.Pawn = player;
+		player.Respawn();
 
-		MoveToSpawnpoint( pawn );
+		MoveToSpawnpoint( player );
 	}
 
-	public void MoveToSpawnpoint( Pawn player )
+	public void MoveToSpawnpoint( Player player )
 	{
 		var spawnpoints = All.OfType<SpawnPoint>();
 		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
