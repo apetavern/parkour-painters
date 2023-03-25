@@ -56,14 +56,14 @@ PS
 	#include "common/proceedural.hlsl"
 
 	SamplerState g_sSampler0 < Filter( POINT ); AddressU( WRAP ); AddressV( WRAP ); >;
-	CreateInputTexture2D( BaseColour, Srgb, 8, "None", "_color", ",0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
-	CreateInputTexture2D( Normal, Srgb, 8, "None", "_normal", ",0/,0/1", Default4( 1.00, 1.00, 1.00, 1.00 ) );
+	CreateInputTexture2D( Color, Srgb, 8, "None", "_color", ",0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
+	CreateInputTexture2D( Normal, Linear, 8, "NormalizeNormals", "_normal", ",0/,0/1", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateInputTexture2D( Roughness, Linear, 8, "None", "_rough", ",0/,0/2", Default4( 1.00, 1.00, 1.00, 1.00 ) );
-	CreateTexture2DWithoutSampler( g_tBaseColour ) < Channel( RGBA, Box( BaseColour ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
+	CreateTexture2DWithoutSampler( g_tColor ) < Channel( RGBA, Box( Color ), Srgb ); OutputFormat( BC7 ); SrgbRead( True ); >;
 	CreateTexture2DWithoutSampler( g_tNormal ) < Channel( RGBA, Box( Normal ), Linear ); OutputFormat( DXT5 ); SrgbRead( False ); >;
-	CreateTexture2DWithoutSampler( g_tRoughness ) < Channel( RGBA, Box( Roughness ), Linear ); OutputFormat( DXT5 ); SrgbRead( False ); >;
+	CreateTexture2DWithoutSampler( g_tRoughness ) < Channel( RGBA, Box( Roughness ), Linear ); OutputFormat( BC7 ); SrgbRead( False ); >;
 	float2 g_vTiling < UiGroup( ",0/,0/0" ); Default2( 1,1 ); >;
-	float g_flMetallic < UiGroup( ",0/,0/0" ); Default1( 0 ); Range1( 0, 1 ); >;
+	float g_flMetallness < UiGroup( ",0/,0/0" ); Default1( 0 ); Range1( 0, 1 ); >;
 
 	float4 MainPs( PixelInput i ) : SV_Target0
 	{
@@ -81,16 +81,17 @@ PS
 		float2 local0 = i.vTextureCoords.xy * float2( 1, 1 );
 		float2 local1 = g_vTiling;
 		float2 local2 = local0 * local1;
-		float4 local3 = Tex2DS( g_tBaseColour, g_sSampler0, local2 );
+		float4 local3 = Tex2DS( g_tColor, g_sSampler0, local2 );
 		float4 local4 = Tex2DS( g_tNormal, g_sSampler0, local2 );
-		float4 local5 = Tex2DS( g_tRoughness, g_sSampler0, local2 );
-		float local6 = g_flMetallic;
+		float3 local5 = TransformNormal( i, DecodeNormal( local4.xyz ) );
+		float4 local6 = Tex2DS( g_tRoughness, g_sSampler0, local2 );
+		float local7 = g_flMetallness;
 
 		m.Albedo = local3.xyz;
 		m.Opacity = 1;
-		m.Normal = local4.xyz;
-		m.Roughness = local5.x;
-		m.Metalness = local6;
+		m.Normal = local5;
+		m.Roughness = local6.x;
+		m.Metalness = local7;
 		m.AmbientOcclusion = 1;
 
 		m.AmbientOcclusion = saturate( m.AmbientOcclusion );

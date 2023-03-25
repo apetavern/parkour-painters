@@ -1,8 +1,8 @@
 "Layer0"
 {
 	"shader"		"shaders/pixelated.shader_c"
-	"BaseColour"		"materials/buildings/textures/building_facade_01a_color.png"
-	"g_flMetallic"		"0.000000"
+	"Color"		"materials/buildings/textures/building_facade_01a_color.png"
+	"g_flMetallness"		"0.000000"
 	"g_vTiling"		"[1.000 1.000]"
 	"Normal"		"materials/buildings/textures/building_facade_01a_normal.png"
 	"Roughness"		"materials/buildings/textures/building_facade_01a_rough.png"

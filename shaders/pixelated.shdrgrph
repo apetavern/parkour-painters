@@ -12,7 +12,7 @@
       "Emission": {},
       "Opacity": {},
       "Normal": {
-        "Identifier": "7",
+        "Identifier": "8",
         "Output": "Result"
       },
       "Roughness": {
@@ -71,13 +71,14 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "textures/dev/white.vtex",
+      "Texture": "materials/buildings/textures/building_facade_01a_color_png_dce5488e.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
       "UI": {
-        "Name": "Base Colour",
+        "Name": "Color",
         "Default": "1,1,1,1",
+        "ImageFormat": "BC7",
         "SrgbRead": true
       },
       "Identifier": "4",
@@ -89,7 +90,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "textures/dev/white.vtex",
+      "Texture": "materials/buildings/textures/building_facade_01a_rough_png_32944b27.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -98,6 +99,7 @@
         "Default": "1,1,1,1",
         "Extension": "Rough",
         "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
         "Priority": 2
       },
       "Identifier": "5",
@@ -107,7 +109,7 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Metallic",
+      "Name": "Metallness",
       "Value": 0,
       "UI": {},
       "Identifier": "6",
@@ -119,7 +121,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "textures/dev/white.vtex",
+      "Texture": "materials/buildings/textures/building_facade_01a_normal_png_a43c7d29.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -127,6 +129,8 @@
         "Name": "Normal",
         "Default": "1,1,1,1",
         "Extension": "Normal",
+        "Processor": "NormalizeNormals",
+        "ColorSpace": "Linear",
         "Priority": 1,
         "PrimaryGroup": {
           "Name": ""
@@ -134,6 +138,16 @@
       },
       "Identifier": "7",
       "Position": "-176,96"
+    },
+    {
+      "_class": "TransformNormal",
+      "Input": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "DecodeNormal": true,
+      "Identifier": "8",
+      "Position": "112,32"
     }
   ]
 }
