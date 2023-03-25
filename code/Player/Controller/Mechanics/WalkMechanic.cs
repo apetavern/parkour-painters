@@ -5,20 +5,17 @@ public partial class WalkMechanic : ControllerMechanic
 	public float StopSpeed => 150f;
 	public float StepSize => 18.0f;
 	public float GroundAngle => 46.0f;
-	public float DefaultSpeed => 280f;
-	public float WalkSpeed => 140f;
 	public float GroundFriction => 4.0f;
 	public float MaxNonJumpVelocity => 140.0f;
 	public float SurfaceFriction { get; set; } = 1f;
 	public float Acceleration => 6f;
-	public float DuckAcceleration => 5f;
+
+	public override float? WishSpeed => 275f;
 
 	protected override bool ShouldStart()
 	{
 		return true;
 	}
-
-	public override float? WishSpeed => 200f;
 
 	protected override void Simulate()
 	{
