@@ -46,6 +46,7 @@ public partial class Player : AnimatedEntity
 		Components.Create<AirMoveMechanic>();
 		Components.Create<JumpMechanic>();
 		Components.Create<UnstuckMechanic>();
+		Components.Create<WallJumpMechanic>();
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();
