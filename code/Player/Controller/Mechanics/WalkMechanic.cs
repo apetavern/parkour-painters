@@ -43,10 +43,17 @@ public partial class WalkMechanic : ControllerMechanic
 		// Now trace down from a known safe position
 		trace = Controller.TraceBBox( start, end );
 
-		if ( trace.Fraction <= 0 ) return;
-		if ( trace.Fraction >= 1 ) return;
-		if ( trace.StartedSolid ) return;
-		if ( Vector3.GetAngle( Vector3.Up, trace.Normal ) > GroundAngle ) return;
+		if ( trace.Fraction <= 0 )
+			return;
+
+		if ( trace.Fraction >= 1 )
+			return;
+
+		if ( trace.StartedSolid )
+			return;
+
+		if ( Vector3.GetAngle( Vector3.Up, trace.Normal ) > GroundAngle )
+			return;
 
 		Controller.Position = trace.EndPosition;
 	}
@@ -105,7 +112,8 @@ public partial class WalkMechanic : ControllerMechanic
 	/// </summary>
 	public void ClearGroundEntity()
 	{
-		if ( GroundEntity == null ) return;
+		if ( GroundEntity == null )
+			return;
 
 		LastGroundEntity = GroundEntity;
 		GroundEntity = null;
@@ -181,7 +189,8 @@ public partial class WalkMechanic : ControllerMechanic
 		Controller.GroundNormal = tr.Normal;
 
 		SurfaceFriction = tr.Surface.Friction * 1.25f;
-		if ( SurfaceFriction > 1 ) SurfaceFriction = 1;
+		if ( SurfaceFriction > 1 )
+			SurfaceFriction = 1;
 
 		SetGroundEntity( tr.Entity );
 	}
