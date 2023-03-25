@@ -6,9 +6,11 @@ partial class WallJumpMechanic : ControllerMechanic
 	private float WallJumpStrength => 400f;
 	private float WallJumpKickStrength => 250f;
 	private float WallJumpFriction => -70f;
-	private TimeUntil TimeUntilNextWallJump = Time.Now;
-	private TimeUntil TimeUntilWallJumpDisengage = Time.Now;
-	private Vector3 HitNormal;
+	private float WallJumpTraceDistance => 25f;
+
+	private TimeUntil _timeUntilNextWallJump = Time.Now;
+	private TimeUntil _timeUntilWallJumpDisengage = Time.Now;
+	private Vector3 _hitNormal;
 
 	protected override bool ShouldStart()
 	{
@@ -18,7 +20,7 @@ partial class WallJumpMechanic : ControllerMechanic
 		if ( Controller.Velocity.z >= 0 )
 			return false;
 
-		if ( TimeUntilNextWallJump > Time.Now )
+		if ( _timeUntilNextWallJump > Time.Now )
 			return false;
 
 		if ( Controller.Velocity.WithZ( 0 ).Length < 1.0f )
@@ -26,7 +28,7 @@ partial class WallJumpMechanic : ControllerMechanic
 
 		var playerEyeNormal = Controller.Player.Rotation.Forward.WithZ( 0 ).Normal;
 		var center = Controller.Position.WithZ( Controller.Position.z + 48 );
-		var dest = center + (playerEyeNormal * 20.0f);
+		var dest = center + (playerEyeNormal * WallJumpTraceDistance);
 
 		var tr = Trace.Ray( center, dest )
 			.Ignore( Controller.Player )
@@ -61,14 +63,13 @@ partial class WallJumpMechanic : ControllerMechanic
 			return;
 		}
 
-		if ( TimeUntilWallJumpDisengage < Time.Now )
+		if ( _timeUntilWallJumpDisengage < Time.Now )
 		{
 			Cancel();
 			return;
 		}
 
 		Controller.Velocity = Controller.Velocity.WithZ( WallJumpFriction );
-		Controller.Player.Rotation = Rotation.LookAt( HitNormal * 10.0f, Vector3.Up );
 
 		if ( Controller.GroundEntity.IsValid() )
 		{
@@ -79,27 +80,25 @@ partial class WallJumpMechanic : ControllerMechanic
 
 	private void GrabWall( TraceResult tr )
 	{
-		HitNormal = tr.Normal;
-		TimeUntilWallJumpDisengage = Time.Now + 1.5f;
+		_hitNormal = tr.Normal;
+		_timeUntilWallJumpDisengage = Time.Now + 1.5f;
 	}
 
 	private void DoWallJump()
 	{
-		var jumpVec = HitNormal * WallJumpKickStrength;
+		var jumpVec = _hitNormal * WallJumpKickStrength;
 
-		TimeUntilNextWallJump = Time.Now + 0.25f;
+		_timeUntilNextWallJump = Time.Now + 0.25f;
 
 		Controller.Velocity = Controller.Velocity.WithZ( WallJumpStrength );
 		Controller.Velocity += jumpVec;
 		Controller.Position += Controller.Velocity * Time.Delta;
 		IsActive = false;
-
-		Controller.Player.Rotation = HitNormal.EulerAngles.ToRotation();
 	}
 
 	private void Cancel()
 	{
 		IsActive = false;
-		TimeUntilNextWallJump = Time.Now + 2.0f;
+		_timeUntilNextWallJump = Time.Now + 2.0f;
 	}
 }

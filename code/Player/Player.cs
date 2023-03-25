@@ -63,8 +63,6 @@ public partial class Player : AnimatedEntity
 	/// <param name="cl"></param>
 	public override void Simulate( IClient cl )
 	{
-		Rotation = LookInput.WithPitch( 0f ).ToRotation();
-
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
 	}
@@ -75,8 +73,6 @@ public partial class Player : AnimatedEntity
 	/// <param name="cl"></param>
 	public override void FrameSimulate( IClient cl )
 	{
-		Rotation = LookInput.WithPitch( 0f ).ToRotation();
-
 		Controller?.FrameSimulate( cl );
 		Camera?.Update( this );
 	}
