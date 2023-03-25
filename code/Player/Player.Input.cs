@@ -10,7 +10,7 @@ public partial class Player
 	/// <summary>
 	/// Normalized accumulation of Input.AnalogLook
 	/// </summary>
-	[ClientInput] public Angles LookInput { get; protected set; }
+	[ClientInput] public Angles LookInput { get; set; }
 
 	/// <summary>
 	/// ?
@@ -45,6 +45,8 @@ public partial class Player
 
 	[Net, Predicted, Browsable( false )]
 	public Rotation EyeLocalRotation { get; set; }
+
+	public Angles ViewAngles { get; set; }
 
 	public override Ray AimRay => new Ray( EyePosition, EyeRotation.Forward );
 
