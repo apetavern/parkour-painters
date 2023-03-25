@@ -1,0 +1,139 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Opaque",
+  "nodes": [
+    {
+      "_class": "Result",
+      "Albedo": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "Emission": {},
+      "Opacity": {},
+      "Normal": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "Roughness": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Metalness": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "AmbientOcclusion": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "416,-48"
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": false,
+      "Tiling": "1,1",
+      "Identifier": "1",
+      "Position": "-672,96"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "3",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "2",
+      "Position": "-416,112"
+    },
+    {
+      "_class": "Float2",
+      "Name": "Tiling",
+      "Value": "1,1",
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "3",
+      "Position": "-672,176"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Texture": "textures/dev/white.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Base Colour",
+        "Default": "1,1,1,1",
+        "SrgbRead": true
+      },
+      "Identifier": "4",
+      "Position": "-176,-96"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Texture": "textures/dev/white.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Roughness",
+        "Default": "1,1,1,1",
+        "Extension": "Rough",
+        "ColorSpace": "Linear",
+        "Priority": 2
+      },
+      "Identifier": "5",
+      "Position": "-176,288"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Metallic",
+      "Value": 0,
+      "UI": {},
+      "Identifier": "6",
+      "Position": "160,240"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Texture": "textures/dev/white.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Normal",
+        "Default": "1,1,1,1",
+        "Extension": "Normal",
+        "Priority": 1,
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "7",
+      "Position": "-176,96"
+    }
+  ]
+}
