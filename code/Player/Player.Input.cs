@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace GangJam;
 
 public partial class Player

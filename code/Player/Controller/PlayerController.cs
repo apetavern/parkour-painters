@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace GangJam;
 
 public partial class PlayerController : EntityComponent<Player>, ISingletonComponent

@@ -1,7 +1,7 @@
 {
   "Title": "Gang Jam",
   "Type": "game",
-  "Org": "local",
+  "Org": "apetavern",
   "Ident": "gang_jam",
   "Tags": null,
   "Schema": 1,
@@ -22,6 +22,11 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "ProjectTemplate": null,
-    "CsProjName": ""
+    "CsProjName": "",
+    "Compiler": {
+      "RootNamespace": "GangJam",
+      "DefineConstants": "SANDBOX;ADDON;DEBUG",
+      "NoWarn": "1701;1702;1591;"
+    }
   }
 }

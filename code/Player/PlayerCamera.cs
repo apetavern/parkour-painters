@@ -1,5 +1,3 @@
-using Sandbox;
-
 namespace GangJam;
 
 public partial class PlayerCamera : EntityComponent<Player>, ISingletonComponent
