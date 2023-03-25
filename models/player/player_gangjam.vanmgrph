@@ -57316,7 +57316,7 @@
 			m_bEnabled = false
 		},
 		{
-			m_name = "models/outfits/1930_gangster/hats/trilby/trilby.vmdl"
+			m_name = "models/outfits/punk/head/mohawk.vmdl"
 			m_bEnabled = true
 		},
 	]
