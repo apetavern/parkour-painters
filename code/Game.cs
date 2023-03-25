@@ -9,6 +9,8 @@ namespace GangJam;
 
 public partial class GangJam : GameManager
 {
+	public static new GangJam Current => (GangJam)GameManager.Current;
+
 	public GangJam()
 	{
 
