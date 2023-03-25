@@ -57308,8 +57308,8 @@
 			m_bEnabled = false
 		},
 		{
-			m_name = "models/citizen_clothes/shoes/smartshoes/smartshoes.vmdl"
-			m_bEnabled = false
+			m_name = "models/outfits/punk/legs/pants.vmdl"
+			m_bEnabled = true
 		},
 		{
 			m_name = "models/outfits/punk/torso/jacket.vmdl"
