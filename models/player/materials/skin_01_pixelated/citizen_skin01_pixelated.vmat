@@ -24,5 +24,5 @@
 	"g_vTexCoordScale"		"[1.000 1.000]"
 	"g_flTransmissionFalloff"		"0.800000"
 	"g_vTransmissionColor"		"[0.749020 0.231373 0.011765 0.000000]"
-	"TextureTransmissiveMask"		"models/gameplay/citizen/textures/citizen_skin_trans.png"
+	"TextureTransmissiveMask"		"models/player/materials/skin_01_pixelated/citizen_skin_trans.png"
 }
