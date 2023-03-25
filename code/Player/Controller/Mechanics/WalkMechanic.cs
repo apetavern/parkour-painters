@@ -22,6 +22,10 @@ public partial class WalkMechanic : ControllerMechanic
 		if ( GroundEntity != null )
 			WalkMove();
 
+		// Rotate the player to the direction they want to move towards.
+		var targetRot = Rotation.LookAt( Controller.GetWishVelocity( true ).Normal ).Angles().WithPitch( 0 ).WithRoll( 0 );
+		Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
+
 		CategorizePosition( Controller.GroundEntity != null );
 	}
 
