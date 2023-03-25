@@ -90,10 +90,12 @@ internal class WaitingState : Entity, IGameState
 	}
 
 	/// <summary>
-	/// Sets the <see cref="WaitingState"/> as the active state in the game.
+	/// Sets the <see cref="WaitingState"/> as the active state in the game. This can only be called on the server.
 	/// </summary>
 	public static void SetActive()
 	{
+		Game.AssertServer();
+
 		GangJam.Current.SetState<WaitingState>();
 	}
 }
