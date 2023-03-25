@@ -10,6 +10,9 @@ internal class WaitingState : Entity, IGameState
 	/// </summary>
 	internal static WaitingState Instance => GangJam.Current.CurrentState as WaitingState;
 
+	internal ImmutableArray<IClient> TeamOne { get; private set; }
+	internal ImmutableArray<IClient> TeamTwo { get; private set; }
+
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{

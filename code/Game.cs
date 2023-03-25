@@ -19,6 +19,10 @@ public partial class GangJam : GameManager
 
 	public GangJam()
 	{
+		if ( !Game.IsServer )
+			return;
+
+		WaitingState.SetActive();
 	}
 
 	/// <inheritdoc/>
