@@ -1,0 +1,10 @@
+"Layer0"
+{
+	"shader"		"shaders/pixelated.shader_c"
+	"BaseColour"		"materials/street/textures/pavement_01a_color.png"
+	"g_flMetallic"		"0.000000"
+	"g_vTiling"		"[1.000 1.000]"
+	"Normal"		"materials/street/textures/pavement_01a_normal.png"
+	"Roughness"		"materials/street/textures/pavement_01a_rough.png"
+	"g_bFogEnabled"		"1"
+}
