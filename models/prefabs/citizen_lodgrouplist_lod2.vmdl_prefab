@@ -15,11 +15,11 @@
 						switch_threshold = 20.0
 						meshes = 
 						[
-							"Head_LOD2",
-							"Torso_LOD2",
-							"Hands_LOD2",
-							"Legs_LOD2",
-							"Feet_LOD2",
+							"Head_LOD3",
+							"Torso_LOD3",
+							"Hands_LOD3",
+							"Legs_LOD3",
+							"Feet_LOD3",
 						]
 					},
 					{
