@@ -23,8 +23,12 @@ public partial class WalkMechanic : ControllerMechanic
 			WalkMove();
 
 		// Rotate the player to the direction they want to move towards.
-		var targetRot = Rotation.LookAt( Controller.GetWishVelocity( true ).Normal ).Angles().WithPitch( 0 ).WithRoll( 0 );
-		Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
+		var wishSpeed = Controller.GetWishVelocity( true ).Normal;
+		if ( wishSpeed.Length > 0 )
+		{
+			var targetRot = Rotation.LookAt( wishSpeed ).Angles().WithPitch( 0 ).WithRoll( 0 );
+			Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
+		}
 
 		CategorizePosition( Controller.GroundEntity != null );
 	}
