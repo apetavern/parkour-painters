@@ -91,5 +91,7 @@ public partial class GangJam : GameManager
 		oldState?.Exit();
 		CurrentState = state;
 		CurrentState.Enter( oldState );
+
+		oldState?.Delete();
 	}
 }
