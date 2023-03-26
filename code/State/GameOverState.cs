@@ -5,7 +5,7 @@ namespace GangJam.State;
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.
 /// </summary>
-internal partial class GameOverState : Entity, IGameState
+internal sealed partial class GameOverState : Entity, IGameState
 {
 	/// <summary>
 	/// The active instance of <see cref="GameOverState"/>. This can be null.

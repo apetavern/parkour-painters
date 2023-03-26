@@ -3,7 +3,7 @@
 /// <summary>
 /// The state for when waiting for players to join the game.
 /// </summary>
-internal class WaitingState : Entity, IGameState
+internal sealed class WaitingState : Entity, IGameState
 {
 	/// <summary>
 	/// The active instance of <see cref="WaitingState"/>. This can be null.

@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public partial class AirMoveMechanic : ControllerMechanic
+public sealed partial class AirMoveMechanic : ControllerMechanic
 {
 	public float Gravity => 800.0f;
 	public float AirControl => 30.0f;

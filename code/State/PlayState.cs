@@ -3,7 +3,7 @@
 /// <summary>
 /// The state for when the main game loop has begun.
 /// </summary>
-internal partial class PlayState : Entity, IGameState
+internal sealed partial class PlayState : Entity, IGameState
 {
 	/// <summary>
 	/// The active instance of <see cref="PlayState"/>. This can be null.

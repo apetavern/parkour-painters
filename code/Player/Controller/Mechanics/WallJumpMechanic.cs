@@ -1,6 +1,6 @@
 namespace GangJam;
 
-partial class WallJumpMechanic : ControllerMechanic
+public sealed partial class WallJumpMechanic : ControllerMechanic
 {
 	private float WallJumpConnectangle => 0.75f;
 	private float WallJumpStrength => 400f;

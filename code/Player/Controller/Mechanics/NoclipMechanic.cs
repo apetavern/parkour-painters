@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public class NoclipMechanic : ControllerMechanic
+public sealed class NoclipMechanic : ControllerMechanic
 {
 	[ConCmd.Admin( "noclip" )]
 	private static void ToggleNoclip()

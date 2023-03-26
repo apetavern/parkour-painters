@@ -4,7 +4,7 @@
 [Title("Graffiti Spot"), Category("Spray Down")]
 [EditorModel( "models/rust_structures/fences_walls/wall_conc_300x300.vmdl_c" )]
 [HammerEntity]
-public class GraffitiSpot : Entity
+public sealed class GraffitiSpot : Entity
 {
 	public override void Spawn()
 	{

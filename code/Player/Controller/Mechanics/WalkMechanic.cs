@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public partial class WalkMechanic : ControllerMechanic
+public sealed partial class WalkMechanic : ControllerMechanic
 {
 	public float StopSpeed => 150f;
 	public float StepSize => 18.0f;
