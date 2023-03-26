@@ -1,0 +1,10 @@
+"Layer0"
+{
+	"shader"		"shaders/pixelated.shader_c"
+	"Color"		"models/outfits/punk/torso/ripped-sleeveless/materials/rippedsleeveless_color.png"
+	"g_vTiling"		"[1.000 1.000]"
+	"Metallic"		"models/outfits/punk/torso/ripped-sleeveless/materials/rippedsleeveless_metal.png"
+	"Normal"		"models/outfits/punk/torso/ripped-sleeveless/materials/rippedsleeveless_normal.png"
+	"Roughness"		"models/outfits/punk/torso/ripped-sleeveless/materials/rippedsleeveless_rough.png"
+	"g_bFogEnabled"		"1"
+}

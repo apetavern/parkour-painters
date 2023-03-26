@@ -58188,7 +58188,7 @@
 			m_bEnabled = true
 		},
 		{
-			m_name = "models/outfits/punk/torso/jacket.vmdl"
+			m_name = "models/outfits/punk/torso/ripped-sleeveless.vmdl"
 			m_bEnabled = true
 		},
 		{
