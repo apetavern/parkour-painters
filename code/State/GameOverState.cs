@@ -18,6 +18,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] internal GameResult GameResult { get; private set; }
 
+	/// <summary>
 	/// The team that has won the game.
 	/// If <see cref="GameResult"/> is <see cref="GameResult.Abandoned"/> or <see cref="GameResult.Draw"/>, this will be null.
 	/// </summary>
@@ -43,6 +44,12 @@ internal sealed partial class GameOverState : Entity, IGameState
 		if ( lastState is not PlayState playState )
 		{
 			GameResult = Random.Shared.FromEnum<GameResult>();
+			return;
+		}
+
+		if ( playState.Abandoned )
+		{
+			GameResult = GameResult.Abandoned;
 			return;
 		}
 

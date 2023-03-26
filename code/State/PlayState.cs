@@ -14,6 +14,8 @@ internal sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// Whether or not the game has been abandoned.
 	/// </summary>
+	[Net] internal bool Abandoned { get; private set; }
+
 	/// <summary>
 	/// Contains all of the participating teams.
 	/// </summary>
@@ -93,7 +95,15 @@ internal sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientDisconnected( IClient cl, NetworkDisconnectionReason reason )
 	{
-		// TODO: Abandon game if not a spectator?
+		foreach ( var team in Teams )
+		{
+			if ( !team.Members.Contains( cl ) )
+				continue;
+
+			Abandoned = true;
+			GameOverState.SetActive();
+			return;
+		}
 	}
 
 	/// <inheritdoc/>

@@ -5,7 +5,7 @@
 /// </summary>
 internal enum GameResult
 {
-	TeamOneWon,
-	TeamTwoWon,
-	Draw
+	Abandoned,
+	Draw,
+	TeamWon
 }
