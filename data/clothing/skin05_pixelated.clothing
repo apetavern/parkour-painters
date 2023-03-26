@@ -1,0 +1,15 @@
+{
+  "Title": "Skin 5_pixelated",
+  "Subtitle": "",
+  "Category": "Skin",
+  "SubCategory": "skin",
+  "Parent": null,
+  "Model": null,
+  "SkinMaterial": "models/player/materials/skin_01_pixelated/citizen_skin05_pixelated.vmat",
+  "EyesMaterial": "models/citizen/skin/citizen_eyes_cute.vmat",
+  "MaterialGroup": "",
+  "SlotsUnder": 0,
+  "SlotsOver": 0,
+  "HideBody": 0,
+  "Icon": {}
+}

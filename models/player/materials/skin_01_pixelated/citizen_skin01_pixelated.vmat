@@ -8,7 +8,7 @@
 	"TextureAmbientOcclusion"		"models/player/materials/skin_01_pixelated/citizen_skin_ao.png"
 	"g_flModelTintAmount"		"1.000000"
 	"g_vColorTint"		"[1.000000 1.000000 1.000000 0.000000]"
-	"TextureColor"		"models/player/materials/skin_01_pixelated/citizen_skin_color.png"
+	"TextureColor"		"models/player/materials/skin_01_pixelated/citizen_skin01_color.psd"
 	"g_flCurvatureScale"		"1.000000"
 	"g_flMouthInteriorBrightnessScale"		"1.000000"
 	"TextureInsideMouth"		"materials/default/default_black_mask.tga"
@@ -25,4 +25,8 @@
 	"g_flTransmissionFalloff"		"0.800000"
 	"g_vTransmissionColor"		"[0.749020 0.231373 0.011765 0.000000]"
 	"TextureTransmissiveMask"		"models/player/materials/skin_01_pixelated/citizen_skin_trans.png"
+	"Attributes"
+	{
+		"Skin"		"1"
+	}
 }
