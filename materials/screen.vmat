@@ -1,0 +1,8 @@
+"Layer0"
+{
+	"shader"		"shaders/goback_postprocess.shader_c"
+	"TextureBayer"		"materials/pattern2_bayer.png"
+	"g_ColorDepth"		"8"
+	"g_DitherScale"		"1"
+	"g_vInternalResolution"		"[320 240]"
+}
