@@ -20,6 +20,15 @@ internal partial class PlayState : Entity, IGameState
 	[Net] internal IList<IClient> TeamTwoClients { get; private set; }
 
 	/// <summary>
+	/// Team ones current score in the game.
+	/// </summary>
+	[Net] internal int TeamOneScore { get; private set; }
+	/// <summary>
+	/// Team twos current score in the game.
+	/// </summary>
+	[Net] internal int TeamTwoScore { get; private set; }
+
+	/// <summary>
 	/// The time in seconds since the game started.
 	/// </summary>
 	[Net] internal TimeSince TimeSinceGameStarted { get; private set; }
