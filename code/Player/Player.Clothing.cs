@@ -33,7 +33,7 @@ public partial class Player
 
 	private static readonly List<string> PunkClothing = new()
 	{
-		"Mohawk",
+		"Messy Hair",
 		"Punk Jacket",
 		"Punk Jeans",
 	};

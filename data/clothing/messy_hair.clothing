@@ -1,0 +1,15 @@
+{
+  "Title": "Messy Hair",
+  "Subtitle": "A standard punk hair piece.",
+  "Category": "Hair",
+  "SubCategory": "punk",
+  "Parent": null,
+  "Model": "models/outfits/punk/head/messy-hair.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": 0,
+  "SlotsOver": 0,
+  "HideBody": 0,
+  "Icon": {}
+}
