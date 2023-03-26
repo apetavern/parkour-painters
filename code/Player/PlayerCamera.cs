@@ -7,7 +7,7 @@ public partial class PlayerCamera : EntityComponent<Player>, ISingletonComponent
 
 	private readonly float _minFOV = 70f;
 	private readonly float _maxFOV = 80f;
-	private readonly float _targetDistance = 250f;
+	private readonly float _targetDistance = 180f;
 	private float _distance;
 	private Vector3 _targetPosition;
 
