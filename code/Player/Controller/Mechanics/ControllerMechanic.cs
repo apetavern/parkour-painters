@@ -27,7 +27,7 @@ public partial class ControllerMechanic : EntityComponent<Player>
 	/// <summary>
 	/// Accessor for the player.
 	/// </summary>
-	protected Player Player => Controller.Player;
+	public Player Player => Controller.Player;
 
 	/// <summary>
 	/// Used to dictate the most important mechanic to take information such as EyeHeight, WishSpeed.
