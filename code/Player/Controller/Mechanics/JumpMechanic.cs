@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public partial class JumpMechanic : ControllerMechanic
+public sealed partial class JumpMechanic : ControllerMechanic
 {
 	public override int SortOrder => 25;
 	private float Gravity => 700f;

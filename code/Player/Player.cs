@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public partial class Player : AnimatedEntity
+public sealed partial class Player : AnimatedEntity
 {
 	[BindComponent] public PlayerController Controller { get; }
 

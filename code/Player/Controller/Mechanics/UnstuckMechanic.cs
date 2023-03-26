@@ -1,6 +1,6 @@
 namespace GangJam;
 
-class UnstuckMechanic : ControllerMechanic
+public sealed class UnstuckMechanic : ControllerMechanic
 {
 	protected override bool ShouldStart() => true;
 	private int _stuckTries = 0;
