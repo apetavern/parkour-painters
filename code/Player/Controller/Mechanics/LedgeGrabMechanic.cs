@@ -15,7 +15,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		if ( _timeSinceDrop < 0.4f )
 			return false;
 
-		if ( AttemptLedgeGrab() )
+		if ( CanGrabLedge() )
 			return true;
 
 		return false;
@@ -34,12 +34,13 @@ class LedgeGrabMechanic : ControllerMechanic
 			Vault();
 	}
 
-	internal bool AttemptLedgeGrab()
+	private bool CanGrabLedge()
 	{
 		var center = Controller.Position;
 		center.z += 48;
 		var dest = center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 10.0f);
 
+		// Tracing forwards looking for a wall.
 		var tr = Trace.Ray( center, dest )
 			.Ignore( Player )
 			.WithoutTags( "player" )
@@ -53,6 +54,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		var destinationTestPos = tr.EndPosition - (normal * _playerRadius) + (Vector3.Up * 50.0f);
 		var originTestPos = tr.EndPosition + (normal * 9.0f);
 
+		// Trace to see if what we are grabbing is actually a ledge.
 		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * 64.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
@@ -65,6 +67,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		destinationTestPos = tr.EndPosition;
 		originTestPos = originTestPos.WithZ( destinationTestPos.z - 64.0f );
 
+		// Make sure there is enough room above the ledge.
 		tr = Trace.Ray( destinationTestPos + (Vector3.Up * _playerRadius + 1.0f), destinationTestPos + (Vector3.Up * 64.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )

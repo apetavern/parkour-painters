@@ -26,6 +26,9 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		if ( Controller.Velocity.WithZ( 0 ).Length < 1.0f )
 			return false;
 
+		if ( Controller.GetMechanic<LedgeGrabMechanic>().IsActive )
+			return false;
+
 		var playerEyeNormal = Controller.Player.Rotation.Forward.WithZ( 0 ).Normal;
 		var center = Controller.Position.WithZ( Controller.Position.z + 48 );
 		var dest = center + (playerEyeNormal * WallJumpTraceDistance);
