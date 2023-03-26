@@ -14105,7 +14105,7 @@
 				{
 					_class = "CGroupAnimNode"
 					m_sName = "Wall animations"
-					m_vecPosition = [ -1504.0, -160.0 ]
+					m_vecPosition = [ -1504.0, -176.0 ]
 					m_nNodeID = 
 					{
 						m_id = 487777083
@@ -18116,7 +18116,7 @@
 				{
 					_class = "CGroupAnimNode"
 					m_sName = "Ledge animations"
-					m_vecPosition = [ -1504.0, -304.0 ]
+					m_vecPosition = [ -1504.0, -336.0 ]
 					m_nNodeID = 
 					{
 						m_id = 754696581
@@ -33138,7 +33138,7 @@
 				{
 					_class = "CGroupAnimNode"
 					m_sName = "Roll animations"
-					m_vecPosition = [ -1504.0, -240.0 ]
+					m_vecPosition = [ -1504.0, -256.0 ]
 					m_nNodeID = 
 					{
 						m_id = 1352454376
@@ -36950,40 +36950,6 @@
 									m_bForceFootPlant = false
 									m_bDisabled = false
 								},
-								{
-									_class = "CAnimStateTransition"
-									m_conditions = 
-									[
-										{
-											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
-											m_paramID = 
-											{
-												m_id = 1712449780
-											}
-											m_comparisonValue = 
-											{
-												m_nType = 1
-												m_data = true
-											}
-										},
-									]
-									m_blendDuration = 0.2
-									m_destState = 
-									{
-										m_id = 516975018
-									}
-									m_bReset = true
-									m_resetCycleOption = "Beginning"
-									m_flFixedCycleValue = 0.0
-									m_blendCurve = 
-									{
-										m_vControlPoint1 = [ 0.5, 0.0 ]
-										m_vControlPoint2 = [ 0.5, 1.0 ]
-									}
-									m_bForceFootPlant = false
-									m_bDisabled = false
-								},
 							]
 							m_tags = [  ]
 							m_tagBehaviors = [  ]
@@ -37020,7 +36986,7 @@
 									[
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37028,7 +36994,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 1
 											}
 										},
 										{
@@ -37150,7 +37116,7 @@
 										},
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37158,7 +37124,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 1
 											}
 										},
 										{
@@ -37227,7 +37193,7 @@
 									[
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37235,7 +37201,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 2
 											}
 										},
 										{
@@ -37274,7 +37240,7 @@
 									[
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37282,7 +37248,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 2
 											}
 										},
 									]
@@ -37430,7 +37396,7 @@
 										},
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37438,7 +37404,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 2
 											}
 										},
 										{
@@ -37483,7 +37449,7 @@
 										},
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37491,7 +37457,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 2
 											}
 										},
 										{
@@ -37560,7 +37526,7 @@
 									[
 										{
 											_class = "CParameterAnimCondition"
-											m_comparisonOp = 0
+											m_comparisonOp = 1
 											m_paramID = 
 											{
 												m_id = 1043732780
@@ -37568,7 +37534,7 @@
 											m_comparisonValue = 
 											{
 												m_nType = 2
-												m_data = 0
+												m_data = 3
 											}
 										},
 									]
@@ -37588,36 +37554,6 @@
 									m_bForceFootPlant = false
 									m_bDisabled = false
 								},
-							]
-							m_tags = [  ]
-							m_tagBehaviors = [  ]
-							m_name = "(...)"
-							m_inputConnection = 
-							{
-								m_nodeID = 
-								{
-									m_id = 4294967295
-								}
-								m_outputID = 
-								{
-									m_id = 4294967295
-								}
-							}
-							m_stateID = 
-							{
-								m_id = 510958521
-							}
-							m_position = [ 224.0, -112.0 ]
-							m_bIsStartState = false
-							m_bIsEndtState = false
-							m_bIsPassthrough = false
-							m_bIsRootMotionExclusive = false
-							m_bAlwaysEvaluate = false
-						},
-						{
-							_class = "CAnimState"
-							m_transitions = 
-							[
 								{
 									_class = "CAnimStateTransition"
 									m_conditions = 
@@ -37627,12 +37563,12 @@
 											m_comparisonOp = 0
 											m_paramID = 
 											{
-												m_id = 1043732780
+												m_id = 1712449780
 											}
 											m_comparisonValue = 
 											{
-												m_nType = 2
-												m_data = 0
+												m_nType = 1
+												m_data = true
 											}
 										},
 									]
@@ -37655,7 +37591,7 @@
 							]
 							m_tags = [  ]
 							m_tagBehaviors = [  ]
-							m_name = "Wall jump"
+							m_name = "Wall hold"
 							m_inputConnection = 
 							{
 								m_nodeID = 
@@ -37671,7 +37607,7 @@
 							{
 								m_id = 516975018
 							}
-							m_position = [ -144.0, -496.0 ]
+							m_position = [ -144.0, -480.0 ]
 							m_bIsStartState = false
 							m_bIsEndtState = false
 							m_bIsPassthrough = false
@@ -57906,7 +57842,7 @@
 					"none",
 					"ledge_grab",
 					"roll",
-					"wall_jump",
+					"wall_hold",
 					"",
 				]
 			},
