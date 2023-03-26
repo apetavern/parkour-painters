@@ -112,9 +112,8 @@ internal partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		// TODO: Game over state.
 		if ( TimeUntilGameEnds <= 0 )
-			WaitingState.SetActive();
+			GameOverState.SetActive();
 	}
 
 	/// <summary>
