@@ -18,6 +18,24 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] internal GameResult GameResult { get; private set; }
 
+	/// The team that has won the game.
+	/// If <see cref="GameResult"/> is <see cref="GameResult.Abandoned"/> or <see cref="GameResult.Draw"/>, this will be null.
+	/// </summary>
+	[Net] internal Team WinningTeam { get; private set; }
+	/// <summary>
+	/// The teams that have drawn.
+	/// If <see cref="GameResult"/> is <see cref="GameResult.Abandoned"/> or <see cref="GameResult.TeamWon"/>, this will be empty.
+	/// </summary>
+	[Net] internal IList<Team> DrawingTeams { get; private set; }
+
+	/// <inheritdoc/>
+	public override void Spawn()
+	{
+		base.Spawn();
+
+		Transmit = TransmitType.Always;
+	}
+
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
@@ -28,18 +46,32 @@ internal sealed partial class GameOverState : Entity, IGameState
 			return;
 		}
 
-		// Deduce the state of the game.
-		if ( playState.TeamOneScore > playState.TeamTwoScore )
-			GameResult = GameResult.TeamOneWon;
-		else if ( playState.TeamTwoScore > playState.TeamOneScore )
-			GameResult = GameResult.TeamTwoWon;
-		else
+		var highestScoreTeam = playState.Teams.OrderBy( t => t.Score ).First();
+		var equalTeams = playState.Teams.Where( t => t.Score == highestScoreTeam.Score ).ToArray();
+
+		if ( equalTeams.Length > 1 )
+		{
 			GameResult = GameResult.Draw;
+			for ( var i = 0; i < equalTeams.Length; i++ )
+			{
+				equalTeams[i].Parent = this;
+				DrawingTeams.Add( equalTeams[i] );
+			}
+		}
+		else
+		{
+			GameResult = GameResult.TeamWon;
+			highestScoreTeam.Parent = this;
+			WinningTeam = highestScoreTeam;
+		}
 	}
 
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
+		WinningTeam?.Delete();
+		foreach ( var drawingTeam in DrawingTeams )
+			drawingTeam.Delete();
 	}
 
 	/// <inheritdoc/>

@@ -10,24 +10,14 @@ internal sealed partial class PlayState : Entity, IGameState
 	/// The active instance of <see cref="PlayState"/>. This can be null.
 	/// </summary>
 	internal static PlayState Instance => GangJam.Current.CurrentState as PlayState;
-	
-	/// <summary>
-	/// Contains all of the clients in team one.
-	/// </summary>
-	[Net] internal IList<IClient> TeamOneClients { get; private set; }
-	/// <summary>
-	/// Contains all of the clients in team two.
-	/// </summary>
-	[Net] internal IList<IClient> TeamTwoClients { get; private set; }
 
 	/// <summary>
-	/// Team ones current score in the game.
+	/// Whether or not the game has been abandoned.
 	/// </summary>
-	[Net] internal int TeamOneScore { get; private set; }
 	/// <summary>
-	/// Team twos current score in the game.
+	/// Contains all of the participating teams.
 	/// </summary>
-	[Net] internal int TeamTwoScore { get; private set; }
+	[Net] internal IList<Team> Teams { get; private set; }
 
 	/// <summary>
 	/// The time in seconds since the game started.
@@ -47,29 +37,44 @@ internal sealed partial class PlayState : Entity, IGameState
 	}
 
 	/// <inheritdoc/>
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+
+		if ( !Game.IsServer )
+			return;
+
+		foreach ( var team in Children.OfType<Team>() )
+			team.Delete();
+	}
+
+	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
 		// This is here to jump into play state for debugging.
 		if ( lastState is not WaitingState waitingState )
 		{
-			for ( var i = 0; i < Game.Clients.Count; i++ )
-			{
-				var cl = Game.Clients.ElementAt( i );
+			var builders = new ImmutableArray<IClient>.Builder[GangJam.NumTeams];
+			for ( var i = 0; i < builders.Length; i++ )
+				builders[i] = ImmutableArray.CreateBuilder<IClient>();
 
-				if ( i % 2 != 0 )
-					TeamOneClients.Add( cl );
-				else
-					TeamTwoClients.Add( cl );
-			}
+			for ( var i = 0; i < Game.Clients.Count; i++ )
+				builders[i % builders.Length].Add( Game.Clients.ElementAt( i ) );
+
+			for ( var i = 0; i < builders.Length; i++ )
+				Teams.Add( new Team( builders[i] ) );
 
 			return;
 		}
 
-		for ( var i = 0; i < waitingState.TeamOne.Length; i++ )
-			TeamOneClients.Add( waitingState.TeamOne[i] );
-
-		for ( var i = 0; i < waitingState.TeamTwo.Length; i++ )
-			TeamTwoClients.Add( waitingState.TeamTwo[i] );
+		for ( var i = 0; i < waitingState.Teams.Length; i++ )
+		{
+			var team = new Team( waitingState.Teams[i] )
+			{
+				Parent = this
+			};
+			Teams.Add( team );
+		}
 
 		TimeSinceGameStarted = 0;
 	}
@@ -96,18 +101,21 @@ internal sealed partial class PlayState : Entity, IGameState
 	{
 		DebugOverlay.ScreenText( $"Time Left: {TimeUntilGameEnds} seconds" );
 
-		var teamOneStart = 2;
-		DebugOverlay.ScreenText( "Team One:", teamOneStart );
+		var linesUsed = 2;
 
-		int i;
-		for ( i = 0; i < TeamOneClients.Count; i++ )
-			DebugOverlay.ScreenText( TeamOneClients[i].Name, teamOneStart +  i + 1 );
+		for ( var i = 0; i < Teams.Count; i++ )
+		{
+			DebugOverlay.ScreenText( $"Team {i + 1}:", linesUsed );
+			linesUsed++;
 
-		var teamTwoStart = i + 2;
-		DebugOverlay.ScreenText( "Team Two:", teamTwoStart );
+			for ( var j = 0; j < Teams[i].Members.Count; j++ )
+			{
+				DebugOverlay.ScreenText( Teams[i].Members[j].Name, linesUsed );
+				linesUsed++;
+			}
 
-		for ( var j = 0; j < TeamTwoClients.Count; j++ )
-			DebugOverlay.ScreenText( TeamTwoClients[j].Name, teamTwoStart + j + 1 );	
+			linesUsed++;
+		}
 	}
 
 	/// <inheritdoc/>
