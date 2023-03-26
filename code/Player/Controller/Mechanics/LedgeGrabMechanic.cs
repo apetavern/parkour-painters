@@ -15,7 +15,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		if ( _timeSinceDrop < 0.4f )
 			return false;
 
-		if ( TryGrabUpperLedge() )
+		if ( AttemptLedgeGrab() )
 			return true;
 
 		return false;
@@ -34,7 +34,7 @@ class LedgeGrabMechanic : ControllerMechanic
 			Vault();
 	}
 
-	internal bool TryGrabUpperLedge()
+	internal bool AttemptLedgeGrab()
 	{
 		var center = Controller.Position;
 		center.z += 48;
