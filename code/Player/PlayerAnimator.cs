@@ -6,7 +6,7 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 	{
 		var player = Entity;
 		var controller = player.Controller;
-		CitizenAnimationHelper animHelper = new CitizenAnimationHelper( player );
+		var animHelper = new CustomAnimationHelper( player );
 
 		animHelper.WithWishVelocity( controller.GetWishVelocity() );
 		animHelper.WithVelocity( controller.Velocity );
@@ -18,5 +18,9 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		animHelper.IsGrounded = controller.GroundEntity != null;
 		animHelper.IsSwimming = player.GetWaterLevel() >= 0.5f;
 		animHelper.IsWeaponLowered = false;
+		animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.None;
+
+		if ( player.Components.Get<WallJumpMechanic>().IsActive )
+			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 	}
 }
