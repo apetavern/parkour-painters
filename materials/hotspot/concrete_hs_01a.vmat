@@ -1,0 +1,16 @@
+"Layer0"
+{
+	"shader"		"shaders/pixelated.shader_c"
+	"g_bFogEnabled"		"1"
+	"g_vTiling"		"[1.000 1.000]"
+	"Color"		"materials/hotspot/textures/concrete_hs_01a_color.png"
+	"Metallic"		"materials/default/default_metal.tga"
+	"Normal"		"materials/hotspot/textures/concrete_hs_01a_normal.png"
+	"Roughness"		"materials/hotspot/textures/concrete_hs_01a_rough.png"
+	"g_vTintColor"		"[1.000000 1.000000 1.000000 1.000000]"
+	"TintMask"		"materials/default/default_mask.tga"
+	"ToolAttributes"
+	{
+		"SubrectDefinition"		"materials\hotspot\sd_hotspot_layout_a.rect"
+	}
+}
