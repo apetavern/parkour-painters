@@ -2,7 +2,7 @@ namespace GangJam;
 
 public sealed partial class WallJumpMechanic : ControllerMechanic
 {
-	private float WallJumpConnectangle => 0.75f;
+	private float WallJumpConnectangle => 0.95f;
 	private float WallJumpStrength => 400f;
 	private float WallJumpKickStrength => 250f;
 	private float WallJumpFriction => 500f;
@@ -22,7 +22,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		if ( Controller.GetMechanic<LedgeGrabMechanic>().IsActive )
 			return false;
 
-		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 20f )
+		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 5f )
 			.Ignore( Controller.Player )
 			.WorldOnly()
 			.Run();
