@@ -69,7 +69,7 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		if ( Game.Clients.Count >= 2 )
+		if ( Game.Clients.Count >= GangJam.NumTeams )
 			PlayState.SetActive();
 	}
 
