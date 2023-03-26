@@ -7,7 +7,7 @@
   "Model": "models/outfits/punk/head/mohawk.vmdl",
   "SkinMaterial": null,
   "EyesMaterial": null,
-  "MaterialGroup": "1",
+  "MaterialGroup": "alt",
   "SlotsUnder": 0,
   "SlotsOver": 0,
   "HideBody": 0,
