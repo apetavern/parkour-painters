@@ -12,7 +12,7 @@
       "Emission": {},
       "Opacity": {},
       "Normal": {
-        "Identifier": "8",
+        "Identifier": "7",
         "Output": "Result"
       },
       "Roughness": {
@@ -20,7 +20,7 @@
         "Output": "Result"
       },
       "Metalness": {
-        "Identifier": "6",
+        "Identifier": "8",
         "Output": "Result"
       },
       "AmbientOcclusion": {},
@@ -106,16 +106,6 @@
       "Position": "-176,288"
     },
     {
-      "_class": "Float",
-      "Min": 0,
-      "Max": 1,
-      "Name": "Metallness",
-      "Value": 0,
-      "UI": {},
-      "Identifier": "6",
-      "Position": "160,240"
-    },
-    {
       "_class": "TextureSampler",
       "Coords": {
         "Identifier": "2",
@@ -136,18 +126,39 @@
           "Name": ""
         }
       },
-      "Identifier": "7",
+      "Identifier": "6",
       "Position": "-176,96"
     },
     {
       "_class": "TransformNormal",
       "Input": {
-        "Identifier": "7",
+        "Identifier": "6",
         "Output": "Result"
       },
       "DecodeNormal": true,
-      "Identifier": "8",
+      "Identifier": "7",
       "Position": "112,32"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Texture": "materials/default/default_metal_tga_3379da5d.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Metallic",
+        "Default": "0,0,0,1",
+        "Extension": "Metal",
+        "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
+        "Priority": 3
+      },
+      "Identifier": "8",
+      "Position": "-176,480"
     }
   ]
 }
