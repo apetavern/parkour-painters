@@ -21,8 +21,14 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.None;
 
 		if ( player.Components.Get<LedgeGrabMechanic>().IsActive )
+		{
+			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
+			animHelper.WithVelocity( controller.GetWishVelocity( true ) );
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
+		}
 		else if ( player.Components.Get<WallJumpMechanic>().IsActive )
+		{
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
+		}
 	}
 }
