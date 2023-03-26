@@ -1,0 +1,15 @@
+{
+  "Title": "Mohawk",
+  "Subtitle": "A standard punk hair piece.",
+  "Category": "Hair",
+  "SubCategory": "punk",
+  "Parent": null,
+  "Model": "models/outfits/punk/head/mohawk.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": 0,
+  "SlotsOver": 0,
+  "HideBody": 0,
+  "Icon": {}
+}

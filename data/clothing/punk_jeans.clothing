@@ -1,0 +1,15 @@
+{
+  "Title": "Punk Jeans",
+  "Subtitle": "A product of too much sliding.",
+  "Category": "Bottoms",
+  "SubCategory": "punk",
+  "Parent": null,
+  "Model": "models/outfits/punk/legs/pants.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": 0,
+  "SlotsOver": 0,
+  "HideBody": "Feet",
+  "Icon": {}
+}

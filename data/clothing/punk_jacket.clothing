@@ -1,0 +1,15 @@
+{
+  "Title": "Punk Jacket",
+  "Subtitle": "Spikes do not enhance in-game performance.",
+  "Category": "Tops",
+  "SubCategory": "punk",
+  "Parent": null,
+  "Model": "models/outfits/punk/torso/jacket.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": 0,
+  "SlotsOver": 0,
+  "HideBody": "Chest",
+  "Icon": {}
+}
