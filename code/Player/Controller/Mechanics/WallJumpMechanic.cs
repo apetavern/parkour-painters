@@ -5,7 +5,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 	private float WallJumpConnectangle => 0.75f;
 	private float WallJumpStrength => 400f;
 	private float WallJumpKickStrength => 250f;
-	private float WallJumpFriction => -70f;
+	private float WallJumpFriction => 500f;
 	private float WallJumpTraceDistance => 25f;
 
 	private TimeUntil _timeUntilNextWallJump = Time.Now;
@@ -69,7 +69,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 			return;
 		}
 
-		Controller.Velocity = Controller.Velocity.WithZ( WallJumpFriction );
+		Controller.Velocity -= Controller.Velocity.Normal * WallJumpFriction * Time.Delta;
 
 		if ( Controller.GroundEntity.IsValid() )
 		{
