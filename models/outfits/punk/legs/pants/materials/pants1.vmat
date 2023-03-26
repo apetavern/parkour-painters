@@ -1,11 +1,10 @@
 "Layer0"
 {
-	"shader"		"shaders/complex.shader_c"
-	"TextureColor"		"models/outfits/punk/legs/pants/materials/pants1_color.png"
-	"TextureAmbientOcclusion"		"models/outfits/punk/legs/pants/materials/pants1_ao.png"
-	"TextureNormal"		"models/outfits/punk/legs/pants/materials/pants1_normal.png"
-	"TextureRoughness"		"models/outfits/punk/legs/pants/materials/pants1_rough.png"
-	"F_METALNESS_TEXTURE"		"1"
-	"F_SPECULAR"		"1"
-	"TextureMetalness"		"models/outfits/punk/legs/pants/materials/pants1_metallic.png"
+	"shader"		"shaders/pixelated.shader_c"
+	"Color"		"models/outfits/punk/legs/pants/materials/pants1_color.png"
+	"g_vTiling"		"[1.000 1.000]"
+	"Metallic"		"models/outfits/punk/legs/pants/materials/pants1_metallic.png"
+	"Normal"		"models/outfits/punk/legs/pants/materials/pants1_normal.png"
+	"Roughness"		"models/outfits/punk/legs/pants/materials/pants1_rough.png"
+	"g_bFogEnabled"		"1"
 }

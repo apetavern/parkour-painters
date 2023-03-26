@@ -1,11 +1,10 @@
 "Layer0"
 {
-	"shader"		"shaders/complex.shader_c"
-	"TextureColor"		"models/outfits/punk/head/mohawk/materials/phong1_color.png"
-	"TextureAmbientOcclusion"		"models/outfits/punk/head/mohawk/materials/phong1_ao.png"
-	"TextureNormal"		"models/outfits/punk/head/mohawk/materials/phong1_normal.png"
-	"TextureRoughness"		"models/outfits/punk/head/mohawk/materials/phong1_rough.png"
-	"F_METALNESS_TEXTURE"		"1"
-	"F_SPECULAR"		"1"
-	"TextureMetalness"		"models/outfits/punk/head/mohawk/materials/phong1_metallic.png"
+	"shader"		"shaders/pixelated.shader_c"
+	"Color"		"models/outfits/punk/head/mohawk/materials/phong1_color.png"
+	"g_vTiling"		"[1.000 1.000]"
+	"Metallic"		"models/outfits/punk/head/mohawk/materials/phong1_metallic.png"
+	"Normal"		"models/outfits/punk/head/mohawk/materials/phong1_normal.png"
+	"Roughness"		"models/outfits/punk/head/mohawk/materials/green/phong1_rough.png"
+	"g_bFogEnabled"		"1"
 }
