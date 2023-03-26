@@ -6,8 +6,4 @@
 [HammerEntity]
 public sealed class GraffitiSpot : Entity
 {
-	public override void Spawn()
-	{
-		base.Spawn();
-	}
 }

@@ -6,22 +6,22 @@
 internal interface IGameState : IEntity
 {
 	/// <summary>
-	/// Invoked when entering this game state. This will only be called on the server.
+	/// Invoked when entering this game state. This will only be invoked on the server.
 	/// </summary>
 	/// <param name="lastState">The previous state the game was in. This can be null.</param>
 	void Enter( IGameState lastState );
 	/// <summary>
-	/// Invoked when leaving this game state. This will only be called on the server.
+	/// Invoked when leaving this game state. This will only be invoked on the server.
 	/// </summary>
 	void Exit();
 
 	/// <summary>
-	/// Invoked when a client has joined the game. This will only be called on the server.
+	/// Invoked when a client has joined the game. This will only be invoked on the server.
 	/// </summary>
 	/// <param name="cl">The client that joined the game.</param>
 	void ClientJoined( IClient cl );
 	/// <summary>
-	/// Invoked when a client has left the game. This will only be called on the server.
+	/// Invoked when a client has left the game. This will only be invoked on the server.
 	/// </summary>
 	/// <param name="cl">The client that left the game.</param>
 	/// <param name="reason">The reason for the client leaving.</param>

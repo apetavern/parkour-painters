@@ -117,7 +117,7 @@ internal sealed partial class PlayState : Entity, IGameState
 	}
 
 	/// <summary>
-	/// Sets the <see cref="PlayState"/> as the active state in the game. This can only be called on the server.
+	/// Sets the <see cref="PlayState"/> as the active state in the game. This can only be invoked on the server.
 	/// </summary>
 	public static void SetActive()
 	{

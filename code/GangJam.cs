@@ -69,7 +69,7 @@ public sealed partial class GangJam : GameManager
 	}
 
 	/// <summary>
-	/// Sets a new active game state. This can only be called on the server.
+	/// Sets a new active game state. This can only be invoked on the server.
 	/// </summary>
 	/// <typeparam name="T">The type of the game state to set as active.</typeparam>
 	internal void SetState<T>() where T : IGameState, new()
@@ -80,7 +80,7 @@ public sealed partial class GangJam : GameManager
 	}
 
 	/// <summary>
-	/// Sets a new active game state. This can only be called on the server.
+	/// Sets a new active game state. This can only be invoked on the server.
 	/// </summary>
 	/// <param name="state">An instance of the game state to set as active.</param>
 	private void SetState( IGameState state )
