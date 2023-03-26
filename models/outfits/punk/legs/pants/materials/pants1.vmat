@@ -1,6 +1,7 @@
 "Layer0"
 {
 	"shader"		"shaders/pixelated.shader_c"
+	"F_RENDER_BACKFACES"		"1"
 	"g_bFogEnabled"		"1"
 	"g_vTiling"		"[1.000 1.000]"
 	"Color"		"models/outfits/punk/legs/pants/materials/pants1_color.png"
