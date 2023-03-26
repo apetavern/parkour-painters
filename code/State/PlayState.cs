@@ -39,10 +39,19 @@ internal partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
+		// This is here to jump into play state for debugging.
 		if ( lastState is not WaitingState waitingState )
 		{
-			// TODO: Randomize teams instead.
-			Log.Error( "PANIC" );
+			for ( var i = 0; i < Game.Clients.Count; i++ )
+			{
+				var cl = Game.Clients.ElementAt( i );
+
+				if ( i % 2 != 0 )
+					TeamOneClients.Add( cl );
+				else
+					TeamTwoClients.Add( cl );
+			}
+
 			return;
 		}
 
