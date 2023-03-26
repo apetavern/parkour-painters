@@ -26,7 +26,7 @@ internal partial class Team : Entity
 	/// <summary>
 	/// Initializes a new instance of <see cref="Team"/>. This can only be used on the server-side.
 	/// </summary>
-	/// <param name="members"></param>
+	/// <param name="members">A list of all clients that are a part of the team.</param>
 	public Team( IEnumerable<IClient> members )
 	{
 		Game.AssertServer();
