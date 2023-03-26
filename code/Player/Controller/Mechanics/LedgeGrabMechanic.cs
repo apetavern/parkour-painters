@@ -12,7 +12,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		if ( Controller.GroundEntity.IsValid() )
 			return false;
 
-		if ( _timeSinceDrop < 0.7f )
+		if ( _timeSinceDrop < 0.9f )
 			return false;
 
 		if ( CanGrabLedge() )

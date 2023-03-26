@@ -5,7 +5,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 	private float WallJumpConnectangle => 0.95f;
 	private float WallJumpStrength => 400f;
 	private float WallJumpKickStrength => 250f;
-	private float WallJumpFriction => 500f;
+	private float WallJumpFriction => 650f;
 	private float WallJumpTraceDistance => 25f;
 
 	private TimeUntil _timeUntilWallJumpDisengage = Time.Now;
@@ -24,6 +24,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 
 		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 5f )
 			.Ignore( Controller.Player )
+			.Radius( 5 )
 			.WorldOnly()
 			.Run();
 
