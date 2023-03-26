@@ -8,6 +8,11 @@ public sealed partial class Player : AnimatedEntity
 
 	[BindComponent] public PlayerCamera Camera { get; }
 
+	/// <summary>
+	/// The type of team that the pawn is a part of.
+	/// </summary>
+	[Net] internal TeamType Team { get; set; }
+
 	public TimeSince TimeSinceFootstep { get; protected set; } = 0;
 	static Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
 

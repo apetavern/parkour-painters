@@ -1,40 +1,40 @@
 namespace GangJam;
 
-public partial class Player
+partial class Player
 {
-	public ClothingContainer ClothingContainer { get; protected set; }
+	/// <summary>
+	/// Contains the clothes that have been placed onto the pawn.
+	/// </summary>
+	private ClothingContainer ClothingContainer { get; set; }
 
 	/// <summary>
-	/// Set the clothes to whatever the player is wearing
+	/// Sets up the pawns clothing.
 	/// </summary>
 	public void SetupClothing()
 	{
-		ClothingContainer = new();
+		ClothingContainer?.ClearEntities();
+		ClothingContainer = Team.GetClothes();
 
-		var clothes = ResourceLibrary.GetAll<Clothing>();
-
-
-		var PlayerClothes = new ClothingContainer();
-		PlayerClothes.LoadFromClient( Client );
-		var Skin = PlayerClothes.Clothing.Where( x => x.Category == Clothing.ClothingCategory.Skin ).First();
-		var SkinName = Skin.Title + "_pixelated";
-
-		foreach ( var clothing in clothes )
+		// Find correct skin.
 		{
-			if ( PunkClothing.Any( clothing.Title.Contains ) )
-				ClothingContainer.Clothing.Add( clothing );
+			var preferredClothing = new ClothingContainer();
+			preferredClothing.LoadFromClient( Client );
 
-			if ( clothing.Title.Contains( SkinName ) )
-				ClothingContainer.Clothing.Add( clothing );
+			var skin = preferredClothing.Clothing.Where( x => x.Category == Clothing.ClothingCategory.Skin ).FirstOrDefault();
+			if ( skin is not null )
+			{
+				var skinName = skin.Title + "_pixelated";
+				foreach ( var clothingItem in ResourceLibrary.GetAll<Clothing>() )
+				{
+					if ( !clothingItem.Title.Contains( skinName ) )
+						continue;
+
+					ClothingContainer.Clothing.Add( clothingItem );
+					break;
+				}
+			}
 		}
 
 		ClothingContainer.DressEntity( this );
 	}
-
-	private static readonly List<string> PunkClothing = new()
-	{
-		"Messy Hair",
-		"Punk Jacket",
-		"Punk Jeans",
-	};
 }

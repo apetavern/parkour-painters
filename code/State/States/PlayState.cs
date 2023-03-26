@@ -64,14 +64,14 @@ internal sealed partial class PlayState : Entity, IGameState
 				builders[i % builders.Length].Add( Game.Clients.ElementAt( i ) );
 
 			for ( var i = 0; i < builders.Length; i++ )
-				Teams.Add( new Team( builders[i] ) );
+				Teams.Add( new Team( Random.Shared.FromEnum<TeamType>(), builders[i] ) );
 
 			return;
 		}
 
 		for ( var i = 0; i < waitingState.Teams.Length; i++ )
 		{
-			var team = new Team( waitingState.Teams[i] )
+			var team = new Team( Random.Shared.FromEnum<TeamType>(), waitingState.Teams[i] )
 			{
 				Parent = this
 			};
@@ -115,12 +115,13 @@ internal sealed partial class PlayState : Entity, IGameState
 
 		for ( var i = 0; i < Teams.Count; i++ )
 		{
-			DebugOverlay.ScreenText( $"Team {i + 1}:", linesUsed );
+			var team = Teams[i];
+			DebugOverlay.ScreenText( $"Team {i + 1} ({team.Type}):", linesUsed );
 			linesUsed++;
 
-			for ( var j = 0; j < Teams[i].Members.Count; j++ )
+			for ( var j = 0; j < team.Members.Count; j++ )
 			{
-				DebugOverlay.ScreenText( Teams[i].Members[j].Name, linesUsed );
+				DebugOverlay.ScreenText( team.Members[j].Name, linesUsed );
 				linesUsed++;
 			}
 
