@@ -1,10 +1,12 @@
 "Layer0"
 {
 	"shader"		"shaders/pixelated.shader_c"
-	"Color"		"models/outfits/punk/torso/jacket/materials/jacket_color.png"
+	"g_bFogEnabled"		"1"
 	"g_vTiling"		"[1.000 1.000]"
+	"Color"		"models/outfits/punk/torso/jacket/materials/jacket_color.png"
 	"Metallic"		"models/outfits/punk/torso/jacket/materials/jacket_metallic.png"
 	"Normal"		"models/outfits/punk/torso/jacket/materials/jacket_normal.png"
 	"Roughness"		"models/outfits/punk/torso/jacket/materials/jacket_rough.png"
-	"g_bFogEnabled"		"1"
+	"g_vTintColor"		"[1.000000 1.000000 1.000000 1.000000]"
+	"TintMask"		"materials/default/default_mask.tga"
 }

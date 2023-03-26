@@ -14,23 +14,12 @@
 						remaps = 
 						[
 							{
-								from = "pants1.vmat"
-								to = "models/outfits/punk/legs/pants/materials/pants1.vmat"
+								from = "rippedsleeveless.vmat"
+								to = "models/outfits/punk/torso/ripped-sleeveless/materials/rippedsleeveless.vmat"
 							},
 						]
 						use_global_default = false
 						global_default_material = ""
-					},
-					{
-						_class = "MaterialGroup"
-						name = "alt"
-						remaps = 
-						[
-							{
-								from = "models/outfits/punk/legs/pants/materials/pants1.vmat"
-								to = "models/outfits/punk/legs/pants/materials/plaid/pants1.vmat"
-							},
-						]
 					},
 				]
 			},
@@ -40,7 +29,7 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						filename = "models/outfits/punk/legs/pants/pants.fbx"
+						filename = "models/outfits/punk/torso/ripped-sleeveless/ripped-sleeveless.fbx"
 						import_translation = [ 0.0, 0.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 1.0
@@ -53,8 +42,9 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"shoes",
-								"pants",
+								"Wristband_L",
+								"Wristband_R",
+								"Ripped_Sleeveless",
 							]
 						}
 					},

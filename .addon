@@ -40,6 +40,17 @@
         "Minimum": 30,
         "Maximum": 600,
         "Step": 5
+      },
+      {
+        "DisplayType": "Integer",
+        "Choices": [],
+        "ConVarName": "gj_numteams",
+        "DisplayName": "Number of Teams",
+        "DefaultValue": "2",
+        "Description": "",
+        "Group": "",
+        "Minimum": 2,
+        "Maximum": 10
       }
     ]
   }

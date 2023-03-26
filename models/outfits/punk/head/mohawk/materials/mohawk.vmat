@@ -1,10 +1,12 @@
 "Layer0"
 {
 	"shader"		"shaders/pixelated.shader_c"
-	"Color"		"models/outfits/punk/head/mohawk/materials/phong1_color.png"
+	"g_bFogEnabled"		"1"
 	"g_vTiling"		"[1.000 1.000]"
+	"Color"		"models/outfits/punk/head/mohawk/materials/phong1_color.png"
 	"Metallic"		"models/outfits/punk/head/mohawk/materials/phong1_metallic.png"
 	"Normal"		"models/outfits/punk/head/mohawk/materials/phong1_normal.png"
 	"Roughness"		"models/outfits/punk/head/mohawk/materials/green/phong1_rough.png"
-	"g_bFogEnabled"		"1"
+	"g_vTintColor"		"[1.000000 1.000000 1.000000 1.000000]"
+	"TintMask"		"materials/default/default_mask.tga"
 }

@@ -3,6 +3,7 @@
 /// <summary>
 /// The state for when waiting for players to join the game.
 /// </summary>
+[Category( "Setup" )]
 internal sealed class WaitingState : Entity, IGameState
 {
 	/// <summary>
@@ -11,15 +12,18 @@ internal sealed class WaitingState : Entity, IGameState
 	internal static WaitingState Instance => GangJam.Current.CurrentState as WaitingState;
 
 	/// <summary>
-	/// Contains all of the clients that have been selected to be apart of team one.
+	/// Contains all of the clients that have been selected to be apart of teams.
 	/// This can only be accessed on the server after the state has exited.
 	/// </summary>
-	internal ImmutableArray<IClient> TeamOne { get; private set; }
-	/// <summary>
-	/// Contains all of the clients that have been selected to be a part of team two.
-	/// This can only be accessed on the server after the state has exited.
-	/// </summary>
-	internal ImmutableArray<IClient> TeamTwo { get; private set; }
+	internal ImmutableArray<ImmutableArray<IClient>> Teams { get; private set; }
+
+	/// <inheritdoc/>
+	public override void Spawn()
+	{
+		base.Spawn();
+
+		Transmit = TransmitType.Always;
+	}
 
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
@@ -29,21 +33,18 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
-		var teamOneBuilder = ImmutableArray.CreateBuilder<IClient>();
-		var teamTwoBuilder = ImmutableArray.CreateBuilder<IClient>();
+		var builders = new ImmutableArray<IClient>.Builder[GangJam.NumTeams];
+		for ( var i = 0; i < builders.Length; i++ )
+			builders[i] = ImmutableArray.CreateBuilder<IClient>();
 
 		for ( var i = 0; i < Game.Clients.Count; i++ )
-		{
-			var cl = Game.Clients.ElementAt( i );
+			builders[i % builders.Length].Add( Game.Clients.ElementAt( i ) );
 
-			if ( i % 2 != 0 )
-				teamOneBuilder.Add( cl );
-			else
-				teamTwoBuilder.Add( cl );
-		}
+		var teams = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>();
+		for ( var i = 0; i < builders.Length; i++ )
+			teams.Add( builders[i].ToImmutable() );
 
-		TeamOne = teamOneBuilder.ToImmutable();
-		TeamTwo = teamTwoBuilder.ToImmutable();
+		Teams = teams.ToImmutable();
 	}
 
 	/// <inheritdoc/>
@@ -69,7 +70,7 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		if ( Game.Clients.Count >= 2 )
+		if ( Game.Clients.Count >= GangJam.NumTeams )
 			PlayState.SetActive();
 	}
 
