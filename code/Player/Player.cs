@@ -129,7 +129,7 @@ public sealed partial class Player : AnimatedEntity
 
 		TimeSinceFootstep = 0;
 
-		var tr = Trace.Ray( pos, pos + Vector3.Down * 20 )
+		var tr = Sandbox.Trace.Ray( pos, pos + Vector3.Down * 20 )
 			.Radius( 1 )
 			.Ignore( this )
 			.Run();
