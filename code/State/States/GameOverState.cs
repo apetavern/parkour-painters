@@ -1,6 +1,4 @@
-﻿using GangJam.Extensions;
-
-namespace GangJam.State;
+﻿namespace GangJam.State;
 
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.

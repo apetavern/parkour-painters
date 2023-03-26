@@ -1,4 +1,5 @@
 ﻿global using Editor;
+global using GangJam.Extensions;
 global using GangJam.State;
 global using Sandbox;
 global using System;
