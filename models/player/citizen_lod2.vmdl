@@ -55,6 +55,77 @@
 						use_global_default = false
 						global_default_material = ""
 					},
+					{
+						_class = "MaterialGroup"
+						name = "skin01"
+						remaps = [  ]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "skin02"
+						remaps = 
+						[
+							{
+								from = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+								to = "models/player/materials/skin_01_pixelated/citizen_skin02_pixelated.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "skin03"
+						remaps = 
+						[
+							{
+								from = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+								to = "models/player/materials/skin_01_pixelated/citizen_skin03_pixelated.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "skin04"
+						remaps = 
+						[
+							{
+								from = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+								to = "models/player/materials/skin_01_pixelated/citizen_skin04_pixelated.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "skin05"
+						remaps = 
+						[
+							{
+								from = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+								to = "models/player/materials/skin_01_pixelated/citizen_skin05_pixelated.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "skin06"
+						remaps = 
+						[
+							{
+								from = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+								to = "models/player/materials/skin_01_pixelated/citizen_skin05_pixelated.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "skin07"
+						remaps = 
+						[
+							{
+								from = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+								to = "models/player/materials/skin_01_pixelated/citizen_skin01_pixelated.vmat"
+							},
+						]
+					},
 				]
 			},
 			{

@@ -13,9 +13,18 @@ public partial class Player
 
 		var clothes = ResourceLibrary.GetAll<Clothing>();
 
+
+		var PlayerClothes = new ClothingContainer();
+		PlayerClothes.LoadFromClient( Client );
+		var Skin = PlayerClothes.Clothing.Where( x => x.Category == Clothing.ClothingCategory.Skin ).First();
+		var SkinName = Skin.Title + "_pixelated";
+
 		foreach ( var clothing in clothes )
 		{
 			if ( PunkClothing.Any( clothing.Title.Contains ) )
+				ClothingContainer.Clothing.Add( clothing );
+
+			if ( clothing.Title.Contains( SkinName ) )
 				ClothingContainer.Clothing.Add( clothing );
 		}
 
