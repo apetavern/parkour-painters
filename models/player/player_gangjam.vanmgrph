@@ -37023,6 +37023,19 @@
 												m_data = false
 											}
 										},
+										{
+											_class = "CParameterAnimCondition"
+											m_comparisonOp = 1
+											m_paramID = 
+											{
+												m_id = 1043732780
+											}
+											m_comparisonValue = 
+											{
+												m_nType = 2
+												m_data = 3
+											}
+										},
 									]
 									m_blendDuration = 0.2
 									m_destState = 
@@ -37062,6 +37075,40 @@
 									m_destState = 
 									{
 										m_id = 1197074352
+									}
+									m_bReset = true
+									m_resetCycleOption = "Beginning"
+									m_flFixedCycleValue = 0.0
+									m_blendCurve = 
+									{
+										m_vControlPoint1 = [ 0.5, 0.0 ]
+										m_vControlPoint2 = [ 0.5, 1.0 ]
+									}
+									m_bForceFootPlant = false
+									m_bDisabled = false
+								},
+								{
+									_class = "CAnimStateTransition"
+									m_conditions = 
+									[
+										{
+											_class = "CParameterAnimCondition"
+											m_comparisonOp = 0
+											m_paramID = 
+											{
+												m_id = 1043732780
+											}
+											m_comparisonValue = 
+											{
+												m_nType = 2
+												m_data = 3
+											}
+										},
+									]
+									m_blendDuration = 0.2
+									m_destState = 
+									{
+										m_id = 516975018
 									}
 									m_bReset = true
 									m_resetCycleOption = "Beginning"
@@ -37607,7 +37654,7 @@
 							{
 								m_id = 516975018
 							}
-							m_position = [ -144.0, -480.0 ]
+							m_position = [ -144.0, -528.0 ]
 							m_bIsStartState = false
 							m_bIsEndtState = false
 							m_bIsPassthrough = false
