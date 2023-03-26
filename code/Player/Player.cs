@@ -47,6 +47,7 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<JumpMechanic>();
 		Components.Create<UnstuckMechanic>();
 		Components.Create<WallJumpMechanic>();
+		Components.Create<LedgeGrabMechanic>();
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();

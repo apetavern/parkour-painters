@@ -20,7 +20,9 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		animHelper.IsWeaponLowered = false;
 		animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.None;
 
-		if ( player.Components.Get<WallJumpMechanic>().IsActive )
+		if ( player.Components.Get<LedgeGrabMechanic>().IsActive )
+			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
+		else if ( player.Components.Get<WallJumpMechanic>().IsActive )
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 	}
 }
