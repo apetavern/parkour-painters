@@ -6,7 +6,7 @@
     {
       "_class": "Result",
       "Albedo": {
-        "Identifier": "4",
+        "Identifier": "11",
         "Output": "Result"
       },
       "Emission": {},
@@ -29,14 +29,14 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "416,-48"
+      "Position": "560,-48"
     },
     {
       "_class": "TextureCoord",
       "UseSecondaryCoord": false,
       "Tiling": "1,1",
       "Identifier": "1",
-      "Position": "-672,96"
+      "Position": "-816,96"
     },
     {
       "_class": "Multiply",
@@ -51,7 +51,7 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "2",
-      "Position": "-416,112"
+      "Position": "-560,112"
     },
     {
       "_class": "Float2",
@@ -59,11 +59,12 @@
       "Value": "1,1",
       "UI": {
         "PrimaryGroup": {
-          "Name": ""
+          "Name": "Misc",
+          "Priority": 1
         }
       },
       "Identifier": "3",
-      "Position": "-672,176"
+      "Position": "-816,176"
     },
     {
       "_class": "TextureSampler",
@@ -79,10 +80,13 @@
         "Name": "Color",
         "Default": "1,1,1,1",
         "ImageFormat": "BC7",
-        "SrgbRead": true
+        "SrgbRead": true,
+        "PrimaryGroup": {
+          "Name": "Textures"
+        }
       },
       "Identifier": "4",
-      "Position": "-176,-96"
+      "Position": "-176,-288"
     },
     {
       "_class": "TextureSampler",
@@ -100,7 +104,10 @@
         "Extension": "Rough",
         "ColorSpace": "Linear",
         "ImageFormat": "BC7",
-        "Priority": 2
+        "Priority": 2,
+        "PrimaryGroup": {
+          "Name": "Textures"
+        }
       },
       "Identifier": "5",
       "Position": "-176,288"
@@ -123,7 +130,7 @@
         "ColorSpace": "Linear",
         "Priority": 1,
         "PrimaryGroup": {
-          "Name": ""
+          "Name": "Textures"
         }
       },
       "Identifier": "6",
@@ -137,7 +144,7 @@
       },
       "DecodeNormal": true,
       "Identifier": "7",
-      "Position": "112,32"
+      "Position": "32,96"
     },
     {
       "_class": "TextureSampler",
@@ -155,10 +162,97 @@
         "Extension": "Metal",
         "ColorSpace": "Linear",
         "ImageFormat": "BC7",
-        "Priority": 3
+        "Priority": 3,
+        "PrimaryGroup": {
+          "Name": "Textures"
+        }
       },
       "Identifier": "8",
       "Position": "-176,480"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Texture": "textures/dev/white.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Tint Mask",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
+        "Priority": 1,
+        "PrimaryGroup": {
+          "Name": "Tint",
+          "Priority": 2
+        }
+      },
+      "Identifier": "9",
+      "Position": "-176,-96"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Tint Color",
+      "Value": "1,1,1,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": "Tint",
+          "Priority": 2
+        }
+      },
+      "Identifier": "10",
+      "Position": "-176,-448"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "13",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "12",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "11",
+      "Position": "192,-224"
+    },
+    {
+      "_class": "Subtract",
+      "A": {},
+      "B": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "DefaultA": 1,
+      "DefaultB": 0,
+      "Identifier": "12",
+      "Position": "64,-112"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "13",
+      "Position": "64,-336"
     }
   ]
 }
