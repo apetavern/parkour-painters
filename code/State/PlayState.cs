@@ -3,6 +3,7 @@
 /// <summary>
 /// The state for when the main game loop has begun.
 /// </summary>
+[Category( "Setup" )]
 internal sealed partial class PlayState : Entity, IGameState
 {
 	/// <summary>

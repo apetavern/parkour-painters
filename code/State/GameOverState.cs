@@ -5,6 +5,7 @@ namespace GangJam.State;
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.
 /// </summary>
+[Category( "Setup" )]
 internal sealed partial class GameOverState : Entity, IGameState
 {
 	/// <summary>

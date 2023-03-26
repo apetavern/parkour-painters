@@ -3,6 +3,7 @@
 /// <summary>
 /// The state for when waiting for players to join the game.
 /// </summary>
+[Category( "Setup" )]
 internal sealed class WaitingState : Entity, IGameState
 {
 	/// <summary>
