@@ -3,7 +3,7 @@
 public partial class SprayCan : BaseCarriable
 {
 	protected override string ModelPath => "models/entities/spray_paint/spray_paint.vmdl";
-	protected override float PrimaryFireRate => 0.1f;
+	protected override float PrimaryFireRate => 0.05f;
 
 	public override void OnEquipped( Player player )
 	{
@@ -23,5 +23,10 @@ public partial class SprayCan : BaseCarriable
 	protected override void OnPrimaryAttack()
 	{
 		base.OnPrimaryAttack();
+
+		var reachTrace = Trace.Ray( Player.EyePosition, Player.EyePosition + Player.EyeRotation.Forward * 200f ).WithTag( "graffiti_spot" ).Run();
+
+		if ( reachTrace.Entity is GraffitiSpot graffitiSpot )
+			graffitiSpot.OnSprayReceived( Player );
 	}
 }
