@@ -1,0 +1,174 @@
+{
+  "Model": "models/dev/plane.vmdl",
+  "Description": "",
+  "BlendMode": "Translucent",
+  "nodes": [
+    {
+      "_class": "Result",
+      "Albedo": {},
+      "Emission": {},
+      "Opacity": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Normal": {},
+      "Roughness": {},
+      "Metalness": {},
+      "AmbientOcclusion": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "608,32"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {},
+      "Texture": "particles/textures/vfx_dissolve_01_png_4dd4ec51.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "SrgbRead": true,
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "1",
+      "Position": "-592,128"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "3",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "2",
+      "Position": "-256,-64"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "",
+      "Value": 0,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "3",
+      "Position": "-640,-128"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "",
+      "Value": 1,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "4",
+      "Position": "-640,-64"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "5",
+      "Position": "-368,64"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 10,
+      "Name": "Fade amount",
+      "Value": 0,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "6",
+      "Position": "-592,64"
+    },
+    {
+      "_class": "SmoothStep",
+      "Input": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Edge1": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "Edge2": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "Identifier": "7",
+      "Position": "80,80"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Smooth Step Min",
+      "Value": 0,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "8",
+      "Position": "-176,96"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Smooth Step Max",
+      "Value": 0.02,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "9",
+      "Position": "-176,160"
+    },
+    {
+      "_class": "Saturate",
+      "Input": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "Identifier": "10",
+      "Position": "336,32"
+    }
+  ]
+}
