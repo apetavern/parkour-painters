@@ -4,5 +4,5 @@
 	"TextureBayer"		"materials/pattern2_bayer.png"
 	"g_ColorDepth"		"8"
 	"g_DitherScale"		"1"
-	"g_vInternalResolution"		"[320 240]"
+	"g_vInternalResolution"		"[480 360]"
 }
