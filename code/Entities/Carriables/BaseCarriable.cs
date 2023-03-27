@@ -66,7 +66,10 @@ public abstract partial class BaseCarriable : AnimatedEntity
 			HasReleasedPrimary = false;
 		}
 		if ( Input.Released( InputButton.PrimaryAttack ) )
+		{
+			OnPrimaryReleased();
 			HasReleasedPrimary = true;
+		}
 
 		// Secondary fire
 		if ( Input.Down( InputButton.SecondaryAttack ) && !Input.Down( InputButton.PrimaryAttack ) )
@@ -82,7 +85,10 @@ public abstract partial class BaseCarriable : AnimatedEntity
 			HasReleasedSecondary = false;
 		}
 		if ( Input.Released( InputButton.SecondaryAttack ) )
+		{
+			OnSecondaryReleased();
 			HasReleasedSecondary = true;
+		}
 	}
 
 	protected virtual void OnPrimaryAttack()
@@ -90,8 +96,12 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		TimeSinceLastPrimary = 0;
 	}
 
+	protected virtual void OnPrimaryReleased() { }
+
 	protected virtual void OnSecondaryAttack()
 	{
 		TimeSinceLastSecondary = 0;
 	}
+
+	protected virtual void OnSecondaryReleased() { }
 }
