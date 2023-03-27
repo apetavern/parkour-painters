@@ -458,7 +458,7 @@
 				m_nControlPoint = 0
 				m_vCPValueScale = [ 1.0, 1.0, 1.0 ]
 				m_vCPRelativePosition = [ 0.0, 0.0, 0.0 ]
-				m_vCPRelativeDir = [ 0.075, 0.0, 0.0 ]
+				m_vCPRelativeDir = [ 0.05, 0.0, 0.0 ]
 				m_FloatComponentX = 
 				{
 					m_nType = "PF_TYPE_LITERAL"
@@ -732,6 +732,7 @@
 		{
 			_class = "C_OP_FadeAndKill"
 			m_flEndAlpha = 1.0
+			m_flStartAlpha = 0.0
 		},
 	]
 	m_Renderers = 
