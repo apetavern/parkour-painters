@@ -449,16 +449,16 @@
 			_class = "C_OP_SetVec"
 			m_InputValue = 
 			{
-				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ 0.0, 0.0, 0.05 ]
+				m_nType = "PVEC_TYPE_CP_RELATIVE_DIR"
+				m_vLiteralValue = [ 0.0, 0.0, 0.0 ]
 				m_NamedValue = ""
 				m_LiteralColor = [ 0, 0, 0, 0 ]
-				m_nVectorAttribute = 6
-				m_vVectorAttributeScale = [ 1.0, 1.0, 1.0 ]
+				m_nVectorAttribute = 2
+				m_vVectorAttributeScale = [ 0.0, 0.0, 0.0 ]
 				m_nControlPoint = 0
 				m_vCPValueScale = [ 1.0, 1.0, 1.0 ]
 				m_vCPRelativePosition = [ 0.0, 0.0, 0.0 ]
-				m_vCPRelativeDir = [ 1.0, 0.0, 0.0 ]
+				m_vCPRelativeDir = [ 0.05, 0.0, 0.0 ]
 				m_FloatComponentX = 
 				{
 					m_nType = "PF_TYPE_LITERAL"
