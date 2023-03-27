@@ -58906,7 +58906,7 @@
 			m_bEnabled = true
 		},
 		{
-			m_name = "models/outfits/punk/legs/pants.vmdl"
+			m_name = "models/outfits/90s/legs/loose_pants.vmdl"
 			m_bEnabled = true
 		},
 		{
@@ -58914,7 +58914,7 @@
 			m_bEnabled = true
 		},
 		{
-			m_name = "models/outfits/punk/head/messy-hair.vmdl"
+			m_name = "models/outfits/90s/head/cap_backwards.vmdl"
 			m_bEnabled = true
 		},
 	]
