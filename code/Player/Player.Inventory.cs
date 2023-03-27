@@ -25,6 +25,7 @@ public sealed partial class Player : AnimatedEntity
 	public void Holster()
 	{
 		Carrying?.OnHolstered();
+		Carrying = null;
 	}
 
 	public bool CanEquip( Type carriable )
