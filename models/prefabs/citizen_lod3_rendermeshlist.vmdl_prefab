@@ -1,0 +1,673 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						name = "Mesh_Torso"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "Torso_LOD0"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenTorso_LOD0",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Torso_LOD1"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod1.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenTorso_LOD1",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Torso_LOD2"
+								children = 
+								[
+									{
+										_class = "Prefab"
+										target_file = "models/citizen/prefabs/removeboneandchildren_lod2.vmdl_prefab"
+									},
+								]
+								filename = "models/citizen/citizen_lod2.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenTorso_LOD2",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Torso_LOD3"
+								children = 
+								[
+									{
+										_class = "Prefab"
+										target_file = "models/citizen/prefabs/removeboneandchildren_lod3.vmdl_prefab"
+									},
+								]
+								filename = "models/citizen/citizen_lod3.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenTorso_LOD3",
+									]
+								}
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "Mesh_Hands"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "Hands_LOD0"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenHands_LOD0",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Hands_LOD1"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod1.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenHands_LOD1",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Hands_LOD2"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod2.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenHands_LOD2",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Hands_LOD3"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod3.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenHands_LOD3",
+									]
+								}
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "Mesh_Legs"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "Legs_LOD0"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenLegs_LOD0",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Legs_LOD1"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod1.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenLegs_LOD1",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Legs_LOD2"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod2.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenLegs_LOD2",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Legs_LOD3"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod3.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenLegs_LOD3",
+									]
+								}
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "Mesh_Feet"
+						children = 
+						[
+							{
+								_class = "RenderMeshFile"
+								name = "Feet_LOD0"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenFeet_LOD0",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Feet_LOD1"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod1.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenFeet_LOD1",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Feet_LOD2"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod2.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenFeet_LOD2",
+									]
+								}
+							},
+							{
+								_class = "RenderMeshFile"
+								name = "Feet_LOD3"
+								children = 
+								[
+									{
+										_class = "RenderMeshMarkup"
+										material_search_path = ""
+										use_expensive_tangents = true
+										high_high_precision_texcoords = true
+										calc_per_vertex_curvature = false
+										prefer_high_density_tris_in_uv_density_calc = false
+										cpu_access = false
+									},
+								]
+								filename = "models/citizen/citizen_lod3.fbx"
+								import_translation = [ 0.0, 0.0, 0.0 ]
+								import_rotation = [ 0.0, 0.0, 0.0 ]
+								import_scale = 1.0
+								align_origin_x_type = "None"
+								align_origin_y_type = "None"
+								align_origin_z_type = "None"
+								parent_bone = ""
+								import_filter = 
+								{
+									exclude_by_default = true
+									exception_list = 
+									[
+										"CitizenFeet_LOD3",
+									]
+								}
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Folder"
+				name = "Mesh_Head"
+				note = "NOTE: the head was moved to be NOT FIRST in this list, because it seems like the first RenderMesh node is the one that will definee what the skeleton and its hierarchy is. I\'m writing this at the time of having changed the helpers so they\'re reparented to the lower parts of the limbs instead of the upper ones so that stretching limb lengths can work properly, so that\'s the reason why."
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "Head_LOD0"
+						children = 
+						[
+							{
+								_class = "RenderMeshMarkup"
+								material_search_path = ""
+								use_expensive_tangents = true
+								high_high_precision_texcoords = true
+								calc_per_vertex_curvature = false
+								prefer_high_density_tris_in_uv_density_calc = false
+								cpu_access = false
+							},
+						]
+						filename = "models/citizen/citizen_head.dmx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = 
+							[
+								"Citizen_Eyebrows",
+								"Citizen_EyebrowsOld",
+							]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "Head_LOD2"
+						children = 
+						[
+							{
+								_class = "Prefab"
+								target_file = "models/citizen/prefabs/removeboneandchildren_lod2.vmdl_prefab"
+							},
+						]
+						filename = "models/citizen/citizen_lod2.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"CitizenHead_LOD2",
+							]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "Head_LOD3"
+						children = 
+						[
+							{
+								_class = "Prefab"
+								target_file = "models/citizen/prefabs/removeboneandchildren_lod3.vmdl_prefab"
+							},
+						]
+						filename = "models/citizen/citizen_lod3.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"CitizenHead_LOD3",
+							]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "Head_LOD4"
+						children = 
+						[
+							{
+								_class = "Prefab"
+								target_file = "models/citizen/prefabs/removeboneandchildren_lod4.vmdl_prefab"
+							},
+						]
+						filename = "models/citizen/citizen_lod4.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"CitizenHead_LOD3",
+								"CitizenHead_LOD4",
+							]
+						}
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = ""
+		base_model_name = ""
+	}
+}

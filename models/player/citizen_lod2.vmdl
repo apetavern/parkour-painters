@@ -134,7 +134,7 @@
 				[
 					{
 						_class = "Prefab"
-						target_file = "models/citizen/prefabs/citizen_rendermeshlist.vmdl_prefab"
+						target_file = "models/prefabs/citizen_lod3_rendermeshlist.vmdl_prefab"
 					},
 				]
 			},
@@ -235,6 +235,72 @@
 					{
 						_class = "Prefab"
 						target_file = "models/citizen/prefabs/citizen_weightlistlist.vmdl_prefab"
+					},
+					{
+						_class = "WeightList"
+						name = "spraycan_weights"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "clavicle_L"
+								weight = 0.0
+							},
+							{
+								bone = "clavicle_R"
+								weight = 1.0
+							},
+							{
+								bone = "ear_L"
+								weight = 0.0
+							},
+							{
+								bone = "ear_R"
+								weight = 0.0
+							},
+							{
+								bone = "eye_L"
+								weight = 0.0
+							},
+							{
+								bone = "eye_R"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_lower_L"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_lower_R"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_upper_L"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_upper_R"
+								weight = 0.0
+							},
+							{
+								bone = "head"
+								weight = 1.0
+							},
+							{
+								bone = "neck_0"
+								weight = 1.0
+							},
+							{
+								bone = "neck_clothing"
+								weight = 1.0
+							},
+							{
+								bone = "spine_2"
+								weight = 0.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
 					},
 				]
 			},
