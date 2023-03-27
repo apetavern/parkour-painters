@@ -6,7 +6,7 @@
     {
       "_class": "Result",
       "Albedo": {
-        "Identifier": "11",
+        "Identifier": "15",
         "Output": "Result"
       },
       "Emission": {},
@@ -29,7 +29,7 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "560,-48"
+      "Position": "704,-48"
     },
     {
       "_class": "TextureCoord",
@@ -59,8 +59,8 @@
       "Value": "1,1",
       "UI": {
         "PrimaryGroup": {
-          "Name": "Misc",
-          "Priority": 1
+          "Name": "Texture Coordinates",
+          "Priority": 5
         }
       },
       "Identifier": "3",
@@ -72,7 +72,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/buildings/textures/building_facade_01a_color_png_dce5488e.generated.vtex",
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_color_png_2e4d779b.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -82,7 +82,7 @@
         "ImageFormat": "BC7",
         "SrgbRead": true,
         "PrimaryGroup": {
-          "Name": "Textures"
+          "Name": "Color"
         }
       },
       "Identifier": "4",
@@ -94,7 +94,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/buildings/textures/building_facade_01a_rough_png_32944b27.generated.vtex",
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_rough_png_aee0e5e.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -106,7 +106,8 @@
         "ImageFormat": "BC7",
         "Priority": 2,
         "PrimaryGroup": {
-          "Name": "Textures"
+          "Name": "Roughness",
+          "Priority": 2
         }
       },
       "Identifier": "5",
@@ -118,7 +119,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/buildings/textures/building_facade_01a_normal_png_a43c7d29.generated.vtex",
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_normal_png_d1cf3df7.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -130,7 +131,8 @@
         "ColorSpace": "Linear",
         "Priority": 1,
         "PrimaryGroup": {
-          "Name": "Textures"
+          "Name": "Normal",
+          "Priority": 1
         }
       },
       "Identifier": "6",
@@ -152,7 +154,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/default/default_metal_tga_3379da5d.generated.vtex",
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_metal_png_3646b48f.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -164,7 +166,8 @@
         "ImageFormat": "BC7",
         "Priority": 3,
         "PrimaryGroup": {
-          "Name": "Textures"
+          "Name": "Metalness",
+          "Priority": 3
         }
       },
       "Identifier": "8",
@@ -176,7 +179,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "textures/dev/white.vtex",
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_mask_png_2e162a21.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -186,10 +189,9 @@
         "Extension": "Mask",
         "ColorSpace": "Linear",
         "ImageFormat": "BC7",
-        "Priority": 1,
+        "Priority": 4,
         "PrimaryGroup": {
-          "Name": "Tint",
-          "Priority": 2
+          "Name": "Color"
         }
       },
       "Identifier": "9",
@@ -197,13 +199,16 @@
     },
     {
       "_class": "Float4",
-      "Name": "Tint Color",
+      "Name": "Color Tint",
       "Value": "1,1,1,1",
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {
-          "Name": "Tint",
-          "Priority": 2
+          "Name": "Color",
+          "Priority": 1
+        },
+        "SecondaryGroup": {
+          "Name": ""
         }
       },
       "Identifier": "10",
@@ -253,6 +258,39 @@
       "DefaultB": 1,
       "Identifier": "13",
       "Position": "64,-336"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Model Tint Amount",
+      "Value": 1,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Color",
+          "Priority": 2
+        }
+      },
+      "Identifier": "14",
+      "Position": "240,-96"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "15",
+      "Position": "464,-192"
     }
   ]
 }
