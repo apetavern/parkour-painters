@@ -5,6 +5,7 @@
 /// </summary>
 internal enum TeamType
 {
-	Nerd,
-	Punk
+	Nineties,
+	Punk,
+	Nerd
 }
