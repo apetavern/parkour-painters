@@ -33,7 +33,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		SetModel( ModelPath );
 	}
 
-	public void OnEquipped( Player player )
+	public virtual void OnEquipped( Player player )
 	{
 		Owner = player;
 		SetParent( player, true );
@@ -42,7 +42,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		HasReleasedSecondary = true;
 	}
 
-	public void OnHolstered()
+	public virtual void OnHolstered()
 	{
 		Owner = null;
 		Parent = null;
@@ -87,15 +87,11 @@ public abstract partial class BaseCarriable : AnimatedEntity
 
 	protected virtual void OnPrimaryAttack()
 	{
-		Log.Info( "Primary" );
-
 		TimeSinceLastPrimary = 0;
 	}
 
 	protected virtual void OnSecondaryAttack()
 	{
-		Log.Info( "Secondary" );
-
 		TimeSinceLastSecondary = 0;
 	}
 }
