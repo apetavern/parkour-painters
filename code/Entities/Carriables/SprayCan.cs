@@ -28,6 +28,10 @@ public partial class SprayCan : BaseCarriable
 		if ( Game.IsClient && SprayParticles is null )
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
+
+			if ( Player?.Team?.Group is null )
+				return;
+
 			SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
 		}
 
