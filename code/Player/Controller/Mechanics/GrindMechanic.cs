@@ -2,20 +2,24 @@ namespace GangJam;
 
 public class GrindMechanic : ControllerMechanic
 {
-	private GenericPathEntity Path;
-	private int Node;
-	private float Alpha;
-	private TimeSince TimeSinceJump;
-	private bool Reverse;
+	private GenericPathEntity _path;
+	private int _currentNodeIndex;
+	private float _alpha;
+	private bool _isReverseGrind;
+	private bool _isGrinding = false;
 
 	protected override bool ShouldStart()
 	{
-		if ( TimeSinceJump < .3f )
+		if ( _isGrinding )
+			return true;
+
+		if ( !Input.Pressed( InputButton.Use ) )
 			return false;
 
 		foreach ( var path in Sandbox.Entity.All.OfType<GrindSpot>() )
 		{
-			if ( path.PathNodes.Count < 2 ) continue;
+			if ( path.PathNodes.Count < 2 )
+				continue;
 
 			var pa = path.NearestPoint( Controller.Position + Controller.Velocity * Time.Delta, false, out int na, out float ta );
 			var pb = path.NearestPoint( Controller.Position + Controller.Velocity * Time.Delta, true, out int nb, out float tb );
@@ -25,19 +29,19 @@ public class GrindMechanic : ControllerMechanic
 
 			if ( dista < 30 && (na == 0 || dista < distb) )
 			{
-				Path = path;
-				Node = na;
-				Alpha = ta;
-				Reverse = false;
+				_path = path;
+				_currentNodeIndex = na;
+				_alpha = ta;
+				_isReverseGrind = false;
 				return true;
 			}
 
 			if ( distb < 30 && (nb == path.PathNodes.Count - 1 || distb < dista) )
 			{
-				Path = path;
-				Node = nb;
-				Alpha = tb;
-				Reverse = true;
+				_path = path;
+				_currentNodeIndex = nb;
+				_alpha = tb;
+				_isReverseGrind = true;
 				return true;
 			}
 		}
@@ -47,70 +51,51 @@ public class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		Alpha += Time.Delta;
+		_alpha += Time.Delta;
 
-		if ( Alpha >= 1 )
+		if ( _alpha >= 1 )
 		{
-			Alpha = 0;
+			_alpha = 0;
 
 			bool reachedEnd;
 
-			if ( Reverse )
+			if ( _isReverseGrind )
 			{
-				Node--;
-				reachedEnd = Node <= 0;
+				_currentNodeIndex--;
+				reachedEnd = _currentNodeIndex <= 0;
 			}
 			else
 			{
-				Node++;
-				reachedEnd = Node >= Path.PathNodes.Count - 1;
+				_currentNodeIndex++;
+				reachedEnd = _currentNodeIndex >= _path.PathNodes.Count - 1;
 			}
 
 			if ( reachedEnd )
 			{
-				IsActive = false;
-				Path = null;
-
-				TimeSinceJump = 0;
-				IsActive = false;
-
-				// todo: add velocity up from rail normal,
-				// and fix getting grounded immediately so we don't have to set position
-				Controller.Velocity = Controller.Velocity.WithZ( 320f );
-				Controller.Position = Controller.Position.WithZ( Controller.Position.z + 10 );
-
+				ExitGrind();
 				return;
 			}
 		}
 
-		var currentNodeIdx = Node;
-		var nextNodeIdx = Reverse ? (Node - 1) : (Node + 1);
-
-		var node = Path.PathNodes[currentNodeIdx];
-		var nextNode = Path.PathNodes[nextNodeIdx];
+		var nextNodeIndex = _isReverseGrind ? (_currentNodeIndex - 1) : (_currentNodeIndex + 1);
+		var node = _path.PathNodes[_currentNodeIndex];
+		var nextNode = _path.PathNodes[nextNodeIndex];
 		var currentPosition = Controller.Position;
-		var nextPosition = Path.GetPointBetweenNodes( node, nextNode, Alpha, Reverse );
+		var nextPosition = _path.GetPointBetweenNodes( node, nextNode, _alpha, _isReverseGrind );
 
-		Controller.Velocity = (nextPosition - currentPosition).Normal * 300f;
-		Controller.Position = nextPosition;
+		Controller.Velocity = 0;
+		Controller.Position = Vector3.Lerp( nextPosition, currentPosition, Time.Delta );
+		Controller.GroundEntity = _path;
 
-		var rot = Rotation.LookAt( Controller.Velocity.Normal ).Angles();
-		rot.roll = 0;
-
-		Player.Rotation = Rotation.From( rot );
-		Controller.GroundEntity = Path;
-
-		Controller.GroundEntity = Path;
+		_isGrinding = true;
 
 		if ( Input.Pressed( InputButton.Jump ) )
-		{
-			TimeSinceJump = 0;
-			IsActive = false;
+			ExitGrind();
+	}
 
-			// todo: add velocity up from rail normal,
-			// and fix getting grounded immediately so we don't have to set position
-			Controller.Velocity = Controller.Velocity.WithZ( 320f );
-			Controller.Position = Controller.Position.WithZ( Controller.Position.z + 10 );
-		}
+	private void ExitGrind()
+	{
+		IsActive = false;
+		_isGrinding = false;
 	}
 }
