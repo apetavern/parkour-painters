@@ -24,10 +24,6 @@ public class GrindMechanic : ControllerMechanic
 			_currentNodeIndex = path.PathNodes.IndexOf( closestNode );
 			_path = path;
 
-			// TODO: debug.
-			if ( _currentNodeIndex == path.PathNodes.Count - 2 )
-				return false;
-
 			return true;
 		}
 
@@ -39,6 +35,8 @@ public class GrindMechanic : ControllerMechanic
 		_alpha += Time.Delta;
 		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count - 1 )
 		{
+			_isGrinding = true;
+
 			if ( _alpha >= 1 )
 			{
 				_alpha = 0;
@@ -46,16 +44,14 @@ public class GrindMechanic : ControllerMechanic
 				return;
 			}
 
-			_isGrinding = true;
-
 			var nextNodeIndex = _currentNodeIndex + 1;
 			var nextPosition = _path.GetPointBetweenNodes( _path.PathNodes[_currentNodeIndex], _path.PathNodes[nextNodeIndex], _alpha );
 
+			DebugOverlay.Sphere( nextPosition, 1f, Color.Red );
+
 			Controller.Velocity = 0;
 			Controller.Position = nextPosition;
-
-			if ( Controller.Player.Position.Distance( nextPosition ) > 0.2f )
-				return;
+			Controller.GroundEntity = _path;
 
 			return;
 		}
