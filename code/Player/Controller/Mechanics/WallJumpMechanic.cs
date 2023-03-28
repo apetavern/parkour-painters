@@ -2,7 +2,7 @@ namespace GangJam;
 
 public sealed partial class WallJumpMechanic : ControllerMechanic
 {
-	public bool UsedWallJump { get; private set; } = false;
+	public bool UsedWallJump { get; private set; }
 	public TimeSince TimeSinceLeftWall { get; private set; }
 
 	private float WallJumpConnectangle => 0.95f;
