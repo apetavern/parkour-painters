@@ -10,7 +10,10 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 
 		animHelper.WithWishVelocity( controller.GetWishVelocity() );
 		animHelper.WithVelocity( controller.Velocity );
-		animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
+
+		if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 10 )
+			animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
+
 		animHelper.AimAngle = player.EyeRotation;
 		animHelper.FootShuffle = 0f;
 		animHelper.DuckLevel = MathX.Lerp( animHelper.DuckLevel, player.Tags.Has( "ducked" ) ? 1 : 0, Time.Delta * 10.0f );
