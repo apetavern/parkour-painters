@@ -81,7 +81,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 		if ( Game.IsClient )
 		{
 			if ( TimeSinceLastSprayed > 0.2f )
+			{
 				SprayCloud?.Destroy();
+				SprayCloud = null;
+			}
 		}
 	}
 
