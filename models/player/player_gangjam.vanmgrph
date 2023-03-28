@@ -10623,6 +10623,28 @@
 							{
 								key = 
 								{
+									m_id = 289059398
+								}
+								value = 
+								{
+									_class = "CSequenceAnimNode"
+									m_sName = "Unnamed"
+									m_vecPosition = [ -992.0, 304.0 ]
+									m_nNodeID = 
+									{
+										m_id = 289059398
+									}
+									m_networkMode = "ClientPredicted"
+									m_sNote = ""
+									m_tagSpans = [  ]
+									m_sequenceName = "spraycan_spray_hanging"
+									m_playbackSpeed = 1.0
+									m_bLoop = true
+								}
+							},
+							{
+								key = 
+								{
 									m_id = 354196311
 								}
 								value = 
@@ -10853,6 +10875,74 @@
 							{
 								key = 
 								{
+									m_id = 613292672
+								}
+								value = 
+								{
+									_class = "CSelectorAnimNode"
+									m_sName = "Unnamed"
+									m_vecPosition = [ -768.0, 256.0 ]
+									m_nNodeID = 
+									{
+										m_id = 613292672
+									}
+									m_networkMode = "ClientPredicted"
+									m_sNote = ""
+									m_children = 
+									[
+										{
+											m_nodeID = 
+											{
+												m_id = 1711224336
+											}
+											m_outputID = 
+											{
+												m_id = 4294967295
+											}
+										},
+										{
+											m_nodeID = 
+											{
+												m_id = 289059398
+											}
+											m_outputID = 
+											{
+												m_id = 4294967295
+											}
+										},
+									]
+									m_tags = 
+									[
+										{
+											m_id = 4294967295
+										},
+										{
+											m_id = 4294967295
+										},
+									]
+									m_selectionSource = "SelectionSource_Bool"
+									m_boolParamID = 
+									{
+										m_id = 333396374
+									}
+									m_enumParamID = 
+									{
+										m_id = 4294967295
+									}
+									m_blendDuration = 0.2
+									m_tagBehavior = "SelectorTagBehavior_OffWhenFinished"
+									m_bResetOnChange = true
+									m_bSyncCyclesOnChange = false
+									m_blendCurve = 
+									{
+										m_vControlPoint1 = [ 0.5, 0.0 ]
+										m_vControlPoint2 = [ 0.5, 1.0 ]
+									}
+								}
+							},
+							{
+								key = 
+								{
 									m_id = 1049494434
 								}
 								value = 
@@ -10951,6 +11041,83 @@
 							{
 								key = 
 								{
+									m_id = 1565808826
+								}
+								value = 
+								{
+									_class = "CLookAtAnimNode"
+									m_sName = "Aim Head"
+									m_vecPosition = [ -160.0, 240.0 ]
+									m_nNodeID = 
+									{
+										m_id = 1565808826
+									}
+									m_networkMode = "ClientPredicted"
+									m_sNote = ""
+									m_inputConnection = 
+									{
+										m_nodeID = 
+										{
+											m_id = 2099710968
+										}
+										m_outputID = 
+										{
+											m_id = 4294967295
+										}
+									}
+									m_target = "VectorParameter"
+									m_param = 
+									{
+										m_id = 1205941383
+									}
+									m_weightParam = 
+									{
+										m_id = 1414089017
+									}
+									m_lookatChainName = "LookChain_Halved"
+									m_attachmentName = "forward_reference"
+									m_flYawLimit = 90.0
+									m_flPitchLimit = 90.0
+									m_bResetBase = true
+									m_bLockWhenWaning = false
+									m_bUseHysteresis = false
+									m_flHysteresisInnerAngle = 1.0
+									m_flHysteresisOuterAngle = 20.0
+									m_damping = 
+									{
+										_class = "CAnimInputDamping"
+										m_speedFunction = "Spring"
+										m_fSpeedScale = 30.0
+										m_fMinSpeed = 0.0
+										m_fMaxTension = 960.0
+									}
+								}
+							},
+							{
+								key = 
+								{
+									m_id = 1711224336
+								}
+								value = 
+								{
+									_class = "CSequenceAnimNode"
+									m_sName = "Unnamed"
+									m_vecPosition = [ -992.0, 256.0 ]
+									m_nNodeID = 
+									{
+										m_id = 1711224336
+									}
+									m_networkMode = "ClientPredicted"
+									m_sNote = ""
+									m_tagSpans = [  ]
+									m_sequenceName = "spraycan_hold_hanging"
+									m_playbackSpeed = 1.0
+									m_bLoop = true
+								}
+							},
+							{
+								key = 
+								{
 									m_id = 1764479112
 								}
 								value = 
@@ -11001,7 +11168,7 @@
 										{
 											m_nodeID = 
 											{
-												m_id = 236375564
+												m_id = 1565808826
 											}
 											m_outputID = 
 											{
@@ -11075,6 +11242,60 @@
 										m_vControlPoint1 = [ 0.5, 0.0 ]
 										m_vControlPoint2 = [ 0.5, 1.0 ]
 									}
+								}
+							},
+							{
+								key = 
+								{
+									m_id = 2099710968
+								}
+								value = 
+								{
+									_class = "CBoneMaskAnimNode"
+									m_sName = "Unnamed"
+									m_vecPosition = [ -400.0, 240.0 ]
+									m_nNodeID = 
+									{
+										m_id = 2099710968
+									}
+									m_networkMode = "ClientPredicted"
+									m_sNote = ""
+									m_weightListName = "spraycan_weights"
+									m_inputConnection1 = 
+									{
+										m_nodeID = 
+										{
+											m_id = 2141625315
+										}
+										m_outputID = 
+										{
+											m_id = 185714388
+										}
+									}
+									m_inputConnection2 = 
+									{
+										m_nodeID = 
+										{
+											m_id = 613292672
+										}
+										m_outputID = 
+										{
+											m_id = 4294967295
+										}
+									}
+									m_blendSpace = "BlendSpace_Parent"
+									m_bUseBlendScale = false
+									m_blendValueSource = "Parameter"
+									m_blendParameter = 
+									{
+										m_id = 4294967295
+									}
+									m_timingBehavior = "UseChild2"
+									m_flTimingBlend = 0.5
+									m_flRootMotionBlend = 0.0
+									m_footMotionTiming = "Child1"
+									m_bResetChild1 = true
+									m_bResetChild2 = true
 								}
 							},
 							{
