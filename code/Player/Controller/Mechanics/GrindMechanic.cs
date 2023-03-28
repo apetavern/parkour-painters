@@ -21,8 +21,11 @@ public partial class GrindMechanic : ControllerMechanic
 			if ( path.PathNodes.Count < 2 )
 				continue;
 
-			var closestNode = path.PathNodes.MinBy( p => Controller.Position.Distance( p.WorldPosition ) );
+			var closestNode = path.PathNodes.OrderBy( p => Controller.Position.Distance( p.WorldPosition ) ).First();
 			if ( Controller.Position.Distance( closestNode.WorldPosition ) > 50 )
+				continue;
+
+			if ( Controller.Position.z <= closestNode.WorldPosition.z )
 				continue;
 
 			var directionToFirstNode = path.PathNodes[0].WorldPosition - closestNode.WorldPosition;
