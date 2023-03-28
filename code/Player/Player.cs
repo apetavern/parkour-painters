@@ -21,8 +21,27 @@ public sealed partial class Player : AnimatedEntity
 	/// </summary>
 	[Net, Prefab] public float SprayAmount { get; private set; } = 1;
 
+	/// <summary>
+	/// Whether or not the player is currently dazed.
+	/// </summary>
+	public bool IsDazed => TimeSinceDazed <= GangJam.DazeTime;
+	/// <summary>
+	/// Whether or not the player is currently immune to dazing.
+	/// </summary>
+	public bool IsImmune => TimeSinceDazed > GangJam.DazeTime && TimeSinceDazed <= GangJam.ImmuneTime;
+
+	/// <summary>
+	/// The time in seconds since the player was last dazed.
+	/// </summary>
+	[Net] private TimeSince TimeSinceDazed { get; set; } = float.MaxValue;
+
 	public TimeSince TimeSinceFootstep { get; private set; } = 0;
+
 	private static readonly Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
+	/// <summary>
+	/// The alpha value to give to immune players.
+	/// </summary>
+	private const float ImmuneAlpha = 0.6f;
 
 	/// <inheritdoc/>
 	public override void Spawn()
@@ -74,6 +93,23 @@ public sealed partial class Player : AnimatedEntity
 
 		GangJam.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
+	}
+
+	/// <summary>
+	/// Dazes the player.
+	/// </summary>
+	/// <param name="attacker">The person that caused the daze to occur.</param>
+	/// <returns>Whether or not the player was actually dazed.</returns>
+	public bool Daze( Player attacker )
+	{
+		if ( IsDazed || IsImmune )
+			return false;
+
+		if ( GangJam.FriendlyFire && attacker.Team == Team )
+			return false;
+
+		TimeSinceDazed = 0;
+		return true;
 	}
 
 	/// <inheritdoc/>
@@ -150,6 +186,18 @@ public sealed partial class Player : AnimatedEntity
 	private float GetFootstepVolume()
 	{
 		return Controller.Velocity.WithZ( 0 ).Length.LerpInverse( 0.0f, 200.0f ) * 1f;
+	}
+
+	/// <summary>
+	/// Slightly fades out immune players.
+	/// </summary>
+	[Event.Tick]
+	private void ImmuneTick()
+	{
+		if ( IsImmune )
+			RenderColor = RenderColor.WithAlpha( ImmuneAlpha );
+		else
+			RenderColor = RenderColor.WithAlpha( 1 );
 	}
 
 	[ClientRpc]

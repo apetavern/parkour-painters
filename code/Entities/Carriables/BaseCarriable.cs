@@ -93,6 +93,9 @@ public abstract partial class BaseCarriable : AnimatedEntity
 
 	protected virtual void OnPrimaryAttack()
 	{
+		if ( Player.IsDazed )
+			return;
+
 		TimeSinceLastPrimary = 0;
 	}
 
@@ -100,6 +103,9 @@ public abstract partial class BaseCarriable : AnimatedEntity
 
 	protected virtual void OnSecondaryAttack()
 	{
+		if ( Player.IsDazed )
+			return;
+
 		TimeSinceLastSecondary = 0;
 	}
 

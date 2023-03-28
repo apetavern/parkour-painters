@@ -19,4 +19,22 @@ partial class GangJam
 	/// </summary>
 	[ConVar.Replicated( "gj_mixclientclothes" )]
 	internal static bool MixClientClothes { get; private set; } = true;
+
+	/// <summary>
+	/// Defines whether or not a teamates can daze each other.
+	/// </summary>
+	[ConVar.Replicated( "gj_friendlyfire" )]
+	internal static bool FriendlyFire { get; private set; } = true;
+
+	/// <summary>
+	/// Defines the amount of time that a player will be dazed for when dazed by another player.
+	/// </summary>
+	[ConVar.Replicated( "gj_dazetime" )]
+	internal static float DazeTime { get; private set; } = 3;
+
+	/// <summary>
+	/// Defines the amount of time that a player will be immune after being dazed by another player.
+	/// </summary>
+	[ConVar.Replicated( "gj_immunetime" )]
+	internal static float ImmuneTime { get; private set; } = 5;
 }

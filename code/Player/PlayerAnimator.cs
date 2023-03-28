@@ -8,8 +8,8 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		var controller = player.Controller;
 		var animHelper = new CustomAnimationHelper( player );
 
-		animHelper.WithWishVelocity( controller.GetWishVelocity() );
-		animHelper.WithVelocity( controller.Velocity );
+		animHelper.WithWishVelocity( player.IsDazed ? Vector3.Zero : controller.GetWishVelocity() );
+		animHelper.WithVelocity( player.IsDazed ? Vector3.Zero : controller.Velocity );
 
 		if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 10 )
 			animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );

@@ -61,6 +61,39 @@
         "DefaultValue": "true",
         "Description": "Whether or not to mix a players clothing choices with their team specific clothing.",
         "Group": ""
+      },
+      {
+        "DisplayType": "Boolean",
+        "Choices": [],
+        "ConVarName": "gj_friendlyfire",
+        "DisplayName": "Friendly Fire",
+        "DefaultValue": "true",
+        "Description": "",
+        "Group": ""
+      },
+      {
+        "DisplayType": "Float",
+        "Choices": [],
+        "ConVarName": "gj_dazetime",
+        "DisplayName": "Daze Time",
+        "DefaultValue": "3",
+        "Description": "The time in seconds that a player will be dazed for.",
+        "Group": "",
+        "Minimum": 0.1,
+        "Maximum": 10,
+        "Step": 0.1
+      },
+      {
+        "DisplayType": "Float",
+        "Choices": [],
+        "ConVarName": "gj_immunetime",
+        "DisplayName": "Immune Time",
+        "DefaultValue": "5",
+        "Description": "The time in seconds that a player will be immune for after being dazed.",
+        "Group": "",
+        "Minimum": 0.1,
+        "Maximum": 20,
+        "Step": 0.1
       }
     ]
   }

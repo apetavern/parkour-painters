@@ -20,6 +20,12 @@ public partial class SprayCan : BaseCarriable
 
 	protected override void OnPrimaryAttack()
 	{
+		if ( Player.IsDazed )
+		{
+			OnPrimaryReleased();
+			return;
+		}
+
 		base.OnPrimaryAttack();
 
 		Player.SetAnimParameter( "b_spray", true );
@@ -35,10 +41,16 @@ public partial class SprayCan : BaseCarriable
 			SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
 		}
 
-		var reachTrace = Trace.Ray( Player.EyePosition, Player.EyePosition + Player.EyeRotation.Forward * 200f ).WithTag( "graffiti_spot" ).Run();
+		var reachTrace = Trace.Ray( Player.EyePosition, Player.EyePosition + Player.EyeRotation.Forward * 200f )
+			.WithAnyTags( "graffiti_spot", "player" )
+			.Ignore( this )
+			.Ignore( Player )
+			.Run();
 
 		if ( reachTrace.Entity is GraffitiSpot graffitiSpot )
 			graffitiSpot.OnSprayReceived( Player );
+		else if ( reachTrace.Entity is Player player )
+			player.Daze( Player );
 	}
 
 	protected override void OnPrimaryReleased()
