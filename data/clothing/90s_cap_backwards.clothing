@@ -1,0 +1,15 @@
+{
+  "Title": "Backwards Cap",
+  "Subtitle": "A standard 90s backwards cap.",
+  "Category": "Hat",
+  "SubCategory": "90s",
+  "Parent": null,
+  "Model": "models/outfits/90s/head/cap_backwards.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "HeadTop",
+  "SlotsOver": 0,
+  "HideBody": 0,
+  "Icon": {}
+}

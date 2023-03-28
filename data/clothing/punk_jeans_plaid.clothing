@@ -8,8 +8,8 @@
   "SkinMaterial": null,
   "EyesMaterial": null,
   "MaterialGroup": "alt",
-  "SlotsUnder": 0,
+  "SlotsUnder": "Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, LeftFoot, RightFoot",
   "SlotsOver": 0,
-  "HideBody": "Feet",
+  "HideBody": "Legs, Feet",
   "Icon": {}
 }

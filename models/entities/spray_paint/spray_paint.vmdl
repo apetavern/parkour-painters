@@ -39,13 +39,13 @@
 					{
 						_class = "RenderMeshFile"
 						filename = "models/entities/spray_paint/spray_paint.fbx"
-						import_translation = [ 0.0, 0.0, 0.0 ]
-						import_rotation = [ 0.0, 0.0, 0.0 ]
-						import_scale = 1.0
+						import_translation = [ 0.0, -0.2, -1.25 ]
+						import_rotation = [ 0.0, -90.0, 0.0 ]
+						import_scale = 0.9
 						align_origin_x_type = "None"
 						align_origin_y_type = "None"
 						align_origin_z_type = "None"
-						parent_bone = ""
+						parent_bone = "hold_R"
 						import_filter = 
 						{
 							exclude_by_default = true
@@ -55,6 +55,34 @@
 								"Circle_006",
 							]
 						}
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "hold_R"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						do_not_discard = true
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "nozzle"
+						parent_bone = "hold_R"
+						relative_origin = [ 0.0, -0.920914, 7.253935 ]
+						relative_angles = [ -0.0, -90.0, -90.0 ]
+						weight = 1.0
+						ignore_rotation = false
 					},
 				]
 			},

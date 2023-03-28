@@ -1,0 +1,38 @@
+{
+  "Skins": null,
+  "Facials": null,
+  "Hairs": [
+    {
+      "Clothing": "data/clothing/messy_hair.clothing",
+      "TintMode": "Random",
+      "RandomSelections": [
+        "0.95376,0.09767,0.09767,0",
+        "1,1,1,0"
+      ],
+      "SingleSelection": "1,0,0,0"
+    },
+    {
+      "Clothing": "data/clothing/mohawk_green.clothing"
+    },
+    {
+      "Clothing": "data/clothing/mohawk_purple.clothing"
+    }
+  ],
+  "Hats": null,
+  "Tops": [
+    {
+      "Clothing": "data/clothing/punk_jacket.clothing"
+    }
+  ],
+  "Gloves": null,
+  "Bottoms": [
+    {
+      "Clothing": "data/clothing/punk_jeans.clothing",
+      "TintMode": "Random"
+    },
+    {
+      "Clothing": "data/clothing/punk_jeans_plaid.clothing"
+    }
+  ],
+  "Footwears": null
+}

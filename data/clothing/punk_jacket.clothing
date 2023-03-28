@@ -8,8 +8,8 @@
   "SkinMaterial": null,
   "EyesMaterial": null,
   "MaterialGroup": "",
-  "SlotsUnder": 0,
-  "SlotsOver": 0,
+  "SlotsUnder": "Chest, LeftArm, RightArm",
+  "SlotsOver": "Chest, LeftArm, RightArm",
   "HideBody": "Chest",
   "Icon": {}
 }

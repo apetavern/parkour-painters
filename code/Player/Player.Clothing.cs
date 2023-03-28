@@ -13,7 +13,8 @@ partial class Player
 	public void SetupClothing()
 	{
 		ClothingContainer?.ClearEntities();
-		ClothingContainer = Team.GetClothes();
+		var (clothingContainer, tintDictionary) = Team.GetClothingCollection().GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
+		ClothingContainer = clothingContainer;
 
 		// Find correct skin.
 		{
@@ -29,12 +30,29 @@ partial class Player
 					if ( !clothingItem.Title.Contains( skinName ) )
 						continue;
 
-					ClothingContainer.Clothing.Add( clothingItem );
+					ClothingContainer.Toggle( clothingItem );
 					break;
 				}
 			}
 		}
 
+		// Dress
 		ClothingContainer.DressEntity( this );
+
+		// Tint any clothing items that need it
+		foreach ( var child in Children )
+		{
+			if ( !child.Tags.Has( "clothes" ) )
+				continue;
+
+			if ( child is not AnimatedEntity anim )
+				continue;
+
+			if ( anim.Model is null )
+				continue;
+
+			if ( tintDictionary.TryGetValue( anim.Model.Name, out var tint ) )
+				anim.RenderColor = tint;
+		}
 	}
 }

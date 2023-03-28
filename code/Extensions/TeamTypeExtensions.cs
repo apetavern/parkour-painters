@@ -1,4 +1,6 @@
-﻿namespace GangJam.Extensions;
+﻿using GangJam.Resources;
+
+namespace GangJam.Extensions;
 
 /// <summary>
 /// Contains extension methods for the <see cref="TeamType"/> enum.
@@ -6,51 +8,13 @@
 internal static class TeamTypeExtensions
 {
 	/// <summary>
-	/// Contains all of the file names of clothing resources to put onto a <see cref="TeamType.Nerd"/> team member.
+	/// Returns the <see cref="ClothingCollectionResource"/> that is associtated with the provided <see cref="TeamType"/>.
 	/// </summary>
-	private static readonly List<string> NerdClothing = new()
+	/// <param name="type">The team to grab the collection from.</param>
+	/// <returns>The <see cref="ClothingCollectionResource"/> that is associated with the provided <see cref="TeamType"/>.</returns>
+	internal static ClothingCollectionResource GetClothingCollection( this TeamType type )
 	{
-	};
-
-	/// <summary>
-	/// Contains all of the file names of clothing resources to put onto a <see cref="TeamType.Punk"/> team member.
-	/// </summary>
-	private static readonly List<string> PunkClothing = new()
-	{
-		"messy_hair",
-		"punk_jacket",
-		"punk_jeans"
-	};
-
-	/// <summary>
-	/// Gets the clothes that should be placed onto the teams members.
-	/// </summary>
-	/// <param name="type">The type of team to get clothes for.</param>
-	/// <returns></returns>
-	/// <exception cref="Exception">Thrown when receiving an invalid <see cref="TeamType"/>.</exception>
-	internal static ClothingContainer GetClothes( this TeamType type )
-	{
-		var clothing = type switch
-		{
-			TeamType.Nerd => NerdClothing,
-			TeamType.Punk => PunkClothing,
-			// TODO: This should be an UnreachableException but S&box whitelist blows
-			_ => throw new Exception( $"{nameof( TeamTypeExtensions )}.{nameof( GetClothes )}: Got {type} for a {nameof( TeamType )}" )
-		};
-
-		var container = new ClothingContainer();
-		foreach ( var clothingIdent in clothing )
-		{
-			var item = ResourceLibrary.Get<Clothing>( "data/clothing/" + clothingIdent + ".clothing" );
-			if ( item is null )
-			{
-				Log.Warning( $"\"{clothingIdent}\" is not a clothing resource" );
-				continue;
-			}
-			
-			container.Clothing.Add( item );
-		}
-
-		return container;
+		var path = "data/clothing_collections/" + type.ToString().ToLower() + ".clothc";
+		return ResourceLibrary.Get<ClothingCollectionResource>( path );
 	}
 }

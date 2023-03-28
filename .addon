@@ -51,6 +51,15 @@
         "Group": "",
         "Minimum": 2,
         "Maximum": 10
+      },
+      {
+        "DisplayType": "Boolean",
+        "Choices": [],
+        "ConVarName": "gj_mixclientclothes",
+        "DisplayName": "Mix Player Clothes",
+        "DefaultValue": "true",
+        "Description": "Whether or not to mix a players clothing choices with their team specific clothing.",
+        "Group": ""
       }
     ]
   }

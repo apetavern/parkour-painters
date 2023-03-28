@@ -72,6 +72,7 @@ public sealed partial class Player : AnimatedEntity
 	{
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
+		Carrying?.Simulate( cl );
 	}
 
 	/// <summary>

@@ -1,0 +1,15 @@
+{
+  "Title": "Loose Pants",
+  "Subtitle": "A standard 90s loose pair of jeans.",
+  "Category": "Bottoms",
+  "SubCategory": "90s",
+  "Parent": null,
+  "Model": "models/outfits/90s/legs/loose_pants.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, LeftFoot, RightFoot",
+  "SlotsOver": "LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, LeftFoot, RightFoot",
+  "HideBody": 0,
+  "Icon": {}
+}

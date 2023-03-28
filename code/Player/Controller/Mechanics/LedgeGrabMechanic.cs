@@ -2,7 +2,6 @@ namespace GangJam;
 
 class LedgeGrabMechanic : ControllerMechanic
 {
-	private float _playerRadius => 32.0f;
 	private Vector3 _grabNormal;
 	private Vector3 _ledgeGrabLocation;
 	private TimeSince _timeSinceDrop;
@@ -15,10 +14,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		if ( _timeSinceDrop < 0.9f )
 			return false;
 
-		if ( CanGrabLedge() )
-			return true;
-
-		return false;
+		return CanGrabLedge();
 	}
 
 	protected override void Simulate()
@@ -27,7 +23,10 @@ class LedgeGrabMechanic : ControllerMechanic
 		Controller.Position = Vector3.Lerp( Controller.Position, _ledgeGrabLocation, Time.Delta * 10.0f );
 		Player.Rotation = (-_grabNormal).EulerAngles.WithPitch( 0 ).ToRotation();
 
-		if ( Input.Pressed( InputButton.Duck ) )
+		// The player is moving in a direction away from the ledge, therefore we should drop them.
+		var isMovingFromLedge = Vector3.Dot( Controller.GetWishVelocity(), Player.Rotation.Forward ) < -30;
+
+		if ( Input.Pressed( InputButton.Duck ) || isMovingFromLedge )
 			Drop();
 
 		if ( Input.Pressed( InputButton.Jump ) )
@@ -38,10 +37,9 @@ class LedgeGrabMechanic : ControllerMechanic
 	{
 		var center = Controller.Position;
 		center.z += 55;
-		var dest = center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 10.0f);
 
 		// Tracing forwards looking for a wall.
-		var tr = Trace.Ray( center, dest )
+		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 15.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
 			.Radius( 8 )
@@ -50,22 +48,44 @@ class LedgeGrabMechanic : ControllerMechanic
 		if ( !tr.Hit )
 			return false;
 
-		var normal = tr.Normal;
-		var destinationTestPos = tr.EndPosition - (normal * _playerRadius) + (Vector3.Up * 50.0f);
-		var originTestPos = tr.EndPosition + (normal * 9.0f);
-
-		// Trace to see if what we are grabbing is actually a ledge.
-		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * 64.0f) )
+		// Make sure there is nothing above the players head.
+		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * 48.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
 			.Radius( 4 )
+			.Run();
+
+		if ( trUpwards.Hit )
+			return false;
+
+		var normal = tr.Normal;
+		var destinationTestPos = tr.EndPosition - (normal * 13.0f) + (Vector3.Up * 50.0f);
+		var originTestPos = tr.EndPosition + (normal * 8.0f);
+
+		// Test to see if what we are attempting to grab is actually a ledge.
+		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * 64.0f) )
+			.Ignore( Player )
+			.WithoutTags( "player" )
+			.Radius( 2 )
 			.Run();
 
 		if ( !tr.Hit )
 			return false;
 
 		destinationTestPos = tr.EndPosition;
-		_ledgeGrabLocation = originTestPos.WithZ( destinationTestPos.z - 64.0f );
+		originTestPos = originTestPos.WithZ( destinationTestPos.z - 60.0f );
+
+		// One last check to make sure the player can exist in the space above the ledge.
+		tr = Trace.Ray( destinationTestPos + (Vector3.Up * 16.0f + 1.0f), destinationTestPos + (Vector3.Up * 32.0f) )
+			.Ignore( Player )
+			.WithoutTags( "player" )
+			.Radius( 16f )
+			.Run();
+
+		if ( tr.Hit )
+			return false;
+
+		_ledgeGrabLocation = originTestPos;
 		_grabNormal = normal;
 
 		return true;
