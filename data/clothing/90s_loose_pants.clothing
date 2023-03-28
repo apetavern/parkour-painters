@@ -10,6 +10,6 @@
   "MaterialGroup": "",
   "SlotsUnder": "LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, LeftFoot, RightFoot",
   "SlotsOver": "LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, LeftFoot, RightFoot",
-  "HideBody": "Feet",
+  "HideBody": "Legs, Feet",
   "Icon": {}
 }
