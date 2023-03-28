@@ -18,7 +18,9 @@ public sealed partial class Team : Entity
 	/// <summary>
 	/// The current score that the team has.
 	/// </summary>
-	[Net] internal int Score { get; private set; }
+	internal int Score => Entity.All.OfType<GraffitiSpot>()
+		.Where( spot => spot.SprayOwner == this && spot.IsSprayCompleted )
+		.Count();
 
 	/// <summary>
 	/// Initializes a new instance of <see cref="Team"/>. This should only be used by S&box on the client-side.
