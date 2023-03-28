@@ -301,7 +301,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/sprays/textures/punk_anarchy_01a_png_6c4c1759.generated.vtex",
+      "Texture": "materials/sprays/textures/punk_anarchy_01a_trans_png_64bbdc1.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },

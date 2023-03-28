@@ -1,10 +1,13 @@
 "Layer0"
 {
 	"shader"		"shaders/dissolve.shader_c"
+	"Color"		"materials/default/default_color.tga"
+	"g_bFogEnabled"		"1"
+	"g_flMetallic"		"0.000000"
+	"g_flRoughness"		"1.000000"
 	"g_flFadeamount"		"0.000000"
+	"g_flOpacityScale"		"1.000000"
 	"g_flSmoothStepMax"		"0.500000"
 	"g_flSmoothStepMin"		"0.300000"
-	"Texture"		"materials/sprays/textures/punk_anarchy_01a_reveal.png"
-	"g_bFogEnabled"		"1"
-	"g_flOpacityScale"		"1.000000"
+	"Translucency"		"materials/default/default_trans.tga"
 }

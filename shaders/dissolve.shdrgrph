@@ -5,15 +5,24 @@
   "nodes": [
     {
       "_class": "Result",
-      "Albedo": {},
+      "Albedo": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
       "Emission": {},
       "Opacity": {
         "Identifier": "10",
         "Output": "Result"
       },
       "Normal": {},
-      "Roughness": {},
-      "Metalness": {},
+      "Roughness": {
+        "Identifier": "12",
+        "Output": "Result"
+      },
+      "Metalness": {
+        "Identifier": "13",
+        "Output": "Result"
+      },
       "AmbientOcclusion": {},
       "DefaultOpacity": 1,
       "DefaultRoughness": 1,
@@ -25,17 +34,18 @@
     {
       "_class": "TextureSampler",
       "Coords": {},
-      "Texture": "particles/textures/vfx_dissolve_01_png_4dd4ec51.generated.vtex",
+      "Texture": "materials/sprays/textures/nineties_cup_01a_trans_png_7cf7e028.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
       "UI": {
-        "Name": "",
+        "Name": "Translucency",
         "Default": "1,1,1,1",
-        "Extension": "Mask",
+        "Extension": "Trans",
         "SrgbRead": true,
         "PrimaryGroup": {
-          "Name": ""
+          "Name": "Translucent",
+          "Priority": 1
         }
       },
       "Identifier": "1",
@@ -109,8 +119,10 @@
       "Name": "Fade amount",
       "Value": 0,
       "UI": {
+        "Priority": 1,
         "PrimaryGroup": {
-          "Name": ""
+          "Name": "Translucent",
+          "Priority": 1
         }
       },
       "Identifier": "6",
@@ -138,10 +150,12 @@
       "Min": 0,
       "Max": 1,
       "Name": "Smooth Step Min",
-      "Value": 0,
+      "Value": 0.3,
       "UI": {
+        "Priority": 2,
         "PrimaryGroup": {
-          "Name": ""
+          "Name": "Translucent",
+          "Priority": 1
         }
       },
       "Identifier": "8",
@@ -152,10 +166,12 @@
       "Min": 0,
       "Max": 1,
       "Name": "Smooth Step Max",
-      "Value": 0.02,
+      "Value": 0.5,
       "UI": {
+        "Priority": 3,
         "PrimaryGroup": {
-          "Name": ""
+          "Name": "Translucent",
+          "Priority": 1
         }
       },
       "Identifier": "9",
@@ -168,7 +184,55 @@
         "Output": "Result"
       },
       "Identifier": "10",
-      "Position": "336,32"
+      "Position": "336,80"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {},
+      "Texture": "materials/sprays/textures/nineties_cup_01a_color_png_976c85f5.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Color",
+        "Default": "1,1,1,1",
+        "SrgbRead": true,
+        "PrimaryGroup": {
+          "Name": "Color"
+        }
+      },
+      "Identifier": "11",
+      "Position": "80,-112"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Roughness",
+      "Value": 1,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Roughness",
+          "Priority": 2
+        }
+      },
+      "Identifier": "12",
+      "Position": "80,208"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Metallic",
+      "Value": 0,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Metalness",
+          "Priority": 3
+        }
+      },
+      "Identifier": "13",
+      "Position": "80,272"
     }
   ]
 }

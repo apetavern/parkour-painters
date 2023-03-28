@@ -56,11 +56,15 @@ PS
 	#include "common/proceedural.hlsl"
 
 	SamplerState g_sSampler0 < Filter( POINT ); AddressU( WRAP ); AddressV( WRAP ); >;
-	CreateInputTexture2D( Texture, Srgb, 8, "None", "_mask", ",0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
-	CreateTexture2DWithoutSampler( g_tTexture ) < Channel( RGBA, Box( Texture ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
-	float g_flSmoothStepMin < UiGroup( ",0/,0/0" ); Default1( 0 ); Range1( 0, 1 ); >;
-	float g_flSmoothStepMax < UiGroup( ",0/,0/0" ); Default1( 0.02 ); Range1( 0, 1 ); >;
-	float g_flFadeamount < UiGroup( ",0/,0/0" ); Default1( 0 ); Range1( 0, 10 ); >;
+	CreateInputTexture2D( Color, Srgb, 8, "None", "_color", "Color,0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
+	CreateInputTexture2D( Translucency, Srgb, 8, "None", "_trans", "Translucent,1/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
+	CreateTexture2DWithoutSampler( g_tColor ) < Channel( RGBA, Box( Color ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
+	CreateTexture2DWithoutSampler( g_tTranslucency ) < Channel( RGBA, Box( Translucency ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
+	float g_flSmoothStepMin < UiGroup( "Translucent,1/,0/2" ); Default1( 0.3 ); Range1( 0, 1 ); >;
+	float g_flSmoothStepMax < UiGroup( "Translucent,1/,0/3" ); Default1( 0.5 ); Range1( 0, 1 ); >;
+	float g_flFadeamount < UiGroup( "Translucent,1/,0/1" ); Default1( 0 ); Range1( 0, 10 ); >;
+	float g_flRoughness < UiGroup( "Roughness,2/,0/0" ); Default1( 1 ); Range1( 0, 1 ); >;
+	float g_flMetallic < UiGroup( "Metalness,3/,0/0" ); Default1( 0 ); Range1( 0, 1 ); >;
 
 	float4 MainPs( PixelInput i ) : SV_Target0
 	{
@@ -75,18 +79,22 @@ PS
 		m.Emission = float3( 0, 0, 0 );
 		m.Transmission = 0;
 
-		float local0 = g_flSmoothStepMin;
-		float local1 = g_flSmoothStepMax;
-		float local2 = g_flFadeamount;
-		float4 local3 = Tex2DS( g_tTexture, g_sSampler0, i.vTextureCoords.xy );
-		float4 local4 = float4( local2, local2, local2, local2 ) * local3;
-		float local5 = lerp( 0, 1, local4.x );
-		float local6 = smoothstep( local0, local1, local5 );
-		float local7 = saturate( local6 );
+		float4 local0 = Tex2DS( g_tColor, g_sSampler0, i.vTextureCoords.xy );
+		float local1 = g_flSmoothStepMin;
+		float local2 = g_flSmoothStepMax;
+		float local3 = g_flFadeamount;
+		float4 local4 = Tex2DS( g_tTranslucency, g_sSampler0, i.vTextureCoords.xy );
+		float4 local5 = float4( local3, local3, local3, local3 ) * local4;
+		float local6 = lerp( 0, 1, local5.x );
+		float local7 = smoothstep( local1, local2, local6 );
+		float local8 = saturate( local7 );
+		float local9 = g_flRoughness;
+		float local10 = g_flMetallic;
 
-		m.Opacity = local7;
-		m.Roughness = 1;
-		m.Metalness = 0;
+		m.Albedo = local0.xyz;
+		m.Opacity = local8;
+		m.Roughness = local9;
+		m.Metalness = local10;
 		m.AmbientOcclusion = 1;
 
 		m.AmbientOcclusion = saturate( m.AmbientOcclusion );
