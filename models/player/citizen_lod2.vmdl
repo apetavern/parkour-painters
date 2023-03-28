@@ -302,6 +302,88 @@
 						master_morph_weight = -1.0
 						morph_weights = [  ]
 					},
+					{
+						_class = "WeightList"
+						name = "daze_weights"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "arm_upper_R"
+								weight = 0.0
+							},
+							{
+								bone = "arm_upper_R_twist0"
+								weight = 0.0
+							},
+							{
+								bone = "clavicle_L"
+								weight = 1.0
+							},
+							{
+								bone = "clavicle_R"
+								weight = 0.0
+							},
+							{
+								bone = "ear_L"
+								weight = 0.0
+							},
+							{
+								bone = "ear_R"
+								weight = 0.0
+							},
+							{
+								bone = "eye_L"
+								weight = 0.0
+							},
+							{
+								bone = "eye_R"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_lower_L"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_lower_R"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_upper_L"
+								weight = 0.0
+							},
+							{
+								bone = "face_lid_upper_R"
+								weight = 0.0
+							},
+							{
+								bone = "hand_R_to_L_ikrule"
+								weight = 0.0
+							},
+							{
+								bone = "head"
+								weight = 1.0
+							},
+							{
+								bone = "neck_0"
+								weight = 1.0
+							},
+							{
+								bone = "neck_clothing"
+								weight = 1.0
+							},
+							{
+								bone = "spine_1"
+								weight = 1.0
+							},
+							{
+								bone = "spine_2"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
 				]
 			},
 			{

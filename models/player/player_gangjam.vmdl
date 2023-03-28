@@ -267,6 +267,100 @@
 						take = 0
 						reverse = false
 					},
+					{
+						_class = "AnimFile"
+						name = "cough"
+						children = 
+						[
+							{
+								_class = "AnimSmoothLoop"
+								frames_from_start = 5
+								frames_from_end = 5
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 6
+								event_keys = 
+								{
+									name = "sounds/player/coughs/cough.sound"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = ""
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 21
+								event_keys = 
+								{
+									name = "sounds/player/coughs/cough.sound"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = ""
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 36
+								event_keys = 
+								{
+									name = "sounds/player/coughs/cough.sound"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = ""
+								}
+							},
+						]
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/player/animations/cough_daze.fbx"
+						start_frame = -1
+						end_frame = 47
+						framerate = -1.0
+						take = 0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "daze"
+						children = 
+						[
+							{
+								_class = "AnimSmoothLoop"
+								frames_from_start = 5
+								frames_from_end = 5
+							},
+						]
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/player/animations/cough_daze.fbx"
+						start_frame = 60
+						end_frame = 100
+						framerate = -1.0
+						take = 0
+						reverse = false
+					},
 				]
 				default_root_bone_name = ""
 			},
