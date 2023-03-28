@@ -26,7 +26,12 @@ public partial class SprayCan : BaseCarriable
 
 		// Create spray particles
 		if ( Game.IsClient && SprayParticles is null )
+		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
+
+			var sprayColor = Player.Team.Group.SprayColor;
+			SprayParticles.SetPosition( 1, new Vector3( sprayColor.r, sprayColor.g, sprayColor.b ) );
+		}
 
 		var reachTrace = Trace.Ray( Player.EyePosition, Player.EyePosition + Player.EyeRotation.Forward * 200f ).WithTag( "graffiti_spot" ).Run();
 

@@ -19,6 +19,11 @@ public sealed class GroupResource : GameResource
 	public string Description { get; set; }
 
 	/// <summary>
+	/// The color that should be used for effects when spraying.
+	/// </summary>
+	public Color SprayColor { get; private set; }
+
+	/// <summary>
 	/// The collection of clothing affiliated with the group.
 	/// </summary>
 	public ClothingCollectionResource ClothingCollection { get; set; }
@@ -27,11 +32,6 @@ public sealed class GroupResource : GameResource
 	/// The prefab to spawn for the players pawn.
 	/// </summary>
 	public Prefab PlayerPrefab { get; set; }
-
-	/// <summary>
-	/// The color that should be used for effects when spraying.
-	/// </summary>
-	public Color SprayColor { get; private set; }
 
 	/// <inheritdoc/>
 	protected override void PostLoad()

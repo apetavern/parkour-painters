@@ -1,7 +1,7 @@
 {
   "Name": "Punk",
   "Description": "A bunch of weirdos",
+  "SprayColor": "255,0,0,1",
   "ClothingCollection": "data/clothing_collections/punk.clothc",
-  "PlayerPrefab": "prefabs/punk.prefab",
-  "SprayColor": "0,0,0,0"
+  "PlayerPrefab": "prefabs/punk.prefab"
 }

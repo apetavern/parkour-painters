@@ -3,5 +3,5 @@
   "Description": "Might as well be boomers",
   "ClothingCollection": "data/clothing_collections/nineties.clothc",
   "PlayerPrefab": "prefabs/nineties.prefab",
-  "SprayColor": "0,0,0,0"
+  "SprayColor": "0,0,255,1"
 }

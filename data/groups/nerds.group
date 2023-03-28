@@ -1,7 +1,7 @@
 {
   "Name": "Nerds",
   "Description": "A nerdy bunch",
+  "SprayColor": "0,255,0,1",
   "ClothingCollection": "data/clothing_collections/nerd.clothc",
-  "PlayerPrefab": "prefabs/nerd.prefab",
-  "SprayColor": "0,0,0,0"
+  "PlayerPrefab": "prefabs/nerd.prefab"
 }
