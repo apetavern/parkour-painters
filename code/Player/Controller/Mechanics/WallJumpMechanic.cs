@@ -22,7 +22,8 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		if ( Controller.GetMechanic<LedgeGrabMechanic>().IsActive )
 			return false;
 
-		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 5f )
+		// Make sure we are not too close to the ground.
+		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 20f )
 			.Ignore( Controller.Player )
 			.Radius( 5 )
 			.WorldOnly()
