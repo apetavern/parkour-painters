@@ -85,7 +85,7 @@
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
 				m_NamedValue = ""
-				m_flLiteralValue = 0.75
+				m_flLiteralValue = 0.5
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
@@ -745,6 +745,7 @@
 					m_vDomainMaxs = [ 0.0, 0.0 ]
 				}
 			}
+			m_hTexture = resource:"particles/textures/vfx_circle_01.vtex"
 		},
 		{
 			_class = "C_OP_RenderTrails"
@@ -843,6 +844,7 @@
 				}
 			}
 			m_flLengthFadeInTime = 0.2
+			m_hTexture = resource:"particles/textures/vfx_circle_01.vtex"
 		},
 	]
 }
