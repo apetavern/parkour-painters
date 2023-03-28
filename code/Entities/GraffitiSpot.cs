@@ -5,11 +5,9 @@
 [Solid, DrawAngles]
 public sealed partial class GraffitiSpot : ModelEntity
 {
-	[Net]
-	public Team SprayOwner { get; set; }
+	[Net] public Team SprayOwner { get; private set; }
 
-	[Net]
-	public float SprayProgress { get; set; }
+	[Net] public float SprayProgress { get; private set; }
 
 	public bool IsSprayCompleted => SprayProgress >= 100;
 
@@ -22,14 +20,6 @@ public sealed partial class GraffitiSpot : ModelEntity
 		Tags.Add( "graffiti_spot" );
 	}
 
-
-	[Event.Tick.Server]
-	public void OnTick()
-	{
-		DebugOverlay.Text( $"{SprayProgress}/100", Position );
-		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
-	}
-
 	public void OnSprayReceived( Player player )
 	{
 		// Reset spray progress if the spray owner is the new sprayer.
@@ -39,14 +29,24 @@ public sealed partial class GraffitiSpot : ModelEntity
 			SprayOwner = player.Team;
 		}
 
-		SprayProgress += 1;
-		SprayProgress = SprayProgress.Clamp( 0, 100 );
+		// Bail if the spray has already been completed.
+		if ( IsSprayCompleted )
+			return;
+
+		SprayProgress = Math.Clamp( SprayProgress + 1, 0, 100 );
 
 		if ( IsSprayCompleted )
 			OnSprayCompleted( player );
 	}
 
-	public void OnSprayCompleted( Player sprayer )
+	private void OnSprayCompleted( Player sprayer )
 	{
+	}
+
+	[Event.Tick.Server]
+	public void OnTick()
+	{
+		DebugOverlay.Text( $"{SprayProgress}/100", Position );
+		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
 	}
 }
