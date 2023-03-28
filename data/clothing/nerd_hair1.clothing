@@ -1,0 +1,15 @@
+{
+  "Title": "Nerd Hairpiece",
+  "Subtitle": "All the rage",
+  "Category": "Hat",
+  "SubCategory": "Nerds",
+  "Parent": null,
+  "Model": "models/outfits/nerd/head/nerd_hair1/nerd_hair1.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "HeadTop",
+  "SlotsOver": 0,
+  "HideBody": 0,
+  "Icon": {}
+}
