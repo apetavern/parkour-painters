@@ -16,9 +16,10 @@ public sealed partial class Player : AnimatedEntity
 	// TODO: We should probably cache this somewhere.
 	public Team Team => PlayState.Instance?.Teams.Where( team => team.Members.Contains( Client ) ).FirstOrDefault();
 
-	public TimeSince TimeSinceFootstep { get; protected set; } = 0;
-	static Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
+	public TimeSince TimeSinceFootstep { get; private set; } = 0;
+	private static readonly Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
 
+	/// <inheritdoc/>
 	public override void Spawn()
 	{
 		Model = PlayerModel;
@@ -33,6 +34,9 @@ public sealed partial class Player : AnimatedEntity
 		Tags.Add( "player" );
 	}
 
+	/// <summary>
+	/// Respawns the player.
+	/// </summary>
 	public void Respawn()
 	{
 		SetupPhysicsFromAABB( PhysicsMotionType.Keyframed, new Vector3( -16, -16, 0 ), new Vector3( 16, 16, 72 ) );
@@ -63,14 +67,11 @@ public sealed partial class Player : AnimatedEntity
 
 		SetupClothing();
 
-		GameManager.Current?.MoveToSpawnpoint( this );
+		GangJam.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
 	}
 
-	/// <summary>
-	/// Called every server and client tick.
-	/// </summary>
-	/// <param name="cl"></param>
+	/// <inheritdoc/>
 	public override void Simulate( IClient cl )
 	{
 		Controller?.Simulate( cl );
@@ -78,47 +79,33 @@ public sealed partial class Player : AnimatedEntity
 		Carrying?.Simulate( cl );
 	}
 
-	/// <summary>
-	/// Called every frame clientside.
-	/// </summary>
-	/// <param name="cl"></param>
+	/// <inheritdoc/>
 	public override void FrameSimulate( IClient cl )
 	{
 		Controller?.FrameSimulate( cl );
 		Camera?.Update( this );
 	}
 
-	[ClientRpc]
-	public void SetAudioEffect( string effectName, float strength, float velocity = 20f, float fadeOut = 4f )
-	{
-		Audio.SetEffect( effectName, strength, velocity: 20.0f, fadeOut: 4.0f * strength );
-	}
-
-	private async void AsyncRespawn()
-	{
-		await GameTask.DelaySeconds( 3f );
-		Respawn();
-	}
-
+	/// <inheritdoc/>
 	public override void OnKilled()
 	{
-		if ( LifeState == LifeState.Alive )
-		{
-			LifeState = LifeState.Dead;
-			EnableAllCollisions = false;
-			EnableDrawing = false;
+		if ( LifeState != LifeState.Alive )
+			return;
 
-			Controller.Remove();
-			Animator.Remove();
-			Camera.Remove();
+		LifeState = LifeState.Dead;
+		EnableAllCollisions = false;
+		EnableDrawing = false;
 
-			// Disable all children as well.
-			Children.OfType<ModelEntity>()
-				.ToList()
-				.ForEach( x => x.EnableDrawing = false );
+		Controller.Remove();
+		Animator.Remove();
+		Camera.Remove();
 
-			AsyncRespawn();
-		}
+		// Disable all children as well.
+		Children.OfType<ModelEntity>()
+			.ToList()
+			.ForEach( x => x.EnableDrawing = false );
+
+		AsyncRespawn();
 	}
 
 	/// <summary>
@@ -149,9 +136,21 @@ public sealed partial class Player : AnimatedEntity
 		tr.Surface.DoFootstep( this, tr, foot, volume );
 	}
 
-	protected float GetFootstepVolume()
+	private async void AsyncRespawn()
+	{
+		await GameTask.DelaySeconds( 3f );
+		Respawn();
+	}
+
+	private float GetFootstepVolume()
 	{
 		return Controller.Velocity.WithZ( 0 ).Length.LerpInverse( 0.0f, 200.0f ) * 1f;
+	}
+
+	[ClientRpc]
+	private void SetAudioEffect( string effectName, float strength, float velocity = 20f, float fadeOut = 4f )
+	{
+		Audio.SetEffect( effectName, strength, velocity: 20.0f, fadeOut: 4.0f * strength );
 	}
 
 	[ConCmd.Server( "kill" )]
