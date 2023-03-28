@@ -1,10 +1,11 @@
 namespace GangJam;
 
-public class GrindMechanic : ControllerMechanic
+public partial class GrindMechanic : ControllerMechanic
 {
 	private GenericPathEntity _path;
 	private int _currentNodeIndex;
-	private bool _isGrinding = false;
+	private bool _isGrinding { get; set; }
+
 	private float _alpha;
 
 	protected override bool ShouldStart()
@@ -32,12 +33,12 @@ public class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		_alpha += Time.Delta;
 		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count - 1 )
 		{
+			_alpha += Time.Delta * 2.5f;
 			_isGrinding = true;
 
-			if ( _alpha >= 1 )
+			if ( _alpha > 1 )
 			{
 				_alpha = 0;
 				_currentNodeIndex += 1;
@@ -47,9 +48,7 @@ public class GrindMechanic : ControllerMechanic
 			var nextNodeIndex = _currentNodeIndex + 1;
 			var nextPosition = _path.GetPointBetweenNodes( _path.PathNodes[_currentNodeIndex], _path.PathNodes[nextNodeIndex], _alpha );
 
-			DebugOverlay.Sphere( nextPosition, 1f, Color.Red );
-
-			Controller.Velocity = 0;
+			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
 			Controller.Position = nextPosition;
 			Controller.GroundEntity = _path;
 
