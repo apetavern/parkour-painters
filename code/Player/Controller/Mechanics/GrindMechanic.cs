@@ -2,6 +2,7 @@ namespace GangJam;
 
 public partial class GrindMechanic : ControllerMechanic
 {
+
 	private GenericPathEntity _path;
 	private int _currentNodeIndex;
 	private bool _isGrinding { get; set; }
@@ -35,22 +36,24 @@ public partial class GrindMechanic : ControllerMechanic
 	{
 		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count - 1 )
 		{
-			_alpha += Time.Delta * 2.5f;
+			_alpha += Time.Delta * 2f;
 			_isGrinding = true;
 
-			if ( _alpha > 1 )
+			if ( _alpha.AlmostEqual( 1.0f ) )
 			{
 				_alpha = 0;
 				_currentNodeIndex += 1;
-				return;
 			}
+
+			if ( _currentNodeIndex < 0 || _currentNodeIndex > _path.PathNodes.Count )
+				return;
 
 			var nextNodeIndex = _currentNodeIndex + 1;
 			var nextPosition = _path.GetPointBetweenNodes( _path.PathNodes[_currentNodeIndex], _path.PathNodes[nextNodeIndex], _alpha );
 
+			Controller.GroundEntity = _path;
 			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
 			Controller.Position = nextPosition;
-			Controller.GroundEntity = _path;
 
 			return;
 		}
