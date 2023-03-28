@@ -6,14 +6,14 @@
 [GameResource( "Clothing Collection", "clothc", "Defines a group of clothing items that can be applied to a citizen" )]
 public sealed class ClothingCollectionResource : GameResource
 {
-	public List<TintableClothingEntry> Skins { get; set; }
-	public List<TintableClothingEntry> Facials { get; set; }
-	public List<TintableClothingEntry> Hairs { get; set; }
-	public List<TintableClothingEntry> Hats { get; set; }
-	public List<TintableClothingEntry> Tops { get; set; }
-	public List<TintableClothingEntry> Gloves { get; set; }
-	public List<TintableClothingEntry> Bottoms { get; set; }
-	public List<TintableClothingEntry> Footwears { get; set; }
+	public List<TintableClothingEntry> Skins { get; private set; }
+	public List<TintableClothingEntry> Facials { get; private set; }
+	public List<TintableClothingEntry> Hairs { get; private set; }
+	public List<TintableClothingEntry> Hats { get; private set; }
+	public List<TintableClothingEntry> Tops { get; private set; }
+	public List<TintableClothingEntry> Gloves { get; private set; }
+	public List<TintableClothingEntry> Bottoms { get; private set; }
+	public List<TintableClothingEntry> Footwears { get; private set; }
 
 	/// <summary>
 	/// Returns a randomized <see cref="ClothingContainer"/> with the collections clothes applied on top of a clients if applicable.
@@ -27,7 +27,7 @@ public sealed class ClothingCollectionResource : GameResource
 	public (ClothingContainer, IReadOnlyDictionary<string, Color>) GetContainerWithTints( IClient client = null )
 	{
 		var chosenClothes = new List<TintableClothingEntry>();
-		var random = client is not null ? new Random( (int)client.SteamId ) : Random.Shared;
+		var random = new Random( (int)(DateTime.Now - DateTime.UnixEpoch).TotalSeconds );
 
 		void CheckList( List<TintableClothingEntry> entries )
 		{

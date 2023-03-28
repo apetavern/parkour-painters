@@ -1,0 +1,16 @@
+"Layer0"
+{
+	"shader"		"shaders/pixelated_masked.shader_c"
+	"Color"		"materials/sprays/textures/nineties_cup_01a_color.png"
+	"g_flModelTintAmount"		"1.000000"
+	"g_vColorTint"		"[1.000000 1.000000 1.000000 0.000000]"
+	"TintMask"		"materials/default/default_mask.tga"
+	"g_bFogEnabled"		"1"
+	"Metallic"		"materials/default/default_metal.tga"
+	"Normal"		"materials/default/default_normal.tga"
+	"Roughness"		"materials/default/default_rough.tga"
+	"g_vTiling"		"[1.000 1.000]"
+	"g_flAlphaTestReference"		"0.500000"
+	"g_flAntiAliasedEdgeStrength"		"1.000000"
+	"Translucency"		"materials/sprays/textures/nineties_cup_01a_trans.png"
+}

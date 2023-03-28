@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines an entity that represents a state in the game loop.
 /// </summary>
-internal interface IGameState : IEntity
+public interface IGameState : IEntity
 {
 	/// <summary>
 	/// Invoked when entering this game state. This will only be invoked on the server.

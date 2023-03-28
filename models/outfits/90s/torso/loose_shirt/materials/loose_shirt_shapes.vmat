@@ -1,0 +1,15 @@
+"Layer0"
+{
+	"shader"		"shaders/pixelated.shader_c"
+	"F_MORPH_SUPPORTED"		"1"
+	"F_RENDER_BACKFACES"		"1"
+	"Color"		"models/outfits/90s/torso/loose_shirt/materials/shapes/loose_shirt1_color.png"
+	"g_flModelTintAmount"		"1.000000"
+	"g_vColorTint"		"[1.000000 1.000000 1.000000 1.000000]"
+	"TintMask"		"materials/default/default_mask.tga"
+	"g_bFogEnabled"		"1"
+	"Metallic"		"models/outfits/90s/torso/loose_shirt/materials/loose_shirt1_metal.png"
+	"Normal"		"models/outfits/90s/torso/loose_shirt/materials/shapes/loose_shirt1_normal.png"
+	"Roughness"		"models/outfits/90s/torso/loose_shirt/materials/loose_shirt1_rough.png"
+	"g_vTiling"		"[1.000 1.000]"
+}

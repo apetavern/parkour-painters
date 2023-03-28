@@ -5,11 +5,9 @@
 [Solid, DrawAngles]
 public sealed partial class GraffitiSpot : ModelEntity
 {
-	[Net]
-	public Player SprayOwner { get; set; }
+	[Net] public Team SprayOwner { get; private set; }
 
-	[Net]
-	public float SprayProgress { get; set; }
+	[Net] public float SprayProgress { get; private set; }
 
 	public bool IsSprayCompleted => SprayProgress >= 100;
 
@@ -22,32 +20,46 @@ public sealed partial class GraffitiSpot : ModelEntity
 		Tags.Add( "graffiti_spot" );
 	}
 
-
-	[Event.Tick.Server]
-	public void OnTick()
-	{
-		DebugOverlay.Text( $"{SprayProgress}/100", Position );
-		DebugOverlay.Text( $"{SprayOwner?.Client.Name}", Position + Vector3.Up * 10 );
-	}
-
 	public void OnSprayReceived( Player player )
 	{
 		// Reset spray progress if the spray owner is the new sprayer.
-		if ( player != SprayOwner )
+		if ( player.Team != SprayOwner )
 		{
 			SprayProgress = 0;
-			SprayOwner = player;
+			SprayOwner = player.Team;
 		}
 
-		SprayProgress += 1;
-		SprayProgress = SprayProgress.Clamp( 0, 100 );
+		// Bail if the spray has already been completed.
+		if ( IsSprayCompleted )
+			return;
+
+		SprayProgress = Math.Clamp( SprayProgress + player.SprayAmount, 0, 100 );
 
 		if ( IsSprayCompleted )
 			OnSprayCompleted( player );
 	}
 
-	public void OnSprayCompleted( Player sprayer )
+	private void OnSprayCompleted( Player sprayer )
 	{
-		Log.Info( "Spray completed" );
+	}
+
+	[Event.Tick.Server]
+	public void OnTick()
+	{
+		DebugOverlay.Text( $"{SprayProgress}/100", Position );
+		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
+	}
+
+	/// <summary>
+	/// Resets the <see cref="GraffitiSpot"/> back to default once the <see cref="PlayState"/> has been entered/exited.
+	/// </summary>
+	[GangJam.Events.EnterGameState]
+	private void CleanupOnStateChange( IGameState newGameState, IGameState oldGameState )
+	{
+		if ( newGameState is not PlayState && oldGameState is not PlayState )
+			return;
+
+		SprayOwner = null;
+		SprayProgress = 0;
 	}
 }

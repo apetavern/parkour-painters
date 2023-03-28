@@ -1,6 +1,6 @@
 namespace GangJam;
 
-class LedgeGrabMechanic : ControllerMechanic
+public class LedgeGrabMechanic : ControllerMechanic
 {
 	private Vector3 _grabNormal;
 	private Vector3 _ledgeGrabLocation;

@@ -10,10 +10,15 @@ partial class Player
 	/// <summary>
 	/// Sets up the pawns clothing.
 	/// </summary>
-	public void SetupClothing()
+	/// <param name="clothingCollection">A collection to override the default team collection.</param>
+	public void SetupClothing( ClothingCollectionResource clothingCollection = null )
 	{
+		clothingCollection ??= Team?.Group.ClothingCollection;
+		if ( clothingCollection is null )
+			return;
+
 		ClothingContainer?.ClearEntities();
-		var (clothingContainer, tintDictionary) = Team.GetClothingCollection().GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
+		var (clothingContainer, tintDictionary) = clothingCollection.GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
 		ClothingContainer = clothingContainer;
 
 		// Find correct skin.

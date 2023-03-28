@@ -28,6 +28,14 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
+		foreach ( var client in Game.Clients )
+		{
+			client.Pawn?.Delete();
+
+			var defaultPlayer = new Player();
+			client.Pawn = defaultPlayer;
+			defaultPlayer.Respawn();
+		}
 	}
 
 	/// <inheritdoc/>
@@ -53,8 +61,6 @@ internal sealed class WaitingState : Entity, IGameState
 		var player = new Player();
 		cl.Pawn = player;
 		player.Respawn();
-
-		MoveToSpawnpoint( player );
 	}
 
 	/// <inheritdoc/>
@@ -93,7 +99,7 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <summary>
 	/// Sets the <see cref="WaitingState"/> as the active state in the game. This can only be invoked on the server.
 	/// </summary>
-	public static void SetActive()
+	internal static void SetActive()
 	{
 		Game.AssertServer();
 

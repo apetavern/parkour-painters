@@ -1,0 +1,15 @@
+{
+  "Title": "Loose Shirt",
+  "Subtitle": "A standard 90s loose shirt. flame on!",
+  "Category": "Tops",
+  "SubCategory": "90s",
+  "Parent": null,
+  "Model": "models/outfits/90s/torso/loose_shirt.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "shapes",
+  "SlotsUnder": "Chest, LeftArm, RightArm, LeftWrist, RightWrist",
+  "SlotsOver": "Chest, LeftArm, RightArm, LeftWrist, RightWrist",
+  "HideBody": 0,
+  "Icon": {}
+}

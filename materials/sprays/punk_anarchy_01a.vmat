@@ -12,5 +12,5 @@
 	"g_vTiling"		"[1.000 1.000]"
 	"g_flAlphaTestReference"		"0.500000"
 	"g_flAntiAliasedEdgeStrength"		"1.000000"
-	"Translucency"		"materials/sprays/textures/punk_anarchy_01a.png"
+	"Translucency"		"materials/sprays/textures/punk_anarchy_01a_trans.png"
 }

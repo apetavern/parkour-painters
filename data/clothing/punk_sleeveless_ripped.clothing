@@ -1,0 +1,15 @@
+{
+  "Title": "Punk Sleeveless Ripped",
+  "Subtitle": "Spikes do not enhance in-game performance.",
+  "Category": "Tops",
+  "SubCategory": "punk",
+  "Parent": null,
+  "Model": "models/outfits/punk/torso/ripped-sleeveless.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "Chest, LeftArm, RightArm",
+  "SlotsOver": "Chest, LeftArm, RightArm",
+  "HideBody": 0,
+  "Icon": {}
+}

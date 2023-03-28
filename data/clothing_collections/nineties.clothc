@@ -9,12 +9,27 @@
         "1,1,1,0"
       ],
       "SingleSelection": "1,0,0,0"
+    },
+    {
+      "Clothing": "data/clothing/90s_cap_sideways.clothing"
     }
   ],
   "Hats": null,
   "Tops": [
     {
       "Clothing": "data/clothing/90s_loose_shirt.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_shirt_blue.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_shirt_shapes.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_shirt_palmtrees.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_tank_shirt.clothing"
     }
   ],
   "Gloves": null,

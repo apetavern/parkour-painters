@@ -102,6 +102,39 @@
 						use_global_default = false
 						global_default_material = ""
 					},
+					{
+						_class = "MaterialGroup"
+						name = "fire_blue"
+						remaps = 
+						[
+							{
+								from = "models/outfits/90s/torso/loose_shirt/materials/loose_shirt_fire.vmat"
+								to = "models/outfits/90s/torso/loose_shirt/materials/loose_shirt_fire_blue.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "palmtrees"
+						remaps = 
+						[
+							{
+								from = "models/outfits/90s/torso/loose_shirt/materials/loose_shirt_fire.vmat"
+								to = "models/outfits/90s/torso/loose_shirt/materials/loose_shirt_palms.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "shapes"
+						remaps = 
+						[
+							{
+								from = "models/outfits/90s/torso/loose_shirt/materials/loose_shirt_fire.vmat"
+								to = "models/outfits/90s/torso/loose_shirt/materials/loose_shirt_shapes.vmat"
+							},
+						]
+					},
 				]
 			},
 			{

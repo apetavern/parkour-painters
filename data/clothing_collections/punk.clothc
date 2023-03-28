@@ -22,6 +22,9 @@
   "Tops": [
     {
       "Clothing": "data/clothing/punk_jacket.clothing"
+    },
+    {
+      "Clothing": "data/clothing/punk_sleeveless_ripped.clothing"
     }
   ],
   "Gloves": null,

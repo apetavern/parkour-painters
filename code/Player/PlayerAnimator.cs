@@ -2,9 +2,6 @@ namespace GangJam;
 
 public partial class PlayerAnimator : EntityComponent<Player>, ISingletonComponent
 {
-	private LedgeGrabMechanic _ledgeGrabMechanic;
-	private WallJumpMechanic _wallJumpMechanic;
-
 	public virtual void Simulate( IClient cl )
 	{
 		var player = Entity;
@@ -23,17 +20,19 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		animHelper.IsWeaponLowered = false;
 		animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.None;
 
-		_ledgeGrabMechanic ??= player.Components.Get<LedgeGrabMechanic>();
-		_wallJumpMechanic ??= player.Components.Get<WallJumpMechanic>();
-
-		if ( _ledgeGrabMechanic.IsActive )
+		if ( player.LedgeGrabMechanic.IsActive )
 		{
 			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
 			animHelper.WithVelocity( controller.GetWishVelocity( true ) );
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
 		}
-		else if ( _wallJumpMechanic.IsActive || player.Components.Get<GrindMechanic>().IsActive )
+		else if ( player.WallJumpMechanic.IsActive )
 		{
+			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
+		}
+		else if ( player.GrindMechanic.IsActive )
+		{
+			// TODO: Need an anim here.
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 		}
 	}
