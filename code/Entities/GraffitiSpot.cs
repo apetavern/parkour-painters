@@ -6,7 +6,7 @@
 public sealed partial class GraffitiSpot : ModelEntity
 {
 	[Net]
-	public Player SprayOwner { get; set; }
+	public Team SprayOwner { get; set; }
 
 	[Net]
 	public float SprayProgress { get; set; }
@@ -33,10 +33,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 	public void OnSprayReceived( Player player )
 	{
 		// Reset spray progress if the spray owner is the new sprayer.
-		if ( player != SprayOwner )
+		if ( player.Team != SprayOwner )
 		{
 			SprayProgress = 0;
-			SprayOwner = player;
+			SprayOwner = player.Team;
 		}
 
 		SprayProgress += 1;
