@@ -1,5 +1,6 @@
 namespace GangJam;
 
+[Prefab]
 public sealed partial class Player : AnimatedEntity
 {
 	[BindComponent] public PlayerController Controller { get; }
@@ -13,8 +14,12 @@ public sealed partial class Player : AnimatedEntity
 	/// <summary>
 	/// Returns the team that the player is a part of.
 	/// </summary>
-	// TODO: We should probably cache this somewhere.
-	public Team Team => PlayState.Instance?.Teams.Where( team => team.Members.Contains( Client ) ).FirstOrDefault();
+	public Team Team => Client.GetTeam();
+
+	/// <summary>
+	/// The amount of spray percent to add each tick to a <see cref="GraffitiSpot"/>.
+	/// </summary>
+	[Net, Prefab] public float SprayAmount { get; private set; } = 1;
 
 	public TimeSince TimeSinceFootstep { get; private set; } = 0;
 	private static readonly Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );

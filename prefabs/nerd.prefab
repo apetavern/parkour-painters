@@ -1,0 +1,32 @@
+{
+  "SchemaVersion": 1,
+  "Name": null,
+  "Description": null,
+  "Root": {
+    "Guid": "d84da862-38b7-41a1-bd6b-1c86f6633b81",
+    "Class": "Player",
+    "Entities": [],
+    "Components": [],
+    "Keys": {
+      "_name": {
+        "Value": "\u0022Nerd\u0022"
+      },
+      "_localposition": {
+        "Value": "\u00220,0,0\u0022"
+      },
+      "_localrotation": {
+        "Value": "\u00220,0,0\u0022"
+      },
+      "_scale": {
+        "Value": "1"
+      },
+      "_tags": {
+        "Value": "\u0022\u0022"
+      },
+      "SprayAmount": {
+        "Type": "Single",
+        "Value": "1"
+      }
+    }
+  }
+}

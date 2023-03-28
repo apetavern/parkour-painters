@@ -85,7 +85,13 @@ public sealed partial class PlayState : Entity, IGameState
 
 		// Respawn all players with their clothes.
 		foreach ( var client in Game.Clients )
-			(client.Pawn as Player)?.Respawn();
+		{
+			client.Pawn?.Delete();
+
+			var player = PrefabLibrary.Spawn<Player>( client.GetTeam().Group.PlayerPrefab );
+			client.Pawn = player;
+			player.Respawn();
+		}
 
 		TimeSinceGameStarted = 0;
 	}

@@ -23,6 +23,11 @@ public sealed class GroupResource : GameResource
 	/// </summary>
 	public ClothingCollectionResource ClothingCollection { get; private set; }
 
+	/// <summary>
+	/// The prefab to spawn for the players pawn.
+	/// </summary>
+	public Prefab PlayerPrefab { get; private set; }
+
 	/// <inheritdoc/>
 	protected override void PostLoad()
 	{

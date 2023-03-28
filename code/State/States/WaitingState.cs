@@ -28,6 +28,14 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
+		foreach ( var client in Game.Clients )
+		{
+			client.Pawn?.Delete();
+
+			var defaultPlayer = new Player();
+			client.Pawn = defaultPlayer;
+			defaultPlayer.Respawn();
+		}
 	}
 
 	/// <inheritdoc/>
@@ -53,8 +61,6 @@ internal sealed class WaitingState : Entity, IGameState
 		var player = new Player();
 		cl.Pawn = player;
 		player.Respawn();
-
-		MoveToSpawnpoint( player );
 	}
 
 	/// <inheritdoc/>

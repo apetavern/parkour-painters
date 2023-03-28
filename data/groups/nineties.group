@@ -1,5 +1,6 @@
 {
   "Name": "Nineties",
   "Description": "Might as well be boomers",
-  "ClothingCollection": "data/clothing_collections/nineties.clothc"
+  "ClothingCollection": "data/clothing_collections/nineties.clothc",
+  "PlayerPrefab": "prefabs/nineties.prefab"
 }

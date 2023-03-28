@@ -1,5 +1,6 @@
 {
   "Name": "Nerds",
   "Description": "A nerdy bunch",
-  "ClothingCollection": "data/clothing_collections/nerd.clothc"
+  "ClothingCollection": "data/clothing_collections/nerd.clothc",
+  "PlayerPrefab": "prefabs/nerd.prefab"
 }

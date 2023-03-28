@@ -33,7 +33,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 		if ( IsSprayCompleted )
 			return;
 
-		SprayProgress = Math.Clamp( SprayProgress + 1, 0, 100 );
+		SprayProgress = Math.Clamp( SprayProgress + player.SprayAmount, 0, 100 );
 
 		if ( IsSprayCompleted )
 			OnSprayCompleted( player );
