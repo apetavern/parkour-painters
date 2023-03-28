@@ -108,13 +108,13 @@ public partial class ControllerMechanic : EntityComponent<Player>
 		return IsActive;
 	}
 
-	protected void Start()
+	public void Start()
 	{
 		TimeSinceStart = 0;
 		OnStart();
 	}
 
-	protected void Stop()
+	public void Stop()
 	{
 		TimeSinceStop = 0;
 		OnStop();

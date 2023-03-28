@@ -7,6 +7,7 @@ public sealed partial class Player : AnimatedEntity
 	[BindComponent] public PlayerAnimator Animator { get; }
 	[BindComponent] public PlayerCamera Camera { get; }
 
+	[BindComponent] public JumpMechanic JumpMechanic { get; }
 	[BindComponent] public WallJumpMechanic WallJumpMechanic { get; }
 	[BindComponent] public LedgeGrabMechanic LedgeGrabMechanic { get; }
 	[BindComponent] public GrindMechanic GrindMechanic { get; }
