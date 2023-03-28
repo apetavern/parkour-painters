@@ -51,10 +51,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 	}
 
 	/// <summary>
-	/// Resets the <see cref="GraffitiSpot"/> back to default once the <see cref="PlayState"/> has finished.
+	/// Resets the <see cref="GraffitiSpot"/> back to default once the <see cref="PlayState"/> has been entered/exited.
 	/// </summary>
 	[GangJam.Events.EnterGameState]
-	private void EnterGameState( IGameState newGameState, IGameState oldGameState )
+	private void CleanupOnStateChange( IGameState newGameState, IGameState oldGameState )
 	{
 		if ( newGameState is not PlayState && oldGameState is not PlayState )
 			return;
