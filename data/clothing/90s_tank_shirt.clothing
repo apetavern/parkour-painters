@@ -1,0 +1,15 @@
+{
+  "Title": "Tank Shirt",
+  "Subtitle": "A standard 90s tank shirt with a denim jacket.",
+  "Category": "Tops",
+  "SubCategory": "90s",
+  "Parent": null,
+  "Model": "models/outfits/90s/torso/tank_shirt.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "Chest, LeftArm, RightArm, LeftWrist, RightWrist",
+  "SlotsOver": "Chest, LeftArm, RightArm, LeftWrist, RightWrist",
+  "HideBody": 0,
+  "Icon": {}
+}
