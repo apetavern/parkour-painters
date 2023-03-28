@@ -38,20 +38,23 @@ public partial class GrindMechanic : ControllerMechanic
 		{
 			_isGrinding = true;
 
+			var currentNode = _path.PathNodes[_currentNodeIndex];
+			var nextNode = _path.PathNodes[_currentNodeIndex + 1];
+			var distanceBetweenNodes = currentNode.WorldPosition.Distance( nextNode.WorldPosition );
+
 			var nextNodeIndex = _currentNodeIndex + 1;
 			var nextPosition = _path.GetPointBetweenNodes( _path.PathNodes[_currentNodeIndex], _path.PathNodes[nextNodeIndex], _alpha );
 
-			_alpha += Time.Delta * 2f;
-			if ( _alpha > 1f )
+			_alpha += Time.Delta * (300f / distanceBetweenNodes);
+			if ( _alpha >= 0.98f )
 			{
 				_alpha = 0;
 				_currentNodeIndex += 1;
 			}
 
-			Controller.GroundEntity = _path;
 			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
 			Controller.Position = nextPosition;
-
+			Controller.GroundEntity = _path;
 			return;
 		}
 
