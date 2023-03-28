@@ -12,8 +12,11 @@ partial class Player
 	/// </summary>
 	public void SetupClothing()
 	{
+		if ( Team is null )
+			return;
+
 		ClothingContainer?.ClearEntities();
-		var (clothingContainer, tintDictionary) = Team.GetClothingCollection().GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
+		var (clothingContainer, tintDictionary) = Team.Group.ClothingCollection.GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
 		ClothingContainer = clothingContainer;
 
 		// Find correct skin.

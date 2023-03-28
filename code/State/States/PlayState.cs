@@ -46,6 +46,7 @@ internal sealed partial class PlayState : Entity, IGameState
 		if ( !Game.IsServer )
 			return;
 
+		// Delete all teams that are no longer in use.
 		foreach ( var team in Children.OfType<Team>() )
 			team.Delete();
 	}
@@ -53,30 +54,38 @@ internal sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
+		ImmutableArray<ImmutableArray<IClient>> teams;
 		// This is here to jump into play state for debugging.
-		if ( lastState is not WaitingState waitingState )
+		if ( lastState is not WaitingState waitingState || waitingState.Teams == default )
 		{
-			var builders = new ImmutableArray<IClient>.Builder[GangJam.NumTeams];
-			for ( var i = 0; i < builders.Length; i++ )
-				builders[i] = ImmutableArray.CreateBuilder<IClient>();
+			// TODO: This can be way better.
+			var builder = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>( GangJam.NumTeams );
+			for ( var i = 0; i < builder.Count; i++ )
+				builder.Add( ImmutableArray.Create<IClient>() );
 
 			for ( var i = 0; i < Game.Clients.Count; i++ )
-				builders[i % builders.Length].Add( Game.Clients.ElementAt( i ) );
+				builder[i % builder.Count] = builder[i % builder.Count].Add( Game.Clients.ElementAt( i ) );
 
-			for ( var i = 0; i < builders.Length; i++ )
-				Teams.Add( new Team( Random.Shared.FromEnum<TeamType>(), builders[i] ) );
-
-			return;
+			teams = builder.ToImmutable();
 		}
+		else
+			teams = waitingState.Teams;
 
-		for ( var i = 0; i < waitingState.Teams.Length; i++ )
+		// Setup teams.
+		for ( var i = 0; i < teams.Length; i++ )
 		{
-			var team = new Team( Random.Shared.FromEnum<TeamType>(), waitingState.Teams[i] )
+			var randomGroup = Random.Shared.FromDictionary( GroupResource.All ).Value;
+			var team = new Team( randomGroup, teams[i] )
 			{
 				Parent = this
 			};
+
 			Teams.Add( team );
 		}
+
+		// Respawn all players with their clothes.
+		foreach ( var client in Game.Clients )
+			(client.Pawn as Player)?.Respawn();
 
 		TimeSinceGameStarted = 0;
 	}
@@ -116,7 +125,7 @@ internal sealed partial class PlayState : Entity, IGameState
 		for ( var i = 0; i < Teams.Count; i++ )
 		{
 			var team = Teams[i];
-			DebugOverlay.ScreenText( $"Team {i + 1} ({team.Type}):", linesUsed );
+			DebugOverlay.ScreenText( $"Team {i + 1} ({team.Group.Name}):", linesUsed );
 			linesUsed++;
 
 			for ( var j = 0; j < team.Members.Count; j++ )
