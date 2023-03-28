@@ -49,4 +49,17 @@ public sealed partial class GraffitiSpot : ModelEntity
 		DebugOverlay.Text( $"{SprayProgress}/100", Position );
 		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
 	}
+
+	/// <summary>
+	/// Resets the <see cref="GraffitiSpot"/> back to default once the <see cref="PlayState"/> has finished.
+	/// </summary>
+	[GangJam.Events.EnterGameState]
+	private void EnterGameState( IGameState newGameState, IGameState oldGameState )
+	{
+		if ( newGameState is not PlayState && oldGameState is not PlayState )
+			return;
+
+		SprayOwner = null;
+		SprayProgress = 0;
+	}
 }
