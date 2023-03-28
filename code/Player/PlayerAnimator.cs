@@ -8,6 +8,11 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		var controller = player.Controller;
 		var animHelper = new CustomAnimationHelper( player );
 
+		if ( player.IsDazed )
+			player.SetAnimParameter( "daze_state", (int)player.DazeType );
+		else
+			player.SetAnimParameter( "daze_state", 0 );
+
 		animHelper.WithWishVelocity( player.IsDazed ? Vector3.Zero : controller.GetWishVelocity() );
 		animHelper.WithVelocity( player.IsDazed ? Vector3.Zero : controller.Velocity );
 

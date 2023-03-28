@@ -1,3 +1,5 @@
+using Sandbox;
+
 namespace GangJam;
 
 [Prefab]

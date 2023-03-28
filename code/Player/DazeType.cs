@@ -8,9 +8,9 @@ public enum DazeType
 	/// <summary>
 	/// Inhaling something that caused a coughing fit.
 	/// </summary>
-	Inhalation,
+	Inhalation = 1,
 	/// <summary>
 	/// A physical interaction that causes disorientation.
 	/// </summary>
-	PhysicalTrauma
+	PhysicalTrauma = 2
 }
