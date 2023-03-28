@@ -46,13 +46,24 @@ partial class GangJam
 			return;
 		}
 
-		if ( !GroupResource.All.TryGetValue( groupName, out var group ) )
+		var loweredGroupName = groupName.ToLower();
+		GroupResource chosenGroup = null;
+		foreach ( var (groupResourceName, groupResource) in GroupResource.All )
+		{
+			if ( loweredGroupName != groupResourceName.ToLower() )
+				continue;
+
+			chosenGroup = groupResource;
+			break;
+		}
+
+		if ( chosenGroup is null )
 		{
 			Log.Warning( $"No group with the name \"{groupName}\" exists" );
 			return;
 		}
 
-		player.SetupClothing( group.ClothingCollection );
-		Log.Info( $"Changed clothing to {groupName}" );
+		player.SetupClothing( chosenGroup.ClothingCollection );
+		Log.Info( $"Changed clothing to {chosenGroup.Name}" );
 	}
 }
