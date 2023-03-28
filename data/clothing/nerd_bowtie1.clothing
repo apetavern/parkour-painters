@@ -1,0 +1,15 @@
+{
+  "Title": "Nerd Bowtie",
+  "Subtitle": "All the rage",
+  "Category": "Tops",
+  "SubCategory": "Nerds",
+  "Parent": null,
+  "Model": "models/outfits/nerd/accessories/nerd_bowtie1/nerd_bowtie1.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": 0,
+  "SlotsOver": "Skin",
+  "HideBody": 0,
+  "Icon": {}
+}
