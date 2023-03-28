@@ -2,17 +2,19 @@ namespace GangJam;
 
 public partial class GrindMechanic : ControllerMechanic
 {
-
 	private GenericPathEntity _path;
 	private int _currentNodeIndex;
-	private bool _isGrinding { get; set; }
-
+	private bool _isGrinding;
 	private float _alpha;
+	private bool _isReverse;
 
 	protected override bool ShouldStart()
 	{
 		if ( _isGrinding )
 			return true;
+
+		if ( !Input.Pressed( InputButton.Use ) )
+			return false;
 
 		foreach ( var path in Sandbox.Entity.All.OfType<GrindSpot>() )
 		{
@@ -20,12 +22,15 @@ public partial class GrindMechanic : ControllerMechanic
 				continue;
 
 			var closestNode = path.PathNodes.MinBy( p => Controller.Position.Distance( p.WorldPosition ) );
-			if ( Controller.Position.Distance( closestNode.WorldPosition ) > 30 )
+			if ( Controller.Position.Distance( closestNode.WorldPosition ) > 50 )
 				continue;
 
+			var directionToFirstNode = path.PathNodes[0].WorldPosition - closestNode.WorldPosition;
+			var dot = Vector3.Dot( Player.Rotation.Forward, directionToFirstNode );
+
+			_isReverse = dot > 0;
 			_currentNodeIndex = path.PathNodes.IndexOf( closestNode );
 			_path = path;
-
 			return true;
 		}
 
@@ -34,22 +39,24 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count - 1 )
+		if ( _currentNodeIndex > 0 && _currentNodeIndex < _path.PathNodes.Count - 1 )
 		{
 			_isGrinding = true;
 
+			var increment = _isReverse ? -1 : +1;
+
 			var currentNode = _path.PathNodes[_currentNodeIndex];
-			var nextNode = _path.PathNodes[_currentNodeIndex + 1];
+			var nextNodeIndex = _currentNodeIndex + increment;
+			var nextNode = _path.PathNodes[nextNodeIndex];
 			var distanceBetweenNodes = currentNode.WorldPosition.Distance( nextNode.WorldPosition );
 
-			var nextNodeIndex = _currentNodeIndex + 1;
-			var nextPosition = _path.GetPointBetweenNodes( _path.PathNodes[_currentNodeIndex], _path.PathNodes[nextNodeIndex], _alpha );
+			var nextPosition = _path.GetPointBetweenNodes( _path.PathNodes[_currentNodeIndex], _path.PathNodes[nextNodeIndex], _alpha, _isReverse );
 
 			_alpha += Time.Delta * (300f / distanceBetweenNodes);
 			if ( _alpha >= 0.98f )
 			{
 				_alpha = 0;
-				_currentNodeIndex += 1;
+				_currentNodeIndex += increment;
 			}
 
 			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
