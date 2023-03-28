@@ -28,6 +28,11 @@ public sealed class GroupResource : GameResource
 	/// </summary>
 	public Prefab PlayerPrefab { get; private set; }
 
+	/// <summary>
+	/// The color that should be used for effects when spraying.
+	/// </summary>
+	public Color SprayColor { get; private set; }
+
 	/// <inheritdoc/>
 	protected override void PostLoad()
 	{
