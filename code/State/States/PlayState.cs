@@ -19,7 +19,11 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// Contains all of the participating teams.
 	/// </summary>
-	[Net] internal IList<Team> Teams { get; private set; }
+	[Net] private IList<Team> teams { get; set; }
+	/// <summary>
+	/// A readonly list containing all participating teams.
+	/// </summary>
+	public IReadOnlyList<Team> Teams => teams as IReadOnlyList<Team>;
 
 	/// <summary>
 	/// The time in seconds since the game started.
@@ -31,7 +35,7 @@ public sealed partial class PlayState : Entity, IGameState
 	public TimeUntil TimeUntilGameEnds => GangJam.GameLength - TimeSinceGameStarted;
 
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
@@ -39,7 +43,7 @@ public sealed partial class PlayState : Entity, IGameState
 	}
 
 	/// <inheritdoc/>
-	protected override void OnDestroy()
+	protected sealed override void OnDestroy()
 	{
 		base.OnDestroy();
 
@@ -54,7 +58,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Enter( IGameState lastState )
 	{
-		ImmutableArray<ImmutableArray<IClient>> teams;
+		ImmutableArray<ImmutableArray<IClient>> teamMembers;
 		// This is here to jump into play state for debugging.
 		if ( lastState is not WaitingState waitingState || waitingState.Teams == default )
 		{
@@ -66,21 +70,21 @@ public sealed partial class PlayState : Entity, IGameState
 			for ( var i = 0; i < Game.Clients.Count; i++ )
 				builder[i % builder.Count] = builder[i % builder.Count].Add( Game.Clients.ElementAt( i ) );
 
-			teams = builder.ToImmutable();
+			teamMembers = builder.ToImmutable();
 		}
 		else
-			teams = waitingState.Teams;
+			teamMembers = waitingState.Teams;
 
 		// Setup teams.
-		for ( var i = 0; i < teams.Length; i++ )
+		for ( var i = 0; i < teamMembers.Length; i++ )
 		{
 			var randomGroup = Random.Shared.FromDictionary( GroupResource.All ).Value;
-			var team = new Team( randomGroup, teams[i] )
+			var team = new Team( randomGroup, teamMembers[i] )
 			{
 				Parent = this
 			};
 
-			Teams.Add( team );
+			teams.Add( team );
 		}
 
 		// Respawn all players with their clothes.
@@ -124,6 +128,19 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
+	}
+
+	/// <inheritdoc/>
+	void IGameState.ServerTick()
+	{
+		if ( TimeUntilGameEnds <= 0 )
+			GameOverState.SetActive();
+	}
+
+#if DEBUG
+	[Event.Tick]
+	private void DebugDraw()
+	{
 		DebugOverlay.ScreenText( $"Time Left: {TimeUntilGameEnds} seconds" );
 
 		var linesUsed = 2;
@@ -143,13 +160,7 @@ public sealed partial class PlayState : Entity, IGameState
 			linesUsed++;
 		}
 	}
-
-	/// <inheritdoc/>
-	void IGameState.ServerTick()
-	{
-		if ( TimeUntilGameEnds <= 0 )
-			GameOverState.SetActive();
-	}
+#endif
 
 	/// <summary>
 	/// Sets the <see cref="PlayState"/> as the active state in the game. This can only be invoked on the server.

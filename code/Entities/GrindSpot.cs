@@ -1,17 +1,21 @@
 namespace GangJam;
 
+/// <summary>
+/// A spot that a palyer can grind on.
+/// </summary>
 [Library( "grind_spot" )]
 [Title( "Grind Spot" ), Category( "Movement" )]
 [HammerEntity, Path( "path_generic_node" )]
-internal class GrindSpot : GenericPathEntity
+internal sealed class GrindSpot : GenericPathEntity
 {
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
 		Transmit = TransmitType.Always;
 	}
+
 	public Vector3 NearestPoint( Vector3 from, bool reverse, out int node, out float t )
 	{
 		// todo: distance between nodes isn't always the same

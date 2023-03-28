@@ -1,15 +1,21 @@
 ﻿namespace GangJam;
 
+/// <summary>
+/// A spawner for a <see cref="BaseCarriable"/>.
+/// </summary>
 [Library( "ent_carriable_spawner" )]
 [Title( "Carriable Spawner" ), Category( "Spray Down" )]
 [EditorModel( "models/entities/spray_paint/spray_paint.vmdl" )]
 [HammerEntity]
 public sealed partial class CarriableSpawner : AnimatedEntity
 {
-	[Net]
-	public TimeSince TimeSinceLastPickup { get; set; }
+	/// <summary>
+	/// The time in seconds since an item was last picked up from the spawner.
+	/// </summary>
+	[Net] public TimeSince TimeSinceLastPickup { get; private set; }
 
-	public override void Spawn()
+	/// <inheritdoc/>
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
@@ -20,7 +26,8 @@ public sealed partial class CarriableSpawner : AnimatedEntity
 		_ = new PickupTrigger() { Position = Position, Parent = this };
 	}
 
-	public override void StartTouch( Entity other )
+	/// <inheritdoc/>
+	public sealed override void StartTouch( Entity other )
 	{
 		base.StartTouch( other );
 
@@ -29,8 +36,6 @@ public sealed partial class CarriableSpawner : AnimatedEntity
 
 		if ( player.CanEquip( typeof( SprayCan ) ) )
 			player.Equip( new SprayCan() );
-		else
-			Log.Info( "Already have one, greedy bugger" );
 
 		TimeSinceLastPickup = 0f;
 	}

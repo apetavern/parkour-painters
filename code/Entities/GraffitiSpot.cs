@@ -1,21 +1,40 @@
 ﻿namespace GangJam;
 
+/// <summary>
+/// A spot that a player can graffiti.
+/// </summary>
 [Library( "func_graffiti_spot" )]
 [Title( "Graffiti Spot" ), Category( "Spray Down" )]
 [Solid, DrawAngles]
 public sealed partial class GraffitiSpot : ModelEntity
 {
+	/// <summary>
+	/// The team that is currently working on spraying this spot.
+	/// </summary>
 	[Net] public Team SprayOwner { get; private set; }
 
+	/// <summary>
+	/// The percentage progress the <see ref="SprayOwner"/> has made on completing the graffiti.
+	/// </summary>
 	[Net] public float SprayProgress { get; private set; }
 
+	/// <summary>
+	/// The time in seconds since the spot was last sprayed on.
+	/// </summary>
 	[Net] public TimeSince TimeSinceLastSprayed { get; private set; }
 
-	private Particles SprayCloud { get; set; }
-
+	/// <summary>
+	/// Returns whether or not the spot has been completely sprayed.
+	/// </summary>
 	public bool IsSprayCompleted => SprayProgress >= 100;
 
-	public override void Spawn()
+	/// <summary>
+	/// The particle system that is shown when spraying on the spot.
+	/// </summary>
+	private Particles SprayCloud { get; set; }
+
+	/// <inheritdoc/>
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
@@ -24,6 +43,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 		Tags.Add( "graffiti_spot" );
 	}
 
+	/// <summary>
+	/// Invoked when the spot has been sprayed by a player.
+	/// </summary>
+	/// <param name="player">The player that is spraying on the spot.</param>
 	public void OnSprayReceived( Player player )
 	{
 		// Reset spray progress if the spray owner is the new sprayer.
@@ -69,23 +92,17 @@ public sealed partial class GraffitiSpot : ModelEntity
 		Event.Run( GangJam.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
 	}
 
-	[Event.Tick]
-	public void OnTick()
+	/// <summary>
+	/// Checks whether or not the spray cloud needs to be cleaned up.
+	/// </summary>
+	[Event.Tick.Client]
+	private void SprayCleanup()
 	{
-		if ( Game.IsServer )
-		{
-			DebugOverlay.Text( $"{SprayProgress}/100", Position );
-			DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
-		}
+		if ( TimeSinceLastSprayed <= 0.2f )
+			return;
 
-		if ( Game.IsClient )
-		{
-			if ( TimeSinceLastSprayed > 0.2f )
-			{
-				SprayCloud?.Destroy();
-				SprayCloud = null;
-			}
-		}
+		SprayCloud?.Destroy();
+		SprayCloud = null;
 	}
 
 	/// <summary>
@@ -99,5 +116,20 @@ public sealed partial class GraffitiSpot : ModelEntity
 
 		SprayOwner = null;
 		SprayProgress = 0;
+
+		SprayCloud?.Destroy();
+		SprayCloud = null;
 	}
+
+#if DEBUG
+	/// <summary>
+	/// Debug draws information relating to the <see cref="GraffitiSpot"/>.
+	/// </summary>
+	[Event.Tick.Server]
+	private void DebugDraw()
+	{
+		DebugOverlay.Text( $"{SprayProgress}/100", Position );
+		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
+	}
+#endif
 }

@@ -1,24 +1,30 @@
 ﻿namespace GangJam;
 
-public partial class SprayCan : BaseCarriable
+/// <summary>
+/// A spray can that can be used to daze players or graffiti the map.
+/// </summary>
+public sealed partial class SprayCan : BaseCarriable
 {
+	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/spray_paint/spray_paint.vmdl";
+	/// <inheritdoc/>
 	protected override float PrimaryFireRate => 0.05f;
-	protected Particles SprayParticles { get; set; }
 
-	public override void OnEquipped( Player player )
+	/// <summary>
+	/// The spray particles that come out when using the can.
+	/// </summary>
+	private Particles SprayParticles { get; set; }
+
+	/// <inheritdoc/>
+	public sealed override void OnEquipped( Player player )
 	{
 		base.OnEquipped( player );
 
 		player.SetAnimParameter( "b_haspaint", true );
 	}
 
-	public override void Simulate( IClient client )
-	{
-		base.Simulate( client );
-	}
-
-	protected override void OnPrimaryAttack()
+	/// <inheritdoc/>
+	protected sealed override void OnPrimaryAttack()
 	{
 		if ( Player.IsDazed )
 		{
@@ -53,16 +59,17 @@ public partial class SprayCan : BaseCarriable
 			player.Daze( Player, DazeType.Inhalation );
 	}
 
-	protected override void OnPrimaryReleased()
+	/// <inheritdoc/>
+	protected sealed override void OnPrimaryReleased()
 	{
 		base.OnPrimaryReleased();
 
 		Player.SetAnimParameter( "b_spray", false );
 
-		if ( Game.IsClient )
-		{
-			SprayParticles?.Destroy();
-			SprayParticles = null;
-		}
+		if ( !Game.IsClient )
+			return;
+
+		SprayParticles?.Destroy();
+		SprayParticles = null;
 	}
 }

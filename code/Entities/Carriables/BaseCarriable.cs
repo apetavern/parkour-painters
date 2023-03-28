@@ -1,54 +1,70 @@
 ﻿namespace GangJam;
 
+/// <summary>
+/// The base class for all carriable items.
+/// </summary>
 public abstract partial class BaseCarriable : AnimatedEntity
 {
+	/// <summary>
+	/// The player that owns the carriable.
+	/// </summary>
 	protected Player Player => Owner as Player;
 
+	/// <summary>
+	/// The path to the world model to use.
+	/// </summary>
 	protected virtual string ModelPath => "";
 
+	/// <summary>
+	/// The time in seconds between each time the carriables primary attack can be used.
+	/// </summary>
 	protected virtual float PrimaryFireRate => 1f;
 
+	/// <summary>
+	/// The time in seconds between each time the carriables secondary attack can be used.
+	/// </summary>
 	protected virtual float SecondaryFireRate => 1f;
 
+	/// <summary>
+	/// Whether or not the primary fire can be continually fired if holding the corresponding action.
+	/// </summary>
 	protected virtual bool ContinualPrimaryFire => true;
 
+	/// <summary>
+	/// Whether or not the secondary fire can be continually fired if holding the corresponding action.
+	/// </summary>
 	protected virtual bool ContinualSecondaryFire => false;
 
-	[Net]
-	protected TimeSince TimeSinceLastPrimary { get; set; }
+	/// <summary>
+	/// The time in seconds since the primary attack was last used.
+	/// </summary>
+	[Net] protected TimeSince TimeSinceLastPrimary { get; set; }
 
-	[Net]
-	protected TimeSince TimeSinceLastSecondary { get; set; }
+	/// <summary>
+	/// The time in seconds since the secondary attack was last used.
+	/// </summary>
+	[Net] protected TimeSince TimeSinceLastSecondary { get; set; }
 
-	[Net]
-	public bool HasReleasedPrimary { get; set; }
+	/// <summary>
+	/// Whether or not the primary attack is released.
+	/// </summary>
+	[Net] protected bool HasReleasedPrimary { get; set; }
+	
+	/// <summary>
+	/// Whether or not the secondary attack is released.
+	/// </summary>
+	[Net] protected bool HasReleasedSecondary { get; set; }
 
-	[Net]
-	public bool HasReleasedSecondary { get; set; }
-
-	public override void Spawn()
+	/// <inheritdoc/>
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
 		SetModel( ModelPath );
 	}
 
-	public virtual void OnEquipped( Player player )
-	{
-		Owner = player;
-		SetParent( player, true );
-
-		HasReleasedPrimary = true;
-		HasReleasedSecondary = true;
-	}
-
-	public virtual void OnHolstered()
-	{
-		Owner = null;
-		Parent = null;
-	}
-
-	public override void Simulate( IClient client )
+	/// <inheritdoc/>
+	public sealed override void Simulate( IClient client )
 	{
 		base.Simulate( client );
 
@@ -65,6 +81,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 
 			HasReleasedPrimary = false;
 		}
+
 		if ( Input.Released( InputButton.PrimaryAttack ) )
 		{
 			OnPrimaryReleased();
@@ -91,6 +108,31 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		}
 	}
 
+	/// <summary>
+	/// Invoked once the <see cref="BaseCarriable"/> has been equipped by a player.
+	/// </summary>
+	/// <param name="player">The player that is equipping the <see cref="BaseCarriable"/>.</param>
+	public virtual void OnEquipped( Player player )
+	{
+		Owner = player;
+		SetParent( player, true );
+
+		HasReleasedPrimary = true;
+		HasReleasedSecondary = true;
+	}
+
+	/// <summary>
+	/// Invoked once the <see cref="BaseCarriable"/> has been holstered.
+	/// </summary>
+	public virtual void OnHolstered()
+	{
+		Owner = null;
+		Parent = null;
+	}
+
+	/// <summary>
+	/// Invoked once a primary attack has been requested.
+	/// </summary>
 	protected virtual void OnPrimaryAttack()
 	{
 		if ( Player.IsDazed )
@@ -99,8 +141,14 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		TimeSinceLastPrimary = 0;
 	}
 
+	/// <summary>
+	/// Invoked once the primary attack has finished.
+	/// </summary>
 	protected virtual void OnPrimaryReleased() { }
 
+	/// <summary>
+	/// Invoked once a secondary attack has been requested.
+	/// </summary>
 	protected virtual void OnSecondaryAttack()
 	{
 		if ( Player.IsDazed )
@@ -109,5 +157,8 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		TimeSinceLastSecondary = 0;
 	}
 
+	/// <summary>
+	/// Invoked once a secondary attack has finished.
+	/// </summary>
 	protected virtual void OnSecondaryReleased() { }
 }

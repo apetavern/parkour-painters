@@ -18,7 +18,7 @@ internal sealed class WaitingState : Entity, IGameState
 	internal ImmutableArray<ImmutableArray<IClient>> Teams { get; private set; }
 
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
@@ -78,22 +78,6 @@ internal sealed class WaitingState : Entity, IGameState
 	{
 		if ( Game.Clients.Count >= GangJam.NumTeams )
 			PlayState.SetActive();
-	}
-
-	/// <summary>
-	/// Moves a clients pawn to a random spawnpoint.
-	/// </summary>
-	/// <param name="player">The pawn to move.</param>
-	private void MoveToSpawnpoint( Player player )
-	{
-		var spawnpoints = Entity.All.OfType<SpawnPoint>();
-		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
-		if ( randomSpawnPoint is null )
-			return;
-
-		var tx = randomSpawnPoint.Transform;
-		tx.Position += Vector3.Up * 50.0f; // raise it up
-		player.Transform = tx;
 	}
 
 	/// <summary>

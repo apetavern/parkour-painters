@@ -9,17 +9,17 @@ public sealed partial class Team : Entity
 	/// <summary>
 	/// A list containing all of the teams currently participating.
 	/// </summary>
-	public static new IReadOnlyList<Team> All => PlayState.Instance?.Teams as IReadOnlyList<Team>;
+	public static new IReadOnlyList<Team> All => PlayState.Instance?.Teams;
 
 	/// <summary>
 	/// The group that this team represents.
 	/// </summary>
-	[Net] public GroupResource Group { get; set; }
+	[Net] public GroupResource Group { get; private set; }
 
 	/// <summary>
 	/// A list of all clients that are a part of this team.
 	/// </summary>
-	[Net] internal IList<IClient> members { get; set; }
+	[Net] internal IList<IClient> members { get; private set; }
 	/// <summary>
 	/// A readonly list of all clients that are a part of this team.
 	/// </summary>
@@ -56,7 +56,7 @@ public sealed partial class Team : Entity
 	}
 
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 

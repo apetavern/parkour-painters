@@ -28,7 +28,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	[Net] internal IList<Team> DrawingTeams { get; private set; }
 
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
