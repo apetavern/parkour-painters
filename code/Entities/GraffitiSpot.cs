@@ -25,8 +25,12 @@ public sealed partial class GraffitiSpot : ModelEntity
 		// Reset spray progress if the spray owner is the new sprayer.
 		if ( player.Team != SprayOwner )
 		{
+			var oldTeam = SprayOwner;
 			SprayProgress = 0;
 			SprayOwner = player.Team;
+
+			if ( oldTeam is not null )
+				Event.Run( GangJam.Events.GraffitiSpotTampered, oldTeam, SprayOwner, player );
 		}
 
 		// Bail if the spray has already been completed.
@@ -39,8 +43,13 @@ public sealed partial class GraffitiSpot : ModelEntity
 			OnSprayCompleted( player );
 	}
 
+	/// <summary>
+	/// Invoked once a spray has been completed by a player.
+	/// </summary>
+	/// <param name="sprayer">The player that completed the <see cref="GraffitiSpot"/>.</param>
 	private void OnSprayCompleted( Player sprayer )
 	{
+		Event.Run( GangJam.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
 	}
 
 	[Event.Tick.Server]
