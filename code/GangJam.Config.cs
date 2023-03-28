@@ -37,4 +37,10 @@ partial class GangJam
 	/// </summary>
 	[ConVar.Replicated( "gj_immunetime" )]
 	public static float ImmuneTime { get; private set; } = 5;
+
+	/// <summary>
+	/// Defines whether or not dashing can be infinitely used.
+	/// </summary>
+	[ConVar.Replicated( "gj_cheat_infinitedash" )]
+	public static bool InfiniteDash { get; private set; } = false;
 }

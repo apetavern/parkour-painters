@@ -2,7 +2,7 @@ namespace GangJam;
 
 public sealed partial class DashMechanic : ControllerMechanic
 {
-	public int DashRechargeTime => 3;
+	public int DashRechargeTime => GangJam.InfiniteDash ? 0 : 3;
 	private TimeSince _timeSinceLastDash;
 
 	protected override bool ShouldStart()
