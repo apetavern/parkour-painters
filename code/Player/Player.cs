@@ -3,10 +3,12 @@ namespace GangJam;
 public sealed partial class Player : AnimatedEntity
 {
 	[BindComponent] public PlayerController Controller { get; }
-
 	[BindComponent] public PlayerAnimator Animator { get; }
-
 	[BindComponent] public PlayerCamera Camera { get; }
+
+	[BindComponent] public WallJumpMechanic WallJumpMechanic { get; }
+	[BindComponent] public LedgeGrabMechanic LedgeGrabMechanic { get; }
+	[BindComponent] public DashMechanic DashMechanic { get; }
 
 	/// <summary>
 	/// Returns the team that the player is a part of.
@@ -54,6 +56,7 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<UnstuckMechanic>();
 		Components.Create<WallJumpMechanic>();
 		Components.Create<LedgeGrabMechanic>();
+		Components.Create<DashMechanic>();
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();

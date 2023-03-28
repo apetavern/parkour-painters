@@ -19,7 +19,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		if ( Controller.Velocity.WithZ( 0 ).Length < 1.0f )
 			return false;
 
-		if ( Controller.GetMechanic<LedgeGrabMechanic>().IsActive )
+		if ( Player.LedgeGrabMechanic.IsActive )
 			return false;
 
 		// Make sure we are not too close to the ground.
