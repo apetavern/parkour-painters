@@ -30,10 +30,16 @@ public class LedgeGrabMechanic : ControllerMechanic
 		var isMovingFromLedge = Vector3.Dot( Controller.GetWishVelocity(), Player.Rotation.Forward ) < -30;
 
 		if ( Input.Pressed( InputButton.Duck ) || isMovingFromLedge )
-			Drop();
+		{
+			Stop();
+			return;
+		}
 
 		if ( Input.Pressed( InputButton.Jump ) )
+		{
 			Vault();
+			return;
+		}
 	}
 
 	private bool CanGrabLedge()
@@ -94,7 +100,7 @@ public class LedgeGrabMechanic : ControllerMechanic
 		return true;
 	}
 
-	private void Drop()
+	protected override void OnStop()
 	{
 		IsActive = false;
 		_timeSinceDrop = 0;
@@ -102,12 +108,12 @@ public class LedgeGrabMechanic : ControllerMechanic
 
 	private void Vault()
 	{
-		Drop();
-
 		float flGroundFactor = 1.0f;
 		float flMul = 350f;
 		float startz = Velocity.z;
 
 		Velocity = Velocity.WithZ( startz + flMul * flGroundFactor );
+
+		Stop();
 	}
 }

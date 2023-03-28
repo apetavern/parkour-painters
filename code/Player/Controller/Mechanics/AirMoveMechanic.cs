@@ -20,7 +20,7 @@ public sealed partial class AirMoveMechanic : ControllerMechanic
 			return;
 
 		// The player probably wanted to wall jump.
-		if ( Input.Pressed( InputButton.Jump ) && Player.WallJumpMechanic.TimeSinceLeftWall < 0.2f && !Player.WallJumpMechanic.UsedWallJump )
+		if ( Input.Pressed( InputButton.Jump ) && Player.WallJumpMechanic.TimeSinceLeftWall < 0.2f && !Player.WallJumpMechanic.UsedWallJump && !Player.LedgeGrabMechanic.IsActive )
 			Player.WallJumpMechanic.DoWallJump();
 
 		var wishVel = ctrl.GetWishVelocity( true );
