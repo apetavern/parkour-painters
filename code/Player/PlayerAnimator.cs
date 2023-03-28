@@ -38,5 +38,10 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		{
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 		}
+		else if ( player.GrindMechanic.IsActive )
+		{
+			// TODO: Need an anim here.
+			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
+		}
 	}
 }
