@@ -26,7 +26,6 @@ public partial class PlayerAnimator : EntityComponent<Player>, ISingletonCompone
 		_ledgeGrabMechanic ??= player.Components.Get<LedgeGrabMechanic>();
 		_wallJumpMechanic ??= player.Components.Get<WallJumpMechanic>();
 
-
 		if ( _ledgeGrabMechanic.IsActive )
 		{
 			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 

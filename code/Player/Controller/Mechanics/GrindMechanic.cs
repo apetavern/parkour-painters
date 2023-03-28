@@ -51,46 +51,20 @@ public class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		_alpha += Time.Delta;
-
-		if ( _alpha >= 1 )
+		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count - 1 )
 		{
-			_alpha = 0;
+			_isGrinding = true;
+			var moveHelper = new MoveHelper( _path.PathNodes[_currentNodeIndex].WorldPosition, Controller.Velocity );
+			moveHelper.TryMove( Time.Delta * 0.1f );
 
-			bool reachedEnd;
+			Controller.Position = moveHelper.Position;
+			Controller.Velocity = moveHelper.Velocity;
 
-			if ( _isReverseGrind )
-			{
-				_currentNodeIndex--;
-				reachedEnd = _currentNodeIndex <= 0;
-			}
-			else
-			{
-				_currentNodeIndex++;
-				reachedEnd = _currentNodeIndex >= _path.PathNodes.Count - 1;
-			}
-
-			if ( reachedEnd )
-			{
-				ExitGrind();
-				return;
-			}
+			_currentNodeIndex += 1;
+			return;
 		}
 
-		var nextNodeIndex = _isReverseGrind ? (_currentNodeIndex - 1) : (_currentNodeIndex + 1);
-		var node = _path.PathNodes[_currentNodeIndex];
-		var nextNode = _path.PathNodes[nextNodeIndex];
-		var currentPosition = Controller.Position;
-		var nextPosition = _path.GetPointBetweenNodes( node, nextNode, _alpha, _isReverseGrind );
-
-		Controller.Velocity = 0;
-		Controller.Position = Vector3.Lerp( nextPosition, currentPosition, Time.Delta );
-		Controller.GroundEntity = _path;
-
-		_isGrinding = true;
-
-		if ( Input.Pressed( InputButton.Jump ) )
-			ExitGrind();
+		ExitGrind();
 	}
 
 	private void ExitGrind()
