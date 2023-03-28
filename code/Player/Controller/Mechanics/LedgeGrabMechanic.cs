@@ -39,7 +39,7 @@ class LedgeGrabMechanic : ControllerMechanic
 		center.z += 55;
 
 		// Tracing forwards looking for a wall.
-		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 48.0f) )
+		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 15.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
 			.Radius( 8 )
@@ -52,28 +52,28 @@ class LedgeGrabMechanic : ControllerMechanic
 		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * 48.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
-			.Radius( 8 )
+			.Radius( 4 )
 			.Run();
 
 		if ( trUpwards.Hit )
 			return false;
 
 		var normal = tr.Normal;
-		var destinationTestPos = tr.EndPosition - (normal * 16.0f) + (Vector3.Up * 50.0f);
-		var originTestPos = tr.EndPosition + (normal * 9.0f);
+		var destinationTestPos = tr.EndPosition - (normal * 13.0f) + (Vector3.Up * 50.0f);
+		var originTestPos = tr.EndPosition + (normal * 8.0f);
 
 		// Test to see if what we are attempting to grab is actually a ledge.
 		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * 64.0f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
-			.Radius( 4 )
+			.Radius( 2 )
 			.Run();
 
 		if ( !tr.Hit )
 			return false;
 
 		destinationTestPos = tr.EndPosition;
-		originTestPos = originTestPos.WithZ( destinationTestPos.z - 64.0f );
+		originTestPos = originTestPos.WithZ( destinationTestPos.z - 60.0f );
 
 		// One last check to make sure the player can exist in the space above the ledge.
 		tr = Trace.Ray( destinationTestPos + (Vector3.Up * 16.0f + 1.0f), destinationTestPos + (Vector3.Up * 32.0f) )
