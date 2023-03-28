@@ -47,6 +47,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 		if ( Game.IsClient && SprayCloud is null )
 		{
 			SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", Position );
+
+			if ( player?.Team?.Group is null )
+				return;
+
 			SprayCloud.SetPosition( 1, player.Team.Group.SprayColor.ToVector3() );
 		}
 
@@ -77,7 +81,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 		if ( Game.IsClient )
 		{
 			if ( TimeSinceLastSprayed > 0.2f )
+			{
 				SprayCloud?.Destroy();
+				SprayCloud = null;
+			}
 		}
 	}
 
