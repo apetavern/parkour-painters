@@ -4,12 +4,12 @@
 /// The state for when the main game loop has begun.
 /// </summary>
 [Category( "Setup" )]
-internal sealed partial class PlayState : Entity, IGameState
+public sealed partial class PlayState : Entity, IGameState
 {
 	/// <summary>
 	/// The active instance of <see cref="PlayState"/>. This can be null.
 	/// </summary>
-	internal static PlayState Instance => GangJam.Current.CurrentState as PlayState;
+	public static PlayState Instance => GangJam.Current.CurrentState as PlayState;
 
 	/// <summary>
 	/// Whether or not the game has been abandoned.
@@ -24,11 +24,11 @@ internal sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// The time in seconds since the game started.
 	/// </summary>
-	[Net] internal TimeSince TimeSinceGameStarted { get; private set; }
+	[Net] public TimeSince TimeSinceGameStarted { get; private set; }
 	/// <summary>
 	/// The time in seconds until the game ends.
 	/// </summary>
-	internal TimeUntil TimeUntilGameEnds => GangJam.GameLength - TimeSinceGameStarted;
+	public TimeUntil TimeUntilGameEnds => GangJam.GameLength - TimeSinceGameStarted;
 
 	/// <inheritdoc/>
 	public override void Spawn()
@@ -148,7 +148,7 @@ internal sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// Sets the <see cref="PlayState"/> as the active state in the game. This can only be invoked on the server.
 	/// </summary>
-	public static void SetActive()
+	internal static void SetActive()
 	{
 		Game.AssertServer();
 

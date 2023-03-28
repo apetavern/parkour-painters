@@ -7,18 +7,24 @@
 public sealed partial class Team : Entity
 {
 	/// <summary>
+	/// A list containing all of the teams currently participating.
+	/// </summary>
+	public static new IReadOnlyList<Team> All => PlayState.Instance?.Teams as IReadOnlyList<Team>;
+
+	/// <summary>
 	/// The group that this team represents.
 	/// </summary>
-	[Net] internal GroupResource Group { get; set; }
+	[Net] public GroupResource Group { get; set; }
 
 	/// <summary>
 	/// A list of all clients that are a part of this team.
 	/// </summary>
 	[Net] internal IList<IClient> Members { get; private set; }
+
 	/// <summary>
 	/// The current score that the team has.
 	/// </summary>
-	internal int Score => Entity.All.OfType<GraffitiSpot>()
+	public int Score => Entity.All.OfType<GraffitiSpot>()
 		.Where( spot => spot.SprayOwner == this && spot.IsSprayCompleted )
 		.Count();
 
@@ -35,7 +41,7 @@ public sealed partial class Team : Entity
 	/// </summary>
 	/// <param name="group">The group archetype the team represents.</param>
 	/// <param name="members">A list of all clients that are a part of the team.</param>
-	public Team( GroupResource group, IEnumerable<IClient> members )
+	internal Team( GroupResource group, IEnumerable<IClient> members )
 	{
 		Game.AssertServer();
 

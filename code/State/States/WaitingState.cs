@@ -93,7 +93,7 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <summary>
 	/// Sets the <see cref="WaitingState"/> as the active state in the game. This can only be invoked on the server.
 	/// </summary>
-	public static void SetActive()
+	internal static void SetActive()
 	{
 		Game.AssertServer();
 
