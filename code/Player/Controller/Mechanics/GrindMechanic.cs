@@ -53,7 +53,7 @@ public partial class GrindMechanic : ControllerMechanic
 			}
 
 			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
-			Controller.Position = nextPosition;
+			Controller.Position = Vector3.Lerp( Controller.Position, nextPosition, Time.Delta );
 			Controller.GroundEntity = _path;
 			return;
 		}
