@@ -2,9 +2,9 @@
 {
 	"shader"		"shaders/dissolve.shader_c"
 	"g_flFadeamount"		"0.000000"
-	"g_flSmoothStepMax"		"0.400000"
+	"g_flSmoothStepMax"		"0.500000"
 	"g_flSmoothStepMin"		"0.300000"
-	"Texture"		"particles/textures/vfx_dissolve_01.png"
+	"Texture"		"materials/sprays/textures/punk_anarchy_01a_reveal.png"
 	"g_bFogEnabled"		"1"
 	"g_flOpacityScale"		"1.000000"
 }
