@@ -19,7 +19,11 @@ public sealed partial class Team : Entity
 	/// <summary>
 	/// A list of all clients that are a part of this team.
 	/// </summary>
-	[Net] internal IList<IClient> Members { get; private set; }
+	[Net] internal IList<IClient> members { get; set; }
+	/// <summary>
+	/// A readonly list of all clients that are a part of this team.
+	/// </summary>
+	public IReadOnlyList<IClient> Members => members as IReadOnlyList<IClient>;
 
 	/// <summary>
 	/// The current score that the team has.
@@ -48,7 +52,7 @@ public sealed partial class Team : Entity
 		Group = group;
 
 		foreach ( var member in members )
-			Members.Add( member );
+			this.members.Add( member );
 	}
 
 	/// <inheritdoc/>

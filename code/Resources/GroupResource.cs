@@ -12,21 +12,21 @@ public sealed class GroupResource : GameResource
 	/// <summary>
 	/// The name of the group.
 	/// </summary>
-	public string Name { get; private set; }
+	public string Name { get; set; }
 	/// <summary>
 	/// A brief description of the group.
 	/// </summary>
-	public string Description { get; private set; }
+	public string Description { get; set; }
 
 	/// <summary>
 	/// The collection of clothing affiliated with the group.
 	/// </summary>
-	public ClothingCollectionResource ClothingCollection { get; private set; }
+	public ClothingCollectionResource ClothingCollection { get; set; }
 
 	/// <summary>
 	/// The prefab to spawn for the players pawn.
 	/// </summary>
-	public Prefab PlayerPrefab { get; private set; }
+	public Prefab PlayerPrefab { get; set; }
 
 	/// <summary>
 	/// The color that should be used for effects when spraying.

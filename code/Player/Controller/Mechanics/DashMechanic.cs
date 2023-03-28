@@ -33,4 +33,10 @@ public sealed partial class DashMechanic : ControllerMechanic
 
 		_timeSinceLastDash = 0;
 	}
+
+	[Event.Tick.Client]
+	private void Frame()
+	{
+		DebugOverlay.ScreenText( $"Dash: {Math.Clamp( (_timeSinceLastDash / DashRechargeTime) * 100, 0, 100 )}%", 20 );
+	}
 }
