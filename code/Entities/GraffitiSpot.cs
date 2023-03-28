@@ -48,6 +48,5 @@ public sealed partial class GraffitiSpot : ModelEntity
 
 	public void OnSprayCompleted( Player sprayer )
 	{
-		Log.Info( "Spray completed" );
 	}
 }
