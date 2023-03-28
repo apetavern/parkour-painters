@@ -27,20 +27,14 @@ public sealed class ClothingCollectionResource : GameResource
 	public (ClothingContainer, IReadOnlyDictionary<string, Color>) GetContainerWithTints( IClient client = null )
 	{
 		var chosenClothes = new List<TintableClothingEntry>();
-		var random = client is not null ? new Random( (int)client.SteamId ) : Random.Shared;
+		var random = new Random( (int)(DateTime.Now - DateTime.UnixEpoch).TotalSeconds );
 
 		void CheckList( List<TintableClothingEntry> entries )
 		{
 			if ( entries is null || entries.Count == 0 )
 				return;
 
-			Random rng = new Random( Time.Now.CeilToInt() );
-
-			var chosenFromList = rng.FromList( entries );
-
-			if ( !chosenClothes.Where( x => x.Clothing.Category == chosenFromList.Clothing.Category ).Any() )
-				chosenClothes.Add( chosenFromList );
-
+			chosenClothes.Add( random.FromList( entries ) );
 		}
 
 		CheckList( Skins );
