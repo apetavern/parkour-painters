@@ -89,10 +89,13 @@ public sealed partial class GangJam : GameManager
 	{
 		Game.AssertServer();
 
+		Event.Run( Events.ExitGameState, CurrentState );
 		var oldState = CurrentState;
 		oldState?.Exit();
+
 		CurrentState = state;
 		CurrentState.Enter( oldState );
+		Event.Run( Events.EnterGameState, CurrentState, oldState );
 
 		oldState?.Delete();
 	}
