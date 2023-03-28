@@ -2,6 +2,9 @@ namespace GangJam;
 
 public sealed partial class WallJumpMechanic : ControllerMechanic
 {
+	public bool UsedWallJump { get; private set; } = false;
+	public TimeSince TimeSinceLeftWall { get; private set; }
+
 	private float WallJumpConnectangle => 0.95f;
 	private float WallJumpStrength => 400f;
 	private float WallJumpKickStrength => 250f;
@@ -23,7 +26,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 			return false;
 
 		// Make sure we are not too close to the ground.
-		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 20f )
+		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 10f )
 			.Ignore( Controller.Player )
 			.Radius( 5 )
 			.WorldOnly()
@@ -88,7 +91,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		_timeUntilWallJumpDisengage = Time.Now + 1.5f;
 	}
 
-	private void DoWallJump()
+	public void DoWallJump()
 	{
 		var jumpVec = _hitNormal * WallJumpKickStrength;
 
@@ -96,10 +99,21 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		Controller.Velocity += jumpVec;
 		Controller.Position += Controller.Velocity * Time.Delta;
 		IsActive = false;
+		UsedWallJump = true;
 	}
 
 	private void Cancel()
 	{
 		IsActive = false;
+	}
+
+	protected override void OnStart()
+	{
+		UsedWallJump = false;
+	}
+
+	protected override void OnStop()
+	{
+		TimeSinceLeftWall = 0;
 	}
 }

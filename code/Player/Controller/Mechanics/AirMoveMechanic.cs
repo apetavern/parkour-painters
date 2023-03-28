@@ -28,5 +28,9 @@ public sealed partial class AirMoveMechanic : ControllerMechanic
 		ctrl.Move();
 		ctrl.Velocity -= ctrl.BaseVelocity;
 		ctrl.Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
+
+		// The player probably wanted to wall jump.
+		if ( Input.Pressed( InputButton.Jump ) && Player.WallJumpMechanic.TimeSinceLeftWall < 0.2f && !Player.WallJumpMechanic.UsedWallJump )
+			Player.WallJumpMechanic.DoWallJump();
 	}
 }
