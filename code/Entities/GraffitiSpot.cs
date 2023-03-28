@@ -9,6 +9,10 @@ public sealed partial class GraffitiSpot : ModelEntity
 
 	[Net] public float SprayProgress { get; private set; }
 
+	[Net] public TimeSince TimeSinceLastSprayed { get; private set; }
+
+	private Particles SprayCloud { get; set; }
+
 	public bool IsSprayCompleted => SprayProgress >= 100;
 
 	public override void Spawn()
@@ -39,6 +43,15 @@ public sealed partial class GraffitiSpot : ModelEntity
 
 		SprayProgress = Math.Clamp( SprayProgress + player.SprayAmount, 0, 100 );
 
+		// Create spray cloud clientside.
+		if ( Game.IsClient && SprayCloud is null )
+		{
+			SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", Position );
+			SprayCloud.SetPosition( 1, player.Team.Group.SprayColor.ToVector3() );
+		}
+
+		TimeSinceLastSprayed = 0;
+
 		if ( IsSprayCompleted )
 			OnSprayCompleted( player );
 	}
@@ -52,11 +65,20 @@ public sealed partial class GraffitiSpot : ModelEntity
 		Event.Run( GangJam.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
 	}
 
-	[Event.Tick.Server]
+	[Event.Tick]
 	public void OnTick()
 	{
-		DebugOverlay.Text( $"{SprayProgress}/100", Position );
-		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
+		if ( Game.IsServer )
+		{
+			DebugOverlay.Text( $"{SprayProgress}/100", Position );
+			DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
+		}
+
+		if ( Game.IsClient )
+		{
+			if ( TimeSinceLastSprayed > 0.2f )
+				SprayCloud?.Destroy();
+		}
 	}
 
 	/// <summary>
