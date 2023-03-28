@@ -15,6 +15,15 @@
   "Tops": [
     {
       "Clothing": "data/clothing/90s_loose_shirt.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_shirt_blue.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_shirt_shapes.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_shirt_palmtrees.clothing"
     }
   ],
   "Gloves": null,

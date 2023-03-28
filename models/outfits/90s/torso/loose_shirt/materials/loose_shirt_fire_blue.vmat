@@ -3,7 +3,7 @@
 	"shader"		"shaders/pixelated.shader_c"
 	"F_MORPH_SUPPORTED"		"1"
 	"F_RENDER_BACKFACES"		"1"
-	"Color"		"models/outfits/90s/torso/loose_shirt/materials/loose_shirt1_color.png"
+	"Color"		"models/outfits/90s/torso/loose_shirt/materials/blue/loose_shirt1_color.png"
 	"g_flModelTintAmount"		"1.000000"
 	"g_vColorTint"		"[1.000000 1.000000 1.000000 1.000000]"
 	"TintMask"		"materials/default/default_mask.tga"
