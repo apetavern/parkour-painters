@@ -50,7 +50,7 @@ public partial class SprayCan : BaseCarriable
 		if ( reachTrace.Entity is GraffitiSpot graffitiSpot )
 			graffitiSpot.OnSprayReceived( Player );
 		else if ( reachTrace.Entity is Player player )
-			player.Daze( Player );
+			player.Daze( Player, DazeType.Inhalation );
 	}
 
 	protected override void OnPrimaryReleased()

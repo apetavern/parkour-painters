@@ -31,6 +31,11 @@ public sealed partial class Player : AnimatedEntity
 	public bool IsImmune => TimeSinceDazed > GangJam.DazeTime && TimeSinceDazed <= GangJam.ImmuneTime;
 
 	/// <summary>
+	/// The most recent way that the player was dazed.
+	/// </summary>
+	[Net] public DazeType DazeType { get; private set; }
+
+	/// <summary>
 	/// The time in seconds since the player was last dazed.
 	/// </summary>
 	[Net] private TimeSince TimeSinceDazed { get; set; } = float.MaxValue;
@@ -99,8 +104,9 @@ public sealed partial class Player : AnimatedEntity
 	/// Dazes the player.
 	/// </summary>
 	/// <param name="attacker">The person that caused the daze to occur.</param>
+	/// <param name="dazeType">The way that the person is going to be dazed.</param>
 	/// <returns>Whether or not the player was actually dazed.</returns>
-	public bool Daze( Player attacker )
+	public bool Daze( Player attacker, DazeType dazeType )
 	{
 		if ( IsDazed || IsImmune )
 			return false;
@@ -109,6 +115,7 @@ public sealed partial class Player : AnimatedEntity
 			return false;
 
 		TimeSinceDazed = 0;
+		DazeType = dazeType;
 		return true;
 	}
 
