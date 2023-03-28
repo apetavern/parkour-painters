@@ -23,7 +23,10 @@ class LedgeGrabMechanic : ControllerMechanic
 		Controller.Position = Vector3.Lerp( Controller.Position, _ledgeGrabLocation, Time.Delta * 10.0f );
 		Player.Rotation = (-_grabNormal).EulerAngles.WithPitch( 0 ).ToRotation();
 
-		if ( Input.Pressed( InputButton.Duck ) )
+		// The player is moving in a direction away from the ledge, therefore we should drop them.
+		var isMovingFromLedge = Vector3.Dot( Controller.GetWishVelocity(), Player.Rotation.Forward ) < -30;
+
+		if ( Input.Pressed( InputButton.Duck ) || isMovingFromLedge )
 			Drop();
 
 		if ( Input.Pressed( InputButton.Jump ) )
