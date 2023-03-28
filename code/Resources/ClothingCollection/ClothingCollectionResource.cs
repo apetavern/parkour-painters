@@ -34,7 +34,13 @@ public sealed class ClothingCollectionResource : GameResource
 			if ( entries is null || entries.Count == 0 )
 				return;
 
-			chosenClothes.Add( random.FromList( entries ) );
+			Random rng = new Random( Time.Now.CeilToInt() );
+
+			var chosenFromList = rng.FromList( entries );
+
+			if ( !chosenClothes.Where( x => x.Clothing.Category == chosenFromList.Clothing.Category ).Any() )
+				chosenClothes.Add( chosenFromList );
+
 		}
 
 		CheckList( Skins );
