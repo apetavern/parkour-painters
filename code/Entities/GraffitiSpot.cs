@@ -27,7 +27,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 	public void OnTick()
 	{
 		DebugOverlay.Text( $"{SprayProgress}/100", Position );
-		DebugOverlay.Text( $"{SprayOwner?.Client.Name}", Position + Vector3.Up * 10 );
+		DebugOverlay.Text( $"{SprayOwner?.Name}", Position + Vector3.Up * 10 );
 	}
 
 	public void OnSprayReceived( Player player )
