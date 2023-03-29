@@ -1,7 +1,11 @@
 {
   "Skins": null,
   "Facials": null,
-  "Hairs": [],
+  "Hairs": [
+    {
+      "Clothing": "data/clothing/nerd_hair1.clothing"
+    }
+  ],
   "Hats": null,
   "Tops": [
     {

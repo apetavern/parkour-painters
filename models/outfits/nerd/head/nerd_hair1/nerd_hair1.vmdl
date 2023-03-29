@@ -17,6 +17,10 @@
 								from = "plane.003.vmat"
 								to = "models/outfits/nerd/head/nerd_hair1/materials/nerd_hair1.vmat"
 							},
+							{
+								from = "circle.002.vmat"
+								to = "models/outfits/nerd/accessories/nerd_glasses1/materials/nerd_glasses1.vmat"
+							},
 						]
 						use_global_default = false
 						global_default_material = ""
@@ -43,6 +47,26 @@
 							exception_list = 
 							[
 								"Plane_003",
+							]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/outfits/nerd/accessories/nerd_glasses1/nerd_glasses1.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"Plane_003",
+								"Circle_002",
 							]
 						}
 					},

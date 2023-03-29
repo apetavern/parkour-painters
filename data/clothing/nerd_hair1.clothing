@@ -8,8 +8,8 @@
   "SkinMaterial": null,
   "EyesMaterial": null,
   "MaterialGroup": "",
-  "SlotsUnder": "HeadTop",
-  "SlotsOver": 0,
+  "SlotsUnder": "HeadTop, Face",
+  "SlotsOver": "HeadTop, Face",
   "HideBody": 0,
   "Icon": {}
 }
