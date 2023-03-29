@@ -6,6 +6,11 @@ namespace GangJam.Entities;
 internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonComponent
 {
 	/// <summary>
+	/// The spray particles that come out when using the can.
+	/// </summary>
+	private Particles SparkParticles { get; set; }
+
+	/// <summary>
 	/// Simulates the animator.
 	/// </summary>
 	/// <param name="cl">The client that is simulating the animator.</param>
@@ -41,6 +46,23 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		else if ( player.WallJumpMechanic.IsActive )
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 		else if ( player.GrindMechanic.IsActive )
+		{
+			if ( Game.IsClient && SparkParticles is null )
+			{
+				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", player );
+				SparkParticles.SetEntityBone( 0, player, player.GetBoneIndex( "ankle_L" ) );
+				//SparkParticles.SetPosition( 0, player.GetBoneTransform( "ankle_L" ).Position + player.Rotation.Forward * 50f );
+				//SparkParticles.SetOrientation( 0, player.GetBoneTransform( "ankle_L" ).Rotation.Angles() );
+			}
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
+		}
+		else
+		{
+			if ( Game.IsClient )
+			{
+				SparkParticles?.Destroy();
+				SparkParticles = null;
+			}
+		}
 	}
 }
