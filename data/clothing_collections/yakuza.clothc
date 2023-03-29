@@ -15,6 +15,9 @@
     {
       "Clothing": "data/clothing/yakuza_suit_open.clothing",
       "TintMode": "Random"
+    },
+    {
+      "Clothing": "data/clothing/yakuza_suit_open_striped.clothing"
     }
   ],
   "Gloves": null,
@@ -22,6 +25,9 @@
     {
       "Clothing": "data/clothing/yakuza_pants.clothing",
       "TintMode": "Random"
+    },
+    {
+      "Clothing": "data/clothing/yakuza_pants_striped.clothing"
     }
   ],
   "Footwears": null,

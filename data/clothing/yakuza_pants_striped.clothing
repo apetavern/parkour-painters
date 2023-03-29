@@ -1,0 +1,15 @@
+{
+  "Title": "Yakuza Pants",
+  "Subtitle": "Yakuza need pants too you know.",
+  "Category": "Bottoms",
+  "SubCategory": "yakuza",
+  "Parent": null,
+  "Model": "models/outfits/yakuza/legs/yakuza_pants.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "alt",
+  "SlotsUnder": "Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, LeftFoot, RightFoot",
+  "SlotsOver": 0,
+  "HideBody": "Legs, Feet",
+  "Icon": {}
+}
