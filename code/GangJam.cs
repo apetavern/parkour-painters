@@ -64,6 +64,15 @@ public sealed partial class GangJam : GameManager
 	[Event.Tick.Server]
 	private void ServerTick()
 	{
+		// Prevent the potential crash whenever the convar is changed.
+		if ( EnforceUniqueTeams && MaxTeams > GroupResource.All.Count )
+		{
+			Log.Warning( $"gj_maxteams is greater than the amount of available groups ({MaxTeams} > {GroupResource.All.Count})" );
+			Log.Warning( $"gj_maxteams will be set to {GroupResource.All.Count} to avoid problems" );
+
+			MaxTeams = GroupResource.All.Count;
+		}
+
 		CurrentState?.ServerTick();
 	}
 
