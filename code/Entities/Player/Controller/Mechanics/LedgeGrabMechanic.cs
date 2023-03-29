@@ -1,10 +1,11 @@
 namespace GangJam.Entities;
 
-public class LedgeGrabMechanic : ControllerMechanic
+public partial class LedgeGrabMechanic : ControllerMechanic
 {
+	[Net, Predicted] private TimeSince TimeSinceDrop { get; set; }
+
 	private Vector3 _grabNormal;
 	private Vector3 _ledgeGrabLocation;
-	private TimeSince _timeSinceDrop;
 
 	protected override bool ShouldStart()
 	{
@@ -14,7 +15,7 @@ public class LedgeGrabMechanic : ControllerMechanic
 		if ( Controller.GroundEntity.IsValid() )
 			return false;
 
-		if ( _timeSinceDrop < 0.9f )
+		if ( TimeSinceDrop < 0.9f )
 			return false;
 
 		return CanGrabLedge();
@@ -103,7 +104,7 @@ public class LedgeGrabMechanic : ControllerMechanic
 	protected override void OnStop()
 	{
 		IsActive = false;
-		_timeSinceDrop = 0;
+		TimeSinceDrop = 0;
 	}
 
 	private void Vault()
