@@ -45,11 +45,8 @@ partial class Player
 		ClothingContainer.DressEntity( this );
 
 		// Tint any clothing items that need it
-		foreach ( var child in Children )
+		foreach ( var child in Children.WithTags( "clothes" ) )
 		{
-			if ( !child.Tags.Has( "clothes" ) )
-				continue;
-
 			if ( child is not AnimatedEntity anim )
 				continue;
 

@@ -6,5 +6,5 @@
     "materials/sprays/nerds_csharp_01a.vmat"
   ],
   "ClothingCollection": "data/clothing_collections/yakuza.clothc",
-  "PlayerPrefab": "prefabs/nerd.prefab"
+  "PlayerPrefab": "prefabs/yakuza.prefab"
 }

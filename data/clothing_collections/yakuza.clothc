@@ -24,5 +24,6 @@
       "TintMode": "Random"
     }
   ],
-  "Footwears": null
+  "Footwears": null,
+  "CommonRandom": true
 }

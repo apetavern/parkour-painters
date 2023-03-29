@@ -1,0 +1,333 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Translucent",
+  "nodes": [
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "3",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "0",
+      "Position": "1024,192"
+    },
+    {
+      "_class": "Subtract",
+      "A": {},
+      "B": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "DefaultA": 1,
+      "DefaultB": 0,
+      "Identifier": "1",
+      "Position": "1024,416"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "0",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "2",
+      "Position": "1152,304"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Color Tint",
+      "Value": "1,1,1,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": "Color",
+          "Priority": 1
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "3",
+      "Position": "784,80"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_mask_png_2e162a21.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Tint Mask",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
+        "Priority": 4,
+        "PrimaryGroup": {
+          "Name": "Color"
+        }
+      },
+      "Identifier": "4",
+      "Position": "784,432"
+    },
+    {
+      "_class": "TransformNormal",
+      "Input": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "DecodeNormal": true,
+      "Identifier": "5",
+      "Position": "992,624"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_normal_png_d1cf3df7.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Normal",
+        "Default": "1,1,1,1",
+        "Extension": "Normal",
+        "Processor": "NormalizeNormals",
+        "ColorSpace": "Linear",
+        "Priority": 1,
+        "PrimaryGroup": {
+          "Name": "Normal",
+          "Priority": 1
+        }
+      },
+      "Identifier": "6",
+      "Position": "784,624"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_rough_png_aee0e5e.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Roughness",
+        "Default": "1,1,1,1",
+        "Extension": "Rough",
+        "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
+        "Priority": 2,
+        "PrimaryGroup": {
+          "Name": "Roughness",
+          "Priority": 2
+        }
+      },
+      "Identifier": "7",
+      "Position": "784,816"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_color_png_2e4d779b.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Color",
+        "Default": "1,1,1,1",
+        "ImageFormat": "BC7",
+        "SrgbRead": true,
+        "PrimaryGroup": {
+          "Name": "Color"
+        }
+      },
+      "Identifier": "8",
+      "Position": "784,240"
+    },
+    {
+      "_class": "Float2",
+      "Name": "Tiling",
+      "Value": "1,1",
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Texture Coordinates",
+          "Priority": 5
+        }
+      },
+      "Identifier": "9",
+      "Position": "144,704"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "10",
+      "Position": "400,640"
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": false,
+      "Tiling": "1,1",
+      "Identifier": "11",
+      "Position": "144,624"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "13",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "12",
+      "Position": "1424,336"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Model Tint Amount",
+      "Value": 1,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Color",
+          "Priority": 2
+        }
+      },
+      "Identifier": "13",
+      "Position": "1200,432"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_metal_png_3646b48f.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Metallic",
+        "Default": "0,0,0,1",
+        "Extension": "Metal",
+        "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
+        "Priority": 3,
+        "PrimaryGroup": {
+          "Name": "Metalness",
+          "Priority": 3
+        }
+      },
+      "Identifier": "14",
+      "Position": "784,1008"
+    },
+    {
+      "_class": "Saturate",
+      "Input": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "Identifier": "15",
+      "Position": "1024,1216"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Texture": "materials/sprays/textures/punk_anarchy_01a_trans_png_64bbdc1.generated.vtex",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "Translucency",
+        "Default": "1,1,1,1",
+        "Extension": "Trans",
+        "ColorSpace": "Linear",
+        "ImageFormat": "BC7",
+        "Priority": 2,
+        "PrimaryGroup": {
+          "Name": "Translucent",
+          "Priority": 1
+        }
+      },
+      "Identifier": "16",
+      "Position": "784,1216"
+    },
+    {
+      "_class": "Result",
+      "Albedo": {
+        "Identifier": "12",
+        "Output": "Result"
+      },
+      "Emission": {},
+      "Opacity": {
+        "Identifier": "15",
+        "Output": "Result"
+      },
+      "Normal": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Roughness": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "Metalness": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "AmbientOcclusion": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "17",
+      "Position": "1936,496"
+    }
+  ]
+}

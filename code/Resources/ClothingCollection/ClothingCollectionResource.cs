@@ -6,14 +6,19 @@
 [GameResource( "Clothing Collection", "clothc", "Defines a group of clothing items that can be applied to a citizen" )]
 public sealed class ClothingCollectionResource : GameResource
 {
-	public List<TintableClothingEntry> Skins { get; private set; }
-	public List<TintableClothingEntry> Facials { get; private set; }
-	public List<TintableClothingEntry> Hairs { get; private set; }
-	public List<TintableClothingEntry> Hats { get; private set; }
-	public List<TintableClothingEntry> Tops { get; private set; }
-	public List<TintableClothingEntry> Gloves { get; private set; }
-	public List<TintableClothingEntry> Bottoms { get; private set; }
-	public List<TintableClothingEntry> Footwears { get; private set; }
+	public List<TintableClothingEntry> Skins { get; set; }
+	public List<TintableClothingEntry> Facials { get; set; }
+	public List<TintableClothingEntry> Hairs { get; set; }
+	public List<TintableClothingEntry> Hats { get; set; }
+	public List<TintableClothingEntry> Tops { get; set; }
+	public List<TintableClothingEntry> Gloves { get; set; }
+	public List<TintableClothingEntry> Bottoms { get; set; }
+	public List<TintableClothingEntry> Footwears { get; set; }
+
+	/// <summary>
+	/// Whether or not each <see cref="TintableClothingEntry"/> when their <see cref="TintMode"/> is <see cref="TintMode.Random"/> has the same random color.
+	/// </summary>
+	public bool CommonRandom { get; set; }
 
 	/// <summary>
 	/// Returns a randomized <see cref="ClothingContainer"/> with the collections clothes applied on top of a clients if applicable.
@@ -52,6 +57,7 @@ public sealed class ClothingCollectionResource : GameResource
 		if ( client is not null )
 			container.LoadFromClient( client );
 
+		var commonRandomColor = random.Color();
 		foreach ( var clothingItem in chosenClothes )
 		{
 			container.Toggle( clothingItem.Clothing );
@@ -59,7 +65,7 @@ public sealed class ClothingCollectionResource : GameResource
 			switch ( clothingItem.TintMode )
 			{
 				case TintMode.Random:
-					tintDictionary.Add( clothingItem.Clothing.Model, random.Color() );
+					tintDictionary.Add( clothingItem.Clothing.Model, CommonRandom ? commonRandomColor : random.Color() );
 					break;
 				case TintMode.RandomSelection:
 					tintDictionary.Add( clothingItem.Clothing.Model, random.FromList( clothingItem.RandomSelections ) );

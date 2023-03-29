@@ -12,7 +12,7 @@ internal static class IEntityExtensions
 	/// <param name="entities">The sequence of entities to check.</param>
 	/// <param name="tags">An array of all the tags to search for.</param>
 	/// <returns>A sequence of <see ref="T"/> that contains any of the tags passed.</returns>
-	internal static IEnumerable<T> WithAnyTags<T>( IEnumerable<T> entities, params string[] tags ) where T : IEntity
+	internal static IEnumerable<T> WithAnyTags<T>( this IEnumerable<T> entities, params string[] tags ) where T : IEntity
 	{
 		foreach ( var entity in entities )
 		{
@@ -34,7 +34,7 @@ internal static class IEntityExtensions
 	/// <param name="entities">The sequence of entities to check.</param>
 	/// <param name="tags">An array of all the tags to search for.</param>
 	/// <returns>A sequence of <see ref="T"/> that contains all of the tags passed.</returns>
-	internal static IEnumerable<T> WithTags<T>( IEnumerable<T> entities, params string[] tags ) where T : IEntity
+	internal static IEnumerable<T> WithTags<T>( this IEnumerable<T> entities, params string[] tags ) where T : IEntity
 	{
 		foreach ( var entity in entities )
 		{
@@ -56,7 +56,7 @@ internal static class IEntityExtensions
 	/// <param name="entities">The sequence of entities to check.</param>
 	/// <param name="tags">An array of all the tags to search for.</param>
 	/// <returns>A sequence of <see ref="T"/> that does not contain any of the tags passed.</returns>
-	internal static IEnumerable<T> WithoutTags<T>( IEnumerable<T> entities, params string[] tags ) where T : IEntity
+	internal static IEnumerable<T> WithoutTags<T>( this IEnumerable<T> entities, params string[] tags ) where T : IEntity
 	{
 		foreach ( var entity in entities )
 		{
