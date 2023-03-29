@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Util;
 
 /// <summary>
 /// A helper struct to make working with citizen related animations easier.
