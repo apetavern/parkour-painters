@@ -42,6 +42,12 @@ public sealed partial class GangJam : GameManager
 	}
 
 	/// <inheritdoc/>
+	public override void OnVoicePlayed( IClient client )
+	{
+		UI.VoiceChatIndicators.Instance.IsSpeaking( client );
+	}
+
+	/// <inheritdoc/>
 	public sealed override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );

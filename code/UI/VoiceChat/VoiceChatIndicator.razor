@@ -1,0 +1,67 @@
+@inherits Sandbox.UI.WorldPanel
+@namespace GangJam.UI
+
+<root>
+    <label>volume_up</label>
+</root>
+
+@code {
+    public long SteamId { get; private set; }
+    private readonly float _voiceTimeout = 0.1f;
+    private Entities.Player _player;
+    private float _activeVoiceLevel;
+    private float _voiceLevel;
+    private RealTimeSince _timeSincePlayed;
+
+    public VoiceChatIndicator(Entities.Player player)
+    {
+        SteamId = player.Client.SteamId;
+        _player = player;
+    }
+
+    public void IsSpeaking(IClient client)
+    {
+        _timeSincePlayed = 0;
+        _activeVoiceLevel = client.Voice.CurrentLevel;
+    }
+
+    public override void Tick()
+    {
+        if (!_player.IsValid())
+        {
+            Delete(true);
+            return;
+        }
+
+        var timeoutInv = 1 - (_timeSincePlayed / _voiceTimeout);
+        timeoutInv = MathF.Min(timeoutInv * 2.0f, 1.0f);
+
+        SetClass("hidden", timeoutInv < 0);
+        if (timeoutInv < 0)
+            return;
+
+        _voiceLevel = _voiceLevel.LerpTo(_activeVoiceLevel, Time.Delta * 40.0f);
+
+        var transform = _player.GetBoneTransform("head");
+        transform.Position += Vector3.Up * 5f + (Vector3.Up * _voiceLevel);
+        transform.Rotation = Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f);
+        this.Transform = transform;
+    }
+}
+
+<style>
+    VoiceChatIndicator {
+        justify-content: center;
+
+        label {
+            color: orange;
+            font-family: MaterialIconsRound;
+            font-size: 75px;
+            text-shadow: 2px 2px 0px rgba(black, 0.75);
+        }
+
+        &.hidden {
+            opacity: 0;
+        }
+    }
+</style>
