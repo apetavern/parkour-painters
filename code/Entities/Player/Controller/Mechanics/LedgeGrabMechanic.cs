@@ -61,7 +61,6 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		// Make sure there is nothing above the players head.
 		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * 48.0f) )
 			.Ignore( Player )
-			.WithoutTags( "player" )
 			.Radius( 4 )
 			.Run();
 

@@ -31,8 +31,8 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		// Make sure we are not too close to the ground.
 		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 10f )
 			.Ignore( Controller.Player )
+			.WithoutTags( "player" )
 			.Radius( 5 )
-			.WorldOnly()
 			.Run();
 
 		if ( tr.Hit )
@@ -44,6 +44,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 
 		var mid = Trace.Ray( center, dest )
 			.Ignore( Controller.Player )
+			.WithoutTags( "player" )
 			.Run();
 
 		if ( mid.Hit )
