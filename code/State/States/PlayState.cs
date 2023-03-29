@@ -138,7 +138,7 @@ public sealed partial class PlayState : Entity, IGameState
 	}
 
 #if DEBUG
-	[Event.Tick]
+	[Event.Tick.Client]
 	private void DebugDraw()
 	{
 		DebugOverlay.ScreenText( $"Time Left: {TimeUntilGameEnds} seconds" );
