@@ -51,6 +51,8 @@ internal sealed partial class WaitingState : Entity, IGameState
 			client.Pawn = defaultPlayer;
 			defaultPlayer.Respawn();
 		}
+
+		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
