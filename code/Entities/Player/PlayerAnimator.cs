@@ -35,7 +35,13 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		animHelper.WithVelocity( player.IsDazed ? Vector3.Zero : controller.Velocity );
 
 		if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 50 && controller.Velocity.IsNearlyZero( 10 ) )
+		{
 			animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
+		}
+		else
+		{
+			animHelper.WithLookAt( player.EyePosition + player.Rotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
+		}
 
 		if ( player.LedgeGrabMechanic.IsActive )
 		{

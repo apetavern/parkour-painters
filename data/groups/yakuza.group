@@ -1,0 +1,10 @@
+{
+  "Name": "Yakuza",
+  "Description": "Literally killers.",
+  "SprayColor": "255,255,0,1",
+  "AvailableSprays": [
+    "materials/sprays/nerds_csharp_01a.vmat"
+  ],
+  "ClothingCollection": "data/clothing_collections/yakuza.clothc",
+  "PlayerPrefab": "prefabs/nerd.prefab"
+}
