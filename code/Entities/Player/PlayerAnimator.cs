@@ -41,7 +41,6 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		else if ( player.WallJumpMechanic.IsActive )
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 		else if ( player.GrindMechanic.IsActive )
-			// TODO: Need an anim here.
-			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
+			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
 	}
 }
