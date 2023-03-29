@@ -41,7 +41,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 		{
 			client.Pawn?.Delete();
 
-			var defaultPlayer = new Player();
+			var defaultPlayer = new Entities.Player();
 			client.Pawn = defaultPlayer;
 			defaultPlayer.Respawn();
 		}
@@ -67,7 +67,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientJoined( IClient cl )
 	{
-		var player = new Player();
+		var player = new Entities.Player();
 		cl.Pawn = player;
 		player.Respawn();
 

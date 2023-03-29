@@ -1,6 +1,4 @@
-﻿using Sandbox;
-
-namespace GangJam;
+﻿namespace GangJam.Entities;
 
 /// <summary>
 /// A spray can that can be used to daze players or graffiti the map.

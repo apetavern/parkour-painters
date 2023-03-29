@@ -9,7 +9,7 @@ internal static partial class NerdGroup
 	/// Notifies all nerds when one of their <see cref="GraffitiSpot"/>s are being tampered with by another team.
 	/// </summary>
 	[GangJam.Events.GraffitiSpotTampered]
-	private static void GraffitiSpotTampered( Team oldTeam, Team newTeam, Player tamperer )
+	private static void GraffitiSpotTampered( Team oldTeam, Team newTeam, Entities.Player tamperer )
 	{
 		if ( oldTeam.Group.Name != "Nerds" )
 			return;

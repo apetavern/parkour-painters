@@ -92,7 +92,7 @@ public sealed partial class PlayState : Entity, IGameState
 		{
 			client.Pawn?.Delete();
 
-			var player = PrefabLibrary.Spawn<Player>( client.GetTeam().Group.PlayerPrefab );
+			var player = PrefabLibrary.Spawn<Entities.Player>( client.GetTeam().Group.PlayerPrefab );
 			client.Pawn = player;
 			player.Respawn();
 		}

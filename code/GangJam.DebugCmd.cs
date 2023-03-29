@@ -40,7 +40,7 @@ partial class GangJam
 			return;
 		}
 
-		if ( ConsoleSystem.Caller.Pawn is not Player player )
+		if ( ConsoleSystem.Caller.Pawn is not Entities.Player player )
 		{
 			Log.Warning( "You do not have the correct pawn to use this command" );
 			return;
