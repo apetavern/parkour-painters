@@ -1,0 +1,45 @@
+@namespace GangJam.UI
+
+@if (Game.LocalPawn is not Entities.Player player)
+{
+    return;
+}
+
+<root>
+    <div class="dash">
+        <div
+        class="fill"
+        style="width: @(player.DashMechanic.ActiveDashPercentage)%;" />
+    </div>
+</root>
+
+@code {
+    protected override int BuildHash()
+    {
+        var player = Game.LocalPawn as Entities.Player;
+        return HashCode.Combine(player?.DashMechanic.ActiveDashPercentage.ToString());
+    }
+}
+
+<style>
+    DashIndicator {
+        position: absolute;
+        bottom: 125px;
+        left: 200px;
+        transform: rotate(45deg) skew(0deg, -45deg);
+
+        .dash {
+            height: 50px;
+            width: 320px;
+            background-color: rgba(206, 196, 0, 0.23);
+            border-color: black;
+            border-width: 5px;
+
+            .fill {
+                transition: all 50ms ease-out;
+                height: 100%;
+                background-color: #ffff00d7;
+            }
+        }
+    }
+</style>

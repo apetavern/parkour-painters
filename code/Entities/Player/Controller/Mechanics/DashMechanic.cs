@@ -2,7 +2,8 @@ namespace GangJam.Entities;
 
 public sealed partial class DashMechanic : ControllerMechanic
 {
-	public int DashRechargeTime => GangJam.InfiniteDash ? 0 : 3;
+	public double ActiveDashPercentage => Math.Ceiling( Math.Clamp( _timeSinceLastDash / DashRechargeTime * 100, 0, 100 ) );
+	private int DashRechargeTime => GangJam.InfiniteDash ? 0 : 3;
 	private TimeSince _timeSinceLastDash;
 
 	protected override bool ShouldStart()
@@ -40,7 +41,6 @@ public sealed partial class DashMechanic : ControllerMechanic
 	[Event.Tick.Client]
 	private void Frame()
 	{
-		var dashPercent = Math.Ceiling( Math.Clamp( (_timeSinceLastDash / DashRechargeTime) * 100, 0, 100 ) );
-		DebugOverlay.ScreenText( $"Dash: {dashPercent}%", 20 );
+		DebugOverlay.ScreenText( $"Dash: {ActiveDashPercentage}%", 20 );
 	}
 }
