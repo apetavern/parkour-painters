@@ -24,7 +24,7 @@ partial class GangJam
 	/// Defines whether or not a clients clothing choices should be mixed with a <see cref="ClothingCollectionResource"/>s clothes.
 	/// </summary>
 	[ConVar.Replicated( "gj_mixclientclothes" )]
-	public static bool MixClientClothes { get; private set; } = true;
+	internal static bool MixClientClothes { get; private set; } = true;
 
 	/// <summary>
 	/// Defines whether or not a teamates can daze each other.
@@ -48,5 +48,5 @@ partial class GangJam
 	/// Defines whether or not dashing can be infinitely used.
 	/// </summary>
 	[ConVar.Replicated( "gj_cheat_infinitedash" )]
-	public static bool InfiniteDash { get; private set; } = false;
+	internal static bool InfiniteDash { get; private set; } = false;
 }
