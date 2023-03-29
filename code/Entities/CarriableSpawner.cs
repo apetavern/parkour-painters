@@ -1,4 +1,4 @@
-﻿namespace GangJam;
+﻿namespace GangJam.Entities;
 
 /// <summary>
 /// A spawner for a <see cref="BaseCarriable"/>.

@@ -1,4 +1,4 @@
-﻿namespace GangJam;
+﻿namespace GangJam.Entities;
 
 partial class Player
 {

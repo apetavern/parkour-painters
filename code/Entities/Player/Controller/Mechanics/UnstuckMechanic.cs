@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
 public sealed class UnstuckMechanic : ControllerMechanic
 {

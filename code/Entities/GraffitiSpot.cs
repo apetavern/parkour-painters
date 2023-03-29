@@ -1,4 +1,4 @@
-﻿namespace GangJam;
+﻿namespace GangJam.Entities;
 
 /// <summary>
 /// A spot that a player can graffiti.

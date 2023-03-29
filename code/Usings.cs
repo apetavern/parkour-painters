@@ -1,4 +1,5 @@
 ﻿global using Editor;
+global using GangJam.Entities;
 global using GangJam.Extensions;
 global using GangJam.Resources;
 global using GangJam.State;

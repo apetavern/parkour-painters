@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
 internal sealed class PlayerCamera : EntityComponent<Player>, ISingletonComponent
 {

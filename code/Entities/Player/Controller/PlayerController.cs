@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
 internal partial class PlayerController : EntityComponent<Player>, ISingletonComponent
 {

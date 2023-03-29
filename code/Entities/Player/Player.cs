@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
 [Prefab]
 public sealed partial class Player : AnimatedEntity

@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
 public sealed partial class JumpMechanic : ControllerMechanic
 {

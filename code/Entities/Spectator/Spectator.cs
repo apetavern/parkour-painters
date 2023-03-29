@@ -1,4 +1,4 @@
-﻿namespace GangJam;
+﻿namespace GangJam.Entities;
 
 /// <summary>
 /// A pawn that can spectate other players in the game.

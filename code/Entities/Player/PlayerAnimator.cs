@@ -1,4 +1,4 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
 /// <summary>
 /// Contains logic for animating a players model.

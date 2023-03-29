@@ -1,4 +1,4 @@
-﻿namespace GangJam;
+﻿namespace GangJam.Entities;
 
 /// <summary>
 /// Defines a way that the player becomes dazed.
