@@ -1,17 +1,30 @@
 {
   "Skins": null,
   "Facials": null,
-  "Hairs": [],
+  "Hairs": [
+    {
+      "Clothing": "data/clothing/nerd_hair1.clothing"
+    },
+    {
+      "Clothing": "data/clothing/nerd_empty_top.clothing"
+    }
+  ],
   "Hats": null,
   "Tops": [
     {
       "Clothing": "data/clothing/nerd_shirt1.clothing"
+    },
+    {
+      "Clothing": "data/clothing/nerd_hoodie.clothing"
     }
   ],
   "Gloves": null,
   "Bottoms": [
     {
       "Clothing": "data/clothing/nerd_trousers1.clothing"
+    },
+    {
+      "Clothing": "data/clothing/90s_loose_pants.clothing"
     }
   ],
   "Footwears": null

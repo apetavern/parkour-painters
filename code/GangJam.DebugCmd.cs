@@ -40,7 +40,7 @@ partial class GangJam
 			return;
 		}
 
-		if ( ConsoleSystem.Caller.Pawn is not Player player )
+		if ( ConsoleSystem.Caller.Pawn is not Entities.Player player )
 		{
 			Log.Warning( "You do not have the correct pawn to use this command" );
 			return;
@@ -65,5 +65,27 @@ partial class GangJam
 
 		player.SetupClothing( chosenGroup.ClothingCollection );
 		Log.Info( $"Changed clothing to {chosenGroup.Name}" );
+	}
+
+	/// <summary>
+	/// A debug command to become a spectator.
+	/// </summary>
+	[ConCmd.Admin( "gj_becomespectator" )]
+	private static void BecomeSpectator()
+	{
+		if ( ConsoleSystem.Caller is null )
+		{
+			Log.Warning( "This command can only be used by players" );
+			return;
+		}
+
+		if ( ConsoleSystem.Caller.Pawn is Spectator )
+		{
+			Log.Warning( "You are already a spectator" );
+			return;
+		}
+
+		ConsoleSystem.Caller.Pawn?.Delete();
+		ConsoleSystem.Caller.Pawn = new Spectator();
 	}
 }

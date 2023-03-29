@@ -17,6 +17,14 @@
 								from = "citizen_skin.002.vmat"
 								to = "models/outfits/nerd/legs/nerd_trousers1/materials/nerd_trousers1.vmat"
 							},
+							{
+								from = "belt.vmat"
+								to = "models/outfits/nerd/accessories/nerd_belt1/materials/nerd_belt1.vmat"
+							},
+							{
+								from = "phong1.vmat"
+								to = "models/outfits/nerd/feet/nerd_shoes1/materials/nerd_shoes1.vmat"
+							},
 						]
 						use_global_default = false
 						global_default_material = ""
@@ -43,6 +51,49 @@
 							exception_list = 
 							[
 								"Mesh_033",
+								"trousers_low",
+							]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/outfits/nerd/feet/nerd_shoes1/nerd_shoes1.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"Mesh_033",
+								"Mesh_034",
+								"shoes_low",
+							]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/outfits/nerd/accessories/nerd_belt1/nerd_belt1.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"Mesh_033",
+								"mesh_001",
+								"belt_low",
 							]
 						}
 					},

@@ -1,0 +1,15 @@
+@namespace GangJam.UI
+@inherits RootPanel
+
+<root>
+
+</root>
+
+@code
+{
+    public Hud()
+    {
+        Game.AssertClient();
+        Game.RootPanel = this;
+    }
+}

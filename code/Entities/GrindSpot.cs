@@ -1,12 +1,15 @@
-namespace GangJam;
+namespace GangJam.Entities;
 
+/// <summary>
+/// A spot that a palyer can grind on.
+/// </summary>
 [Library( "grind_spot" )]
 [Title( "Grind Spot" ), Category( "Movement" )]
 [HammerEntity, Path( "path_generic_node" )]
-internal class GrindSpot : GenericPathEntity
+internal sealed class GrindSpot : GenericPathEntity
 {
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 

@@ -4,7 +4,7 @@
 /// The state for when waiting for players to join the game.
 /// </summary>
 [Category( "Setup" )]
-internal sealed class WaitingState : Entity, IGameState
+internal sealed partial class WaitingState : Entity, IGameState
 {
 	/// <summary>
 	/// The active instance of <see cref="WaitingState"/>. This can be null.
@@ -17,8 +17,23 @@ internal sealed class WaitingState : Entity, IGameState
 	/// </summary>
 	internal ImmutableArray<ImmutableArray<IClient>> Teams { get; private set; }
 
+	/// <summary>
+	/// Contains all of the clients that have been selected to be a spectator.
+	/// This can only be accessed on the server after the state has exited.
+	/// </summary>
+	internal ImmutableArray<IClient> Spectators { get; private set; }
+
+	/// <summary>
+	/// The time in seconds until the game will move to the <see cref="PlayState"/>.
+	/// </summary>
+	[Net] private TimeUntil TimeUntilGameStart { get; set; }
+	/// <summary>
+	/// Returns whether or not the game is getting ready to start.
+	/// </summary>
+	internal bool GameStarting => Game.Clients.Count >= 2 && TimeUntilGameStart > 0;
+
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
@@ -32,40 +47,34 @@ internal sealed class WaitingState : Entity, IGameState
 		{
 			client.Pawn?.Delete();
 
-			var defaultPlayer = new Player();
+			var defaultPlayer = new Entities.Player();
 			client.Pawn = defaultPlayer;
 			defaultPlayer.Respawn();
 		}
+
+		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
-		var builders = new ImmutableArray<IClient>.Builder[GangJam.NumTeams];
-		for ( var i = 0; i < builders.Length; i++ )
-			builders[i] = ImmutableArray.CreateBuilder<IClient>();
-
-		for ( var i = 0; i < Game.Clients.Count; i++ )
-			builders[i % builders.Length].Add( Game.Clients.ElementAt( i ) );
-
-		var teams = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>();
-		for ( var i = 0; i < builders.Length; i++ )
-			teams.Add( builders[i].ToImmutable() );
-
-		Teams = teams.ToImmutable();
+		(Teams, Spectators) = BuildDefaultTeams();
 	}
 
 	/// <inheritdoc/>
 	void IGameState.ClientJoined( IClient cl )
 	{
-		var player = new Player();
+		var player = new Entities.Player();
 		cl.Pawn = player;
 		player.Respawn();
+
+		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.ClientDisconnected( IClient cl,  NetworkDisconnectionReason reason )
 	{
+		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
@@ -76,25 +85,20 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		if ( Game.Clients.Count >= GangJam.NumTeams )
+		if ( Game.Clients.Count >= 2 && TimeUntilGameStart <= 0 )
 			PlayState.SetActive();
 	}
 
-	/// <summary>
-	/// Moves a clients pawn to a random spawnpoint.
-	/// </summary>
-	/// <param name="player">The pawn to move.</param>
-	private void MoveToSpawnpoint( Player player )
+#if DEBUG
+	[Event.Tick.Client]
+	private void DebugDraw()
 	{
-		var spawnpoints = Entity.All.OfType<SpawnPoint>();
-		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
-		if ( randomSpawnPoint is null )
-			return;
-
-		var tx = randomSpawnPoint.Transform;
-		tx.Position += Vector3.Up * 50.0f; // raise it up
-		player.Transform = tx;
+		if ( GameStarting )
+			DebugOverlay.ScreenText( $"Game starting in {Math.Ceiling( TimeUntilGameStart )} seconds" );
+		else
+			DebugOverlay.ScreenText( "Waiting for players" );
 	}
+#endif
 
 	/// <summary>
 	/// Sets the <see cref="WaitingState"/> as the active state in the game. This can only be invoked on the server.
@@ -104,5 +108,40 @@ internal sealed class WaitingState : Entity, IGameState
 		Game.AssertServer();
 
 		GangJam.Current.SetState<WaitingState>();
+	}
+
+	/// <summary>
+	/// Returns a set of teams and a spectator group built from a very basic iteration.
+	/// </summary>
+	/// <returns>A set of teams and a spectator group built from a very basic iteration.</returns>
+	internal static (ImmutableArray<ImmutableArray<IClient>>, ImmutableArray<IClient>) BuildDefaultTeams()
+	{
+		var teamBuilders = new ImmutableArray<IClient>.Builder[GangJam.MaxTeams];
+		var spectatorBuilder = ImmutableArray.CreateBuilder<IClient>();
+
+		for ( var i = 0; i < teamBuilders.Length; i++ )
+			teamBuilders[i] = ImmutableArray.CreateBuilder<IClient>();
+
+		for ( var i = 0; i < Game.Clients.Count; i++ )
+		{
+			var client = Game.Clients.ElementAt( i );
+
+			// If adding this client would make the team count go over the limit then move them to spectators.
+			if ( teamBuilders[i % teamBuilders.Length].Count + 1 > GangJam.MaxPlayersPerTeam )
+				spectatorBuilder.Add( client );
+			else
+				teamBuilders[i % teamBuilders.Length].Add( client );
+		}
+
+		var teams = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>();
+		for ( var i = 0; i < teamBuilders.Length; i++ )
+		{
+			if ( teamBuilders[i].Count == 0 )
+				continue;
+
+			teams.Add( teamBuilders[i].ToImmutable() );
+		}
+
+		return (teams.ToImmutable(), spectatorBuilder.ToImmutable());
 	}
 }

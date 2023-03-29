@@ -1,18 +1,10 @@
-﻿global using Editor;
-global using GangJam.Extensions;
-global using GangJam.Resources;
-global using GangJam.State;
-global using Sandbox;
-global using System;
-global using System.Collections.Generic;
-global using System.Collections.Immutable;
-global using System.ComponentModel;
-global using System.Linq;
-
-namespace GangJam;
+﻿namespace GangJam;
 
 public sealed partial class GangJam : GameManager
 {
+	/// <summary>
+	/// The currently active instance of <see cref="GangJam"/>.
+	/// </summary>
 	public static new GangJam Current => (GangJam)GameManager.Current;
 
 	/// <summary>
@@ -22,14 +14,19 @@ public sealed partial class GangJam : GameManager
 
 	public GangJam()
 	{
-		if ( !Game.IsServer )
-			return;
-
-		WaitingState.SetActive();
+		if ( Game.IsClient )
+		{
+			_ = new UI.Hud();
+		}
+		else
+		{
+			SetupPrecache();
+			WaitingState.SetActive();
+		}
 	}
 
 	/// <inheritdoc/>
-	public override void ClientJoined( IClient cl )
+	public sealed override void ClientJoined( IClient cl )
 	{
 		base.ClientJoined( cl );
 
@@ -37,7 +34,7 @@ public sealed partial class GangJam : GameManager
 	}
 
 	/// <inheritdoc/>
-	public override void ClientDisconnect( IClient cl, NetworkDisconnectionReason reason )
+	public sealed override void ClientDisconnect( IClient cl, NetworkDisconnectionReason reason )
 	{
 		base.ClientDisconnect( cl, reason );
 
@@ -45,7 +42,7 @@ public sealed partial class GangJam : GameManager
 	}
 
 	/// <inheritdoc/>
-	public override void Simulate( IClient cl )
+	public sealed override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );
 

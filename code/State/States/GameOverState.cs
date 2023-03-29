@@ -27,8 +27,13 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] internal IList<Team> DrawingTeams { get; private set; }
 
+	/// <summary>
+	/// The time in seconds until the game moves back to the <see cref="WaitingState"/>.
+	/// </summary>
+	[Net] private TimeUntil TimeUntilResetGame { get; set; }
+
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		base.Spawn();
 
@@ -69,6 +74,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 			highestScoreTeam.Parent = this;
 			WinningTeam = highestScoreTeam;
 		}
+
+		TimeUntilResetGame = GangJam.GameResetTimer;
 	}
 
 	/// <inheritdoc/>
@@ -97,7 +104,27 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
+		if ( TimeUntilResetGame <= 0 )
+			WaitingState.SetActive();
 	}
+
+#if DEBUG
+	[Event.Tick.Client]
+	private void DebugDraw()
+	{
+		DebugOverlay.ScreenText( $"Moving to {nameof( WaitingState )} in {Math.Ceiling( TimeUntilResetGame )} seconds" );
+
+		DebugOverlay.ScreenText( $"Result: {GameResult}", 1 );
+
+		if ( GameResult == GameResult.Draw )
+		{
+			for ( var i = 0; i < DrawingTeams.Count; i++ )
+				DebugOverlay.ScreenText( DrawingTeams[i].Name, i + 2 );
+		}
+		else
+			DebugOverlay.ScreenText( WinningTeam.Name, 2 );
+	}
+#endif
 
 	/// <summary>
 	/// Sets the <see cref="GameOverState"/> as the active state in the game. This can only be invoked on the server.

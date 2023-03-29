@@ -40,7 +40,7 @@ public sealed class GroupResource : GameResource
 	public Prefab PlayerPrefab { get; private set; }
 
 	/// <inheritdoc/>
-	protected override void PostLoad()
+	protected sealed override void PostLoad()
 	{
 		base.PostLoad();
 
@@ -48,7 +48,7 @@ public sealed class GroupResource : GameResource
 	}
 
 	/// <inheritdoc/>
-	protected override void PostReload()
+	protected sealed override void PostReload()
 	{
 		base.PostReload();
 

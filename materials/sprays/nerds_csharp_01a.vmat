@@ -1,0 +1,25 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/dissolve.shader_c"
+
+	//---- Color ----
+	Color "[0.262745 0.949020 0.423529 1.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	g_flMetallic "0.000"
+
+	//---- Roughness ----
+	g_flRoughness "1.000"
+
+	//---- Translucent ----
+	g_flFadeamount "10.000"
+	g_flOpacityScale "1.000"
+	g_flSmoothStepMax "0.031"
+	g_flSmoothStepMin "0.010"
+	Translucency "materials/sprays/textures/nerds_csharp_01a_reveal.png"
+}
