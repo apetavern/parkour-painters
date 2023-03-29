@@ -1,0 +1,44 @@
+@namespace GangJam.UI
+
+<root>
+    @{
+        var stateName = GangJam.Current.CurrentState.StateName;
+        <label>@stateName</label>
+
+        var desc = GangJam.Current.CurrentState switch
+        {
+            WaitingState => $"{Game.Clients.Count} / {GangJam.MinimumPlayers}",
+            PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
+            GameOverState => string.Empty,
+        };
+        <label>@desc</label>
+    }
+</root>
+
+@code {
+    private string FormatTimer(float seconds)
+    {
+        return TimeSpan.FromSeconds(seconds.CeilToInt()).ToString(@"mm\:ss");
+    }
+
+    protected override int BuildHash()
+    {
+        var state = GangJam.Current.CurrentState;
+        var playState = state as PlayState;
+        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, GangJam.MinimumPlayers);
+    }
+}
+
+<style>
+    GameTimer {
+        position: absolute;
+        top: 75px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+
+        label {
+            font-size: 50px;
+            color: white;
+        }
+    }
+</style>

@@ -6,6 +6,9 @@
 [Category( "Setup" )]
 internal sealed partial class WaitingState : Entity, IGameState
 {
+	/// <inheritdoc/>
+	public string StateName { get; set; } = "Waiting";
+
 	/// <summary>
 	/// The active instance of <see cref="WaitingState"/>. This can be null.
 	/// </summary>
@@ -30,7 +33,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <summary>
 	/// Returns whether or not the game is getting ready to start.
 	/// </summary>
-	internal bool GameStarting => Game.Clients.Count >= 2 && TimeUntilGameStart > 0;
+	internal bool GameStarting => Game.Clients.Count >= GangJam.MinimumPlayers && TimeUntilGameStart > 0;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -72,7 +75,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	}
 
 	/// <inheritdoc/>
-	void IGameState.ClientDisconnected( IClient cl,  NetworkDisconnectionReason reason )
+	void IGameState.ClientDisconnected( IClient cl, NetworkDisconnectionReason reason )
 	{
 		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}

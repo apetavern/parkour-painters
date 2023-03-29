@@ -6,6 +6,11 @@
 public interface IGameState : IEntity
 {
 	/// <summary>
+	/// UI friendly name for the current state.
+	/// </summary>
+	public string StateName { get; set; }
+
+	/// <summary>
 	/// Invoked when entering this game state. This will only be invoked on the server.
 	/// </summary>
 	/// <param name="lastState">The previous state the game was in. This can be null.</param>
