@@ -5,7 +5,7 @@
 /// </summary>
 [Library( "func_graffiti_spot" )]
 [Title( "Graffiti Spot" ), Category( "Spray Down" )]
-[HammerEntity, Solid, DrawAngles]
+[HammerEntity, Solid, DrawAngles, AutoApplyMaterial( "materials/sprays/spray_space.vmat" )]
 public sealed partial class GraffitiSpot : ModelEntity
 {
 	/// <summary>
