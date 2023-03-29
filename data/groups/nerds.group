@@ -5,6 +5,10 @@
   "AvailableSprays": [
     "materials/sprays/nerds_csharp_01a.vmat"
   ],
+  "DazeParticles": {
+    "Inhalation": "particles/stun/stun_base.vpcf",
+    "PhysicalTrauma": "particles/stun/stun_base.vpcf"
+  },
   "ClothingCollection": "data/clothing_collections/nerd.clothc",
   "PlayerPrefab": "prefabs/nerd.prefab"
 }

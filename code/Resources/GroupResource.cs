@@ -31,6 +31,12 @@ public sealed class GroupResource : GameResource
 	public List<string> AvailableSprays { get; set; }
 
 	/// <summary>
+	/// Contains all of the custom particles that show on a person when they are dazed.
+	/// </summary>
+	[ResourceType( "vpcf" )]
+	public Dictionary<DazeType, string> DazeParticles { get; set; }
+
+	/// <summary>
 	/// The collection of clothing affiliated with the group.
 	/// </summary>
 	public ClothingCollectionResource ClothingCollection { get; set; }

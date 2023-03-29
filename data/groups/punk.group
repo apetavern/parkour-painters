@@ -5,6 +5,10 @@
   "AvailableSprays": [
     "materials/sprays/punk_anarchy_01a.vmat"
   ],
+  "DazeParticles": {
+    "Inhalation": "particles/stun/stun_base.vpcf",
+    "PhysicalTrauma": "particles/stun/stun_base.vpcf"
+  },
   "ClothingCollection": "data/clothing_collections/punk.clothc",
   "PlayerPrefab": "prefabs/punk.prefab"
 }

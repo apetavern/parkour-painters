@@ -233,7 +233,10 @@ public sealed partial class Player : AnimatedEntity
 	[ClientRpc]
 	private void DazePlayerParticles()
 	{
-		DazeParticles = Particles.Create( "particles/stun/stun_base.vpcf", this, "hat" );
+		if ( !Team.Group.DazeParticles.TryGetValue( DazeType, out var particle ) )
+			particle = "particles/stun/stun_base.vpcf";
+
+		DazeParticles = Particles.Create( particle, this, "hat" );
 	}
 
 	[ClientRpc]
