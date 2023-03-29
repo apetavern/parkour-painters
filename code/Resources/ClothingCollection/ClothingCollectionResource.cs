@@ -6,14 +6,14 @@
 [GameResource( "Clothing Collection", "clothc", "Defines a group of clothing items that can be applied to a citizen" )]
 public sealed class ClothingCollectionResource : GameResource
 {
-	public List<TintableClothingEntry> Skins { get; private set; }
-	public List<TintableClothingEntry> Facials { get; private set; }
-	public List<TintableClothingEntry> Hairs { get; private set; }
-	public List<TintableClothingEntry> Hats { get; private set; }
-	public List<TintableClothingEntry> Tops { get; private set; }
-	public List<TintableClothingEntry> Gloves { get; private set; }
-	public List<TintableClothingEntry> Bottoms { get; private set; }
-	public List<TintableClothingEntry> Footwears { get; private set; }
+	public List<TintableClothingEntry> Skins { get; set; }
+	public List<TintableClothingEntry> Facials { get; set; }
+	public List<TintableClothingEntry> Hairs { get; set; }
+	public List<TintableClothingEntry> Hats { get; set; }
+	public List<TintableClothingEntry> Tops { get; set; }
+	public List<TintableClothingEntry> Gloves { get; set; }
+	public List<TintableClothingEntry> Bottoms { get; set; }
+	public List<TintableClothingEntry> Footwears { get; set; }
 
 	/// <summary>
 	/// Returns a randomized <see cref="ClothingContainer"/> with the collections clothes applied on top of a clients if applicable.
