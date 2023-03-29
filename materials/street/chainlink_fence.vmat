@@ -1,0 +1,31 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated_translucent.shader_c"
+
+	//---- Color ----
+	Color "materials/street/textures/chainlink_fence_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "materials/street/textures/chainlink_fence_metal.png"
+
+	//---- Normal ----
+	Normal "materials/street/textures/chainlink_fence_normal.png"
+
+	//---- Roughness ----
+	Roughness "materials/street/textures/chainlink_fence_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+
+	//---- Translucent ----
+	g_flOpacityScale "1.000"
+	Translucency "materials/street/textures/chainlink_fence_trans.png"
+}
