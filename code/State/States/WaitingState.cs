@@ -135,7 +135,12 @@ internal sealed partial class WaitingState : Entity, IGameState
 
 		var teams = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>();
 		for ( var i = 0; i < teamBuilders.Length; i++ )
+		{
+			if ( teamBuilders[i].Count == 0 )
+				continue;
+
 			teams.Add( teamBuilders[i].ToImmutable() );
+		}
 
 		return (teams.ToImmutable(), spectatorBuilder.ToImmutable());
 	}
