@@ -13,6 +13,7 @@ public sealed class GroupResource : GameResource
 	/// The name of the group.
 	/// </summary>
 	public string Name { get; set; }
+
 	/// <summary>
 	/// A brief description of the group.
 	/// </summary>
