@@ -1,0 +1,15 @@
+{
+  "Title": "Nerd Bowtie",
+  "Subtitle": "All the rage",
+  "Category": "Hair",
+  "SubCategory": "Nerds",
+  "Parent": null,
+  "Model": null,
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "HeadTop, HeadBottom, Face, Glasses, Eyes",
+  "SlotsOver": "HeadTop, HeadBottom, Face, Glasses, Eyes",
+  "HideBody": 0,
+  "Icon": {}
+}
