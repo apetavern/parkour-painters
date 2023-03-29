@@ -8,7 +8,7 @@ Layer0
 	F_RENDER_BACKFACES 1
 
 	//---- Color ----
-	Color "models/outfits/yakuza/torso/suit_open/materials/suit_color.png"
+	Color "models/outfits/yakuza/torso/suit_open/materials/striped/suit_color.png"
 	g_flModelTintAmount "1.000"
 	g_vTintColor "[1.000000 1.000000 1.000000 1.000000]"
 	TintMask "models/outfits/yakuza/torso/suit_open/materials/suit_mask.png"
@@ -17,13 +17,13 @@ Layer0
 	g_bFogEnabled "1"
 
 	//---- Metalness ----
-	Metallic "models/outfits/yakuza/torso/suit_open/materials/suit_metal.png"
+	Metallic "models/outfits/yakuza/torso/suit_open/materials/striped/suit_metal.png"
 
 	//---- Normal ----
-	Normal "models/outfits/yakuza/torso/suit_open/materials/suit_normal.png"
+	Normal "models/outfits/yakuza/torso/suit_open/materials/striped/suit_normal.png"
 
 	//---- Roughness ----
-	Roughness "models/outfits/yakuza/torso/suit_open/materials/suit_rough.png"
+	Roughness "models/outfits/yakuza/torso/suit_open/materials/striped/suit_rough.png"
 
 	//---- Texture Coordinates ----
 	g_vTiling "[1.000 1.000]"

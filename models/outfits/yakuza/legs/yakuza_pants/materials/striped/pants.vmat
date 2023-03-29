@@ -1,0 +1,30 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated.shader_c"
+
+	//---- Rendering ----
+	F_RENDER_BACKFACES 1
+
+	//---- Color ----
+	Color "models/outfits/yakuza/legs/yakuza_pants/materials/striped/pants_color.png"
+	g_flModelTintAmount "1.000"
+	g_vTintColor "[1.000000 1.000000 1.000000 1.000000]"
+	TintMask "models/outfits/yakuza/legs/yakuza_pants/materials/pants_mask.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "models/outfits/yakuza/legs/yakuza_pants/materials/striped/pants_metal.png"
+
+	//---- Normal ----
+	Normal "models/outfits/yakuza/legs/yakuza_pants/materials/striped/pants_normal.png"
+
+	//---- Roughness ----
+	Roughness "models/outfits/yakuza/legs/yakuza_pants/materials/striped/pants_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+}

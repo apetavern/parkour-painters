@@ -21,6 +21,17 @@
 						use_global_default = false
 						global_default_material = ""
 					},
+					{
+						_class = "MaterialGroup"
+						name = "alt"
+						remaps = 
+						[
+							{
+								from = "models/outfits/yakuza/torso/suit_open/materials/suit.vmat"
+								to = "models/outfits/yakuza/torso/suit_open/materials/striped/suit.vmat"
+							},
+						]
+					},
 				]
 			},
 			{
