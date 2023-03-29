@@ -67,6 +67,7 @@ public partial class GrindMechanic : ControllerMechanic
 
 			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
 			Controller.Position = Vector3.Lerp( Controller.Position, nextPosition, Time.Delta );
+			Player.Rotation = Controller.Velocity.Normal.EulerAngles.WithPitch( 0 ).ToRotation();
 
 			if ( Input.Pressed( InputButton.Jump ) )
 			{
