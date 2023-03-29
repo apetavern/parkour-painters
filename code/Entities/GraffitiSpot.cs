@@ -123,6 +123,8 @@ public sealed partial class GraffitiSpot : ModelEntity
 		SprayOwner = null;
 		SprayProgress = 0;
 
+		ClearMaterialOverride();
+
 		SprayCloud?.Destroy();
 		SprayCloud = null;
 	}
