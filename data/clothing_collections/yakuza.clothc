@@ -1,0 +1,28 @@
+{
+  "Skins": null,
+  "Facials": null,
+  "Hairs": [
+    {
+      "Clothing": "data/clothing/yakuza_hat.clothing",
+      "TintMode": "Random"
+    },
+    {
+      "Clothing": "data/clothing/nerd_empty_top.clothing"
+    }
+  ],
+  "Hats": null,
+  "Tops": [
+    {
+      "Clothing": "data/clothing/yakuza_suit_open.clothing",
+      "TintMode": "Random"
+    }
+  ],
+  "Gloves": null,
+  "Bottoms": [
+    {
+      "Clothing": "data/clothing/yakuza_pants.clothing",
+      "TintMode": "Random"
+    }
+  ],
+  "Footwears": null
+}

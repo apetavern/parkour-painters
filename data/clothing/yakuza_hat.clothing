@@ -1,0 +1,15 @@
+{
+  "Title": "Standard Yakuza Trilby",
+  "Subtitle": "Idk just a hat I guess",
+  "Category": "Hat",
+  "SubCategory": "yakuza",
+  "Parent": null,
+  "Model": "models/outfits/yakuza/hats/trilby/trilby.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "HeadTop",
+  "SlotsOver": "HeadTop",
+  "HideBody": 0,
+  "Icon": {}
+}

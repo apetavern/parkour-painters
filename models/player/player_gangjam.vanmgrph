@@ -60262,16 +60262,16 @@
 			m_bEnabled = true
 		},
 		{
-			m_name = "models/outfits/90s/legs/loose_pants.vmdl"
+			m_name = "models/outfits/yakuza/legs/yakuza_pants.vmdl"
 			m_bEnabled = true
 		},
 		{
-			m_name = "models/outfits/90s/torso/loose_shirt.vmdl"
+			m_name = "models/outfits/yakuza/torso/suit_open.vmdl"
 			m_bEnabled = true
 		},
 		{
-			m_name = "models/outfits/90s/head/cap_backwards.vmdl"
-			m_bEnabled = true
+			m_name = "models/outfits/yakuza/hats/trilby/trilby.vmdl"
+			m_bEnabled = false
 		},
 	]
 }
