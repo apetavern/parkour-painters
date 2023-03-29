@@ -368,8 +368,8 @@
 						[
 							{
 								_class = "AnimSmoothLoop"
-								frames_from_start = 5
-								frames_from_end = 5
+								frames_from_start = 4
+								frames_from_end = 4
 							},
 						]
 						activity_name = ""
@@ -385,7 +385,7 @@
 						disable_compression = false
 						source_filename = "models/player/animations/grinding.fbx"
 						start_frame = 10
-						end_frame = 30
+						end_frame = 20
 						framerate = -1.0
 						take = 0
 						reverse = false

@@ -54277,7 +54277,7 @@
 									{
 										m_id = 1414089017
 									}
-									m_lookatChainName = "LookChain_Halved"
+									m_lookatChainName = "LookChain"
 									m_attachmentName = "forward_reference"
 									m_flYawLimit = 90.0
 									m_flPitchLimit = 90.0
