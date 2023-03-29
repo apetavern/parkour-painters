@@ -108,7 +108,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientJoined( IClient cl )
 	{
-		// TODO: Make them a spectator?
+		cl.Pawn = new Spectator();
 	}
 
 	/// <inheritdoc/>
