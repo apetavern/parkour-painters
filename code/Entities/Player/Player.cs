@@ -42,7 +42,10 @@ public sealed partial class Player : AnimatedEntity
 	/// </summary>
 	[Net] private TimeSince TimeSinceDazed { get; set; } = float.MaxValue;
 
-	public TimeSince TimeSinceFootstep { get; private set; } = 0;
+	/// <summary>
+	/// The time in seconds since the last footstep animation event happened.
+	/// </summary>
+	private TimeSince TimeSinceFootstep { get; set; } = 0;
 
 	/// <summary>
 	/// The particles that are shown when the player is dazed.
@@ -57,7 +60,7 @@ public sealed partial class Player : AnimatedEntity
 	private const float ImmuneAlpha = 0.6f;
 
 	/// <inheritdoc/>
-	public override void Spawn()
+	public sealed override void Spawn()
 	{
 		Model = PlayerModel;
 		Predictable = true;
@@ -72,10 +75,75 @@ public sealed partial class Player : AnimatedEntity
 		Tags.Add( "solid" );
 	}
 
+	/// <inheritdoc/>
+	public sealed override void Simulate( IClient cl )
+	{
+		Controller?.Simulate( cl );
+		Animator?.Simulate( cl );
+		Carrying?.Simulate( cl );
+	}
+
+	/// <inheritdoc/>
+	public sealed override void FrameSimulate( IClient cl )
+	{
+		Controller?.FrameSimulate( cl );
+		Camera?.Update( this );
+	}
+
+	/// <inheritdoc/>
+	public sealed override void OnKilled()
+	{
+		if ( LifeState != LifeState.Alive )
+			return;
+
+		LifeState = LifeState.Dead;
+		EnableAllCollisions = false;
+		EnableDrawing = false;
+
+		Controller.Remove();
+		Animator.Remove();
+		Camera.Remove();
+
+		// Disable all children as well.
+		Children.OfType<ModelEntity>()
+			.ToList()
+			.ForEach( x => x.EnableDrawing = false );
+
+		AsyncRespawn();
+	}
+
+	/// <summary>
+	/// Called clientside every time we fire the footstep anim event.
+	/// </summary>
+	public sealed override void OnAnimEventFootstep( Vector3 pos, int foot, float volume )
+	{
+		if ( !Game.IsClient )
+			return;
+
+		if ( LifeState != LifeState.Alive )
+			return;
+
+		if ( TimeSinceFootstep < 0.2f )
+			return;
+
+		volume *= GetFootstepVolume();
+
+		TimeSinceFootstep = 0;
+
+		var tr = Trace.Ray( pos, pos + Vector3.Down * 20 )
+			.Radius( 1 )
+			.Ignore( this )
+			.Run();
+
+		if ( !tr.Hit ) return;
+
+		tr.Surface.DoFootstep( this, tr, foot, volume );
+	}
+
 	/// <summary>
 	/// Respawns the player.
 	/// </summary>
-	public void Respawn()
+	internal void Respawn()
 	{
 		SetupPhysicsFromAABB( PhysicsMotionType.Keyframed, new Vector3( -16, -16, 0 ), new Vector3( 16, 16, 72 ) );
 
@@ -116,7 +184,7 @@ public sealed partial class Player : AnimatedEntity
 	/// <param name="attacker">The person that caused the daze to occur.</param>
 	/// <param name="dazeType">The way that the person is going to be dazed.</param>
 	/// <returns>Whether or not the player was actually dazed.</returns>
-	public bool Daze( Player attacker, DazeType dazeType )
+	internal bool Daze( Player attacker, DazeType dazeType )
 	{
 		if ( IsDazed || IsImmune )
 			return false;
@@ -128,71 +196,6 @@ public sealed partial class Player : AnimatedEntity
 		DazeType = dazeType;
 		DazePlayerParticles( To.Everyone );
 		return true;
-	}
-
-	/// <inheritdoc/>
-	public override void Simulate( IClient cl )
-	{
-		Controller?.Simulate( cl );
-		Animator?.Simulate( cl );
-		Carrying?.Simulate( cl );
-	}
-
-	/// <inheritdoc/>
-	public override void FrameSimulate( IClient cl )
-	{
-		Controller?.FrameSimulate( cl );
-		Camera?.Update( this );
-	}
-
-	/// <inheritdoc/>
-	public override void OnKilled()
-	{
-		if ( LifeState != LifeState.Alive )
-			return;
-
-		LifeState = LifeState.Dead;
-		EnableAllCollisions = false;
-		EnableDrawing = false;
-
-		Controller.Remove();
-		Animator.Remove();
-		Camera.Remove();
-
-		// Disable all children as well.
-		Children.OfType<ModelEntity>()
-			.ToList()
-			.ForEach( x => x.EnableDrawing = false );
-
-		AsyncRespawn();
-	}
-
-	/// <summary>
-	/// Called clientside every time we fire the footstep anim event.
-	/// </summary>
-	public override void OnAnimEventFootstep( Vector3 pos, int foot, float volume )
-	{
-		if ( !Game.IsClient )
-			return;
-
-		if ( LifeState != LifeState.Alive )
-			return;
-
-		if ( TimeSinceFootstep < 0.2f )
-			return;
-
-		volume *= GetFootstepVolume();
-
-		TimeSinceFootstep = 0;
-
-		var tr = Trace.Ray( pos, pos + Vector3.Down * 20 )
-			.Radius( 1 )
-			.Ignore( this )
-			.Run();
-
-		if ( !tr.Hit ) return;
-
-		tr.Surface.DoFootstep( this, tr, foot, volume );
 	}
 
 	private async void AsyncRespawn()
