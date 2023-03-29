@@ -6,11 +6,15 @@
 public enum DazeType
 {
 	/// <summary>
+	/// No daze.
+	/// </summary>
+	None,
+	/// <summary>
 	/// Inhaling something that caused a coughing fit.
 	/// </summary>
-	Inhalation = 1,
+	Inhalation,
 	/// <summary>
 	/// A physical interaction that causes disorientation.
 	/// </summary>
-	PhysicalTrauma = 2
+	PhysicalTrauma
 }

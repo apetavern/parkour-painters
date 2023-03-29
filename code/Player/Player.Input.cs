@@ -5,17 +5,12 @@ public partial class Player
 	/// <summary>
 	/// Should be Input.AnalogMove
 	/// </summary>
-	[ClientInput] public Vector2 MoveInput { get; protected set; }
+	[ClientInput] public Vector2 MoveInput { get; private set; }
 
 	/// <summary>
 	/// Normalized accumulation of Input.AnalogLook
 	/// </summary>
-	[ClientInput] public Angles LookInput { get; protected set; }
-
-	/// <summary>
-	/// ?
-	/// </summary>
-	[ClientInput] public Entity ActiveWeaponInput { get; set; }
+	[ClientInput] public Angles LookInput { get; private set; }
 
 	/// <summary>
 	/// Position a player should be looking from in world space.
@@ -43,12 +38,17 @@ public partial class Player
 		set => EyeLocalRotation = Transform.RotationToLocal( value );
 	}
 
+	/// <summary>
+	/// Rotation of the entity's "eyes" in local space.
+	/// </summary>
 	[Net, Predicted, Browsable( false )]
 	public Rotation EyeLocalRotation { get; set; }
 
-	public override Ray AimRay => new Ray( EyePosition, EyeRotation.Forward );
+	/// <inheritdoc/>
+	public sealed override Ray AimRay => new( EyePosition, EyeRotation.Forward );
 
-	public override void BuildInput()
+	/// <inheritdoc/>
+	public sealed override void BuildInput()
 	{
 		MoveInput = Input.AnalogMove;
 		var lookInput = (LookInput + Input.AnalogLook).Normal;

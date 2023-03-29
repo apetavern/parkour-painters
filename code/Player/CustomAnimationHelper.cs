@@ -1,10 +1,20 @@
 namespace GangJam;
 
-public struct CustomAnimationHelper
+/// <summary>
+/// A helper struct to make working with citizen related animations easier.
+/// </summary>
+internal readonly ref struct CustomAnimationHelper
 {
-	AnimatedEntity Owner;
+	/// <summary>
+	/// The <see cref="AnimatedEntity"/> to apply the changes to.
+	/// </summary>
+	private AnimatedEntity Owner { get; }
 
-	public CustomAnimationHelper( AnimatedEntity entity )
+	/// <summary>
+	/// Initializes a new instance of <see cref="CustomAnimationHelper"/>.
+	/// </summary>
+	/// <param name="entity">The <see cref="AnimatedEntity"/> to apply changes to.</param>
+	internal CustomAnimationHelper( AnimatedEntity entity )
 	{
 		Owner = entity;
 	}
@@ -12,7 +22,7 @@ public struct CustomAnimationHelper
 	/// <summary>
 	/// Have the player look at this point in the world
 	/// </summary>
-	public void WithLookAt( Vector3 look, float eyesWeight = 1.0f, float headWeight = 1.0f, float bodyWeight = 1.0f )
+	internal void WithLookAt( Vector3 look, float eyesWeight = 1.0f, float headWeight = 1.0f, float bodyWeight = 1.0f )
 	{
 		var aimRay = Owner.AimRay;
 
@@ -25,7 +35,11 @@ public struct CustomAnimationHelper
 		Owner.SetAnimParameter( "aim_body_weight", bodyWeight );
 	}
 
-	public void WithVelocity( Vector3 Velocity )
+	/// <summary>
+	/// Sets actual velocity related parameters.
+	/// </summary>
+	/// <param name="Velocity">The velocity to apply.</param>
+	internal void WithVelocity( Vector3 Velocity )
 	{
 		var dir = Velocity;
 		var forward = Owner.Rotation.Forward.Dot( dir );
@@ -41,7 +55,11 @@ public struct CustomAnimationHelper
 		Owner.SetAnimParameter( "move_z", Velocity.z );
 	}
 
-	public void WithWishVelocity( Vector3 Velocity )
+	/// <summary>
+	/// Sets the desired velocity related parameters.
+	/// </summary>
+	/// <param name="Velocity">The desired velocity to apply.</param>
+	internal void WithWishVelocity( Vector3 Velocity )
 	{
 		var dir = Velocity;
 		var forward = Owner.Rotation.Forward.Dot( dir );
@@ -57,7 +75,10 @@ public struct CustomAnimationHelper
 		Owner.SetAnimParameter( "wish_z", Velocity.z );
 	}
 
-	public Rotation AimAngle
+	/// <summary>
+	/// Sets the aim angle of citizen.
+	/// </summary>
+	internal Rotation AimAngle
 	{
 		set
 		{
@@ -69,80 +90,118 @@ public struct CustomAnimationHelper
 		}
 	}
 
-	public float AimEyesWeight
+	/// <summary>
+	/// Gets/sets the "aim_eyes_weight" parameter.
+	/// </summary>
+	internal float AimEyesWeight
 	{
 		get => Owner.GetAnimParameterFloat( "aim_eyes_weight" );
 		set => Owner.SetAnimParameter( "aim_eyes_weight", value );
 	}
 
-	public float AimHeadWeight
+	/// <summary>
+	/// Gets/sets the "aim_head_weight" parameter.
+	/// </summary>
+	internal float AimHeadWeight
 	{
 		get => Owner.GetAnimParameterFloat( "aim_head_weight" );
 		set => Owner.SetAnimParameter( "aim_head_weight", value );
 	}
 
-	public float AimBodyWeight
+	/// <summary>
+	/// Gets/sets the "aim_body_weight" parameter.
+	/// </summary>
+	internal float AimBodyWeight
 	{
 		get => Owner.GetAnimParameterFloat( "aim_body_weight" );
 		set => Owner.SetAnimParameter( "aim_headaim_body_weight_weight", value );
 	}
 
-
-	public float FootShuffle
+	/// <summary>
+	/// Gets/sets the "move_shuffle" parameter.
+	/// </summary>
+	internal float FootShuffle
 	{
 		get => Owner.GetAnimParameterFloat( "move_shuffle" );
 		set => Owner.SetAnimParameter( "move_shuffle", value );
 	}
 
-	public float DuckLevel
+	/// <summary>
+	/// Gets/sets the "duck" parameter.
+	/// </summary>
+	internal float DuckLevel
 	{
 		get => Owner.GetAnimParameterFloat( "duck" );
 		set => Owner.SetAnimParameter( "duck", value );
 	}
 
-	public float VoiceLevel
+	/// <summary>
+	/// Gets/sets the "voice" parameter.
+	/// </summary>
+	internal float VoiceLevel
 	{
 		get => Owner.GetAnimParameterFloat( "voice" );
 		set => Owner.SetAnimParameter( "voice", value );
 	}
 
-	public bool IsSitting
+	/// <summary>
+	/// Gets/sets the "b_sit" parameter.
+	/// </summary>
+	internal bool IsSitting
 	{
 		get => Owner.GetAnimParameterBool( "b_sit" );
 		set => Owner.SetAnimParameter( "b_sit", value );
 	}
 
-	public bool IsGrounded
+	/// <summary>
+	/// Gets/sets the "b_grounded" parameter.
+	/// </summary>
+	internal bool IsGrounded
 	{
 		get => Owner.GetAnimParameterBool( "b_grounded" );
 		set => Owner.SetAnimParameter( "b_grounded", value );
 	}
 
-	public bool IsSwimming
+	/// <summary>
+	/// Gets/sets the "b_swim" parameter.
+	/// </summary>
+	internal bool IsSwimming
 	{
 		get => Owner.GetAnimParameterBool( "b_swim" );
 		set => Owner.SetAnimParameter( "b_swim", value );
 	}
 
-	public bool IsClimbing
+	/// <summary>
+	/// Gets/sets the "b_climbing" parameter.
+	/// </summary>
+	internal bool IsClimbing
 	{
 		get => Owner.GetAnimParameterBool( "b_climbing" );
 		set => Owner.SetAnimParameter( "b_climbing", value );
 	}
 
-	public bool IsNoclipping
+	/// <summary>
+	/// Gets/sets the "b_noclip" parameter.
+	/// </summary>
+	internal bool IsNoclipping
 	{
 		get => Owner.GetAnimParameterBool( "b_noclip" );
 		set => Owner.SetAnimParameter( "b_noclip", value );
 	}
 
-	public bool IsWeaponLowered
+	/// <summary>
+	/// Gets/sets the "b_weapon_lower" parameter.
+	/// </summary>
+	internal bool IsWeaponLowered
 	{
 		get => Owner.GetAnimParameterBool( "b_weapon_lower" );
 		set => Owner.SetAnimParameter( "b_weapon_lower", value );
 	}
 
-	public enum HoldTypes
+	/// <summary>
+	/// Represents a way for an item to be held.
+	/// </summary>
+	internal enum HoldTypes
 	{
 		None,
 		Pistol,
@@ -154,13 +213,19 @@ public struct CustomAnimationHelper
 		RPG
 	}
 
-	public HoldTypes HoldType
+	/// <summary>
+	/// Gets/sets the "holdtype" parameter.
+	/// </summary>
+	internal HoldTypes HoldType
 	{
 		get => (HoldTypes)Owner.GetAnimParameterInt( "holdtype" );
 		set => Owner.SetAnimParameter( "holdtype", (int)value );
 	}
 
-	public enum SpecialMovementTypes
+	/// <summary>
+	/// Represents a special way to move in the world.
+	/// </summary>
+	internal enum SpecialMovementTypes
 	{
 		None,
 		LedgeGrab,
@@ -168,31 +233,73 @@ public struct CustomAnimationHelper
 		WallSlide,
 	}
 
-	public SpecialMovementTypes SpecialMovementType
+	/// <summary>
+	/// Gets/sets the "special_movement_states" parameter.
+	/// </summary>
+	internal SpecialMovementTypes SpecialMovementType
 	{
 		get => (SpecialMovementTypes)Owner.GetAnimParameterInt( "special_movement_states" );
 		set => Owner.SetAnimParameter( "special_movement_states", (int)value );
 	}
 
-	public enum Hand
+	/// <summary>
+	/// Represents the handedness of holding an item.
+	/// </summary>
+	internal enum Hand
 	{
 		Both,
 		Right,
 		Left
 	}
 
-	public Hand Handedness
+	/// <summary>
+	/// Gets/sets the "holdtype_handedness" parameter.
+	/// </summary>
+	internal Hand Handedness
 	{
 		get => (Hand)Owner.GetAnimParameterInt( "holdtype_handedness" );
 		set => Owner.SetAnimParameter( "holdtype_handedness", (int)value );
 	}
 
-	public void TriggerJump()
+	/// <summary>
+	/// Gets/sets the "daze_state" parameter.
+	/// </summary>
+	internal DazeType DazedState
+	{
+		get => (DazeType)Owner.GetAnimParameterInt( "daze_state" );
+		set => Owner.SetAnimParameter( "daze_state", (int)value );
+	}
+
+	/// <summary>
+	/// Gets/sets the "b_haspaint" parameter.
+	/// </summary>
+	internal bool HasPaint
+	{
+		get => Owner.GetAnimParameterBool( "b_haspaint" );
+		set => Owner.SetAnimParameter( "b_spray", value );
+	}
+
+	/// <summary>
+	/// Gets/sets the "b_spray" parameter.
+	/// </summary>
+	internal bool Spraying
+	{
+		get => Owner.GetAnimParameterBool( "b_spray" );
+		set => Owner.SetAnimParameter( "b_spray", value );
+	}
+
+	/// <summary>
+	/// Triggers the "b_jump" parameter.
+	/// </summary>
+	internal void TriggerJump()
 	{
 		Owner.SetAnimParameter( "b_jump", true );
 	}
 
-	public void TriggerDeploy()
+	/// <summary>
+	/// Triggers the "b_deploy" parameter.
+	/// </summary>
+	internal void TriggerDeploy()
 	{
 		Owner.SetAnimParameter( "b_deploy", true );
 	}

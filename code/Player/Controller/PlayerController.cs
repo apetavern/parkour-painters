@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public partial class PlayerController : EntityComponent<Player>, ISingletonComponent
+internal partial class PlayerController : EntityComponent<Player>, ISingletonComponent
 {
 	public Vector3 LastVelocity { get; set; }
 	public Entity LastGroundEntity { get; set; }

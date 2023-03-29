@@ -1,19 +1,17 @@
-using Sandbox;
-
 namespace GangJam;
 
 [Prefab]
 public sealed partial class Player : AnimatedEntity
 {
-	[BindComponent] public PlayerController Controller { get; }
-	[BindComponent] public PlayerAnimator Animator { get; }
-	[BindComponent] public PlayerCamera Camera { get; }
+	[BindComponent] internal PlayerController Controller { get; }
+	[BindComponent] internal PlayerAnimator Animator { get; }
+	[BindComponent] internal PlayerCamera Camera { get; }
 
-	[BindComponent] public JumpMechanic JumpMechanic { get; }
-	[BindComponent] public WallJumpMechanic WallJumpMechanic { get; }
-	[BindComponent] public LedgeGrabMechanic LedgeGrabMechanic { get; }
-	[BindComponent] public GrindMechanic GrindMechanic { get; }
-	[BindComponent] public DashMechanic DashMechanic { get; }
+	[BindComponent] internal JumpMechanic JumpMechanic { get; }
+	[BindComponent] internal WallJumpMechanic WallJumpMechanic { get; }
+	[BindComponent] internal LedgeGrabMechanic LedgeGrabMechanic { get; }
+	[BindComponent] internal GrindMechanic GrindMechanic { get; }
+	[BindComponent] internal DashMechanic DashMechanic { get; }
 
 	/// <summary>
 	/// Returns the team that the player is a part of.

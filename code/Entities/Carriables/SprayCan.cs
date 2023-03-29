@@ -1,4 +1,6 @@
-﻿namespace GangJam;
+﻿using Sandbox;
+
+namespace GangJam;
 
 /// <summary>
 /// A spray can that can be used to daze players or graffiti the map.
@@ -24,6 +26,14 @@ public sealed partial class SprayCan : BaseCarriable
 	}
 
 	/// <inheritdoc/>
+	public sealed override void OnHolstered()
+	{
+		Player.SetAnimParameter( "b_haspaint", false );
+
+		base.OnHolstered();
+	}
+
+	/// <inheritdoc/>
 	protected sealed override void OnPrimaryAttack()
 	{
 		if ( Player.IsDazed )
@@ -41,7 +51,7 @@ public sealed partial class SprayCan : BaseCarriable
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
-			if ( Player?.Team?.Group is null )
+			if ( Player.Team?.Group is null )
 				return;
 
 			SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );

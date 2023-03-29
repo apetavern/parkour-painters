@@ -22,7 +22,7 @@ public partial class ControllerMechanic : EntityComponent<Player>
 	/// </summary>
 	public TimeUntil TimeUntilCanStart { get; protected set; }
 
-	protected PlayerController Controller => Entity.Controller;
+	internal PlayerController Controller => Entity.Controller;
 
 	/// <summary>
 	/// Accessor for the player.
@@ -85,7 +85,7 @@ public partial class ControllerMechanic : EntityComponent<Player>
 	/// </summary>
 	public virtual Vector3? MoveInputScale { get; set; } = null;
 
-	public bool TrySimulate( PlayerController controller )
+	internal bool TrySimulate( PlayerController controller )
 	{
 		var before = IsActive;
 		IsActive = ShouldStart();

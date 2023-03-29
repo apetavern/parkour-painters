@@ -1,6 +1,6 @@
 namespace GangJam;
 
-public partial class PlayerCamera : EntityComponent<Player>, ISingletonComponent
+internal sealed class PlayerCamera : EntityComponent<Player>, ISingletonComponent
 {
 	private float MinDistance => 120.0f;
 	private float MaxDistance => 350.0f;
@@ -11,7 +11,7 @@ public partial class PlayerCamera : EntityComponent<Player>, ISingletonComponent
 	private float _distance;
 	private Vector3 _targetPosition;
 
-	public virtual void Update( Player player )
+	internal void Update( Player player )
 	{
 		var currentDistance = _distance.LerpInverse( MinDistance, MaxDistance );
 
