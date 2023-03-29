@@ -34,6 +34,11 @@ public sealed partial class PlayState : Entity, IGameState
 	/// </summary>
 	public TimeUntil TimeUntilGameEnds => GangJam.GameLength - TimeSinceGameStarted;
 
+	/// <summary>
+	/// A cache for mapping clients to their teams.
+	/// </summary>
+	private readonly Dictionary<IClient, Team> clientTeamMap = new();
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -47,12 +52,30 @@ public sealed partial class PlayState : Entity, IGameState
 	{
 		base.OnDestroy();
 
+		clientTeamMap.Clear();
+
 		if ( !Game.IsServer )
 			return;
 
 		// Delete all teams that are no longer in use.
 		foreach ( var team in Children.OfType<Team>() )
 			team.Delete();
+	}
+
+	/// <summary>
+	/// Gets the team that a client is playing for.
+	/// </summary>
+	/// <param name="client">The client whose team to look for.</param>
+	/// <returns>The team that the client is playing for.</returns>
+	internal Team GetTeamFor( IClient client )
+	{
+		if ( clientTeamMap.TryGetValue( client, out var cachedTeam ) )
+			return cachedTeam;
+
+		var team = Teams.Where( team => team.Members.Contains( client ) ).FirstOrDefault();
+		clientTeamMap.Add( client, team );
+
+		return team;
 	}
 
 	/// <inheritdoc/>
