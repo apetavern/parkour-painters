@@ -2,6 +2,9 @@
   "Name": "Nineties",
   "Description": "Might as well be boomers",
   "SprayColor": "0,0,255,1",
+  "AvailableSprays": [
+    "materials/sprays/nineties_cup_01a.vmat"
+  ],
   "ClothingCollection": "data/clothing_collections/nineties.clothc",
   "PlayerPrefab": "prefabs/nineties.prefab"
 }

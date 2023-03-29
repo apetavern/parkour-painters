@@ -2,6 +2,9 @@
   "Name": "Punk",
   "Description": "A bunch of weirdos",
   "SprayColor": "255,0,0,1",
+  "AvailableSprays": [
+    "materials/sprays/punk_anarchy_01a.vmat"
+  ],
   "ClothingCollection": "data/clothing_collections/punk.clothc",
   "PlayerPrefab": "prefabs/punk.prefab"
 }

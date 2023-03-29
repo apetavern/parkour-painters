@@ -7,7 +7,7 @@
 [Title( "Carriable Spawner" ), Category( "Spray Down" )]
 [EditorModel( "models/entities/spray_paint/spray_paint.vmdl" )]
 [HammerEntity]
-public sealed partial class CarriableSpawner : AnimatedEntity
+internal sealed partial class CarriableSpawner : AnimatedEntity
 {
 	/// <summary>
 	/// The time in seconds since an item was last picked up from the spawner.

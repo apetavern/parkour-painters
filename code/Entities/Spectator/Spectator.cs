@@ -8,7 +8,7 @@ internal sealed class Spectator : Entity
 	/// <summary>
 	/// The instance of <see cref="SpectatorCamera"/> on this entity.
 	/// </summary>
-	[BindComponent] internal SpectatorCamera Camera { get; }
+	[BindComponent] private SpectatorCamera Camera { get; }
 
 	/// <summary>
 	/// Normalized accumulation of Input.AnalogLook
