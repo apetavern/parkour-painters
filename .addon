@@ -94,6 +94,17 @@
         "Minimum": 0.1,
         "Maximum": 20,
         "Step": 0.1
+      },
+      {
+        "DisplayType": "Float",
+        "Choices": [],
+        "ConVarName": "gj_gamestartgraceperiod",
+        "DisplayName": "Game Start Grace Period",
+        "DefaultValue": "10",
+        "Description": "The time in seconds to wait for any other players to join before starting the game.",
+        "Group": "",
+        "Maximum": 300,
+        "Step": 1
       }
     ]
   }

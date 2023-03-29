@@ -3,6 +3,12 @@
 partial class GangJam
 {
 	/// <summary>
+	/// Defines how long the grace period will be before automatically starting the game.
+	/// </summary>
+	[ConVar.Replicated( "gj_gamestartgraceperiod" )]
+	internal static float GameStartGracePeriod { get; private set; } = 10;
+
+	/// <summary>
 	/// Defines how long games will be.
 	/// </summary>
 	[ConVar.Replicated( "gj_gamelength" )]

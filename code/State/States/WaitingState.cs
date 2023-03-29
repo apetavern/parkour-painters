@@ -4,7 +4,7 @@
 /// The state for when waiting for players to join the game.
 /// </summary>
 [Category( "Setup" )]
-internal sealed class WaitingState : Entity, IGameState
+internal sealed partial class WaitingState : Entity, IGameState
 {
 	/// <summary>
 	/// The active instance of <see cref="WaitingState"/>. This can be null.
@@ -16,6 +16,15 @@ internal sealed class WaitingState : Entity, IGameState
 	/// This can only be accessed on the server after the state has exited.
 	/// </summary>
 	internal ImmutableArray<ImmutableArray<IClient>> Teams { get; private set; }
+
+	/// <summary>
+	/// The time in seconds until the game will move to the <see cref="PlayState"/>.
+	/// </summary>
+	[Net] private TimeUntil TimeUntilGameStart { get; set; }
+	/// <summary>
+	/// Returns whether or not the game is getting ready to start.
+	/// </summary>
+	internal bool GameStarting => Game.Clients.Count >= 2 && TimeUntilGameStart > 0;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -61,11 +70,14 @@ internal sealed class WaitingState : Entity, IGameState
 		var player = new Player();
 		cl.Pawn = player;
 		player.Respawn();
+
+		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.ClientDisconnected( IClient cl,  NetworkDisconnectionReason reason )
 	{
+		TimeUntilGameStart = GangJam.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
@@ -76,9 +88,20 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		if ( Game.Clients.Count >= GangJam.NumTeams )
+		if ( Game.Clients.Count >= 2 && TimeUntilGameStart <= 0 )
 			PlayState.SetActive();
 	}
+
+#if DEBUG
+	[Event.Tick.Client]
+	private void DebugDraw()
+	{
+		if ( GameStarting )
+			DebugOverlay.ScreenText( $"Game starting in {Math.Ceiling( TimeUntilGameStart )} seconds" );
+		else
+			DebugOverlay.ScreenText( "Waiting for players" );
+	}
+#endif
 
 	/// <summary>
 	/// Sets the <see cref="WaitingState"/> as the active state in the game. This can only be invoked on the server.
