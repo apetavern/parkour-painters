@@ -33,7 +33,10 @@
     },
     {
       "_class": "TextureSampler",
-      "Coords": {},
+      "Coords": {
+        "Identifier": "15",
+        "Output": "Result"
+      },
       "Texture": "materials/sprays/textures/nineties_cup_01a_trans_png_7cf7e028.generated.vtex",
       "Sampler": {
         "Filter": "Point"
@@ -188,7 +191,10 @@
     },
     {
       "_class": "TextureSampler",
-      "Coords": {},
+      "Coords": {
+        "Identifier": "15",
+        "Output": "Result"
+      },
       "Texture": "materials/sprays/textures/nineties_cup_01a_color_png_976c85f5.generated.vtex",
       "Sampler": {
         "Filter": "Point"
@@ -233,6 +239,60 @@
       },
       "Identifier": "13",
       "Position": "80,272"
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": false,
+      "Tiling": "1,1",
+      "Identifier": "14",
+      "Position": "-1568,-336"
+    },
+    {
+      "_class": "TileAndOffset",
+      "Coords": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "Tile": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "Offset": {
+        "Identifier": "17",
+        "Output": "Result"
+      },
+      "DefaultTile": "1,1",
+      "DefaultOffset": "0,0",
+      "WrapTo01": false,
+      "Identifier": "15",
+      "Position": "-1216,-336"
+    },
+    {
+      "_class": "Float2",
+      "Name": "Tex Coord Scale",
+      "Value": "1,1",
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Texture Coordinates",
+          "Priority": 4
+        }
+      },
+      "Identifier": "16",
+      "Position": "-1568,-256"
+    },
+    {
+      "_class": "Float2",
+      "Name": "Tex Coord Offset",
+      "Value": "0,0",
+      "UI": {
+        "Priority": 1,
+        "PrimaryGroup": {
+          "Name": "Texture Coordinates",
+          "Priority": 4
+        }
+      },
+      "Identifier": "17",
+      "Position": "-1568,-144"
     }
   ]
 }

@@ -60,6 +60,8 @@ PS
 	CreateInputTexture2D( Translucency, Srgb, 8, "None", "_trans", "Translucent,1/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateTexture2DWithoutSampler( g_tColor ) < Channel( RGBA, Box( Color ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
 	CreateTexture2DWithoutSampler( g_tTranslucency ) < Channel( RGBA, Box( Translucency ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
+	float2 g_vTexCoordScale < UiGroup( "Texture Coordinates,4/,0/0" ); Default2( 1,1 ); >;
+	float2 g_vTexCoordOffset < UiGroup( "Texture Coordinates,4/,0/1" ); Default2( 0,0 ); >;
 	float g_flSmoothStepMin < UiGroup( "Translucent,1/,0/2" ); Default1( 0.3 ); Range1( 0, 1 ); >;
 	float g_flSmoothStepMax < UiGroup( "Translucent,1/,0/3" ); Default1( 0.5 ); Range1( 0, 1 ); >;
 	float g_flFadeamount < UiGroup( "Translucent,1/,0/1" ); Default1( 0 ); Range1( 0, 10 ); >;
@@ -79,22 +81,26 @@ PS
 		m.Emission = float3( 0, 0, 0 );
 		m.Transmission = 0;
 
-		float4 local0 = Tex2DS( g_tColor, g_sSampler0, i.vTextureCoords.xy );
-		float local1 = g_flSmoothStepMin;
-		float local2 = g_flSmoothStepMax;
-		float local3 = g_flFadeamount;
-		float4 local4 = Tex2DS( g_tTranslucency, g_sSampler0, i.vTextureCoords.xy );
-		float4 local5 = float4( local3, local3, local3, local3 ) * local4;
-		float local6 = lerp( 0, 1, local5.x );
-		float local7 = smoothstep( local1, local2, local6 );
-		float local8 = saturate( local7 );
-		float local9 = g_flRoughness;
-		float local10 = g_flMetallic;
+		float2 local0 = i.vTextureCoords.xy * float2( 1, 1 );
+		float2 local1 = g_vTexCoordScale;
+		float2 local2 = g_vTexCoordOffset;
+		float2 local3 = TileAndOffsetUv( local0, local1, local2 );
+		float4 local4 = Tex2DS( g_tColor, g_sSampler0, local3 );
+		float local5 = g_flSmoothStepMin;
+		float local6 = g_flSmoothStepMax;
+		float local7 = g_flFadeamount;
+		float4 local8 = Tex2DS( g_tTranslucency, g_sSampler0, local3 );
+		float4 local9 = float4( local7, local7, local7, local7 ) * local8;
+		float local10 = lerp( 0, 1, local9.x );
+		float local11 = smoothstep( local5, local6, local10 );
+		float local12 = saturate( local11 );
+		float local13 = g_flRoughness;
+		float local14 = g_flMetallic;
 
-		m.Albedo = local0.xyz;
-		m.Opacity = local8;
-		m.Roughness = local9;
-		m.Metalness = local10;
+		m.Albedo = local4.xyz;
+		m.Opacity = local12;
+		m.Roughness = local13;
+		m.Metalness = local14;
 		m.AmbientOcclusion = 1;
 
 		m.AmbientOcclusion = saturate( m.AmbientOcclusion );
