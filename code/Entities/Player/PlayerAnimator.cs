@@ -51,8 +51,6 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			{
 				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", player );
 				SparkParticles.SetEntityBone( 0, player, player.GetBoneIndex( "ankle_L" ) );
-				//SparkParticles.SetPosition( 0, player.GetBoneTransform( "ankle_L" ).Position + player.Rotation.Forward * 50f );
-				//SparkParticles.SetOrientation( 0, player.GetBoneTransform( "ankle_L" ).Rotation.Angles() );
 			}
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
 		}
