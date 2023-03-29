@@ -33,7 +33,7 @@ public sealed partial class Player : AnimatedEntity
 	public bool IsImmune => TimeSinceDazed > GangJam.DazeTime && TimeSinceDazed <= GangJam.ImmuneTime;
 
 	/// <summary>
-	/// The most recent way that the player was dazed.
+	/// The current type of daze the player is experiencing.
 	/// </summary>
 	[Net] public DazeType DazeType { get; private set; }
 
@@ -215,6 +215,9 @@ public sealed partial class Player : AnimatedEntity
 			RenderColor = RenderColor.WithAlpha( ImmuneAlpha );
 		else
 			RenderColor = RenderColor.WithAlpha( 1 );
+
+		if ( !IsDazed )
+			DazeType = DazeType.None;
 
 		if ( !Game.IsClient || IsDazed )
 			return;
