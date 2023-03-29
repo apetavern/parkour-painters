@@ -226,7 +226,8 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 	public void ApplyFriction( float stopSpeed, float frictionAmount = 1.0f )
 	{
 		var speed = Velocity.Length;
-		if ( speed.AlmostEqual( 0f ) ) return;
+		if ( speed.AlmostEqual( 0f ) )
+			return;
 
 		if ( BestMechanic?.FrictionOverride != null )
 			frictionAmount = BestMechanic.FrictionOverride.Value;
@@ -236,7 +237,8 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 
 		// Scale the velocity
 		float newspeed = speed - drop;
-		if ( newspeed < 0 ) newspeed = 0;
+		if ( newspeed < 0 )
+			newspeed = 0;
 
 		if ( newspeed != speed )
 		{
@@ -247,10 +249,8 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 
 	public void StepMove( float groundAngle = 46f, float stepSize = 18f )
 	{
-		MoveHelper mover = new MoveHelper( Position, Velocity );
-		mover.Trace = mover.Trace.Size( Hull )
-			.Ignore( Player )
-			.WithoutTags( "player" );
+		var mover = new MoveHelper( Position, Velocity );
+		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs ).Ignore( Player );
 		mover.MaxStandableAngle = groundAngle;
 
 		mover.TryMoveWithStep( Time.Delta, stepSize );
@@ -261,10 +261,8 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 
 	public void Move( float groundAngle = 46f )
 	{
-		MoveHelper mover = new MoveHelper( Position, Velocity );
-		mover.Trace = mover.Trace.Size( Hull )
-			.Ignore( Player )
-			.WithoutTags( "player" );
+		var mover = new MoveHelper( Position, Velocity );
+		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs ).Ignore( Player );
 		mover.MaxStandableAngle = groundAngle;
 
 		mover.TryMove( Time.Delta );

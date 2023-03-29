@@ -69,6 +69,7 @@ public sealed partial class Player : AnimatedEntity
 		EnableHitboxes = true;
 
 		Tags.Add( "player" );
+		Tags.Add( "solid" );
 	}
 
 	/// <summary>
