@@ -97,15 +97,24 @@ public sealed partial class PlayState : Entity, IGameState
 			(teamMembers, spectators) = WaitingState.BuildDefaultTeams();
 
 		// Setup teams.
-		for ( var i = 0; i < teamMembers.Length; i++ )
 		{
-			var randomGroup = Random.Shared.FromDictionary( GroupResource.All ).Value;
-			var team = new Team( randomGroup, teamMembers[i] )
-			{
-				Parent = this
-			};
+			var usedTeamTypes = new HashSet<GroupResource>();
 
-			teams.Add( team );
+			for ( var i = 0; i < teamMembers.Length; i++ )
+			{
+				GroupResource randomGroup;
+				do
+				{
+					randomGroup = Random.Shared.FromDictionary( GroupResource.All ).Value;
+				} while ( GangJam.EnforceUniqueTeams && !usedTeamTypes.Add( randomGroup ) );
+
+				var team = new Team( randomGroup, teamMembers[i] )
+				{
+					Parent = this
+				};
+
+				teams.Add( team );
+			}
 		}
 
 		// Respawn all players with their clothes.

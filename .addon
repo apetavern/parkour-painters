@@ -116,6 +116,15 @@
         "Group": "",
         "Minimum": 1,
         "Maximum": 100
+      },
+      {
+        "DisplayType": "Boolean",
+        "Choices": [],
+        "ConVarName": "gj_enforceuniqueteams",
+        "DisplayName": "Enforce Unique Teams",
+        "DefaultValue": "true",
+        "Description": "",
+        "Group": ""
       }
     ],
     "Collision": {

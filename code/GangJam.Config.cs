@@ -33,6 +33,12 @@ partial class GangJam
 	public static int MaxTeams { get; private set; } = 2;
 
 	/// <summary>
+	/// Defines whether or not each team is a unique type.
+	/// </summary>
+	[ConVar.Replicated( "gj_enforceuniqueteams" )]
+	internal static bool EnforceUniqueTeams { get; private set; } = true;
+
+	/// <summary>
 	/// Defines the maximum amount of players that can be in a team.
 	/// </summary>
 	[ConVar.Replicated( "gj_maxplayersperteam" )]
