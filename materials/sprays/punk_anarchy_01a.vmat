@@ -1,13 +1,30 @@
-"Layer0"
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
 {
-	"shader"		"shaders/dissolve.shader_c"
-	"Color"		"[0.898039 0.066667 0.180392 1.000000]"
-	"g_bFogEnabled"		"1"
-	"g_flMetallic"		"0.000000"
-	"g_flRoughness"		"1.000000"
-	"g_flFadeamount"		"0.000000"
-	"g_flOpacityScale"		"1.000000"
-	"g_flSmoothStepMax"		"0.500000"
-	"g_flSmoothStepMin"		"0.300000"
-	"Translucency"		"materials/sprays/textures/punk_anarchy_01a_reveal.png"
+	shader "shaders/dissolve.shader_c"
+
+	//---- Color ----
+	Color "[0.898039 0.066667 0.180392 1.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	g_flMetallic "0.000"
+
+	//---- Roughness ----
+	g_flRoughness "1.000"
+
+	//---- Translucent ----
+	g_flFadeamount "0.000"
+	g_flOpacityScale "1.000"
+	g_flSmoothStepMax "0.500"
+	g_flSmoothStepMin "0.300"
+	Translucency "materials/sprays/textures/punk_anarchy_01a_reveal.png"
+
+	DynamicParams
+	{
+		g_flFadeamount "fade_amount"
+	}
 }

@@ -24,6 +24,12 @@ public sealed class GroupResource : GameResource
 	public Color SprayColor { get; private set; }
 
 	/// <summary>
+	/// A list of all possible sprays for this group.
+	/// </summary>
+	[ResourceType( "vmat" )]
+	public List<string> AvailableSprays { get; private set; }
+
+	/// <summary>
 	/// The collection of clothing affiliated with the group.
 	/// </summary>
 	public ClothingCollectionResource ClothingCollection { get; private set; }
