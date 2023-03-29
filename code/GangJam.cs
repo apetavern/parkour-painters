@@ -14,11 +14,15 @@ public sealed partial class GangJam : GameManager
 
 	public GangJam()
 	{
-		if ( !Game.IsServer )
-			return;
-
-		SetupPrecache();
-		WaitingState.SetActive();
+		if ( Game.IsClient )
+		{
+			_ = new UI.Hud();
+		}
+		else
+		{
+			SetupPrecache();
+			WaitingState.SetActive();
+		}
 	}
 
 	/// <inheritdoc/>

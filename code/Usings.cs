@@ -5,6 +5,7 @@ global using GangJam.Resources;
 global using GangJam.State;
 global using GangJam.Util;
 global using Sandbox;
+global using Sandbox.UI;
 global using System;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
