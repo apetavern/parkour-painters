@@ -649,6 +649,14 @@
 			m_bAdditive = true
 		},
 	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_WorldTraceConstraint"
+			m_nCollisionModeMin = "COLLISION_MODE_USE_NEAREST_TRACE"
+			m_bKillonContact = true
+		},
+	]
 	m_Renderers = 
 	[
 		{
