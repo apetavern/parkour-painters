@@ -27,6 +27,11 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] internal IList<Team> DrawingTeams { get; private set; }
 
+	/// <summary>
+	/// The time in seconds until the game moves back to the <see cref="WaitingState"/>.
+	/// </summary>
+	[Net] private TimeUntil TimeUntilResetGame { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -69,6 +74,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 			highestScoreTeam.Parent = this;
 			WinningTeam = highestScoreTeam;
 		}
+
+		TimeUntilResetGame = GangJam.GameResetTimer;
 	}
 
 	/// <inheritdoc/>
@@ -97,6 +104,9 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
+		if ( TimeUntilResetGame <= 0 )
+			WaitingState.SetActive();
+	}
 	}
 
 	/// <summary>

@@ -15,6 +15,12 @@ partial class GangJam
 	public static float GameLength { get; private set; } = 300;
 
 	/// <summary>
+	/// Defines how long until the game moves back to the <see cref="WaitingState"/>.
+	/// </summary>
+	[ConVar.Replicated( "gj_gameresettimer" )]
+	internal static float GameResetTimer { get; private set; } = 10;
+
+	/// <summary>
 	/// Defines the maximum amount of teams to have in the game.
 	/// </summary>
 	[ConVar.Replicated( "gj_maxteams" )]
