@@ -45,10 +45,10 @@
       {
         "DisplayType": "Integer",
         "Choices": [],
-        "ConVarName": "gj_numteams",
-        "DisplayName": "Number of Teams",
+        "ConVarName": "gj_maxteams",
+        "DisplayName": "Max Teams",
         "DefaultValue": "2",
-        "Description": "",
+        "Description": "The maximum amount of teams that can exist in the game.",
         "Group": "",
         "Minimum": 2,
         "Maximum": 10

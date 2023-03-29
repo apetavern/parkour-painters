@@ -41,7 +41,7 @@ internal sealed class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
-		var builders = new ImmutableArray<IClient>.Builder[GangJam.NumTeams];
+		var builders = new ImmutableArray<IClient>.Builder[GangJam.MaxTeams];
 		for ( var i = 0; i < builders.Length; i++ )
 			builders[i] = ImmutableArray.CreateBuilder<IClient>();
 

@@ -63,7 +63,7 @@ public sealed partial class PlayState : Entity, IGameState
 		if ( lastState is not WaitingState waitingState || waitingState.Teams == default )
 		{
 			// TODO: This can be way better.
-			var builder = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>( GangJam.NumTeams );
+			var builder = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>( GangJam.MaxTeams );
 			for ( var i = 0; i < builder.Count; i++ )
 				builder.Add( ImmutableArray.Create<IClient>() );
 

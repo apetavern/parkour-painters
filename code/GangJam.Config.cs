@@ -9,10 +9,10 @@ partial class GangJam
 	public static float GameLength { get; private set; } = 300;
 
 	/// <summary>
-	/// Defines how many teams are in the game.
+	/// Defines the maximum amount of teams to have in the game.
 	/// </summary>
-	[ConVar.Replicated( "gj_numteams" )]
-	public static int NumTeams { get; private set; } = 2;
+	[ConVar.Replicated( "gj_maxteams" )]
+	public static int MaxTeams { get; private set; } = 2;
 
 	/// <summary>
 	/// Defines whether or not a clients clothing choices should be mixed with a <see cref="ClothingCollectionResource"/>s clothes.
