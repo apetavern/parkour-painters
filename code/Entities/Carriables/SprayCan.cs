@@ -45,7 +45,7 @@ public sealed partial class SprayCan : BaseCarriable
 		Player.SetAnimParameter( "b_spray", true );
 
 		// Create spray particles
-		if ( Game.IsClient && SprayParticles is null )
+		if ( SprayParticles is null )
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
@@ -73,9 +73,6 @@ public sealed partial class SprayCan : BaseCarriable
 		base.OnPrimaryReleased();
 
 		Player.SetAnimParameter( "b_spray", false );
-
-		if ( !Game.IsClient )
-			return;
 
 		SprayParticles?.Destroy();
 		SprayParticles = null;
