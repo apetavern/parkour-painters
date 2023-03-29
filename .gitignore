@@ -35,6 +35,9 @@ _bakeresourcecache/
 *.prefab_c
 *.tsta_c
 *.tlvl_c
+*.clothing_c
+*.clothc_c
+*.group_c
 
 # Allowlist
 !*_dev.vpk
