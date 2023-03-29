@@ -6,6 +6,9 @@
 [Category( "Setup" )]
 public sealed partial class PlayState : Entity, IGameState
 {
+	/// <inheritdoc/>
+	public string StateName { get; set; } = "Tag";
+
 	/// <summary>
 	/// The active instance of <see cref="PlayState"/>. This can be null.
 	/// </summary>
@@ -83,7 +86,7 @@ public sealed partial class PlayState : Entity, IGameState
 	{
 		ImmutableArray<ImmutableArray<IClient>> teamMembers;
 		ImmutableArray<IClient> spectators;
-		
+
 		if ( lastState is WaitingState waitingState && waitingState.Teams != default )
 		{
 			teamMembers = waitingState.Teams;

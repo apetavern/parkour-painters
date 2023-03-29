@@ -6,6 +6,9 @@
 [Category( "Setup" )]
 internal sealed partial class GameOverState : Entity, IGameState
 {
+	/// <inheritdoc/>
+	public string StateName { get; set; } = "Game Over";
+
 	/// <summary>
 	/// The active instance of <see cref="GameOverState"/>. This can be null.
 	/// </summary>

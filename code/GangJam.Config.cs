@@ -21,6 +21,12 @@ partial class GangJam
 	internal static float GameResetTimer { get; private set; } = 10;
 
 	/// <summary>
+	/// Defines how many players are needed for the game to start.
+	/// </summary>
+	[ConVar.Replicated( "gj_minimumplayers" )]
+	public static float MinimumPlayers { get; private set; } = 2;
+
+	/// <summary>
 	/// Defines the maximum amount of teams to have in the game.
 	/// </summary>
 	[ConVar.Replicated( "gj_maxteams" )]
