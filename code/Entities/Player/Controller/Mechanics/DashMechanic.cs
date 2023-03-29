@@ -16,7 +16,7 @@ public sealed partial class DashMechanic : ControllerMechanic
 		if ( !Input.Pressed( InputButton.Run ) )
 			return false;
 
-		if ( Player.WallJumpMechanic.IsActive || Player.LedgeGrabMechanic.IsActive )
+		if ( Player.WallJumpMechanic.IsActive || Player.LedgeGrabMechanic.IsActive || Player.GrindMechanic.IsActive )
 			return false;
 
 		return true;
