@@ -46,7 +46,13 @@ public sealed partial class Player : AnimatedEntity
 
 	public TimeSince TimeSinceFootstep { get; private set; } = 0;
 
+	/// <summary>
+	/// The particles that are shown when the player is dazed.
+	/// </summary>
+	private Particles DazeParticles { get; set; }
+
 	private static readonly Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
+
 	/// <summary>
 	/// The alpha value to give to immune players.
 	/// </summary>
@@ -121,6 +127,7 @@ public sealed partial class Player : AnimatedEntity
 
 		TimeSinceDazed = 0;
 		DazeType = dazeType;
+		DazePlayerParticles( To.Everyone );
 		return true;
 	}
 
@@ -210,6 +217,18 @@ public sealed partial class Player : AnimatedEntity
 			RenderColor = RenderColor.WithAlpha( ImmuneAlpha );
 		else
 			RenderColor = RenderColor.WithAlpha( 1 );
+
+		if ( !Game.IsClient || IsDazed )
+			return;
+
+		DazeParticles?.Destroy();
+		DazeParticles = null;
+	}
+
+	[ClientRpc]
+	private void DazePlayerParticles()
+	{
+		DazeParticles = Particles.Create( "particles/stun/stun_base.vpcf", this, "hat" );
 	}
 
 	[ClientRpc]
