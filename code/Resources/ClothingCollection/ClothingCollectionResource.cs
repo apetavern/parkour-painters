@@ -16,6 +16,11 @@ public sealed class ClothingCollectionResource : GameResource
 	public List<TintableClothingEntry> Footwears { get; set; }
 
 	/// <summary>
+	/// Whether or not each <see cref="TintableClothingEntry"/> when their <see cref="TintMode"/> is <see cref="TintMode.Random"/> has the same random color.
+	/// </summary>
+	public bool CommonRandom { get; set; }
+
+	/// <summary>
 	/// Returns a randomized <see cref="ClothingContainer"/> with the collections clothes applied on top of a clients if applicable.
 	/// This also returns a dictionary containing all the model names that should be tinted alongside the color that was chosen.
 	/// </summary>
@@ -52,6 +57,7 @@ public sealed class ClothingCollectionResource : GameResource
 		if ( client is not null )
 			container.LoadFromClient( client );
 
+		var commonRandomColor = random.Color();
 		foreach ( var clothingItem in chosenClothes )
 		{
 			container.Toggle( clothingItem.Clothing );
@@ -59,7 +65,7 @@ public sealed class ClothingCollectionResource : GameResource
 			switch ( clothingItem.TintMode )
 			{
 				case TintMode.Random:
-					tintDictionary.Add( clothingItem.Clothing.Model, random.Color() );
+					tintDictionary.Add( clothingItem.Clothing.Model, CommonRandom ? commonRandomColor : random.Color() );
 					break;
 				case TintMode.RandomSelection:
 					tintDictionary.Add( clothingItem.Clothing.Model, random.FromList( clothingItem.RandomSelections ) );
