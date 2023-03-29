@@ -71,7 +71,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 		{
 			SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", Position );
 
-			if ( player?.Team?.Group is null )
+			if ( player.Team?.Group is null )
 				return;
 
 			SprayCloud.SetPosition( 1, player.Team.Group.SprayColor.ToVector3() );
