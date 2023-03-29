@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_nBehaviorVersion = 10
 	m_nMaxParticles = 6
-	m_flConstantLifespan = 0.25
+	m_flConstantLifespan = 0.4
 	m_controlPointConfigurations = 
 	[
 		{
@@ -30,7 +30,7 @@
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
 				m_NamedValue = ""
-				m_flLiteralValue = 10.0
+				m_flLiteralValue = 15.0
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
@@ -76,7 +76,7 @@
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
 				m_NamedValue = ""
-				m_flLiteralValue = 10.0
+				m_flLiteralValue = 5.0
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
@@ -130,8 +130,8 @@
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
 				m_nVectorComponent = 0
-				m_flRandomMin = 3.0
-				m_flRandomMax = 6.0
+				m_flRandomMin = 1.0
+				m_flRandomMax = 2.0
 				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
 				m_flLOD0 = 0.0
 				m_flLOD1 = 0.0
@@ -262,7 +262,7 @@
 				m_flNoiseImgPreviewScale = 1.0
 				m_bNoiseImgPreviewLive = true
 				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
-				m_flMultFactor = 3.0
+				m_flMultFactor = 2.0
 				m_flInput0 = 0.0
 				m_flInput1 = 1.0
 				m_flOutput0 = 0.0
@@ -276,8 +276,8 @@
 						{
 							x = 0.0
 							y = 0.0
-							m_flSlopeIncoming = 1.750154
-							m_flSlopeOutgoing = 1.750154
+							m_flSlopeIncoming = 1.750152
+							m_flSlopeOutgoing = 1.750152
 						},
 						{
 							x = 0.498608
@@ -288,8 +288,8 @@
 						{
 							x = 1.0
 							y = 3.0
-							m_flSlopeIncoming = 4.242905
-							m_flSlopeOutgoing = 4.242905
+							m_flSlopeIncoming = 4.242908
+							m_flSlopeOutgoing = 4.242908
 						},
 					]
 					m_tangents = 
@@ -829,6 +829,12 @@
 			}
 			m_bOnlyRenderInEffectsBloomPass = true
 			m_hTexture = resource:"particles/textures/vfx_star_01.vtex"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/stun/stun_spin.vpcf"
 		},
 	]
 }
