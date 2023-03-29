@@ -69,9 +69,6 @@ public sealed partial class GraffitiSpot : ModelEntity
 
 		SprayProgress = Math.Clamp( SprayProgress + player.SprayAmount, 0, 100 );
 
-		if ( Game.IsClient )
-			SceneObject.Attributes.Set( "fade_amount", SprayProgress / 10 );
-
 		// Create spray cloud clientside.
 		if ( Game.IsClient && SprayCloud is null )
 		{
@@ -99,11 +96,14 @@ public sealed partial class GraffitiSpot : ModelEntity
 	}
 
 	/// <summary>
-	/// Checks whether or not the spray cloud needs to be cleaned up.
+	/// Performs various client-side checks for the <see cref="GraffitiSpot"/>.
 	/// </summary>
 	[Event.Tick.Client]
 	private void SprayCleanup()
 	{
+		// Update the fade on the spot.
+		SceneObject.Attributes.Set( "fade_amount", SprayProgress / 10 );
+
 		if ( TimeSinceLastSprayed <= 0.2f )
 			return;
 
