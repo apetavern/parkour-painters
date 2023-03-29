@@ -22,4 +22,10 @@ Layer0
 	g_flSmoothStepMax "0.031"
 	g_flSmoothStepMin "0.010"
 	Translucency "materials/sprays/textures/nerds_csharp_01a_reveal.png"
+
+	DynamicParams
+	{
+		g_flFadeamount "fade_amount"
+		Translucency "fade_amount"
+	}
 }

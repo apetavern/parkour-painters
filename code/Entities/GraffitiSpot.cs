@@ -5,7 +5,7 @@
 /// </summary>
 [Library( "func_graffiti_spot" )]
 [Title( "Graffiti Spot" ), Category( "Spray Down" )]
-[HammerEntity, Solid, DrawAngles, AutoApplyMaterial( "materials/sprays/spray_space.vmat" )]
+[HammerEntity, Solid, DrawAngles]
 public sealed partial class GraffitiSpot : ModelEntity
 {
 	/// <summary>
@@ -56,6 +56,9 @@ public sealed partial class GraffitiSpot : ModelEntity
 			SprayProgress = 0;
 			SprayOwner = player.Team;
 
+			if ( SprayOwner?.Group?.AvailableSprays is not null )
+				SetMaterialOverride( Material.Load( Game.Random.FromList( SprayOwner.Group.AvailableSprays ) ) );
+
 			if ( oldTeam is not null )
 				Event.Run( GangJam.Events.GraffitiSpotTampered, oldTeam, SprayOwner, player );
 		}
@@ -65,6 +68,9 @@ public sealed partial class GraffitiSpot : ModelEntity
 			return;
 
 		SprayProgress = Math.Clamp( SprayProgress + player.SprayAmount, 0, 100 );
+
+		if ( Game.IsClient )
+			SceneObject.Attributes.Set( "fade_amount", SprayProgress / 10 );
 
 		// Create spray cloud clientside.
 		if ( Game.IsClient && SprayCloud is null )
