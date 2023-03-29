@@ -21,6 +21,12 @@ partial class GangJam
 	public static int MaxTeams { get; private set; } = 2;
 
 	/// <summary>
+	/// Defines the maximum amount of players that can be in a team.
+	/// </summary>
+	[ConVar.Replicated( "gj_maxplayersperteam" )]
+	public static int MaxPlayersPerTeam { get; private set; } = 100;
+
+	/// <summary>
 	/// Defines whether or not a clients clothing choices should be mixed with a <see cref="ClothingCollectionResource"/>s clothes.
 	/// </summary>
 	[ConVar.Replicated( "gj_mixclientclothes" )]

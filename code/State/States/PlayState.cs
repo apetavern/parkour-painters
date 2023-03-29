@@ -82,20 +82,16 @@ public sealed partial class PlayState : Entity, IGameState
 	void IGameState.Enter( IGameState lastState )
 	{
 		ImmutableArray<ImmutableArray<IClient>> teamMembers;
-		// This is here to jump into play state for debugging.
-		if ( lastState is not WaitingState waitingState || waitingState.Teams == default )
+		ImmutableArray<IClient> spectators;
+		
+		if ( lastState is WaitingState waitingState && waitingState.Teams != default )
 		{
-			var builder = ImmutableArray.CreateBuilder<ImmutableArray<IClient>>( GangJam.MaxTeams );
-			for ( var i = 0; i < builder.Count; i++ )
-				builder.Add( ImmutableArray.Create<IClient>() );
-
-			for ( var i = 0; i < Game.Clients.Count; i++ )
-				builder[i % builder.Count] = builder[i % builder.Count].Add( Game.Clients.ElementAt( i ) );
-
-			teamMembers = builder.ToImmutable();
-		}
-		else
 			teamMembers = waitingState.Teams;
+			spectators = waitingState.Spectators;
+		}
+		// This is here to jump into play state for debugging.
+		else
+			(teamMembers, spectators) = WaitingState.BuildDefaultTeams();
 
 		// Setup teams.
 		for ( var i = 0; i < teamMembers.Length; i++ )
@@ -112,11 +108,21 @@ public sealed partial class PlayState : Entity, IGameState
 		// Respawn all players with their clothes.
 		foreach ( var client in Game.Clients )
 		{
+			if ( spectators.Contains( client ) )
+				continue;
+
 			client.Pawn?.Delete();
 
 			var player = PrefabLibrary.Spawn<Entities.Player>( client.GetTeam().Group.PlayerPrefab );
 			client.Pawn = player;
 			player.Respawn();
+		}
+
+		// Create all spectators.
+		foreach ( var spectator in spectators )
+		{
+			spectator.Pawn?.Delete();
+			spectator.Pawn = new Spectator();
 		}
 
 		TimeSinceGameStarted = 0;
