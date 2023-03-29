@@ -17,6 +17,7 @@ public sealed partial class GangJam : GameManager
 		if ( !Game.IsServer )
 			return;
 
+		SetupPrecache();
 		WaitingState.SetActive();
 	}
 
