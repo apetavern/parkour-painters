@@ -20,6 +20,11 @@ public sealed partial class CarriableSpawner : AnimatedEntity
 	[Property] private string CarriableType { get; set; }
 
 	/// <summary>
+	/// The model for the spawner chosen by hammer.
+	/// </summary>
+	[Property] private Model SpawnerModel { get; set; }
+
+	/// <summary>
 	/// The type that was found from <see ref="CarriableType"/>.
 	/// </summary>
 	private TypeDescription foundType;
@@ -29,8 +34,13 @@ public sealed partial class CarriableSpawner : AnimatedEntity
 	{
 		base.Spawn();
 
-		// TODO: Let hammer choose a model.
-		SetModel( "models/entities/spray_paint/spray_paint.vmdl" );
+		if ( SpawnerModel is null )
+		{
+			Log.Error( $"{nameof( SpawnerModel )} was not set in hammer for {this}" );
+			return;
+		}
+
+		Model = SpawnerModel;
 		Scale = 2f;
 		EnableTouch = true;
 
