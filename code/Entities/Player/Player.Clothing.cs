@@ -17,6 +17,12 @@ partial class Player
 		if ( clothingCollection is null )
 			return;
 
+		SetBodyGroup( "head", 0 );
+		SetBodyGroup( "Chest", 0 );
+		SetBodyGroup( "Legs", 0 );
+		SetBodyGroup( "Hands", 0 );
+		SetBodyGroup( "Feet", 0 );
+
 		ClothingContainer?.ClearEntities();
 		var (clothingContainer, tintDictionary) = clothingCollection.GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
 		ClothingContainer = clothingContainer;
