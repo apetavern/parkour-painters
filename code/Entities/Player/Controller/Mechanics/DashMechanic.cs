@@ -4,7 +4,7 @@ public sealed partial class DashMechanic : ControllerMechanic
 {
 	public double ActiveDashPercentage => Math.Ceiling( Math.Clamp( _timeSinceLastDash / DashRechargeTime * 100, 0, 100 ) );
 	private int DashRechargeTime => GangJam.InfiniteDash ? 0 : 3;
-	private TimeSince _timeSinceLastDash;
+	private TimeSince _timeSinceLastDash { get; set; }
 
 	protected override bool ShouldStart()
 	{

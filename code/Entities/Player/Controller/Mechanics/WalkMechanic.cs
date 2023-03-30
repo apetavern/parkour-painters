@@ -7,7 +7,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 	public float GroundAngle => 46.0f;
 	public float GroundFriction => 4.0f;
 	public float MaxNonJumpVelocity => 140.0f;
-	public float SurfaceFriction { get; set; } = 1f;
+	[Net, Predicted] public float SurfaceFriction { get; set; } = 1f;
 	public float Acceleration => 6f;
 
 	public override float? WishSpeed => 275f;

@@ -2,7 +2,7 @@ namespace GangJam.Entities;
 
 public sealed partial class WallJumpMechanic : ControllerMechanic
 {
-	public bool UsedWallJump { get; private set; }
+	[Net, Predicted] public bool UsedWallJump { get; private set; }
 	public TimeSince TimeSinceLeftWall { get; private set; }
 
 	private float WallJumpConnectangle => 0.95f;
@@ -11,8 +11,8 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 	private float WallJumpFriction => 650f;
 	private float WallJumpTraceDistance => 25f;
 
-	private TimeUntil _timeUntilWallJumpDisengage = Time.Now;
-	private Vector3 _hitNormal;
+	private TimeUntil _timeUntilWallJumpDisengage { get; set; } = Time.Now;
+	[Net, Predicted] private Vector3 _hitNormal { get; set; }
 
 	protected override bool ShouldStart()
 	{
