@@ -163,6 +163,7 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 		var tr = Trace.Ray( start, end )
 					.Size( mins, maxs )
 					.WithAnyTags( "solid", "playerclip", "passbullets" )
+					.WithoutTags( "player" )
 					.Ignore( Player )
 					.Run();
 
@@ -250,7 +251,7 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 	public void StepMove( float groundAngle = 46f, float stepSize = 18f )
 	{
 		var mover = new MoveHelper( Position, Velocity );
-		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs ).Ignore( Player );
+		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs ).WithoutTags( "player" ).Ignore( Player );
 		mover.MaxStandableAngle = groundAngle;
 
 		mover.TryMoveWithStep( Time.Delta, stepSize );
@@ -262,7 +263,7 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 	public void Move( float groundAngle = 46f )
 	{
 		var mover = new MoveHelper( Position, Velocity );
-		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs ).Ignore( Player );
+		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs ).WithoutTags( "player" ).Ignore( Player );
 		mover.MaxStandableAngle = groundAngle;
 
 		mover.TryMove( Time.Delta );

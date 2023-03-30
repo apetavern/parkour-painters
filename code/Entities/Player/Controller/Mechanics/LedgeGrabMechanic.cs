@@ -52,6 +52,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		// Tracing forwards looking for a wall.
 		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
 			.Ignore( Player )
+			.WithoutTags( "player" )
 			.Radius( 3 )
 			.Run();
 
@@ -61,6 +62,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		// Make sure there is nothing above the players head.
 		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * Controller.BodyGirth) )
 			.Ignore( Player )
+			.WithoutTags( "player" )
 			.Radius( 16 )
 			.Run();
 
