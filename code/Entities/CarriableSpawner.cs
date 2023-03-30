@@ -4,7 +4,7 @@
 /// A spawner for a <see cref="BaseCarriable"/>.
 /// </summary>
 [Library( "ent_carriable_spawner" )]
-[Title( "Carriable Spawner" ), Category( "Spray Down" )]
+[Title( "Carriable Spawner" ), Category( "Parkour Painters" )]
 [EditorModel( "models/entities/spray_paint/spray_paint.vmdl" )]
 [HammerEntity]
 internal sealed partial class CarriableSpawner : AnimatedEntity
@@ -53,7 +53,7 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 			return;
 		}
 
-		if ( !carriableType.TargetType.IsAssignableTo( typeof(BaseCarriable) ) )
+		if ( !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 		{
 			Log.Error( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}" );
 			return;
