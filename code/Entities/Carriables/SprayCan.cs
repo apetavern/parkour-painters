@@ -27,7 +27,16 @@ public sealed partial class SprayCan : BaseCarriable
 	public sealed override void OnHolstered()
 	{
 		Player.SetAnimParameter( "b_haspaint", false );
+		var holster = Player.GetAttachment( "holster_spraycan", true ).Value;
+
+		SetParent( null );
+
+		DebugOverlay.Sphere( holster.Position, 1f, Color.Red, 1f );
+
+		Position = holster.Position;// Player.Transform.PointToLocal(  );
+		Rotation = holster.Rotation;
 		SetParent( Player, "holster_spraycan" );
+		DebugOverlay.Sphere( Position, 2f, Color.Blue, 1f );
 
 		base.OnHolstered();
 	}
