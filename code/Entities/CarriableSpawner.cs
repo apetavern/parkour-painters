@@ -71,7 +71,7 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 			return;
 
 		if ( player.CanEquip( foundType ) )
-			player.Equip( foundType );
+			player.AddToInventory( foundType );
 
 		TimeSinceLastPickup = 0f;
 	}

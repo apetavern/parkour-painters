@@ -15,15 +15,15 @@ partial class Player
 	/// Adds a new <see cref="BaseCarriable"/> that the player can equip.
 	/// </summary>
 	/// <param name="carriableType">The type of the <see cref="BaseCarriable"/> to add.</param>
-	/// <returns>The newly created <see cref="BaseCarriable"/></returns>
-	/// <exception cref="ArgumentException">Thrown when the type provided is either not assignable to <see cref="BaseCarriable"/> or is already equipped.</exception>
-	public BaseCarriable Equip( TypeDescription carriableType )
+	/// <returns>The newly created <see cref="BaseCarriable"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when the type provided is either not assignable to <see cref="BaseCarriable"/> or is already in the inventory.</exception>
+	public BaseCarriable AddToInventory( TypeDescription carriableType )
 	{
 		if ( !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 			throw new ArgumentException( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}", nameof( carriableType ) );
 
 		if ( !CanEquip( carriableType ) )
-			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already equipped", nameof( carriableType ) );
+			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already in the inventory", nameof( carriableType ) );
 
 		var carriable = carriableType.Create<BaseCarriable>();
 		HeldItems.Add( carriable );
