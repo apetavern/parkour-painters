@@ -9,6 +9,11 @@ public partial class GrindMechanic : ControllerMechanic
 	[Net, Predicted] private bool _isReverse { get; set; }
 	private TimeSince _timeSinceExit { get; set; }
 
+	/// <summary>
+	/// The spark particles from the grinding mechanic
+	/// </summary>
+	private Particles SparkParticles { get; set; }
+
 	protected override bool ShouldStart()
 	{
 		if ( _isGrinding )
@@ -46,6 +51,8 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
+		HandleSparkParticles();
+
 		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count )
 		{
 			_isGrinding = true;
@@ -81,10 +88,25 @@ public partial class GrindMechanic : ControllerMechanic
 		Stop();
 	}
 
+	private void HandleSparkParticles()
+	{
+		if ( IsActive )
+		{
+			if ( SparkParticles is null )
+			{
+				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", Player );
+				SparkParticles.SetEntityBone( 0, Player, Player.GetBoneIndex( "ankle_L" ) );
+			}
+		}
+	}
+
 	protected override void OnStop()
 	{
 		IsActive = false;
 		_isGrinding = false;
 		_timeSinceExit = 0;
+
+		SparkParticles?.Destroy();
+		SparkParticles = null;
 	}
 }
