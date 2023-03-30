@@ -11,7 +11,7 @@
             PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
             GameOverState => string.Empty,
         };
-        <label>@desc</label>
+        <label style="padding-left: 10px;">@desc</label>
     }
 </root>
 
@@ -32,13 +32,14 @@
 <style>
     GameTimer {
         position: absolute;
-        top: 75px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        top: 100px;
+        right: 200px;
 
         label {
-            font-size: 50px;
-            color: white;
+            font-size: 70px;
+            color: #ffb200;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
         }
     }
 </style>

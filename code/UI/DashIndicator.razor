@@ -9,11 +9,14 @@
     <div class="dash">
         <div
         class="fill"
-        style="width: @(player.DashMechanic.ActiveDashPercentage)%;" />
+        style="
+            width: @(player.DashMechanic.ActiveDashPercentage)%;
+            background: linear-gradient(to top, #ffb200, #996b00);" />
     </div>
 </root>
 
-@code {
+@code
+{
     protected override int BuildHash()
     {
         var player = Game.LocalPawn as Entities.Player;
@@ -24,21 +27,21 @@
 <style>
     DashIndicator {
         position: absolute;
-        bottom: 125px;
+        bottom: 100px;
         left: 200px;
         transform: rotate(45deg) skew(0deg, -45deg);
+        opacity: 0.9;
 
         .dash {
             height: 50px;
-            width: 320px;
-            background-color: rgba(206, 196, 0, 0.23);
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.24);
             border-color: black;
-            border-width: 5px;
+            border-width: 4px;
 
             .fill {
                 transition: all 50ms ease-out;
                 height: 100%;
-                background-color: #ffff00d7;
             }
         }
     }
