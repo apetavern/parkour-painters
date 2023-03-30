@@ -43,11 +43,26 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			animHelper.WithLookAt( player.EyePosition + player.Rotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
 		}
 
+		var kneePos = player.EyePosition + Vector3.Down * 32;
+		var kneeTrace = Trace.Sphere( 4f, kneePos, kneePos + player.Rotation.Forward * 16f )
+			.IncludeClientside()
+			.Ignore( player )
+			.Run();
+
 		if ( player.LedgeGrabMechanic.IsActive )
 		{
 			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
 			animHelper.WithVelocity( controller.GetWishVelocity( true ) );
-			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
+
+			if ( kneeTrace.Hit )
+			{
+				animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
+			}
+			else
+			{
+				// Use other grab type or whatever
+				animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrabDangle;
+			}
 		}
 		else if ( player.WallJumpMechanic.IsActive )
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;

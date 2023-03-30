@@ -232,6 +232,7 @@ internal readonly ref struct CustomAnimationHelper
 		Roll,
 		WallSlide,
 		Grind,
+		LedgeGrabDangle,
 	}
 
 	/// <summary>
