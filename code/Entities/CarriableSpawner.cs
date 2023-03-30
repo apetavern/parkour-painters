@@ -3,7 +3,6 @@
 /// <summary>
 /// A spawner for a <see cref="BaseCarriable"/>.
 /// </summary>
-[Library( "ent_carriable_spawner" )]
 [Title( "Carriable Spawner" ), Category( "Parkour Painters" )]
 [EditorModel( "models/entities/spray_paint/spray_paint.vmdl" )]
 [HammerEntity]
