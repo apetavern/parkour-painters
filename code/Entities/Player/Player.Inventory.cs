@@ -31,6 +31,22 @@ partial class Player
 	}
 
 	/// <summary>
+	/// Adds a new <see cref="BaseCarriable"/> that the player can equip.
+	/// </summary>
+	/// <typeparam name="T">The type of the <see cref="BaseCarriable"/> to add.</typeparam>
+	/// <returns>The newly created <see cref="BaseCarriable"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when the type is already in the inventory.</exception>
+	public BaseCarriable AddToInventory<T>() where T : BaseCarriable, new()
+	{
+		if ( !CanEquip<T>() )
+			throw new ArgumentException( $"An item of type \"{typeof( T ).Name}\" is already equipped", nameof( T ) );
+
+		var carriable = new T();
+		HeldItems.Add( carriable );
+		return carriable;
+	}
+
+	/// <summary>
 	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
 	/// </summary>
 	/// <param name="type">The carriable type.</param>
