@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// A spawner for a <see cref="BaseCarriable"/>.

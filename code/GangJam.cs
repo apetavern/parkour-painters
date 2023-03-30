@@ -1,18 +1,18 @@
-﻿namespace ParkoutPainters;
+﻿namespace ParkourPainters;
 
-public sealed partial class ParkoutPainters : GameManager
+public sealed partial class ParkourPainters : GameManager
 {
 	/// <summary>
-	/// The currently active instance of <see cref="ParkoutPainters"/>.
+	/// The currently active instance of <see cref="ParkourPainters"/>.
 	/// </summary>
-	public static new ParkoutPainters Current => (ParkoutPainters)GameManager.Current;
+	public static new ParkourPainters Current => (ParkourPainters)GameManager.Current;
 
 	/// <summary>
 	/// The current state of the game that is running.
 	/// </summary>
 	[Net] internal IGameState CurrentState { get; private set; }
 
-	public ParkoutPainters()
+	public ParkourPainters()
 	{
 		if ( Game.IsClient )
 		{

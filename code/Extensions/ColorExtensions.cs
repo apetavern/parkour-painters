@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.Extensions;
+﻿namespace ParkourPainters.Extensions;
 
 /// <summary>
 /// Contains extension methods for the <see cref="Color"/> struct.

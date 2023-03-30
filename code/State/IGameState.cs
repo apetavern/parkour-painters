@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.State;
+﻿namespace ParkourPainters.State;
 
 /// <summary>
 /// Defines an entity that represents a state in the game loop.

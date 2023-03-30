@@ -1,6 +1,6 @@
-﻿namespace ParkoutPainters;
+﻿namespace ParkourPainters;
 
-partial class ParkoutPainters
+partial class ParkourPainters
 {
 	/// <summary>
 	/// Defines how long the grace period will be before automatically starting the game.

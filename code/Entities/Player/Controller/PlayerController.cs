@@ -1,4 +1,4 @@
-namespace ParkoutPainters.Entities;
+namespace ParkourPainters.Entities;
 
 internal partial class PlayerController : EntityComponent<Player>, ISingletonComponent
 {

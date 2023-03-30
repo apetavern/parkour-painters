@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.State;
+﻿namespace ParkourPainters.State;
 
 /// <summary>
 /// Represents the ending state of a game.

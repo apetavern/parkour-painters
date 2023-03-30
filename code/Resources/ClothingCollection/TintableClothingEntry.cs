@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.Resources;
+﻿namespace ParkourPainters.Resources;
 
 /// <summary>
 /// Contains all of the data for tinting a clothing item.

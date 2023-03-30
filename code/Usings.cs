@@ -1,9 +1,9 @@
 ﻿global using Editor;
-global using ParkoutPainters.Entities;
-global using ParkoutPainters.Extensions;
-global using ParkoutPainters.Resources;
-global using ParkoutPainters.State;
-global using ParkoutPainters.Util;
+global using ParkourPainters.Entities;
+global using ParkourPainters.Extensions;
+global using ParkourPainters.Resources;
+global using ParkourPainters.State;
+global using ParkourPainters.Util;
 global using Sandbox;
 global using Sandbox.UI;
 global using System;

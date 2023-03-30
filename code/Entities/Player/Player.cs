@@ -1,4 +1,4 @@
-namespace ParkoutPainters.Entities;
+namespace ParkourPainters.Entities;
 
 [Prefab]
 public sealed partial class Player : AnimatedEntity
@@ -26,11 +26,11 @@ public sealed partial class Player : AnimatedEntity
 	/// <summary>
 	/// Whether or not the player is currently dazed.
 	/// </summary>
-	public bool IsDazed => TimeSinceDazed <= ParkoutPainters.DazeTime;
+	public bool IsDazed => TimeSinceDazed <= ParkourPainters.DazeTime;
 	/// <summary>
 	/// Whether or not the player is currently immune to dazing.
 	/// </summary>
-	public bool IsImmune => TimeSinceDazed > ParkoutPainters.DazeTime && TimeSinceDazed <= ParkoutPainters.ImmuneTime;
+	public bool IsImmune => TimeSinceDazed > ParkourPainters.DazeTime && TimeSinceDazed <= ParkourPainters.ImmuneTime;
 
 	/// <summary>
 	/// The current type of daze the player is experiencing.
@@ -184,7 +184,7 @@ public sealed partial class Player : AnimatedEntity
 
 		SetupClothing();
 
-		ParkoutPainters.Current.MoveToSpawnpoint( this );
+		ParkourPainters.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
 	}
 
@@ -199,7 +199,7 @@ public sealed partial class Player : AnimatedEntity
 		if ( IsDazed || IsImmune )
 			return false;
 
-		if ( ParkoutPainters.FriendlyFire && attacker.Team == Team )
+		if ( ParkourPainters.FriendlyFire && attacker.Team == Team )
 			return false;
 
 		TimeSinceDazed = 0;

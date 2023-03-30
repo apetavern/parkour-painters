@@ -1,13 +1,13 @@
-@namespace ParkoutPainters.UI
+@namespace ParkourPainters.UI
 
 <root>
     @{
-        var stateName = ParkoutPainters.Current.CurrentState.StateName;
+        var stateName = ParkourPainters.Current.CurrentState.StateName;
         <label>@stateName</label>
 
-        var desc = ParkoutPainters.Current.CurrentState switch
+        var desc = ParkourPainters.Current.CurrentState switch
         {
-            WaitingState => $"{Game.Clients.Count} / {ParkoutPainters.MinimumPlayers}",
+            WaitingState => $"{Game.Clients.Count} / {ParkourPainters.MinimumPlayers}",
             PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
             GameOverState => string.Empty,
         };
@@ -23,9 +23,9 @@
 
     protected override int BuildHash()
     {
-        var state = ParkoutPainters.Current.CurrentState;
+        var state = ParkourPainters.Current.CurrentState;
         var playState = state as PlayState;
-        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, ParkoutPainters.MinimumPlayers);
+        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, ParkourPainters.MinimumPlayers);
     }
 }
 

@@ -1,4 +1,4 @@
-namespace ParkoutPainters.Entities;
+namespace ParkourPainters.Entities;
 
 public sealed class NoclipMechanic : ControllerMechanic
 {

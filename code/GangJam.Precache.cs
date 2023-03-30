@@ -1,6 +1,6 @@
-﻿namespace ParkoutPainters;
+﻿namespace ParkourPainters;
 
-partial class ParkoutPainters
+partial class ParkourPainters
 {
 	/// <summary>
 	/// Sets up the precache for players joining.

@@ -1,4 +1,4 @@
-namespace ParkoutPainters.Entities;
+namespace ParkourPainters.Entities;
 
 /// <summary>
 /// A spot that a palyer can grind on.

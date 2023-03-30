@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// The base class for all carriable items.

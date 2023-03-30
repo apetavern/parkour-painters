@@ -1,4 +1,4 @@
-namespace ParkoutPainters.Entities;
+namespace ParkourPainters.Entities;
 
 partial class Player
 {
@@ -24,7 +24,7 @@ partial class Player
 		SetBodyGroup( "Feet", 0 );
 
 		ClothingContainer?.ClearEntities();
-		var (clothingContainer, tintDictionary) = clothingCollection.GetContainerWithTints( ParkoutPainters.MixClientClothes ? Client : null );
+		var (clothingContainer, tintDictionary) = clothingCollection.GetContainerWithTints( ParkourPainters.MixClientClothes ? Client : null );
 		ClothingContainer = clothingContainer;
 
 		// Find correct skin.

@@ -1,4 +1,4 @@
-namespace ParkoutPainters.UI;
+namespace ParkourPainters.UI;
 
 public partial class TextChat : Panel
 {

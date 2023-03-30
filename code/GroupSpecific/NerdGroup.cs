@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.GroupSpecific;
+﻿namespace ParkourPainters.GroupSpecific;
 
 /// <summary>
 /// Contains functionality specific to the Nerds special mechanic.
@@ -8,7 +8,7 @@ internal static partial class NerdGroup
 	/// <summary>
 	/// Notifies all nerds when one of their <see cref="GraffitiSpot"/>s are being tampered with by another team.
 	/// </summary>
-	[ParkoutPainters.Events.GraffitiSpotTampered]
+	[ParkourPainters.Events.GraffitiSpotTampered]
 	private static void GraffitiSpotTampered( Team oldTeam, Team newTeam, Entities.Player tamperer )
 	{
 		if ( oldTeam.Group.Name != "Nerds" )

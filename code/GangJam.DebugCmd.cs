@@ -1,6 +1,6 @@
-﻿namespace ParkoutPainters;
+﻿namespace ParkourPainters;
 
-partial class ParkoutPainters
+partial class ParkourPainters
 {
 	/// <summary>
 	/// A debug command for quick setting the active state in the game.

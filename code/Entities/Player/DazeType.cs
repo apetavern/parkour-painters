@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// Defines a way that the player becomes dazed.

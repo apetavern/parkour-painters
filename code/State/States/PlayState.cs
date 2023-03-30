@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.State;
+﻿namespace ParkourPainters.State;
 
 /// <summary>
 /// The state for when the main game loop has begun.
@@ -12,7 +12,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="PlayState"/>. This can be null.
 	/// </summary>
-	public static PlayState Instance => ParkoutPainters.Current?.CurrentState as PlayState;
+	public static PlayState Instance => ParkourPainters.Current?.CurrentState as PlayState;
 
 	/// <summary>
 	/// Whether or not the game has been abandoned.
@@ -35,7 +35,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// The time in seconds until the game ends.
 	/// </summary>
-	public TimeUntil TimeUntilGameEnds => ParkoutPainters.GameLength - TimeSinceGameStarted;
+	public TimeUntil TimeUntilGameEnds => ParkourPainters.GameLength - TimeSinceGameStarted;
 
 	/// <summary>
 	/// A cache for mapping clients to their teams.
@@ -106,7 +106,7 @@ public sealed partial class PlayState : Entity, IGameState
 				do
 				{
 					randomGroup = Random.Shared.FromDictionary( GroupResource.All ).Value;
-				} while ( ParkoutPainters.EnforceUniqueTeams && !usedTeamTypes.Add( randomGroup ) );
+				} while ( ParkourPainters.EnforceUniqueTeams && !usedTeamTypes.Add( randomGroup ) );
 
 				var team = new Team( randomGroup, teamMembers[i] )
 				{
@@ -209,6 +209,6 @@ public sealed partial class PlayState : Entity, IGameState
 	{
 		Game.AssertServer();
 
-		ParkoutPainters.Current.SetState<PlayState>();
+		ParkourPainters.Current.SetState<PlayState>();
 	}
 }

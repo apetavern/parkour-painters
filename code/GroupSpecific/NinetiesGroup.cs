@@ -1,4 +1,4 @@
-﻿namespace ParkoutPainters.GroupSpecific;
+﻿namespace ParkourPainters.GroupSpecific;
 
 /// <summary>
 /// Contains functionality specific to the Nineties' special mechanic.
