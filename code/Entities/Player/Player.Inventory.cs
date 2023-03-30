@@ -22,7 +22,7 @@ partial class Player
 		if ( !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 			throw new ArgumentException( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}", nameof( carriableType ) );
 
-		if ( !CanEquip( carriableType ) )
+		if ( !CanAddItem( carriableType ) )
 			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already in the inventory", nameof( carriableType ) );
 
 		var carriable = carriableType.Create<BaseCarriable>();
@@ -38,8 +38,8 @@ partial class Player
 	/// <exception cref="ArgumentException">Thrown when the type is already in the inventory.</exception>
 	public BaseCarriable AddToInventory<T>() where T : BaseCarriable, new()
 	{
-		if ( !CanEquip<T>() )
-			throw new ArgumentException( $"An item of type \"{typeof( T ).Name}\" is already equipped", nameof( T ) );
+		if ( !CanAddItem<T>() )
+			throw new ArgumentException( $"An item of type \"{typeof( T ).Name}\" is already in the inventory", nameof( T ) );
 
 		var carriable = new T();
 		HeldItems.Add( carriable );
@@ -47,11 +47,10 @@ partial class Player
 	}
 
 	/// <summary>
-	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
 	/// </summary>
 	/// <param name="type">The carriable type.</param>
-	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be equipped.</returns>
-	public bool CanEquip( Type type )
+	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
+	public bool CanAddItem( Type type )
 	{
 		if ( !type.IsAssignableTo( typeof( BaseCarriable ) ) )
 			return false;
@@ -60,16 +59,16 @@ partial class Player
 	}
 
 	/// <summary>
-	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
+	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
 	/// </summary>
 	/// <param name="typeDescription">The carriable type.</param>
-	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be equipped.</returns>
-	public bool CanEquip( TypeDescription typeDescription ) => CanEquip( typeDescription.TargetType );
+	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
+	public bool CanAddItem( TypeDescription typeDescription ) => CanAddItem( typeDescription.TargetType );
 
 	/// <summary>
-	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
+	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
 	/// </summary>
 	/// <typeparam name="T">The carriable type.</typeparam>
-	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be equipped.</returns>
-	public bool CanEquip<T>() where T : BaseCarriable => CanEquip( typeof( T ) );
+	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
+	public bool CanAddItem<T>() where T : BaseCarriable => CanAddItem( typeof( T ) );
 }
