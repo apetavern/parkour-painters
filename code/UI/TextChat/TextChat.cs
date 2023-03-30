@@ -106,6 +106,6 @@ public partial class TextChat : Panel
 	[ClientRpc]
 	public static void AddInfoChatEntry( string message )
 	{
-		_instance?.AddEntry( new TextChatEntry { Message = message } );
+		_instance?.AddEntry( new TextChatEntry { Name = message, Color = Color.Orange } );
 	}
 }

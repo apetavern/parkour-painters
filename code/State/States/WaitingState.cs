@@ -35,6 +35,8 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// </summary>
 	internal bool GameStarting => Game.Clients.Count >= ParkoutPainters.MinimumPlayers && TimeUntilGameStart > 0;
 
+	internal TimeSince _timeSinceLastMessage;
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -83,6 +85,11 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
+		if ( GameStarting && _timeSinceLastMessage >= 1 )
+		{
+			_timeSinceLastMessage = 0;
+			UI.TextChat.AddInfoChatEntry( $"Starting in {Math.Round( TimeSpan.FromSeconds( TimeUntilGameStart ).TotalSeconds )}" );
+		}
 	}
 
 	/// <inheritdoc/>
