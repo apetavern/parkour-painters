@@ -12,56 +12,71 @@ public sealed class GroupResource : GameResource
 	/// <summary>
 	/// The name of the group.
 	/// </summary>
-	public string Name { get; set; }
+	[Category( "Meta" )]
+	public string Name { get; set; } = "Group";
 
 	/// <summary>
 	/// A brief description of the group.
 	/// </summary>
-	public string Description { get; set; }
+	[Category( "Meta" )]
+	public string Description { get; set; } = "None provided";
 
 	/// <summary>
 	/// The color that should be used for effects when spraying.
 	/// </summary>
-	public Color SprayColor { get; set; }
+	[Category( "Sprays" )]
+	public Color SprayColor { get; set; } = Color.Black;
 
 	/// <summary>
 	/// A list of all possible sprays for this group.
 	/// </summary>
+	[Category( "Sprays" )]
 	[ResourceType( "vmat" )]
 	public List<string> AvailableSprays { get; set; }
 
 	/// <summary>
 	/// Contains all of the custom particles that show on a person when they are dazed.
 	/// </summary>
+	[Category( "Setup" )]
 	[ResourceType( "vpcf" )]
-	public Dictionary<DazeType, string> DazeParticles { get; set; }
+	public Dictionary<DazeType, string> DazeParticles { get; set; } = new Dictionary<DazeType, string>()
+	{
+		{ DazeType.Inhalation, "particles/stun/stun_base.vpcf" },
+		{ DazeType.PhysicalTrauma, "particles/stun/stun_base.vpcf" }
+	};
 
 	/// <summary>
 	/// The collection of clothing affiliated with the group.
 	/// </summary>
+	[Category( "Setup" )]
 	public ClothingCollectionResource ClothingCollection { get; set; }
 
 	/// <summary>
 	/// The prefab to spawn for the players pawn.
 	/// </summary>
+	[Category( "Setup" )]
 	public Prefab PlayerPrefab { get; set; }
 
 	/// <summary>
 	/// Whether or not the players in this team can use the <see cref="DashMechanic"/>.
 	/// </summary>
-	public bool DashEnabled { get; set; }
+	[Category( "Movement" )]
+	public bool DashEnabled { get; set; } = true;
 	/// <summary>
 	/// Whether or not the players in this team can use the <see cref="GrindMechanic"/>.
 	/// </summary>
-	public bool GrindEnabled { get; set; }
+	[Category( "Movement" )]
+	public bool GrindEnabled { get; set; } = true;
 	/// <summary>
 	/// Wheter or not the players in this team can use the <see cref="LedgeGrabMechanic"/>.
 	/// </summary>
-	public bool LedgeGrabEnabled { get; set; }
+	[Category( "Movement" )]
+	public bool LedgeGrabEnabled { get; set; } = true;
 	/// <summary>
 	/// Whether or not the players in this team can use the <see cref="WallJumpMechanic"/>.
 	/// </summary>
-	public bool WallJumpEnabled { get; set; }
+	[Category( "Movement" )]
+	public bool WallJumpEnabled { get; set; } = true;
 
 	/// <inheritdoc/>
 	protected sealed override void PostLoad()
