@@ -126,8 +126,6 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	public virtual void OnHolstered()
 	{
-		Owner = null;
-
 		if ( !HasReleasedPrimary )
 		{
 			HasReleasedPrimary = true;
@@ -139,6 +137,8 @@ public abstract partial class BaseCarriable : AnimatedEntity
 			HasReleasedSecondary = true;
 			OnSecondaryReleased();
 		}
+
+		Owner = null;
 	}
 
 	/// <summary>
