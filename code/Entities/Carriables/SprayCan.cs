@@ -37,7 +37,8 @@ public sealed partial class SprayCan : BaseCarriable
 	public sealed override void OnHolstered()
 	{
 		Player.SetAnimParameter( "b_haspaint", false );
-		HolsterToHip();
+		if ( Game.IsServer )
+			HolsterToHip();
 
 		base.OnHolstered();
 	}

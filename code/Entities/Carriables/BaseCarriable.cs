@@ -178,6 +178,8 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected void HolsterToHip()
 	{
+		Game.AssertServer();
+
 		HolsterTo( "holster_spraycan" );
 	}
 
@@ -186,6 +188,8 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected void HolsterToBack()
 	{
+		Game.AssertServer();
+
 		HolsterTo( "holster_weapon" );
 	}
 
@@ -195,6 +199,8 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <param name="attachmentPoint">The name of the attachment point.</param>
 	protected void HolsterTo( string attachmentPoint )
 	{
+		Game.AssertServer();
+
 		var holster = Player.GetAttachment( attachmentPoint, true )
 			?? throw new ArgumentException( $"The attachment point \"{attachmentPoint}\" does not exist", nameof( attachmentPoint ) );
 
