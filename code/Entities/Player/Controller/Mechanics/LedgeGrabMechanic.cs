@@ -45,21 +45,21 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 
 	private bool CanGrabLedge()
 	{
+		var girth = Controller.BodyGirth * 0.5f;
 		var center = Controller.Position;
-		center.z += 55;
+		center.z += 50;
 
 		// Tracing forwards looking for a wall.
-		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 48.0f) )
+		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
 			.Ignore( Player )
-			.WithoutTags( "player" )
-			.Radius( 4 )
+			.Radius( 3 )
 			.Run();
 
 		if ( !tr.Hit )
 			return false;
 
 		// Make sure there is nothing above the players head.
-		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * 48.0f) )
+		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * Controller.BodyGirth) )
 			.Ignore( Player )
 			.Radius( 16 )
 			.Run();
@@ -68,14 +68,14 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 			return false;
 
 		var normal = tr.Normal;
-		var destinationTestPos = tr.EndPosition - (normal * 32.0f) + (Vector3.Up * 64.0f);
-		var originTestPos = tr.EndPosition + (normal * 16.0f);
+		var destinationTestPos = tr.EndPosition - (normal * 5f) + (Vector3.Up * 25.0f);
+		var originTestPos = tr.EndPosition + (normal * girth);
 
 		// Test to see if what we are attempting to grab is actually a ledge.
-		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * 64.0f) )
+		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * Controller.EyeHeight) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
-			.Radius( 4 )
+			.Radius( 2 )
 			.Run();
 
 		if ( !tr.Hit )
@@ -85,10 +85,10 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		originTestPos = originTestPos.WithZ( destinationTestPos.z - 60.0f );
 
 		// One last check to make sure the player can exist in the space above the ledge.
-		tr = Trace.Ray( destinationTestPos + (Vector3.Up * 32.0f + 1.0f), destinationTestPos + (Vector3.Up * 32.0f) )
+		tr = Trace.Ray( destinationTestPos + (Vector3.Up * girth + 1.0f), destinationTestPos + (Vector3.Up * Controller.BodyGirth) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
-			.Radius( 32f )
+			.Radius( girth )
 			.Run();
 
 		if ( tr.Hit )
