@@ -2,12 +2,12 @@ namespace GangJam.Entities;
 
 public partial class GrindMechanic : ControllerMechanic
 {
-	private GenericPathEntity _path;
-	private int _currentNodeIndex;
-	private bool _isGrinding;
-	private float _alpha;
-	private bool _isReverse;
-	private TimeSince _timeSinceExit;
+	[Net, Predicted] private GenericPathEntity _path { get; set; }
+	[Net, Predicted] private int _currentNodeIndex { get; set; }
+	[Net, Predicted] private bool _isGrinding { get; set; }
+	[Net, Predicted] private float _alpha { get; set; }
+	[Net, Predicted] private bool _isReverse { get; set; }
+	private TimeSince _timeSinceExit { get; set; }
 
 	protected override bool ShouldStart()
 	{

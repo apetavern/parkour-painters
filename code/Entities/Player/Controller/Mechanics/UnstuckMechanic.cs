@@ -1,9 +1,9 @@
 namespace GangJam.Entities;
 
-public sealed class UnstuckMechanic : ControllerMechanic
+public sealed partial class UnstuckMechanic : ControllerMechanic
 {
 	protected override bool ShouldStart() => true;
-	private int _stuckTries = 0;
+	[Net, Predicted] private int _stuckTries { get; set; }
 
 	protected override void Simulate()
 	{

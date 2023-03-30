@@ -48,12 +48,12 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// Whether or not the primary attack is released.
 	/// </summary>
-	[Net] protected bool HasReleasedPrimary { get; set; }
+	[Net, Predicted] protected bool HasReleasedPrimary { get; set; }
 	
 	/// <summary>
 	/// Whether or not the secondary attack is released.
 	/// </summary>
-	[Net] protected bool HasReleasedSecondary { get; set; }
+	[Net, Predicted] protected bool HasReleasedSecondary { get; set; }
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()

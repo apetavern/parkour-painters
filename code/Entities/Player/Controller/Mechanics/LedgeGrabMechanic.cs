@@ -4,8 +4,8 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 {
 	private TimeSince TimeSinceDrop { get; set; }
 
-	private Vector3 _grabNormal;
-	private Vector3 _ledgeGrabLocation;
+	[Net, Predicted] private Vector3 _grabNormal { get; set; }
+	[Net, Predicted] private Vector3 _ledgeGrabLocation { get; set; }
 
 	protected override bool ShouldStart()
 	{

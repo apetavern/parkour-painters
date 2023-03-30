@@ -11,12 +11,12 @@ public sealed partial class GraffitiSpot : ModelEntity
 	/// <summary>
 	/// The team that is currently working on spraying this spot.
 	/// </summary>
-	[Net] public Team SprayOwner { get; private set; }
+	[Net, Predicted] public Team SprayOwner { get; private set; }
 
 	/// <summary>
 	/// The percentage progress the <see ref="SprayOwner"/> has made on completing the graffiti.
 	/// </summary>
-	[Net] public float SprayProgress { get; private set; }
+	[Net, Predicted] public float SprayProgress { get; private set; }
 
 	/// <summary>
 	/// The time in seconds since the spot was last sprayed on.
