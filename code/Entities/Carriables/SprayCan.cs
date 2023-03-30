@@ -11,9 +11,19 @@ public sealed partial class SprayCan : BaseCarriable
 	protected override float PrimaryFireRate => 0.05f;
 
 	/// <summary>
+	/// The amount of spray left in the spray can.
+	/// </summary>
+	[Net, Predicted] public int Ammo { get; internal set; } = MaxAmmo;
+
+	/// <summary>
 	/// The spray particles that come out when using the can.
 	/// </summary>
 	private Particles SprayParticles { get; set; }
+
+	/// <summary>
+	/// The maximum amount of spray that can be held in the spray can.
+	/// </summary>
+	internal const int MaxAmmo = 500;
 
 	/// <inheritdoc/>
 	public sealed override void OnEquipped( Player player )
@@ -35,15 +45,20 @@ public sealed partial class SprayCan : BaseCarriable
 	/// <inheritdoc/>
 	protected sealed override void OnPrimaryAttack()
 	{
-		if ( Player.IsDazed )
+		if ( Player.IsDazed || Ammo <= 0 )
 		{
-			HasReleasedPrimary = true;
-			OnPrimaryReleased();
+			if ( !HasReleasedPrimary )
+			{
+				HasReleasedPrimary = true;
+				OnPrimaryReleased();
+			}
+
 			return;
 		}
 
 		base.OnPrimaryAttack();
 
+		Ammo--;
 		Player.SetAnimParameter( "b_spray", true );
 
 		// Create spray particles
@@ -51,10 +66,8 @@ public sealed partial class SprayCan : BaseCarriable
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
-			if ( Player.Team?.Group is null )
-				return;
-
-			SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
+			if ( Player.Team?.Group is not null )
+				SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
 		}
 
 		var nozzleTransform = GetAttachment( "nozzle" );
