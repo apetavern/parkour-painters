@@ -84,6 +84,11 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<LedgeGrabMechanic>();
 		Components.Create<GrindMechanic>();
 		Components.Create<DashMechanic>();
+
+		var sprayCan = AddToInventory<SprayCan>();
+		// TODO: This is jank
+		sprayCan.OnEquipped( this );
+		sprayCan.OnHolstered();
 	}
 
 	/// <inheritdoc/>
