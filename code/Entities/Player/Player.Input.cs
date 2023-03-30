@@ -15,7 +15,16 @@ public partial class Player
 	/// <summary>
 	/// The currently held item.
 	/// </summary>
-	public BaseCarriable HeldItem => (BaseCarriable)heldItemInput;
+	public BaseCarriable HeldItem
+	{
+		get
+		{
+			if ( Client.IsBot && heldItemInput is not null )
+				return GetItem( heldItemInput.GetType() );
+
+			return (BaseCarriable)heldItemInput;
+		}
+	}
 	/// <summary>
 	/// The currently held item.
 	/// </summary>

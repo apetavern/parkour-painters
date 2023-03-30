@@ -61,6 +61,20 @@ partial class Player
 	}
 
 	/// <summary>
+	/// Gets an item from the inventory.
+	/// </summary>
+	/// <param name="type">The type of item to get from the inventory.</param>
+	/// <returns>The item from the inventory.</returns>
+	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
+	public BaseCarriable GetItem( Type type )
+	{
+		if ( CanAddItem( type ) )
+			throw new ArgumentException( $"No item of type \"{type.Name}\" is in the inventory", nameof( type ) );
+
+		return HeldItems.First( item => item.GetType().Name == type.Name );
+	}
+
+	/// <summary>
 	/// Gets an item from the inventory. If it doesn't exist, it creates and returns it.
 	/// </summary>
 	/// <typeparam name="T">The type of the item to get and/or create.</typeparam>
