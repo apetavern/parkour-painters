@@ -73,6 +73,17 @@ public sealed partial class Player : AnimatedEntity
 
 		Tags.Add( "player" );
 		Tags.Add( "solid" );
+
+		Components.Create<PlayerController>();
+
+		Components.Create<WalkMechanic>();
+		Components.Create<AirMoveMechanic>();
+		Components.Create<JumpMechanic>();
+		Components.Create<UnstuckMechanic>();
+		Components.Create<WallJumpMechanic>();
+		Components.Create<LedgeGrabMechanic>();
+		Components.Create<GrindMechanic>();
+		Components.Create<DashMechanic>();
 	}
 
 	/// <inheritdoc/>
@@ -100,9 +111,8 @@ public sealed partial class Player : AnimatedEntity
 		EnableAllCollisions = false;
 		EnableDrawing = false;
 
-		Controller.Remove();
-		Animator.Remove();
-		Camera.Remove();
+		Animator?.Remove();
+		Camera?.Remove();
 
 		// Disable all children as well.
 		Children.OfType<ModelEntity>()
@@ -156,18 +166,6 @@ public sealed partial class Player : AnimatedEntity
 		Children.OfType<ModelEntity>()
 			.ToList()
 			.ForEach( x => x.EnableDrawing = true );
-
-		Components.Create<PlayerController>();
-		Components.RemoveAny<ControllerMechanic>();
-
-		Components.Create<WalkMechanic>();
-		Components.Create<AirMoveMechanic>();
-		Components.Create<JumpMechanic>();
-		Components.Create<UnstuckMechanic>();
-		Components.Create<WallJumpMechanic>();
-		Components.Create<LedgeGrabMechanic>();
-		Components.Create<GrindMechanic>();
-		Components.Create<DashMechanic>();
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();
