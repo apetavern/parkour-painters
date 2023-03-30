@@ -110,6 +110,10 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 
 	private void Vault()
 	{
+		// Get unstuck from non-axis-aligned ledges
+		if ( Math.Abs( _grabNormal.x ) != 1 || Math.Abs( _grabNormal.y ) != 1 || Math.Abs( _grabNormal.z ) != 1 )
+			Position += _grabNormal * 5;
+
 		float flGroundFactor = 1.0f;
 		float flMul = 350f;
 		float startz = Velocity.z;
