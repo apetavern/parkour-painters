@@ -181,6 +181,10 @@
     },
     "Summary": "",
     "Description": "",
-    "Public": false
+    "Public": false,
+    "ControlModes": {
+      "Keyboard": true,
+      "Gamepad": true
+    }
   }
 }
