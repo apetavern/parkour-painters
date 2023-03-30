@@ -172,4 +172,37 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// Invoked once a secondary attack has finished.
 	/// </summary>
 	protected virtual void OnSecondaryReleased() { }
+
+	/// <summary>
+	/// Holsters the <see cref="BaseCarriable"/> to the holster_spraycan attachment on the player.
+	/// </summary>
+	protected void HolsterToHip()
+	{
+		HolsterTo( "holster_spraycan" );
+	}
+
+	/// <summary>
+	/// Holsters the <see cref="BaseCarriable"/> to the holster_weapon attachment on the player.
+	/// </summary>
+	protected void HolsterToBack()
+	{
+		HolsterTo( "holster_weapon" );
+	}
+
+	/// <summary>
+	/// Holsters the <see cref="BaseCarriable"/> to an attachment point on the player.
+	/// </summary>
+	/// <param name="attachmentPoint">The name of the attachment point.</param>
+	protected void HolsterTo( string attachmentPoint )
+	{
+		var holster = Player.GetAttachment( attachmentPoint, true )
+			?? throw new ArgumentException( $"The attachment point \"{attachmentPoint}\" does not exist", nameof( attachmentPoint ) );
+
+		SetParent( null );
+
+		Position = holster.Position;
+		Rotation = holster.Rotation;
+
+		SetParent( Player, attachmentPoint );
+	}
 }
