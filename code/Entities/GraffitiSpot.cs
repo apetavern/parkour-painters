@@ -57,7 +57,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 			SprayOwner = player.Team;
 
 			if ( SprayOwner?.Group?.AvailableSprays is not null )
-				SetMaterialOverride( Material.Load( Game.Random.FromList( SprayOwner.Group.AvailableSprays ) ) );
+				SetMaterialOverride( Material.Load( Random.Shared.FromList( SprayOwner.Group.AvailableSprays ) ) );
 
 			if ( oldTeam is not null )
 				Event.Run( GangJam.Events.GraffitiSpotTampered, oldTeam, SprayOwner, player );
