@@ -10,5 +10,9 @@
     "PhysicalTrauma": "particles/stun/stun_base.vpcf"
   },
   "ClothingCollection": "data/clothing_collections/nineties.clothc",
-  "PlayerPrefab": "prefabs/nineties.prefab"
+  "PlayerPrefab": "prefabs/nineties.prefab",
+  "DashEnabled": true,
+  "GrindEnabled": true,
+  "LedgeGrabEnabled": true,
+  "WallJumpEnabled": true
 }

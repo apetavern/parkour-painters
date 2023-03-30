@@ -30,13 +30,9 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		animHelper.WithVelocity( player.IsDazed ? Vector3.Zero : controller.Velocity );
 
 		if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 50 && controller.Velocity.IsNearlyZero( 10 ) )
-		{
 			animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
-		}
 		else
-		{
 			animHelper.WithLookAt( player.EyePosition + player.Rotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
-		}
 
 		var kneePos = player.EyePosition + Vector3.Down * 32;
 		var kneeTrace = Trace.Sphere( 4f, kneePos, kneePos + player.Rotation.Forward * 16f )
@@ -44,26 +40,19 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			.Ignore( player )
 			.Run();
 
-		if ( player.LedgeGrabMechanic.IsActive )
+		if ( player.LedgeGrabMechanic?.IsActive ?? false )
 		{
 			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
 			animHelper.WithVelocity( controller.GetWishVelocity( true ) );
 
 			if ( kneeTrace.Hit )
-			{
 				animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
-			}
 			else
-			{
-				// Use other grab type or whatever
 				animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrabDangle;
-			}
 		}
-		else if ( player.WallJumpMechanic.IsActive )
+		else if ( player.WallJumpMechanic?.IsActive ?? false )
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
-		else if ( player.GrindMechanic.IsActive )
-		{
+		else if ( player.GrindMechanic?.IsActive ?? false )
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
-		}
 	}
 }

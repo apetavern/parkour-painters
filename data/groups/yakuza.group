@@ -10,5 +10,9 @@
     "PhysicalTrauma": "particles/stun/stun_base.vpcf"
   },
   "ClothingCollection": "data/clothing_collections/yakuza.clothc",
-  "PlayerPrefab": "prefabs/yakuza.prefab"
+  "PlayerPrefab": "prefabs/yakuza.prefab",
+  "DashEnabled": true,
+  "GrindEnabled": true,
+  "LedgeGrabEnabled": true,
+  "WallJumpEnabled": true
 }

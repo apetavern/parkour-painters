@@ -46,6 +46,23 @@ public sealed class GroupResource : GameResource
 	/// </summary>
 	public Prefab PlayerPrefab { get; set; }
 
+	/// <summary>
+	/// Whether or not the players in this team can use the <see cref="DashMechanic"/>.
+	/// </summary>
+	public bool DashEnabled { get; set; }
+	/// <summary>
+	/// Whether or not the players in this team can use the <see cref="GrindMechanic"/>.
+	/// </summary>
+	public bool GrindEnabled { get; set; }
+	/// <summary>
+	/// Wheter or not the players in this team can use the <see cref="LedgeGrabMechanic"/>.
+	/// </summary>
+	public bool LedgeGrabEnabled { get; set; }
+	/// <summary>
+	/// Whether or not the players in this team can use the <see cref="WallJumpMechanic"/>.
+	/// </summary>
+	public bool WallJumpEnabled { get; set; }
+
 	/// <inheritdoc/>
 	protected sealed override void PostLoad()
 	{

@@ -6,7 +6,7 @@ public sealed partial class UnstuckMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
-		if ( Player.LedgeGrabMechanic.IsActive )
+		if ( Player.LedgeGrabMechanic?.IsActive ?? false )
 			return false;
 
 		return true;

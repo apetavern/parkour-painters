@@ -1,6 +1,6 @@
 @namespace GangJam.UI
 
-@if (Game.LocalPawn is not Entities.Player player)
+@if (Game.LocalPawn is not Entities.Player player || player.DashMechanic is null)
 {
     return;
 }
@@ -17,7 +17,7 @@
     protected override int BuildHash()
     {
         var player = Game.LocalPawn as Entities.Player;
-        return HashCode.Combine(player?.DashMechanic.ActiveDashPercentage.ToString());
+        return HashCode.Combine(player?.DashMechanic?.ActiveDashPercentage.ToString());
     }
 }
 
