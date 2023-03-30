@@ -23,9 +23,6 @@ public sealed partial class UnstuckMechanic : ControllerMechanic
 			return;
 		}
 
-		if ( Game.IsClient )
-			return;
-
 		int AttemptsPerTick = 20;
 
 		for ( int i = 0; i < AttemptsPerTick; i++ )
