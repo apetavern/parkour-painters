@@ -1,4 +1,4 @@
-namespace GangJam.UI;
+namespace ParkoutPainters.UI;
 
 public class VoiceChatIndicators : Panel
 {

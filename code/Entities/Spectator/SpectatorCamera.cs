@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkoutPainters.Entities;
 
 internal sealed class SpectatorCamera : EntityComponent<Spectator>, ISingletonComponent
 {

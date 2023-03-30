@@ -1,4 +1,4 @@
-﻿namespace GangJam.Resources;
+﻿namespace ParkoutPainters.Resources;
 
 /// <summary>
 /// Represents a way to tint a clothing item.

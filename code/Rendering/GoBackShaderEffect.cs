@@ -1,4 +1,4 @@
-﻿namespace GangJam.Rendering;
+﻿namespace ParkoutPainters.Rendering;
 
 [SceneCamera.AutomaticRenderHook]
 internal sealed class GoBackShaderEffect : RenderHook

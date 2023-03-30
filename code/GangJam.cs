@@ -1,18 +1,18 @@
-﻿namespace GangJam;
+﻿namespace ParkoutPainters;
 
-public sealed partial class GangJam : GameManager
+public sealed partial class ParkoutPainters : GameManager
 {
 	/// <summary>
-	/// The currently active instance of <see cref="GangJam"/>.
+	/// The currently active instance of <see cref="ParkoutPainters"/>.
 	/// </summary>
-	public static new GangJam Current => (GangJam)GameManager.Current;
+	public static new ParkoutPainters Current => (ParkoutPainters)GameManager.Current;
 
 	/// <summary>
 	/// The current state of the game that is running.
 	/// </summary>
 	[Net] internal IGameState CurrentState { get; private set; }
 
-	public GangJam()
+	public ParkoutPainters()
 	{
 		if ( Game.IsClient )
 		{
@@ -73,8 +73,8 @@ public sealed partial class GangJam : GameManager
 		// Prevent the potential crash whenever the convar is changed.
 		if ( EnforceUniqueTeams && MaxTeams > GroupResource.All.Count )
 		{
-			Log.Warning( $"gj_maxteams is greater than the amount of available groups ({MaxTeams} > {GroupResource.All.Count})" );
-			Log.Warning( $"gj_maxteams will be set to {GroupResource.All.Count} to avoid problems" );
+			Log.Warning( $"pp_maxteams is greater than the amount of available groups ({MaxTeams} > {GroupResource.All.Count})" );
+			Log.Warning( $"pp_maxteams will be set to {GroupResource.All.Count} to avoid problems" );
 
 			MaxTeams = GroupResource.All.Count;
 		}

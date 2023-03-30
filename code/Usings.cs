@@ -1,9 +1,9 @@
 ﻿global using Editor;
-global using GangJam.Entities;
-global using GangJam.Extensions;
-global using GangJam.Resources;
-global using GangJam.State;
-global using GangJam.Util;
+global using ParkoutPainters.Entities;
+global using ParkoutPainters.Extensions;
+global using ParkoutPainters.Resources;
+global using ParkoutPainters.State;
+global using ParkoutPainters.Util;
 global using Sandbox;
 global using Sandbox.UI;
 global using System;

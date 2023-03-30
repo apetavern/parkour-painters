@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkoutPainters.Entities;
 
 [Prefab]
 public sealed partial class Player : AnimatedEntity
@@ -26,11 +26,11 @@ public sealed partial class Player : AnimatedEntity
 	/// <summary>
 	/// Whether or not the player is currently dazed.
 	/// </summary>
-	public bool IsDazed => TimeSinceDazed <= GangJam.DazeTime;
+	public bool IsDazed => TimeSinceDazed <= ParkoutPainters.DazeTime;
 	/// <summary>
 	/// Whether or not the player is currently immune to dazing.
 	/// </summary>
-	public bool IsImmune => TimeSinceDazed > GangJam.DazeTime && TimeSinceDazed <= GangJam.ImmuneTime;
+	public bool IsImmune => TimeSinceDazed > ParkoutPainters.DazeTime && TimeSinceDazed <= ParkoutPainters.ImmuneTime;
 
 	/// <summary>
 	/// The current type of daze the player is experiencing.
@@ -172,7 +172,7 @@ public sealed partial class Player : AnimatedEntity
 
 		SetupClothing();
 
-		GangJam.Current.MoveToSpawnpoint( this );
+		ParkoutPainters.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
 	}
 
@@ -187,7 +187,7 @@ public sealed partial class Player : AnimatedEntity
 		if ( IsDazed || IsImmune )
 			return false;
 
-		if ( GangJam.FriendlyFire && attacker.Team == Team )
+		if ( ParkoutPainters.FriendlyFire && attacker.Team == Team )
 			return false;
 
 		TimeSinceDazed = 0;

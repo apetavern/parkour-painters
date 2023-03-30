@@ -1,4 +1,4 @@
-namespace GangJam.UI;
+namespace ParkoutPainters.UI;
 
 public partial class TextChat : Panel
 {

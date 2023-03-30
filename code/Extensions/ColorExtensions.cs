@@ -1,4 +1,4 @@
-﻿namespace GangJam.Extensions;
+﻿namespace ParkoutPainters.Extensions;
 
 /// <summary>
 /// Contains extension methods for the <see cref="Color"/> struct.

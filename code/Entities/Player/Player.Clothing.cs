@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkoutPainters.Entities;
 
 partial class Player
 {
@@ -24,7 +24,7 @@ partial class Player
 		SetBodyGroup( "Feet", 0 );
 
 		ClothingContainer?.ClearEntities();
-		var (clothingContainer, tintDictionary) = clothingCollection.GetContainerWithTints( GangJam.MixClientClothes ? Client : null );
+		var (clothingContainer, tintDictionary) = clothingCollection.GetContainerWithTints( ParkoutPainters.MixClientClothes ? Client : null );
 		ClothingContainer = clothingContainer;
 
 		// Find correct skin.

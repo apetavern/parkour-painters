@@ -1,12 +1,12 @@
-﻿namespace GangJam;
+﻿namespace ParkoutPainters;
 
-partial class GangJam
+partial class ParkoutPainters
 {
 	/// <summary>
 	/// A debug command for quick setting the active state in the game.
 	/// </summary>
 	/// <param name="stateName">The name of the type that implements <see cref="IGameState"/>.</param>
-	[ConCmd.Admin( "gj_state" )]
+	[ConCmd.Admin( "pp_state" )]
 	private static void SetStateCmd( string stateName )
 	{
 		var type = TypeLibrary.GetType( stateName );
@@ -31,7 +31,7 @@ partial class GangJam
 	/// A debug command to change the players clothing for testing purposes.
 	/// </summary>
 	/// <param name="groupName">The name of the group whose clothes to change into.</param>
-	[ConCmd.Admin( "gj_wearclothes" )]
+	[ConCmd.Admin( "pp_wearclothes" )]
 	private static void WearClothes( string groupName )
 	{
 		if ( ConsoleSystem.Caller is null )
@@ -70,7 +70,7 @@ partial class GangJam
 	/// <summary>
 	/// A debug command to become a spectator.
 	/// </summary>
-	[ConCmd.Admin( "gj_becomespectator" )]
+	[ConCmd.Admin( "pp_becomespectator" )]
 	private static void BecomeSpectator()
 	{
 		if ( ConsoleSystem.Caller is null )

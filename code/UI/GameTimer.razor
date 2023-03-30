@@ -1,13 +1,13 @@
-@namespace GangJam.UI
+@namespace ParkoutPainters.UI
 
 <root>
     @{
-        var stateName = GangJam.Current.CurrentState.StateName;
+        var stateName = ParkoutPainters.Current.CurrentState.StateName;
         <label>@stateName</label>
 
-        var desc = GangJam.Current.CurrentState switch
+        var desc = ParkoutPainters.Current.CurrentState switch
         {
-            WaitingState => $"{Game.Clients.Count} / {GangJam.MinimumPlayers}",
+            WaitingState => $"{Game.Clients.Count} / {ParkoutPainters.MinimumPlayers}",
             PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
             GameOverState => string.Empty,
         };
@@ -23,9 +23,9 @@
 
     protected override int BuildHash()
     {
-        var state = GangJam.Current.CurrentState;
+        var state = ParkoutPainters.Current.CurrentState;
         var playState = state as PlayState;
-        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, GangJam.MinimumPlayers);
+        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, ParkoutPainters.MinimumPlayers);
     }
 }
 

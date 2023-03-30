@@ -1,4 +1,4 @@
-﻿namespace GangJam.State;
+﻿namespace ParkoutPainters.State;
 
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.
@@ -12,7 +12,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="GameOverState"/>. This can be null.
 	/// </summary>
-	internal static GameOverState Instance => GangJam.Current?.CurrentState as GameOverState;
+	internal static GameOverState Instance => ParkoutPainters.Current?.CurrentState as GameOverState;
 
 	/// <summary>
 	/// The result of the game that was played.
@@ -78,7 +78,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
-		TimeUntilResetGame = GangJam.GameResetTimer;
+		TimeUntilResetGame = ParkoutPainters.GameResetTimer;
 	}
 
 	/// <inheritdoc/>
@@ -136,6 +136,6 @@ internal sealed partial class GameOverState : Entity, IGameState
 	{
 		Game.AssertServer();
 
-		GangJam.Current.SetState<GameOverState>();
+		ParkoutPainters.Current.SetState<GameOverState>();
 	}
 }

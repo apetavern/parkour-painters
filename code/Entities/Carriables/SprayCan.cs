@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkoutPainters.Entities;
 
 /// <summary>
 /// A spray can that can be used to daze players or graffiti the map.

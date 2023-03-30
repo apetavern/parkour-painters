@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkoutPainters.Entities;
 
 /// <summary>
 /// Contains functionality for a group of members working together during the <see cref="PlayState"/>.

@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkoutPainters.Entities;
 
 /// <summary>
 /// Contains logic for animating a players model.

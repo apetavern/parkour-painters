@@ -1,4 +1,4 @@
-﻿namespace GangJam.Resources;
+﻿namespace ParkoutPainters.Resources;
 
 /// <summary>
 /// Encapsulates all information that relates to a playable group in the game.

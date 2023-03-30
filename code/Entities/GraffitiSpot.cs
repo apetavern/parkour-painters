@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkoutPainters.Entities;
 
 /// <summary>
 /// A spot that a player can graffiti.
@@ -60,7 +60,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 				SetMaterialOverride( Material.Load( Random.Shared.FromList( SprayOwner.Group.AvailableSprays ) ) );
 
 			if ( oldTeam is not null )
-				Event.Run( GangJam.Events.GraffitiSpotTampered, oldTeam, SprayOwner, player );
+				Event.Run( ParkoutPainters.Events.GraffitiSpotTampered, oldTeam, SprayOwner, player );
 		}
 
 		// Bail if the spray has already been completed.
@@ -92,7 +92,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 	/// <param name="sprayer">The player that completed the <see cref="GraffitiSpot"/>.</param>
 	private void OnSprayCompleted( Player sprayer )
 	{
-		Event.Run( GangJam.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
+		Event.Run( ParkoutPainters.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
 	}
 
 	/// <summary>
@@ -114,7 +114,7 @@ public sealed partial class GraffitiSpot : ModelEntity
 	/// <summary>
 	/// Resets the <see cref="GraffitiSpot"/> back to default once the <see cref="PlayState"/> has been entered/exited.
 	/// </summary>
-	[GangJam.Events.EnterGameState]
+	[ParkoutPainters.Events.EnterGameState]
 	private void CleanupOnStateChange( IGameState newGameState, IGameState oldGameState )
 	{
 		if ( newGameState is not PlayState && oldGameState is not PlayState )

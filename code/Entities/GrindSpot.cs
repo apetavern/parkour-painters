@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkoutPainters.Entities;
 
 /// <summary>
 /// A spot that a palyer can grind on.

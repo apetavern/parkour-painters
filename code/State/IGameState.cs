@@ -1,4 +1,4 @@
-﻿namespace GangJam.State;
+﻿namespace ParkoutPainters.State;
 
 /// <summary>
 /// Defines an entity that represents a state in the game loop.
