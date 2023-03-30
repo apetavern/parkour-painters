@@ -9,7 +9,10 @@
         "Identifier": "11",
         "Output": "Result"
       },
-      "Emission": {},
+      "Emission": {
+        "Identifier": "21",
+        "Output": "Result"
+      },
       "Opacity": {
         "Identifier": "10",
         "Output": "Result"
@@ -29,7 +32,7 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "608,32"
+      "Position": "848,32"
     },
     {
       "_class": "TextureSampler",
@@ -293,6 +296,100 @@
       },
       "Identifier": "17",
       "Position": "-1568,-144"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Glow Color",
+      "Value": "1,1,1,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": "Glow",
+          "Priority": 5
+        }
+      },
+      "Identifier": "18",
+      "Position": "0,-400"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "23",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "20",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "19",
+      "Position": "432,-240"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 25,
+      "Name": "Glow Power",
+      "Value": 0,
+      "UI": {
+        "Priority": 1,
+        "PrimaryGroup": {
+          "Name": "Glow",
+          "Priority": 5
+        }
+      },
+      "Identifier": "20",
+      "Position": "0,-224"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "19",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "22",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "21",
+      "Position": "576,-128"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Glow Mix",
+      "Value": 0,
+      "UI": {
+        "Priority": 2,
+        "PrimaryGroup": {
+          "Name": "Glow",
+          "Priority": 5
+        }
+      },
+      "Identifier": "22",
+      "Position": "320,0"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "18",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "23",
+      "Position": "304,-320"
     }
   ]
 }
