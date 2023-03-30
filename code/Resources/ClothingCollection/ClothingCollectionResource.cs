@@ -32,7 +32,7 @@ public sealed class ClothingCollectionResource : GameResource
 	public (ClothingContainer, IReadOnlyDictionary<string, Color>) GetContainerWithTints( IClient client = null )
 	{
 		var chosenClothes = new List<TintableClothingEntry>();
-		var random = new Random( (int)(DateTime.Now - DateTime.UnixEpoch).TotalSeconds );
+		var random = new Random( (int)(DateTime.Now - DateTime.UnixEpoch).TotalSeconds * Game.Random.Next() );
 
 		void CheckList( List<TintableClothingEntry> entries )
 		{
