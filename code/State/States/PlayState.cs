@@ -12,7 +12,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="PlayState"/>. This can be null.
 	/// </summary>
-	public static PlayState Instance => GangJam.Current.CurrentState as PlayState;
+	public static PlayState Instance => GangJam.Current?.CurrentState as PlayState;
 
 	/// <summary>
 	/// Whether or not the game has been abandoned.

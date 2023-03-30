@@ -12,7 +12,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="GameOverState"/>. This can be null.
 	/// </summary>
-	internal static GameOverState Instance => GangJam.Current.CurrentState as GameOverState;
+	internal static GameOverState Instance => GangJam.Current?.CurrentState as GameOverState;
 
 	/// <summary>
 	/// The result of the game that was played.

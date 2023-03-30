@@ -12,7 +12,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="WaitingState"/>. This can be null.
 	/// </summary>
-	internal static WaitingState Instance => GangJam.Current.CurrentState as WaitingState;
+	internal static WaitingState Instance => GangJam.Current?.CurrentState as WaitingState;
 
 	/// <summary>
 	/// Contains all of the clients that have been selected to be apart of teams.
