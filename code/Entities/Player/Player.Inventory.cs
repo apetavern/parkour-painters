@@ -47,6 +47,34 @@ partial class Player
 	}
 
 	/// <summary>
+	/// Gets an item from the inventory.
+	/// </summary>
+	/// <typeparam name="T">The type of item to get from the inventory.</typeparam>
+	/// <returns>The item from the inventory.</returns>
+	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
+	public T GetItem<T>() where T : BaseCarriable
+	{
+		if ( CanAddItem<T>() )
+			throw new ArgumentException( $"No item of type \"{typeof( T ).Name}\" is in the inventory", nameof( T ) );
+
+		return (T)HeldItems.First( item => item is T );
+	}
+
+	/// <summary>
+	/// Gets an item from the inventory. If it doesn't exist, it creates and returns it.
+	/// </summary>
+	/// <typeparam name="T">The type of the item to get and/or create.</typeparam>
+	/// <returns>The item from the inventory.</returns>
+	public T GetItemOrAddToInventory<T>() where T : BaseCarriable, new()
+	{
+		if ( CanAddItem<T>() )
+			return AddToInventory<T>();
+		else
+			return GetItem<T>();
+	}
+
+	/// <summary>
+	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
 	/// </summary>
 	/// <param name="type">The carriable type.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
