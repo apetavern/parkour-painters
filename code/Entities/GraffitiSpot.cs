@@ -4,7 +4,7 @@
 /// A spot that a player can graffiti.
 /// </summary>
 [Library( "func_graffiti_spot" )]
-[Title( "Graffiti Spot" ), Category( "Spray Down" )]
+[Title( "Graffiti Spot" ), Category( "Parkour Painters" )]
 [HammerEntity, Solid, DrawAngles, AutoApplyMaterial( "materials/sprays/spray_space.vmat" )]
 public sealed partial class GraffitiSpot : ModelEntity
 {
