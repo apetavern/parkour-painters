@@ -55,7 +55,9 @@ public sealed partial class SprayCan : BaseCarriable
 			SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
 		}
 
-		var reachTrace = Trace.Ray( Player.EyePosition, Player.EyePosition + Player.EyeRotation.Forward * 200f )
+		var nozzleTransform = GetAttachment( "nozzle" );
+
+		var reachTrace = Trace.Ray( nozzleTransform.Value.Position - nozzleTransform.Value.Rotation.Forward * 20f, nozzleTransform.Value.Position + nozzleTransform.Value.Rotation.Forward * 200f )
 			.WithAnyTags( "graffiti_spot", "player" )
 			.Ignore( this )
 			.Ignore( Player )
