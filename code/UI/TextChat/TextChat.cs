@@ -87,13 +87,14 @@ public partial class TextChat : Panel
 	[ConCmd.Server( "say" )]
 	public static void SendChat( string message )
 	{
-		if ( !ConsoleSystem.Caller.IsValid() )
+		if ( !ConsoleSystem.Caller.IsValid() || ConsoleSystem.Caller.Pawn is not Entities.Player player )
 			return;
 
 		if ( message.Contains( '\n' ) || message.Contains( '\r' ) )
 			return;
 
-		AddChatEntry( To.Everyone, ConsoleSystem.Caller.Name, Color.White, message, ConsoleSystem.Caller.SteamId );
+		var messageColor = player.Team?.Group?.SprayColor ?? Color.White;
+		AddChatEntry( To.Everyone, ConsoleSystem.Caller.Name, messageColor, message, ConsoleSystem.Caller.SteamId );
 	}
 
 	[ClientRpc]

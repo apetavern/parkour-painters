@@ -1,0 +1,33 @@
+@namespace ParkoutPainters.UI
+
+@if (Game.LocalPawn is not Entities.Player player)
+{
+    return;
+}
+
+<root>
+    @* TODO: Loop over the players items here instead... *@
+    <div class="carriable">
+        <label>Spray Can</label>
+    </div>
+</root>
+
+@code {
+
+}
+
+<style>
+    InventoryPanel {
+        position: absolute;
+        bottom: 100px;
+        right: 200px;
+
+        .carriable {
+            font-size: 70px;
+            color: white;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
+            align-items: center;
+        }
+    }
+</style>
