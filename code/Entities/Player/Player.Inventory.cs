@@ -36,7 +36,7 @@ partial class Player
 	/// <typeparam name="T">The type of the <see cref="BaseCarriable"/> to add.</typeparam>
 	/// <returns>The newly created <see cref="BaseCarriable"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when the type is already in the inventory.</exception>
-	public BaseCarriable AddToInventory<T>() where T : BaseCarriable, new()
+	public T AddToInventory<T>() where T : BaseCarriable, new()
 	{
 		if ( !CanAddItem<T>() )
 			throw new ArgumentException( $"An item of type \"{typeof( T ).Name}\" is already in the inventory", nameof( T ) );
