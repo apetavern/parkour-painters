@@ -53,7 +53,7 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
 		else if ( player.GrindMechanic.IsActive )
 		{
-			if ( Game.IsClient && SparkParticles is null )
+			if ( SparkParticles is null )
 			{
 				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", player );
 				SparkParticles.SetEntityBone( 0, player, player.GetBoneIndex( "ankle_L" ) );
