@@ -38,9 +38,11 @@ public sealed partial class DashMechanic : ControllerMechanic
 		_timeSinceLastDash = 0;
 	}
 
+#if DEBUG
 	[Event.Tick.Client]
-	private void Frame()
+	private void DebugDraw()
 	{
 		DebugOverlay.ScreenText( $"Dash: {ActiveDashPercentage}%", 20 );
 	}
+#endif
 }
