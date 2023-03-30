@@ -2,7 +2,7 @@ namespace GangJam.Entities;
 
 internal partial class PlayerController : EntityComponent<Player>, ISingletonComponent
 {
-	[Net, Predicted] public Entity GroundEntity { get; set; }
+	public Entity GroundEntity { get; set; }
 	public Vector3 LastVelocity { get; set; }
 	public Entity LastGroundEntity { get; set; }
 	public Vector3 BaseVelocity { get; set; }
