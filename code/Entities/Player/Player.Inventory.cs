@@ -5,48 +5,55 @@ partial class Player
 	/// <summary>
 	/// Contains all carriable items that the player has.
 	/// </summary>
-	[Net] public IList<BaseCarriable> Carriables { get; private set; }
+	[Net] public IList<BaseCarriable> HeldItems { get; private set; }
+	/// <summary>
+	/// The last held item.
+	/// </summary>
+	[Net, Predicted] private BaseCarriable LastHeldItem { get; set; }
 
 	/// <summary>
-	/// The item that the player is currently using.
+	/// Adds a new <see cref="BaseCarriable"/> that the player can equip.
 	/// </summary>
-	[Net] public BaseCarriable Carrying { get; private set; }
-
-	/// <summary>
-	/// Equips a new <see cref="BaseCarriable"/>.
-	/// </summary>
-	/// <param name="carriable">The item to equip.</param>
-	public void Equip( BaseCarriable carriable )
+	/// <param name="carriableType">The type of the <see cref="BaseCarriable"/> to add.</param>
+	/// <returns>The newly created <see cref="BaseCarriable"/></returns>
+	/// <exception cref="ArgumentException">Thrown when the type provided is either not assignable to <see cref="BaseCarriable"/> or is already equipped.</exception>
+	public BaseCarriable Equip( TypeDescription carriableType )
 	{
-		// Holster anything we're currently carrying.
-		Holster();
+		if ( !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
+			throw new ArgumentException( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}", nameof( carriableType ) );
 
-		if ( !Carriables.Contains( carriable ) )
-			Carriables.Add( carriable );
+		if ( !CanEquip( carriableType ) )
+			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already equipped", nameof( carriableType ) );
 
-		carriable?.OnEquipped( this );
-		Carrying = carriable;
-	}
-
-	/// <summary>
-	/// Holsters any equipped item.
-	/// </summary>
-	public void Holster()
-	{
-		Carrying?.OnHolstered();
-		Carrying = null;
+		var carriable = carriableType.Create<BaseCarriable>();
+		HeldItems.Add( carriable );
+		return carriable;
 	}
 
 	/// <summary>
 	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
 	/// </summary>
-	/// <param name="carriable">The carriable type.</param>
+	/// <param name="type">The carriable type.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be equipped.</returns>
-	public bool CanEquip( Type carriable )
+	public bool CanEquip( Type type )
 	{
-		if ( !carriable.IsAssignableTo( typeof( BaseCarriable ) ) )
+		if ( !type.IsAssignableTo( typeof( BaseCarriable ) ) )
 			return false;
 
-		return !Carriables.Any( x => carriable.Name == x.ClassName );
+		return !HeldItems.Any( x => type.Name == x.GetType().Name );
 	}
+
+	/// <summary>
+	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
+	/// </summary>
+	/// <param name="typeDescription">The carriable type.</param>
+	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be equipped.</returns>
+	public bool CanEquip( TypeDescription typeDescription ) => CanEquip( typeDescription.TargetType );
+
+	/// <summary>
+	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be equipped.
+	/// </summary>
+	/// <typeparam name="T">The carriable type.</typeparam>
+	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be equipped.</returns>
+	public bool CanEquip<T>() where T : BaseCarriable => CanEquip( typeof( T ) );
 }

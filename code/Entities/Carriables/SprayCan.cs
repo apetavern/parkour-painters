@@ -27,6 +27,7 @@ public sealed partial class SprayCan : BaseCarriable
 	public sealed override void OnHolstered()
 	{
 		Player.SetAnimParameter( "b_haspaint", false );
+		SetParent( Player, "holster_spraycan" );
 
 		base.OnHolstered();
 	}
@@ -36,6 +37,7 @@ public sealed partial class SprayCan : BaseCarriable
 	{
 		if ( Player.IsDazed )
 		{
+			HasReleasedPrimary = true;
 			OnPrimaryReleased();
 			return;
 		}

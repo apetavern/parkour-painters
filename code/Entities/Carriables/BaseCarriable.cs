@@ -127,7 +127,18 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	public virtual void OnHolstered()
 	{
 		Owner = null;
-		Parent = null;
+
+		if ( !HasReleasedPrimary )
+		{
+			HasReleasedPrimary = true;
+			OnPrimaryReleased();
+		}
+
+		if ( !HasReleasedSecondary )
+		{
+			HasReleasedSecondary = true;
+			OnSecondaryReleased();
+		}
 	}
 
 	/// <summary>

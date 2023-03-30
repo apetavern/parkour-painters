@@ -89,9 +89,16 @@ public sealed partial class Player : AnimatedEntity
 	/// <inheritdoc/>
 	public sealed override void Simulate( IClient cl )
 	{
+		if ( LastHeldItem != HeldItem )
+		{
+			LastHeldItem?.OnHolstered();
+			HeldItem?.OnEquipped( this );
+			LastHeldItem = HeldItem;
+		}
+
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
-		Carrying?.Simulate( cl );
+		HeldItem?.Simulate( cl );
 	}
 
 	/// <inheritdoc/>

@@ -32,7 +32,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 			var targetRot = Rotation.LookAt( wishSpeed ).Angles().WithPitch( 0 ).WithRoll( 0 );
 
 
-			if ( Input.Down( InputButton.PrimaryAttack ) && Player.Carrying != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
+			if ( Input.Down( InputButton.PrimaryAttack ) && Player.HeldItem != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
 			{
 				Player.Rotation = Rotation.Lerp( Player.Rotation, Rotation.LookAt( Player.EyeRotation.Forward.WithZ( 0 ) ), 25f * Time.Delta );
 			}
@@ -41,7 +41,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 				Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
 			}
 		}
-		else if ( Input.Down( InputButton.PrimaryAttack ) && Player.Carrying != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
+		else if ( Input.Down( InputButton.PrimaryAttack ) && Player.HeldItem != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
 		{
 			Player.Rotation = Rotation.Lerp( Player.Rotation, Rotation.LookAt( Player.EyeRotation.Forward.WithZ( 0 ) ), 25f * Time.Delta );
 		}

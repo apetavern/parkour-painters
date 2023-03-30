@@ -13,6 +13,16 @@ public partial class Player
 	[ClientInput] public Angles LookInput { get; private set; }
 
 	/// <summary>
+	/// The currently held item.
+	/// </summary>
+	public BaseCarriable HeldItem => (BaseCarriable)heldItemInput;
+	/// <summary>
+	/// The currently held item.
+	/// </summary>
+	[ClientInput]
+	private Entity heldItemInput { get; set; }
+
+	/// <summary>
 	/// Position a player should be looking from in world space.
 	/// </summary>
 	[Browsable( false )]
@@ -54,5 +64,25 @@ public partial class Player
 		var lookInput = (LookInput + Input.AnalogLook).Normal;
 
 		LookInput = lookInput.WithPitch( lookInput.pitch.Clamp( -90f, 90f ) );
+
+		if ( Input.Pressed( InputButton.Slot1 ) )
+			SwitchTo( 0 );
+		if ( Input.Pressed( InputButton.Slot2 ) )
+			SwitchTo( 1 );
+	}
+
+	/// <summary>
+	/// Switches the currently held item to one at the desired index into the <see cref="HeldItems"/>.
+	/// </summary>
+	/// <param name="index">The index into <see cref="HeldItems"/> to look at.</param>
+	private void SwitchTo( int index )
+	{
+		if ( index >= HeldItems.Count )
+			return;
+
+		if ( HeldItem == HeldItems[index] )
+			heldItemInput = null;
+		else
+			heldItemInput = HeldItems[index];
 	}
 }
