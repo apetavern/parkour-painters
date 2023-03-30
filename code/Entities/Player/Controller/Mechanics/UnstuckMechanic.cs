@@ -2,8 +2,15 @@ namespace GangJam.Entities;
 
 public sealed partial class UnstuckMechanic : ControllerMechanic
 {
-	protected override bool ShouldStart() => true;
 	[Net, Predicted] private int _stuckTries { get; set; }
+
+	protected override bool ShouldStart()
+	{
+		if ( Player.LedgeGrabMechanic.IsActive )
+			return false;
+
+		return true;
+	}
 
 	protected override void Simulate()
 	{
