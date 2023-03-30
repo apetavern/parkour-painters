@@ -9,7 +9,7 @@
     <div class="dash">
         <div
         class="fill"
-        style="width: @(player.DashMechanic.ActiveDashPercentage)%;" />
+        style="width: @(player?.DashMechanic?.ActiveDashPercentage)%;" />
     </div>
 </root>
 
@@ -17,7 +17,7 @@
     protected override int BuildHash()
     {
         var player = Game.LocalPawn as Entities.Player;
-        return HashCode.Combine(player?.DashMechanic.ActiveDashPercentage.ToString());
+        return HashCode.Combine(player?.DashMechanic?.ActiveDashPercentage.ToString());
     }
 }
 

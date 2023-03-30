@@ -34,39 +34,39 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		animHelper.WithWishVelocity( player.IsDazed ? Vector3.Zero : controller.GetWishVelocity() );
 		animHelper.WithVelocity( player.IsDazed ? Vector3.Zero : controller.Velocity );
 
-		if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 50 && controller.Velocity.IsNearlyZero( 10 ) )
-		{
-			animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
-		}
-		else
-		{
-			animHelper.WithLookAt( player.EyePosition + player.Rotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
-		}
+		// if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 50 && controller.Velocity.IsNearlyZero( 10 ) )
+		// {
+		// 	animHelper.WithLookAt( player.EyePosition + player.EyeRotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
+		// }
+		// else
+		// {
+		// 	animHelper.WithLookAt( player.EyePosition + player.Rotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
+		// }
 
-		if ( player.LedgeGrabMechanic.IsActive )
-		{
-			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
-			animHelper.WithVelocity( controller.GetWishVelocity( true ) );
-			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
-		}
-		else if ( player.WallJumpMechanic.IsActive )
-			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
-		else if ( player.GrindMechanic.IsActive )
-		{
-			if ( Game.IsClient && SparkParticles is null )
-			{
-				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", player );
-				SparkParticles.SetEntityBone( 0, player, player.GetBoneIndex( "ankle_L" ) );
-			}
-			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
-		}
-		else
-		{
-			if ( Game.IsClient )
-			{
-				SparkParticles?.Destroy();
-				SparkParticles = null;
-			}
-		}
+		// if ( player.LedgeGrabMechanic.IsActive )
+		// {
+		// 	// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
+		// 	animHelper.WithVelocity( controller.GetWishVelocity( true ) );
+		// 	animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.LedgeGrab;
+		// }
+		// else if ( player.WallJumpMechanic.IsActive )
+		// 	animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.WallSlide;
+		// else if ( player.GrindMechanic.IsActive )
+		// {
+		// 	if ( Game.IsClient && SparkParticles is null )
+		// 	{
+		// 		SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", player );
+		// 		SparkParticles.SetEntityBone( 0, player, player.GetBoneIndex( "ankle_L" ) );
+		// 	}
+		// 	animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
+		// }
+		// else
+		// {
+		// 	if ( Game.IsClient )
+		// 	{
+		// 		SparkParticles?.Destroy();
+		// 		SparkParticles = null;
+		// 	}
+		// }
 	}
 }

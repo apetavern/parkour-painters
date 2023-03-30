@@ -163,11 +163,11 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<WalkMechanic>();
 		Components.Create<AirMoveMechanic>();
 		Components.Create<JumpMechanic>();
-		Components.Create<UnstuckMechanic>();
-		Components.Create<WallJumpMechanic>();
-		Components.Create<LedgeGrabMechanic>();
-		Components.Create<GrindMechanic>();
-		Components.Create<DashMechanic>();
+		// Components.Create<UnstuckMechanic>();
+		// Components.Create<WallJumpMechanic>();
+		// Components.Create<LedgeGrabMechanic>();
+		// Components.Create<GrindMechanic>();
+		// Components.Create<DashMechanic>();
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();
