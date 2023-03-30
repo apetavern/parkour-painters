@@ -31,6 +31,9 @@ public sealed partial class DashMechanic : ControllerMechanic
 
 		var direction = Player.Rotation.Forward.Normal;
 
+		var particles = Particles.Create( "particles/dash/dash_base.vpcf", Player );
+		particles.SetEntityBone( 0, Player, Player.GetBoneIndex( "spine_0" ) );
+
 		Controller.Velocity = direction * forMul * flGroundFactor;
 		Controller.Velocity = Controller.Velocity.WithZ( flMul * flGroundFactor );
 		Controller.Velocity -= new Vector3( 0, 0, 800f * 0.5f ) * Time.Delta;
