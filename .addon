@@ -177,6 +177,9 @@
           "r": "Trigger"
         }
       ]
-    }
+    },
+    "Summary": "",
+    "Description": "",
+    "Public": false
   }
 }
