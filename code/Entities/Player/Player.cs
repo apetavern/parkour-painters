@@ -80,6 +80,10 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<AirMoveMechanic>();
 		Components.Create<JumpMechanic>();
 		Components.Create<UnstuckMechanic>();
+		Components.Create<WallJumpMechanic>();
+		Components.Create<LedgeGrabMechanic>();
+		Components.Create<GrindMechanic>();
+		Components.Create<DashMechanic>();
 	}
 
 	/// <inheritdoc/>
@@ -162,26 +166,6 @@ public sealed partial class Player : AnimatedEntity
 		Children.OfType<ModelEntity>()
 			.ToList()
 			.ForEach( x => x.EnableDrawing = true );
-
-		var team = Team;
-		if ( team is null )
-		{
-			Components.GetOrCreate<DashMechanic>();
-			Components.GetOrCreate<GrindMechanic>();
-			Components.GetOrCreate<LedgeGrabMechanic>();
-			Components.GetOrCreate<WallJumpMechanic>();
-		}
-		else
-		{
-			if ( team.Group.DashEnabled )
-				Components.GetOrCreate<DashMechanic>();
-			if ( team.Group.GrindEnabled )
-				Components.GetOrCreate<GrindMechanic>();
-			if ( team.Group.LedgeGrabEnabled )
-				Components.GetOrCreate<LedgeGrabMechanic>();
-			if ( team.Group.WallJumpEnabled )
-				Components.GetOrCreate<WallJumpMechanic>();
-		}
 
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();

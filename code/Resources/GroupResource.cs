@@ -57,27 +57,6 @@ public sealed class GroupResource : GameResource
 	[Category( "Setup" )]
 	public Prefab PlayerPrefab { get; set; }
 
-	/// <summary>
-	/// Whether or not the players in this team can use the <see cref="DashMechanic"/>.
-	/// </summary>
-	[Category( "Movement" )]
-	public bool DashEnabled { get; set; } = true;
-	/// <summary>
-	/// Whether or not the players in this team can use the <see cref="GrindMechanic"/>.
-	/// </summary>
-	[Category( "Movement" )]
-	public bool GrindEnabled { get; set; } = true;
-	/// <summary>
-	/// Wheter or not the players in this team can use the <see cref="LedgeGrabMechanic"/>.
-	/// </summary>
-	[Category( "Movement" )]
-	public bool LedgeGrabEnabled { get; set; } = true;
-	/// <summary>
-	/// Whether or not the players in this team can use the <see cref="WallJumpMechanic"/>.
-	/// </summary>
-	[Category( "Movement" )]
-	public bool WallJumpEnabled { get; set; } = true;
-
 	/// <inheritdoc/>
 	protected sealed override void PostLoad()
 	{
