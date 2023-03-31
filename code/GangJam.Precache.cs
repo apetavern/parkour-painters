@@ -7,6 +7,8 @@ partial class ParkourPainters
 	/// </summary>
 	private void SetupPrecache()
 	{
+		Game.AssertServer();
+
 		// TODO: Do precaching here.
 	}
 }

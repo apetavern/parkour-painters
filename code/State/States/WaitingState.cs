@@ -85,11 +85,11 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
-		if ( GameStarting && _timeSinceLastMessage >= 1 )
-		{
-			_timeSinceLastMessage = 0;
-			UI.TextChat.AddInfoChatEntry( $"Starting in {Math.Round( TimeSpan.FromSeconds( TimeUntilGameStart ).TotalSeconds )}" );
-		}
+		if ( !GameStarting || _timeSinceLastMessage < 1 )
+			return;
+
+		_timeSinceLastMessage = 0;
+		UI.TextChat.AddInfoChatEntry( $"Starting in {Math.Round( TimeSpan.FromSeconds( TimeUntilGameStart ).TotalSeconds )}" );
 	}
 
 	/// <inheritdoc/>

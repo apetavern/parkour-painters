@@ -42,7 +42,7 @@ public sealed partial class ParkourPainters : GameManager
 	}
 
 	/// <inheritdoc/>
-	public override void OnVoicePlayed( IClient client )
+	public sealed override void OnVoicePlayed( IClient client )
 	{
 		UI.VoiceChatIndicators.Instance.IsSpeaking( client );
 	}
