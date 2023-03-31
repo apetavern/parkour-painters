@@ -28,8 +28,8 @@ public sealed partial class Team : Entity
 	/// <summary>
 	/// The current score that the team has.
 	/// </summary>
-	public int Score => Entity.All.OfType<GraffitiSpot>()
-		.Where( spot => spot.SprayOwner == this && spot.IsSprayCompleted )
+	public int Score => Entity.All.OfType<GraffitiArea>()
+		.Where( spot => spot.AreaOwner == this )
 		.Count();
 
 	/// <summary>

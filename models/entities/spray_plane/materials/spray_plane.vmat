@@ -1,0 +1,34 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/dissolve.shader_c"
+
+	//---- Color ----
+	Color "materials/default/default_color.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	g_flMetallic "0.000"
+
+	//---- Roughness ----
+	g_flRoughness "1.000"
+
+	//---- Texture Coordinates ----
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+
+	//---- Translucent ----
+	g_flFadeamount "0.000"
+	g_flOpacityScale "1.000"
+	g_flSmoothStepMax "0.500"
+	g_flSmoothStepMin "0.300"
+	Translucency "materials/default/default_trans.tga"
+
+	Attributes
+	{
+		spray "1"
+	}
+}
