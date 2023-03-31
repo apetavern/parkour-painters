@@ -193,7 +193,9 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();
 
-		SetupClothing();
+		// Only change clothes once.
+		if ( ClothingContainer is null )
+			SetupClothing();
 
 		ParkourPainters.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
