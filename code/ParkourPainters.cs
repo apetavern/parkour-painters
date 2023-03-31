@@ -31,6 +31,8 @@ public sealed partial class ParkourPainters : GameManager
 		base.ClientJoined( cl );
 
 		CurrentState?.ClientJoined( cl );
+
+		UI.TextChat.AddInfoChatEntry( $"{cl.Name} has joined" );
 	}
 
 	/// <inheritdoc/>
@@ -39,6 +41,8 @@ public sealed partial class ParkourPainters : GameManager
 		base.ClientDisconnect( cl, reason );
 
 		CurrentState?.ClientDisconnected( cl, reason );
+
+		UI.TextChat.AddInfoChatEntry( $"{cl.Name} has left ({reason})" );
 	}
 
 	/// <inheritdoc/>
