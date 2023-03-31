@@ -103,6 +103,14 @@ public sealed partial class Player : AnimatedEntity
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
 		HeldItem?.Simulate( cl );
+		if ( !Game.IsServer )
+			return;
+
+		foreach ( var itemToDelete in defferedItemRemoval )
+		{
+			HeldItems.Remove( itemToDelete );
+			itemToDelete.Delete();
+		}
 	}
 
 	/// <inheritdoc/>

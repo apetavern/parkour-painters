@@ -12,6 +12,11 @@ partial class Player
 	[Net, Predicted] private BaseCarriable LastHeldItem { get; set; }
 
 	/// <summary>
+	/// A queue of items that are waiting to be removed from the inventory.
+	/// </summary>
+	private readonly HashSet<BaseCarriable> defferedItemRemoval = new();
+
+	/// <summary>
 	/// Adds a new <see cref="BaseCarriable"/> that the player can equip.
 	/// </summary>
 	/// <param name="carriableType">The type of the <see cref="BaseCarriable"/> to add.</param>
@@ -51,9 +56,17 @@ partial class Player
 	}
 
 	/// <summary>
+	/// Queues a carriable item for removal from the inventory.
 	/// </summary>
+	/// <param name="carriable">The item to remove from the inventory.</param>
+	/// <returns>True if the item is queued for removal. False if it already was.</returns>
+	/// <exception cref="ArgumentException">Thrown when the item provided is not from the owners inventory.</exception>
+	public bool RemoveFromInventory( BaseCarriable carriable )
 	{
+		if ( !HeldItems.Contains( carriable ) )
+			throw new ArgumentException( $"{carriable} is not a part of this inventory", nameof( carriable ) );
 
+		return defferedItemRemoval.Add( carriable );
 	}
 
 	/// <summary>
