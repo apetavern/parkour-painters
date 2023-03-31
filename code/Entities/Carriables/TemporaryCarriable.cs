@@ -3,7 +3,7 @@
 /// <summary>
 /// The base for any limited time use item.
 /// </summary>
-internal partial class CarriablePowerup : BaseCarriable
+internal partial class TemporaryCarriable : BaseCarriable
 {
 	/// <summary>
 	/// The time in seconds until the powerup is automatically removed.
