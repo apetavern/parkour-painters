@@ -165,7 +165,7 @@
         {
           "a": "player",
           "b": "player",
-          "r": "Collide"
+          "r": "Ignore"
         },
         {
           "a": "solid",
