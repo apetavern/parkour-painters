@@ -73,6 +73,11 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	[Net, Predicted] protected bool HasReleasedSecondary { get; set; }
 
+	/// <summary>
+	/// Returns whether or not this item is holstered.
+	/// </summary>
+	protected bool Holstered => Owner.HeldItem != this;
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -85,6 +90,9 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	public sealed override void Simulate( IClient client )
 	{
 		base.Simulate( client );
+
+		if ( Holstered )
+			return;
 
 		// Primary fire
 		if ( Input.Down( InputButton.PrimaryAttack ) && !Input.Down( InputButton.SecondaryAttack ) )
