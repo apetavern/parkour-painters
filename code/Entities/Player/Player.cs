@@ -8,6 +8,8 @@ public sealed partial class Player : AnimatedEntity
 	[BindComponent] internal PlayerCamera Camera { get; }
 	[BindComponent] internal InventoryComponent Inventory { get; }
 
+	[BindComponent] internal BasePowerup CurrentPowerup { get; }
+
 	[BindComponent] internal JumpMechanic JumpMechanic { get; }
 	[BindComponent] internal WallJumpMechanic WallJumpMechanic { get; }
 	[BindComponent] internal LedgeGrabMechanic LedgeGrabMechanic { get; }
@@ -96,6 +98,9 @@ public sealed partial class Player : AnimatedEntity
 	public sealed override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );
+
+		if ( CurrentPowerup is not null && CurrentPowerup.TimeSinceAdded >= CurrentPowerup.ExpiryTime )
+			CurrentPowerup.Remove();
 
 		if ( LastHeldItem != HeldItem )
 		{
