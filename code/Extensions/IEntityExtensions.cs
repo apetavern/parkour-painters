@@ -76,7 +76,7 @@ internal static class IEntityExtensions
 	/// </summary>
 	/// <param name="tagList">The list of tags to search.</param>
 	/// <param name="tagSpan">The tag to search for.</param>
-	/// <returns></returns>
+	/// <returns>Whether or not a tag is inside a list of tags.</returns>
 	private static bool HasTag( ReadOnlySpan<char> tagList, ReadOnlySpan<char> tagSpan )
 	{
 		// Quick check to see if the tag list only contains the tag.
@@ -90,15 +90,15 @@ internal static class IEntityExtensions
 
 		// Sequence is at the start of the list.
 		if ( tagIndex == 0 )
-			return tagList[tagIndex + tagSpan.Length + 1] == ' ' ||
-				HasTag( tagList[(tagIndex + tagSpan.Length + 2)..], tagSpan );
+			return tagList[tagIndex + tagSpan.Length] == ' ' ||
+				HasTag( tagList[(tagIndex + tagSpan.Length + 1)..], tagSpan );
 		// Sequence is at the end of the list.
 		else if ( tagIndex == tagList.Length - tagSpan.Length )
 			return tagList[tagIndex - 1] == ' ' ||
 				HasTag( tagList[..(tagList.Length - tagSpan.Length - 2)], tagSpan );
 		// Sequence is somewhere in the middle of the list.
 		else
-			return (tagList[tagIndex - 1] == ' ' && tagList[tagIndex + tagSpan.Length + 1] == ' ') ||
-				HasTag( tagList[(tagIndex + tagSpan.Length + 2)..], tagSpan );
+			return (tagList[tagIndex - 1] == ' ' && tagList[tagIndex + tagSpan.Length] == ' ') ||
+				HasTag( tagList[(tagIndex + tagSpan.Length + 1)..], tagSpan );
 	}
 }
