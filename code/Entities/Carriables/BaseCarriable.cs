@@ -38,12 +38,12 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// The time in seconds since the primary attack was last used.
 	/// </summary>
-	[Net] protected TimeSince TimeSinceLastPrimary { get; set; }
+	[Net, Predicted] protected TimeSince TimeSinceLastPrimary { get; set; }
 
 	/// <summary>
 	/// The time in seconds since the secondary attack was last used.
 	/// </summary>
-	[Net] protected TimeSince TimeSinceLastSecondary { get; set; }
+	[Net, Predicted] protected TimeSince TimeSinceLastSecondary { get; set; }
 
 	/// <summary>
 	/// Whether or not the primary attack is released.
