@@ -1,4 +1,5 @@
-﻿namespace ParkourPainters;
+﻿#if DEBUG
+namespace ParkourPainters;
 
 partial class ParkourPainters
 {
@@ -110,3 +111,4 @@ partial class ParkourPainters
 		player.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
 	}
 }
+#endif
