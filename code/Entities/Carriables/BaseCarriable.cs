@@ -79,7 +79,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	protected bool Holstered => Owner.HeldItem != this;
 
 	/// <inheritdoc/>
-	public sealed override void Spawn()
+	public override void Spawn()
 	{
 		base.Spawn();
 
@@ -87,7 +87,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	}
 
 	/// <inheritdoc/>
-	public sealed override void Simulate( IClient client )
+	public override void Simulate( IClient client )
 	{
 		base.Simulate( client );
 
