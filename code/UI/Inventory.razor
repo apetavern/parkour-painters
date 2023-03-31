@@ -6,14 +6,21 @@
 }
 
 <root>
-    @* TODO: Loop over the players items here instead... *@
-    <div class="carriable">
-        <label>Spray Can</label>
-    </div>
+    @foreach (var item in player.HeldItems)
+    {
+        <div class="carriable @(player.HeldItem is not null && player.HeldItem == item ? "active" : "")">
+            <label class="slot">@item.SlotText</label>
+            <label>@item.CarriableName</label>
+        </div>
+    }
 </root>
 
 @code {
-
+    protected override int BuildHash()
+    {
+        var player = Game.LocalPawn as Entities.Player;
+        return HashCode.Combine(player.HeldItems.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.HeldItem?.GetHashCode());
+    }
 }
 
 <style>
@@ -28,6 +35,17 @@
             font-family: ADDCN;
             text-shadow: 2px 2px 0px black;
             align-items: center;
+            transition: all 200ms ease-in-out;
+            opacity: 0.3;
+
+            .slot {
+                color: orange;
+                margin-right: 5px;
+            }
+
+            &.active {
+                opacity: 1;
+            }
         }
     }
 </style>

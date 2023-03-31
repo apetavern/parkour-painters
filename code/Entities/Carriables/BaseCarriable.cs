@@ -15,6 +15,20 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	}
 
 	/// <summary>
+	/// UI friendly name for the carriable.
+	/// </summary>
+	public virtual string CarriableName => "";
+
+	/// <summary>
+	/// Text that will be displayed next to the name ex. Remaining ammo.
+	/// </summary>
+	public virtual string SlotText => "";
+
+	/// <summary>
+	/// The path to the world model to use.
+	/// </summary>
+
+	/// <summary>
 	/// The path to the world model to use.
 	/// </summary>
 	protected virtual string ModelPath => "";
@@ -53,7 +67,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// Whether or not the primary attack is released.
 	/// </summary>
 	[Net, Predicted] protected bool HasReleasedPrimary { get; set; }
-	
+
 	/// <summary>
 	/// Whether or not the secondary attack is released.
 	/// </summary>

@@ -6,6 +6,12 @@
 public sealed partial class SprayCan : BaseCarriable
 {
 	/// <inheritdoc/>
+	public override string CarriableName => "Spray Can";
+
+	/// <inheritdoc/>
+	public override string SlotText => Ammo.ToString();
+
+	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/spray_paint/spray_paint.vmdl";
 	/// <inheritdoc/>
 	protected override float PrimaryFireRate => 0.05f;
