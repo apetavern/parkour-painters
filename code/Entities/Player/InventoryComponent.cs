@@ -1,15 +1,13 @@
-﻿namespace ParkourPainters.Entities;
+﻿using ParkourPainters.UI;
 
-partial class Player
+namespace ParkourPainters.Entities;
+
+internal sealed partial class InventoryComponent : EntityComponent<Player>
 {
 	/// <summary>
 	/// Contains all carriable items that the player has.
 	/// </summary>
-	[Net] public IList<BaseCarriable> HeldItems { get; private set; }
-	/// <summary>
-	/// The last held item.
-	/// </summary>
-	[Net, Predicted] private BaseCarriable LastHeldItem { get; set; }
+	[Net] public IList<BaseCarriable> Items { get; private set; }
 
 	/// <summary>
 	/// A queue of items that are waiting to be removed from the inventory.
@@ -31,8 +29,8 @@ partial class Player
 			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already in the inventory", nameof( carriableType ) );
 
 		var carriable = carriableType.Create<BaseCarriable>();
-		carriable.Owner = this;
-		HeldItems.Add( carriable );
+		carriable.Owner = Entity;
+		Items.Add( carriable );
 		return carriable;
 	}
 
@@ -49,9 +47,9 @@ partial class Player
 
 		var carriable = new T
 		{
-			Owner = this
+			Owner = Entity
 		};
-		HeldItems.Add( carriable );
+		Items.Add( carriable );
 		return carriable;
 	}
 
@@ -63,7 +61,7 @@ partial class Player
 	/// <exception cref="ArgumentException">Thrown when the item provided is not from the owners inventory.</exception>
 	public bool RemoveFromInventory( BaseCarriable carriable )
 	{
-		if ( !HeldItems.Contains( carriable ) )
+		if ( !Items.Contains( carriable ) )
 			throw new ArgumentException( $"{carriable} is not a part of this inventory", nameof( carriable ) );
 
 		return defferedItemRemoval.Add( carriable );
@@ -82,8 +80,8 @@ partial class Player
 			throw new ArgumentException( $"No item of type \"{type.Name}\" is in the inventory", nameof( type ) );
 
 		return fuzzy
-			? HeldItems.First( item => item.GetType().IsAssignableTo( type ) )
-			: HeldItems.First( item => item.GetType().Name == type.Name );
+			? Items.First( item => item.GetType().IsAssignableTo( type ) )
+			: Items.First( item => item.GetType().Name == type.Name );
 	}
 
 	/// <summary>
@@ -120,8 +118,8 @@ partial class Player
 			return false;
 
 		return fuzzy
-			? !HeldItems.Any( x => type.IsAssignableTo( type ) )
-			: !HeldItems.Any( x => type.Name == x.GetType().Name );
+			? !Items.Any( x => type.IsAssignableTo( type ) )
+			: !Items.Any( x => type.Name == x.GetType().Name );
 	}
 
 	/// <summary>
@@ -139,4 +137,31 @@ partial class Player
 	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
 	public bool CanAddItem<T>( bool fuzzy = false ) where T : BaseCarriable => CanAddItem( typeof( T ), fuzzy );
+
+	/// <summary>
+	/// Called when simulating as part of a player's tick. Like if it's a pawn.
+	/// </summary>
+	internal void Simulate( IClient cl )
+	{
+		foreach ( var item in Items )
+			item.Simulate( cl );
+
+		if ( !Game.IsServer )
+			return;
+
+		foreach ( var itemToDelete in defferedItemRemoval )
+		{
+			Items.Remove( itemToDelete );
+			itemToDelete.Delete();
+		}
+	}
+
+	/// <summary>
+	/// Called when simulating as part of a player's tick. Like if it's a pawn.
+	/// </summary>
+	internal void FrameSimulate( IClient cl )
+	{
+		foreach ( var item in Items )
+			item.FrameSimulate( cl );
+	}
 }

@@ -42,7 +42,7 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 		if ( other is not Player player )
 			return;
 
-		player.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
+		player.Inventory.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
 		TimeSinceLastPickup = 0f;
 
 		if ( OneTimeUse )

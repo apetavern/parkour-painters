@@ -20,7 +20,7 @@ public partial class Player
 		get
 		{
 			if ( Client.IsBot && heldItemInput is not null )
-				return GetItem( heldItemInput.GetType() );
+				return Inventory.GetItem( heldItemInput.GetType() );
 
 			return (BaseCarriable)heldItemInput;
 		}
@@ -30,6 +30,11 @@ public partial class Player
 	/// </summary>
 	[ClientInput]
 	private Entity heldItemInput { get; set; }
+
+	/// <summary>
+	/// The last held item.
+	/// </summary>
+	[Net, Predicted] private BaseCarriable LastHeldItem { get; set; }
 
 	/// <summary>
 	/// Position a player should be looking from in world space.
@@ -82,9 +87,9 @@ public partial class Player
 			SwitchTo( null );
 
 		if ( Input.Pressed( InputButton.SlotNext ) )
-			SwitchTo( HeldItems.IndexOf( HeldItem ) + 1 );
+			SwitchTo( Inventory.Items.IndexOf( HeldItem ) + 1 );
 		if ( Input.Pressed( InputButton.SlotPrev ) )
-			SwitchTo( HeldItems.IndexOf( HeldItem ) - 1 );
+			SwitchTo( Inventory.Items.IndexOf( HeldItem ) - 1 );
 	}
 
 	/// <summary>
@@ -99,15 +104,15 @@ public partial class Player
 			return;
 		}
 
-		while ( index >= HeldItems.Count )
-			index -= HeldItems.Count;
+		while ( index >= Inventory.Items.Count )
+			index -= Inventory.Items.Count;
 
 		while ( index < 0 )
-			index += HeldItems.Count;
+			index += Inventory.Items.Count;
 
-		if ( HeldItem == HeldItems[index.Value] )
+		if ( HeldItem == Inventory.Items[index.Value] )
 			heldItemInput = null;
 		else
-			heldItemInput = HeldItems[index.Value];
+			heldItemInput = Inventory.Items[index.Value];
 	}
 }

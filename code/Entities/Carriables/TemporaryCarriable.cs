@@ -29,7 +29,7 @@ internal partial class TemporaryCarriable : BaseCarriable
 		if ( TimeSinceSpawned >= ExpiryTime )
 		{
 			if ( Game.IsServer )
-				Owner.RemoveFromInventory( this );
+				Owner.Inventory.RemoveFromInventory( this );
 
 			return;
 		}

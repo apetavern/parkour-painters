@@ -6,6 +6,7 @@ public sealed partial class Player : AnimatedEntity
 	[BindComponent] internal PlayerController Controller { get; }
 	[BindComponent] internal PlayerAnimator Animator { get; }
 	[BindComponent] internal PlayerCamera Camera { get; }
+	[BindComponent] internal InventoryComponent Inventory { get; }
 
 	[BindComponent] internal JumpMechanic JumpMechanic { get; }
 	[BindComponent] internal WallJumpMechanic WallJumpMechanic { get; }
@@ -74,6 +75,7 @@ public sealed partial class Player : AnimatedEntity
 		Tags.Add( "player" );
 
 		Components.Create<PlayerController>();
+		Components.Create<InventoryComponent>();
 
 		Components.Create<WalkMechanic>();
 		Components.Create<AirMoveMechanic>();
@@ -84,7 +86,7 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<GrindMechanic>();
 		Components.Create<DashMechanic>();
 
-		var sprayCan = AddToInventory<SprayCan>();
+		var sprayCan = Inventory.AddToInventory<SprayCan>();
 		// TODO: This is jank
 		sprayCan.OnEquipped();
 		sprayCan.OnHolstered();
@@ -93,6 +95,8 @@ public sealed partial class Player : AnimatedEntity
 	/// <inheritdoc/>
 	public sealed override void Simulate( IClient cl )
 	{
+		base.Simulate( cl );
+
 		if ( LastHeldItem != HeldItem )
 		{
 			LastHeldItem?.OnHolstered();
@@ -102,28 +106,17 @@ public sealed partial class Player : AnimatedEntity
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
-
-		foreach ( var item in HeldItems )
-			item.Simulate( cl );
-
-		if ( !Game.IsServer )
-			return;
-
-		foreach ( var itemToDelete in defferedItemRemoval )
-		{
-			HeldItems.Remove( itemToDelete );
-			itemToDelete.Delete();
-		}
+		Inventory?.Simulate( cl );
 	}
 
 	/// <inheritdoc/>
 	public sealed override void FrameSimulate( IClient cl )
 	{
+		base.FrameSimulate( cl );
+
 		Controller?.FrameSimulate( cl );
 		Camera?.Update( this );
-
-		foreach ( var item in HeldItems )
-			item.FrameSimulate( cl );
+		Inventory?.FrameSimulate( cl );
 	}
 
 	/// <inheritdoc/>

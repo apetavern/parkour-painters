@@ -6,7 +6,7 @@
 }
 
 <root>
-    @foreach (var item in player.HeldItems)
+    @foreach (var item in player.Inventory.Items)
     {
         <div class="carriable @(player.HeldItem is not null && player.HeldItem == item ? "active" : "")">
             <label class="slot">@item.SlotText</label>
@@ -22,7 +22,7 @@
         if (player is null)
             return 0;
 
-        return HashCode.Combine(player.HeldItems.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.HeldItem?.GetHashCode());
+        return HashCode.Combine(player.Inventory.Items.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.HeldItem?.GetHashCode());
     }
 }
 
