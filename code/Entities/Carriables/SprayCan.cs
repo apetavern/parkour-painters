@@ -56,8 +56,8 @@ public sealed partial class SprayCan : BaseCarriable
 		{
 			if ( !HasReleasedPrimary )
 			{
-				HasReleasedPrimary = true;
 				OnPrimaryReleased();
+				HasReleasedPrimary = true;
 			}
 
 			return;
@@ -72,7 +72,7 @@ public sealed partial class SprayCan : BaseCarriable
 		Owner.SetAnimParameter( "b_spray", true );
 
 		// Create spray particles
-		if ( SprayParticles is null && Prediction.FirstTime )
+		if ( SprayParticles is null )
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
