@@ -1,6 +1,6 @@
 ﻿namespace ParkourPainters.Entities;
 
-internal sealed partial class InventoryComponent : EntityComponent<Player>
+internal sealed partial class InventoryComponent : EntityComponent<Player>, ISingletonComponent
 {
 	/// <summary>
 	/// Contains all carriable items.
