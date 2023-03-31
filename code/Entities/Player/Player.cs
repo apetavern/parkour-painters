@@ -102,7 +102,10 @@ public sealed partial class Player : AnimatedEntity
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
-		HeldItem?.Simulate( cl );
+
+		foreach ( var item in HeldItems )
+			item.Simulate( cl );
+
 		if ( !Game.IsServer )
 			return;
 
@@ -118,6 +121,9 @@ public sealed partial class Player : AnimatedEntity
 	{
 		Controller?.FrameSimulate( cl );
 		Camera?.Update( this );
+
+		foreach ( var item in HeldItems )
+			item.FrameSimulate( cl );
 	}
 
 	/// <inheritdoc/>
