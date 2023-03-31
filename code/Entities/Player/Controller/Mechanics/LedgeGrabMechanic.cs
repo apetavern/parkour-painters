@@ -52,6 +52,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		var trDownwards = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Radius( 3 )
 			.Run();
 
@@ -60,6 +61,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Radius( 3 )
 			.Run();
 
@@ -74,6 +76,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		var trUpwards = Trace.Ray( center, center + (Player.Rotation.Up * Controller.BodyGirth) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Radius( 16 )
 			.Run();
 
@@ -88,6 +91,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * Controller.EyeHeight) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Radius( 2 )
 			.Run();
 
@@ -101,6 +105,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		tr = Trace.Ray( destinationTestPos + (Vector3.Up * girth + 1.0f), destinationTestPos + (Vector3.Up * Controller.BodyGirth) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Radius( girth )
 			.Run();
 

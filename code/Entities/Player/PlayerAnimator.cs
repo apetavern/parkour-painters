@@ -47,6 +47,7 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			var kneeTrace = Trace.Sphere( 4f, kneePos, kneePos + player.Rotation.Forward * 30f )
 				.Ignore( player )
 				.WithoutTags( "player" )
+				.WithTag( "solid" )
 				.Run();
 
 			if ( kneeTrace.Hit )

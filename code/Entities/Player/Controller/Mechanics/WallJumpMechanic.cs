@@ -32,6 +32,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		var tr = Trace.Ray( Controller.Player.Position, Controller.Player.Position + Vector3.Down * 10f )
 			.Ignore( Controller.Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Radius( 5 )
 			.Run();
 
@@ -45,6 +46,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		var mid = Trace.Ray( center, dest )
 			.Ignore( Controller.Player )
 			.WithoutTags( "player" )
+			.WithTag( "solid" )
 			.Run();
 
 		if ( mid.Hit )
