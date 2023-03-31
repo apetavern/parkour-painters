@@ -1,0 +1,50 @@
+@namespace ParkourPainters.UI
+
+<root class="@(Input.Down(InputButton.Score) ? "" : "hide")">
+    <label class="title">Parkour Painter</label>
+    <div class="players">
+        @foreach (var client in Game.Clients)
+        {
+            <PlayerEntry Client=@client />
+        }
+    </div>
+</root>
+
+@code {
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Game.Clients.HashCombine(c => c.SteamId), Input.Down(InputButton.Score));
+    }
+}
+
+<style>
+    PlayerList {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: all 100ms ease-out;
+        transform: scale(1.05);
+
+        .title {
+            font-size: 70px;
+            color: white;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
+        }
+
+        .players {
+            background-color: #00000042;
+            backdrop-filter-blur: 20px;
+            max-width: 905px;
+            max-height: 800px;
+            flex-wrap: wrap;
+        }
+
+        &.hide {
+            opacity: 0;
+            transform: scale(1);
+        }
+    }
+</style>

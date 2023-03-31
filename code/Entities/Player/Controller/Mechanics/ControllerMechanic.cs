@@ -56,22 +56,10 @@ public partial class ControllerMechanic : EntityComponent<Player>
 		set => Controller.Velocity = value;
 	}
 
-	public Vector3 LastVelocity
-	{
-		get => Controller.LastVelocity;
-		set => Controller.LastVelocity = value;
-	}
-
 	public Entity GroundEntity
 	{
 		get => Controller.GroundEntity;
 		set => Controller.GroundEntity = value;
-	}
-
-	public Entity LastGroundEntity
-	{
-		get => Controller.LastGroundEntity;
-		set => Controller.LastGroundEntity = value;
 	}
 
 	/// <summary>
