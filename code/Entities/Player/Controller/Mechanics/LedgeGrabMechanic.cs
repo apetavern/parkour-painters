@@ -18,6 +18,9 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		if ( TimeSinceDrop < 0.9f )
 			return false;
 
+		if ( Controller.Velocity.z > 0 )
+			return false;
+
 		return CanGrabLedge();
 	}
 
@@ -85,7 +88,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 
 		var normal = tr.Normal;
 		var destinationTestPos = tr.EndPosition - (normal * 5f) + (Vector3.Up * 25.0f);
-		var originTestPos = tr.EndPosition + (normal * girth);
+		var originTestPos = tr.EndPosition + (normal.EulerAngles.WithPitch( 0 ).ToRotation().Forward * girth);
 
 		// Test to see if what we are attempting to grab is actually a ledge.
 		tr = Trace.Ray( destinationTestPos, destinationTestPos - (Vector3.Up * Controller.EyeHeight) )
