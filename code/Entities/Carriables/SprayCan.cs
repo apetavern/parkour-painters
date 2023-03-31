@@ -67,7 +67,7 @@ public sealed partial class SprayCan : BaseCarriable
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
-			if ( Player.Team?.Group is not null )
+			if ( Player?.Team?.Group?.SprayColor is not null )
 				SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
 		}
 
