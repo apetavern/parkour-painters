@@ -115,7 +115,7 @@ public sealed partial class GraffitiArea : ModelEntity
 	[ParkourPainters.Events.EnterGameState]
 	private void CleanupOnStateChange( IGameState newGameState, IGameState oldGameState )
 	{
-		if ( oldGameState is not PlayState || newGameState is not GameOverState )
+		if ( oldGameState is PlayState && newGameState is GameOverState )
 			return;
 
 		// Destroy all the created sprays.
