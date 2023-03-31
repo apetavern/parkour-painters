@@ -15,6 +15,11 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	[Net] public TimeSince TimeSinceLastPickup { get; private set; }
 
 	/// <summary>
+	/// Whether or not this carriable spawner is a one time use.
+	/// </summary>
+	[Property] public bool OneTimeUse { get; private set; }
+
+	/// <summary>
 	/// The name of a type that derives from <see cref="BaseCarriable"/> to spawn.
 	/// </summary>
 	[Property] private string CarriableType { get; set; }
@@ -74,5 +79,8 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 			player.AddToInventory( foundType );
 
 		TimeSinceLastPickup = 0f;
+
+		if ( OneTimeUse )
+			Delete();
 	}
 }
