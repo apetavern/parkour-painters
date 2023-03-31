@@ -88,4 +88,25 @@ partial class ParkourPainters
 		ConsoleSystem.Caller.Pawn?.Delete();
 		ConsoleSystem.Caller.Pawn = new Spectator();
 	}
+
+	/// <summary>
+	/// A debug command to restore the players ammo.
+	/// </summary>
+	[ConCmd.Admin( "pp_giveammo" )]
+	private static void GiveAmmo()
+	{
+		if ( ConsoleSystem.Caller is null )
+		{
+			Log.Warning( "This command can only be used by players" );
+			return;
+		}
+
+		if ( ConsoleSystem.Caller.Pawn is not Entities.Player player )
+		{
+			Log.Warning( "You do not have the correct pawn to use this command" );
+			return;
+		}
+
+		player.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
+	}
 }
