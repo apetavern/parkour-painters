@@ -51,32 +51,36 @@ partial class Player
 	}
 
 	/// <summary>
-	/// Gets an item from the inventory.
 	/// </summary>
-	/// <typeparam name="T">The type of item to get from the inventory.</typeparam>
-	/// <returns>The item from the inventory.</returns>
-	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
-	public T GetItem<T>() where T : BaseCarriable
 	{
-		if ( CanAddItem<T>() )
-			throw new ArgumentException( $"No item of type \"{typeof( T ).Name}\" is in the inventory", nameof( T ) );
 
-		return (T)HeldItems.First( item => item is T );
 	}
 
 	/// <summary>
 	/// Gets an item from the inventory.
 	/// </summary>
 	/// <param name="type">The type of item to get from the inventory.</param>
+	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>The item from the inventory.</returns>
 	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
-	public BaseCarriable GetItem( Type type )
+	public BaseCarriable GetItem( Type type, bool fuzzy = false )
 	{
-		if ( CanAddItem( type ) )
+		if ( CanAddItem( type, fuzzy ) )
 			throw new ArgumentException( $"No item of type \"{type.Name}\" is in the inventory", nameof( type ) );
 
-		return HeldItems.First( item => item.GetType().Name == type.Name );
+		return fuzzy
+			? HeldItems.First( item => item.GetType().IsAssignableTo( type ) )
+			: HeldItems.First( item => item.GetType().Name == type.Name );
 	}
+
+	/// <summary>
+	/// Gets an item from the inventory.
+	/// </summary>
+	/// <typeparam name="T">The type of item to get from the inventory.</typeparam>
+	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
+	/// <returns>The item from the inventory.</returns>
+	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
+	public T GetItem<T>( bool fuzzy = false ) where T : BaseCarriable => (T)GetItem( typeof( T ), fuzzy );
 
 	/// <summary>
 	/// Gets an item from the inventory. If it doesn't exist, it creates and returns it.
@@ -95,26 +99,31 @@ partial class Player
 	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
 	/// </summary>
 	/// <param name="type">The carriable type.</param>
+	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
-	public bool CanAddItem( Type type )
+	public bool CanAddItem( Type type, bool fuzzy = false )
 	{
 		if ( !type.IsAssignableTo( typeof( BaseCarriable ) ) )
 			return false;
 
-		return !HeldItems.Any( x => type.Name == x.GetType().Name );
+		return fuzzy
+			? !HeldItems.Any( x => type.IsAssignableTo( type ) )
+			: !HeldItems.Any( x => type.Name == x.GetType().Name );
 	}
 
 	/// <summary>
 	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
 	/// </summary>
 	/// <param name="typeDescription">The carriable type.</param>
+	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
-	public bool CanAddItem( TypeDescription typeDescription ) => CanAddItem( typeDescription.TargetType );
+	public bool CanAddItem( TypeDescription typeDescription, bool fuzzy = false ) => CanAddItem( typeDescription.TargetType, fuzzy );
 
 	/// <summary>
 	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
 	/// </summary>
 	/// <typeparam name="T">The carriable type.</typeparam>
+	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
-	public bool CanAddItem<T>() where T : BaseCarriable => CanAddItem( typeof( T ) );
+	public bool CanAddItem<T>( bool fuzzy = false ) where T : BaseCarriable => CanAddItem( typeof( T ), fuzzy );
 }
