@@ -125,4 +125,15 @@ public sealed partial class GraffitiArea : ModelEntity
 		// Recreate list.
 		Sprays = new List<Spray>();
 	}
+
+#if DEBUG
+	[Event.Tick.Client]
+	private void DebugDraw()
+	{
+		DebugOverlay.Text( $"{Sprays.Count} sprays (Latest from {(AreaOwner?.ToString() ?? "No one")})", Position );
+
+		foreach ( var spray in Sprays )
+			DebugOverlay.Text( $"{spray.SprayProgress} ({spray.TeamOwner})", spray.Position );
+	}
+#endif
 }
