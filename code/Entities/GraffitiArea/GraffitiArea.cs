@@ -19,6 +19,11 @@ public sealed partial class GraffitiArea : ModelEntity
 	[Property] public Vector3 Maxs { get; set; }
 
 	/// <summary>
+	/// How difficult is it to reach this zone?
+	/// </summary>
+	[Property, Net] public GraffitiAreaDifficulty PointsType { get; set; } = GraffitiAreaDifficulty.Easy;
+
+	/// <summary>
 	/// Returns the spray that was last fully completed.
 	/// </summary>
 	public Spray LastCompletedSpray => Sprays.LastOrDefault( x => x.IsSprayCompleted );
