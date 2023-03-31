@@ -7,7 +7,15 @@
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [],
+  "ResourcePaths": [
+    "/fonts/*",
+    "/materials/*",
+    "/models/*",
+    "/particles/*",
+    "/prefabs/*",
+    "/shaders/*",
+    "/sounds/*"
+  ],
   "HasCode": true,
   "CodePath": "/code/",
   "PackageReferences": [],
