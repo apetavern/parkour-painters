@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkourPainters.Entities;
 
 public sealed class NoclipMechanic : ControllerMechanic
 {

@@ -1,4 +1,4 @@
-﻿namespace GangJam.State;
+﻿namespace ParkourPainters.State;
 
 /// <summary>
 /// Represents the ending state of a game.

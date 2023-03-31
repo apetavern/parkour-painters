@@ -1,8 +1,8 @@
 {
-  "Title": "Gang Jam",
+  "Title": "Parkour Painters",
   "Type": "game",
   "Org": "apetavern",
-  "Ident": "gang_jam",
+  "Ident": "parkour_painters",
   "Tags": null,
   "Schema": 1,
   "HasAssets": true,
@@ -25,15 +25,16 @@
     "ProjectTemplate": null,
     "CsProjName": "",
     "Compiler": {
-      "RootNamespace": "GangJam",
+      "RootNamespace": "ParkourPainters",
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
-      "NoWarn": "1701;1702;1591;"
+      "NoWarn": "1701;1702;1591;",
+      "References": []
     },
     "PackageSettings": [
       {
         "DisplayType": "Float",
         "Choices": [],
-        "ConVarName": "gj_gamelength",
+        "ConVarName": "pp_gamelength",
         "DisplayName": "Game Length",
         "DefaultValue": "300",
         "Description": "",
@@ -45,7 +46,7 @@
       {
         "DisplayType": "Integer",
         "Choices": [],
-        "ConVarName": "gj_maxteams",
+        "ConVarName": "pp_maxteams",
         "DisplayName": "Max Teams",
         "DefaultValue": "2",
         "Description": "The maximum amount of teams that can exist in the game.",
@@ -56,7 +57,7 @@
       {
         "DisplayType": "Boolean",
         "Choices": [],
-        "ConVarName": "gj_mixclientclothes",
+        "ConVarName": "pp_mixclientclothes",
         "DisplayName": "Mix Player Clothes",
         "DefaultValue": "true",
         "Description": "Whether or not to mix a players clothing choices with their team specific clothing.",
@@ -65,7 +66,7 @@
       {
         "DisplayType": "Boolean",
         "Choices": [],
-        "ConVarName": "gj_friendlyfire",
+        "ConVarName": "pp_friendlyfire",
         "DisplayName": "Friendly Fire",
         "DefaultValue": "true",
         "Description": "",
@@ -74,7 +75,7 @@
       {
         "DisplayType": "Float",
         "Choices": [],
-        "ConVarName": "gj_dazetime",
+        "ConVarName": "pp_dazetime",
         "DisplayName": "Daze Time",
         "DefaultValue": "3",
         "Description": "The time in seconds that a player will be dazed for.",
@@ -86,7 +87,7 @@
       {
         "DisplayType": "Float",
         "Choices": [],
-        "ConVarName": "gj_immunetime",
+        "ConVarName": "pp_immunetime",
         "DisplayName": "Immune Time",
         "DefaultValue": "5",
         "Description": "The time in seconds that a player will be immune for after being dazed.",
@@ -98,7 +99,7 @@
       {
         "DisplayType": "Float",
         "Choices": [],
-        "ConVarName": "gj_gamestartgraceperiod",
+        "ConVarName": "pp_gamestartgraceperiod",
         "DisplayName": "Game Start Grace Period",
         "DefaultValue": "10",
         "Description": "The time in seconds to wait for any other players to join before starting the game.",
@@ -109,7 +110,7 @@
       {
         "DisplayType": "Integer",
         "Choices": [],
-        "ConVarName": "gj_maxplayersperteam",
+        "ConVarName": "pp_maxplayersperteam",
         "DisplayName": "Max Players Per Team",
         "DefaultValue": "100",
         "Description": "",
@@ -120,7 +121,7 @@
       {
         "DisplayType": "Boolean",
         "Choices": [],
-        "ConVarName": "gj_enforceuniqueteams",
+        "ConVarName": "pp_enforceuniqueteams",
         "DisplayName": "Enforce Unique Teams",
         "DefaultValue": "true",
         "Description": "",
@@ -164,7 +165,7 @@
         {
           "a": "player",
           "b": "player",
-          "r": "Collide"
+          "r": "Ignore"
         },
         {
           "a": "solid",
@@ -180,6 +181,10 @@
     },
     "Summary": "",
     "Description": "",
-    "Public": false
+    "Public": false,
+    "ControlModes": {
+      "Keyboard": true,
+      "Gamepad": true
+    }
   }
 }

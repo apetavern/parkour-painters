@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkourPainters.Entities;
 
 public sealed partial class WalkMechanic : ControllerMechanic
 {
@@ -7,7 +7,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 	public float GroundAngle => 46.0f;
 	public float GroundFriction => 4.0f;
 	public float MaxNonJumpVelocity => 140.0f;
-	[Net, Predicted] public float SurfaceFriction { get; set; } = 1f;
+	public float SurfaceFriction { get; set; } = 1f;
 	public float Acceleration => 6f;
 
 	public override float? WishSpeed => 275f;
@@ -32,7 +32,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 			var targetRot = Rotation.LookAt( wishSpeed ).Angles().WithPitch( 0 ).WithRoll( 0 );
 
 
-			if ( Input.Down( InputButton.PrimaryAttack ) && Player.Carrying != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
+			if ( Input.Down( InputButton.PrimaryAttack ) && Player.HeldItem != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
 			{
 				Player.Rotation = Rotation.Lerp( Player.Rotation, Rotation.LookAt( Player.EyeRotation.Forward.WithZ( 0 ) ), 25f * Time.Delta );
 			}
@@ -41,7 +41,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 				Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
 			}
 		}
-		else if ( Input.Down( InputButton.PrimaryAttack ) && Player.Carrying != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
+		else if ( Input.Down( InputButton.PrimaryAttack ) && Player.HeldItem != null && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
 		{
 			Player.Rotation = Rotation.Lerp( Player.Rotation, Rotation.LookAt( Player.EyeRotation.Forward.WithZ( 0 ) ), 25f * Time.Delta );
 		}
@@ -136,16 +136,12 @@ public sealed partial class WalkMechanic : ControllerMechanic
 		if ( GroundEntity == null )
 			return;
 
-		LastGroundEntity = GroundEntity;
 		GroundEntity = null;
 		SurfaceFriction = 1.0f;
 	}
 
 	public void SetGroundEntity( Entity entity )
 	{
-		LastGroundEntity = GroundEntity;
-		LastVelocity = Velocity;
-
 		GroundEntity = entity;
 
 		if ( GroundEntity != null )
@@ -207,8 +203,6 @@ public sealed partial class WalkMechanic : ControllerMechanic
 
 	private void UpdateGroundEntity( TraceResult tr )
 	{
-		Controller.GroundNormal = tr.Normal;
-
 		SurfaceFriction = tr.Surface.Friction * 1.25f;
 		if ( SurfaceFriction > 1 )
 			SurfaceFriction = 1;

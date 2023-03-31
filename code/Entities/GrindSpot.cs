@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkourPainters.Entities;
 
 /// <summary>
 /// A spot that a palyer can grind on.
@@ -8,11 +8,4 @@ namespace GangJam.Entities;
 [HammerEntity, Path( "path_generic_node" )]
 internal sealed class GrindSpot : GenericPathEntity
 {
-	/// <inheritdoc/>
-	public sealed override void Spawn()
-	{
-		base.Spawn();
-
-		Transmit = TransmitType.Always;
-	}
 }

@@ -1,13 +1,30 @@
-"Layer0"
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
 {
-	"shader"		"shaders/pixelated.shader_c"
-	"Color"		"models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_color.png"
-	"g_flModelTintAmount"		"1.000000"
-	"g_vColorTint"		"[1.000000 1.000000 1.000000 0.000000]"
-	"TintMask"		"materials/default/default_mask.tga"
-	"g_bFogEnabled"		"1"
-	"Metallic"		"models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_metal.png"
-	"Normal"		"models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_normal.png"
-	"Roughness"		"models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_rough.png"
-	"g_vTiling"		"[1.000 1.000]"
+	shader "shaders/pixelated.shader_c"
+
+	//---- Rendering ----
+	F_RENDER_BACKFACES 1
+
+	//---- Color ----
+	Color "models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_metal.png"
+
+	//---- Normal ----
+	Normal "models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_normal.png"
+
+	//---- Roughness ----
+	Roughness "models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
 }

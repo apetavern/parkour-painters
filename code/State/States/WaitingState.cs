@@ -1,4 +1,4 @@
-﻿namespace GangJam.State;
+﻿namespace ParkourPainters.State;
 
 /// <summary>
 /// The state for when waiting for players to join the game.
@@ -12,7 +12,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="WaitingState"/>. This can be null.
 	/// </summary>
-	internal static WaitingState Instance => GangJam.Current?.CurrentState as WaitingState;
+	internal static WaitingState Instance => ParkourPainters.Current?.CurrentState as WaitingState;
 
 	/// <summary>
 	/// Contains all of the clients that have been selected to be apart of teams.
@@ -33,7 +33,9 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <summary>
 	/// Returns whether or not the game is getting ready to start.
 	/// </summary>
-	internal bool GameStarting => Game.Clients.Count >= GangJam.MinimumPlayers && TimeUntilGameStart > 0;
+	internal bool GameStarting => Game.Clients.Count >= ParkourPainters.MinimumPlayers && TimeUntilGameStart > 0;
+
+	internal TimeSince _timeSinceLastMessage;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -55,7 +57,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 			defaultPlayer.Respawn();
 		}
 
-		TimeUntilGameStart = GangJam.GameStartGracePeriod;
+		TimeUntilGameStart = ParkourPainters.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
@@ -71,18 +73,23 @@ internal sealed partial class WaitingState : Entity, IGameState
 		cl.Pawn = player;
 		player.Respawn();
 
-		TimeUntilGameStart = GangJam.GameStartGracePeriod;
+		TimeUntilGameStart = ParkourPainters.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.ClientDisconnected( IClient cl, NetworkDisconnectionReason reason )
 	{
-		TimeUntilGameStart = GangJam.GameStartGracePeriod;
+		TimeUntilGameStart = ParkourPainters.GameStartGracePeriod;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
+		if ( !GameStarting || _timeSinceLastMessage < 1 )
+			return;
+
+		_timeSinceLastMessage = 0;
+		UI.TextChat.AddInfoChatEntry( $"Starting in {Math.Round( TimeSpan.FromSeconds( TimeUntilGameStart ).TotalSeconds )}" );
 	}
 
 	/// <inheritdoc/>
@@ -110,7 +117,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	{
 		Game.AssertServer();
 
-		GangJam.Current.SetState<WaitingState>();
+		ParkourPainters.Current.SetState<WaitingState>();
 	}
 
 	/// <summary>
@@ -119,7 +126,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <returns>A set of teams and a spectator group built from a very basic iteration.</returns>
 	internal static (ImmutableArray<ImmutableArray<IClient>>, ImmutableArray<IClient>) BuildDefaultTeams()
 	{
-		var teamBuilders = new ImmutableArray<IClient>.Builder[GangJam.MaxTeams];
+		var teamBuilders = new ImmutableArray<IClient>.Builder[ParkourPainters.MaxTeams];
 		var spectatorBuilder = ImmutableArray.CreateBuilder<IClient>();
 
 		for ( var i = 0; i < teamBuilders.Length; i++ )
@@ -130,7 +137,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 			var client = Game.Clients.ElementAt( i );
 
 			// If adding this client would make the team count go over the limit then move them to spectators.
-			if ( teamBuilders[i % teamBuilders.Length].Count + 1 > GangJam.MaxPlayersPerTeam )
+			if ( teamBuilders[i % teamBuilders.Length].Count + 1 > ParkourPainters.MaxPlayersPerTeam )
 				spectatorBuilder.Add( client );
 			else
 				teamBuilders[i % teamBuilders.Length].Add( client );

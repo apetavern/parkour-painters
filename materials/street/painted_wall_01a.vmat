@@ -1,0 +1,27 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated.shader_c"
+
+	//---- Color ----
+	Color "materials/street/textures/painted_wall_01a_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[0.235294 0.254902 0.215686 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "materials/default/default_metal.tga"
+
+	//---- Normal ----
+	Normal "materials/street/textures/painted_wall_01a_normal.png"
+
+	//---- Roughness ----
+	Roughness "materials/street/textures/painted_wall_01a_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+}

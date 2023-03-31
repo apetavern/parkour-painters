@@ -1,0 +1,54 @@
+@namespace ParkourPainters.UI
+
+@if (Game.LocalPawn is not Entities.Player player)
+{
+    return;
+}
+
+<root>
+    @foreach (var item in player.HeldItems)
+    {
+        <div class="carriable @(player.HeldItem is not null && player.HeldItem == item ? "active" : "")">
+            <label class="slot">@item.SlotText</label>
+            <label>@item.CarriableName</label>
+        </div>
+    }
+</root>
+
+@code {
+    protected override int BuildHash()
+    {
+        var player = Game.LocalPawn as Entities.Player;
+        if (player is null)
+            return 0;
+
+        return HashCode.Combine(player.HeldItems.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.HeldItem?.GetHashCode());
+    }
+}
+
+<style>
+    Inventory {
+        position: absolute;
+        bottom: 100px;
+        right: 200px;
+
+        .carriable {
+            font-size: 70px;
+            color: white;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
+            align-items: center;
+            transition: all 200ms ease-in-out;
+            opacity: 0.3;
+
+            .slot {
+                color: orange;
+                margin-right: 5px;
+            }
+
+            &.active {
+                opacity: 1;
+            }
+        }
+    }
+</style>

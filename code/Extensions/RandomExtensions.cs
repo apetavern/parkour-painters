@@ -1,4 +1,4 @@
-﻿namespace GangJam.Extensions;
+﻿namespace ParkourPainters.Extensions;
 
 /// <summary>
 /// Contains extension methods for the <see cref="Random"/> class.

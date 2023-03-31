@@ -1,4 +1,4 @@
-﻿namespace GangJam.State;
+﻿namespace ParkourPainters.State;
 
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.
@@ -12,7 +12,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <summary>
 	/// The active instance of <see cref="GameOverState"/>. This can be null.
 	/// </summary>
-	internal static GameOverState Instance => GangJam.Current?.CurrentState as GameOverState;
+	internal static GameOverState Instance => ParkourPainters.Current?.CurrentState as GameOverState;
 
 	/// <summary>
 	/// The result of the game that was played.
@@ -34,6 +34,11 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// The time in seconds until the game moves back to the <see cref="WaitingState"/>.
 	/// </summary>
 	[Net] private TimeUntil TimeUntilResetGame { get; set; }
+
+	/// <summary>
+	/// A list containing all of the graffiti spots to look at.
+	/// </summary>
+	[Net] public IList<GraffitiSpot> Spots { get; private set; }
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -78,12 +83,29 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
-		TimeUntilResetGame = GangJam.GameResetTimer;
+		foreach ( var spot in All.OfType<GraffitiSpot>() )
+			Spots.Add( spot );
+
+		foreach ( var client in Game.Clients )
+		{
+			var startPosition = client.Position;
+			client.Pawn = new GameOverSpectator()
+			{
+				Position = startPosition
+			};
+		}
+
+		TimeUntilResetGame = (GameOverSpectator.TravelTimeToSpot + GameOverSpectator.StareTime) * Spots.Count + ParkourPainters.GameResetTimer;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
+		Spots.Clear();
+
+		foreach ( var player in All.WithTags( "player" ) )
+			player.Delete();
+
 		WinningTeam?.Delete();
 		foreach ( var drawingTeam in DrawingTeams )
 			drawingTeam.Delete();
@@ -136,6 +158,6 @@ internal sealed partial class GameOverState : Entity, IGameState
 	{
 		Game.AssertServer();
 
-		GangJam.Current.SetState<GameOverState>();
+		ParkourPainters.Current.SetState<GameOverState>();
 	}
 }

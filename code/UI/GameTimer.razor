@@ -1,17 +1,17 @@
-@namespace GangJam.UI
+@namespace ParkourPainters.UI
 
 <root>
     @{
-        var stateName = GangJam.Current.CurrentState.StateName;
+        var stateName = ParkourPainters.Current.CurrentState.StateName;
         <label>@stateName</label>
 
-        var desc = GangJam.Current.CurrentState switch
+        var desc = ParkourPainters.Current.CurrentState switch
         {
-            WaitingState => $"{Game.Clients.Count} / {GangJam.MinimumPlayers}",
+            WaitingState => $"{Game.Clients.Count} / {ParkourPainters.MinimumPlayers}",
             PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
             GameOverState => string.Empty,
         };
-        <label>@desc</label>
+        <label style="padding-left: 10px;">@desc</label>
     }
 </root>
 
@@ -23,22 +23,23 @@
 
     protected override int BuildHash()
     {
-        var state = GangJam.Current.CurrentState;
+        var state = ParkourPainters.Current.CurrentState;
         var playState = state as PlayState;
-        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, GangJam.MinimumPlayers);
+        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, ParkourPainters.MinimumPlayers);
     }
 }
 
 <style>
     GameTimer {
         position: absolute;
-        top: 75px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        top: 100px;
+        right: 200px;
 
         label {
-            font-size: 50px;
-            color: white;
+            font-size: 70px;
+            color: orange;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
         }
     }
 </style>

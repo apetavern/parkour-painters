@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkourPainters.Entities;
 
 public partial class Player
 {
@@ -11,6 +11,25 @@ public partial class Player
 	/// Normalized accumulation of Input.AnalogLook
 	/// </summary>
 	[ClientInput] public Angles LookInput { get; private set; }
+
+	/// <summary>
+	/// The currently held item.
+	/// </summary>
+	public BaseCarriable HeldItem
+	{
+		get
+		{
+			if ( Client.IsBot && heldItemInput is not null )
+				return GetItem( heldItemInput.GetType() );
+
+			return (BaseCarriable)heldItemInput;
+		}
+	}
+	/// <summary>
+	/// The currently held item.
+	/// </summary>
+	[ClientInput]
+	private Entity heldItemInput { get; set; }
 
 	/// <summary>
 	/// Position a player should be looking from in world space.
@@ -54,5 +73,41 @@ public partial class Player
 		var lookInput = (LookInput + Input.AnalogLook).Normal;
 
 		LookInput = lookInput.WithPitch( lookInput.pitch.Clamp( -90f, 90f ) );
+
+		if ( Input.Pressed( InputButton.Slot1 ) )
+			SwitchTo( 0 );
+		if ( Input.Pressed( InputButton.Slot2 ) )
+			SwitchTo( 1 );
+		if ( Input.Pressed( InputButton.Slot0 ) )
+			SwitchTo( null );
+
+		if ( Input.Pressed( InputButton.SlotNext ) )
+			SwitchTo( HeldItems.IndexOf( HeldItem ) + 1 );
+		if ( Input.Pressed( InputButton.SlotPrev ) )
+			SwitchTo( HeldItems.IndexOf( HeldItem ) - 1 );
+	}
+
+	/// <summary>
+	/// Switches the currently held item to one at the desired index into the <see cref="HeldItems"/>.
+	/// </summary>
+	/// <param name="index">The index into <see cref="HeldItems"/> to look at.</param>
+	private void SwitchTo( int? index = null )
+	{
+		if ( index is null )
+		{
+			heldItemInput = null;
+			return;
+		}
+
+		while ( index >= HeldItems.Count )
+			index -= HeldItems.Count;
+
+		while ( index < 0 )
+			index += HeldItems.Count;
+
+		if ( HeldItem == HeldItems[index.Value] )
+			heldItemInput = null;
+		else
+			heldItemInput = HeldItems[index.Value];
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// A pawn that can spectate other players in the game.

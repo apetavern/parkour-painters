@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkourPainters.Entities;
 
 public sealed partial class UnstuckMechanic : ControllerMechanic
 {
@@ -6,7 +6,7 @@ public sealed partial class UnstuckMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
-		if ( Player.LedgeGrabMechanic?.IsActive ?? false )
+		if ( Player.LedgeGrabMechanic.IsActive )
 			return false;
 
 		return true;

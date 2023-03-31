@@ -176,6 +176,24 @@
 						_class = "Prefab"
 						target_file = "models/citizen/prefabs/citizen_attachmentlist.vmdl_prefab"
 					},
+					{
+						_class = "Attachment"
+						name = "holster_spraycan"
+						parent_bone = "pelvis"
+						relative_origin = [ -4.207722, -3.020736, -25.176174 ]
+						relative_angles = [ 83.070984, -80.903656, -87.81813 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "holster_weapon"
+						parent_bone = "spine_2"
+						relative_origin = [ -17.349325, -24.255527, 10.554001 ]
+						relative_angles = [ 38.179035, 0.644872, 1.87292 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
 				]
 			},
 			{

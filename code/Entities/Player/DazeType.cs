@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// Defines a way that the player becomes dazed.

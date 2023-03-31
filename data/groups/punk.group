@@ -10,9 +10,5 @@
     "PhysicalTrauma": "particles/stun/stun_base.vpcf"
   },
   "ClothingCollection": "data/clothing_collections/punk.clothc",
-  "PlayerPrefab": "prefabs/punk.prefab",
-  "DashEnabled": true,
-  "GrindEnabled": true,
-  "LedgeGrabEnabled": true,
-  "WallJumpEnabled": true
+  "PlayerPrefab": "prefabs/punk.prefab"
 }

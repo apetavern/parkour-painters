@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// The base class for all carriable items.
@@ -8,7 +8,25 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// The player that owns the carriable.
 	/// </summary>
-	protected Player Player => Owner as Player;
+	public new Player Owner
+	{
+		get => (Player)base.Owner;
+		set => base.Owner = value;
+	}
+
+	/// <summary>
+	/// UI friendly name for the carriable.
+	/// </summary>
+	public virtual string CarriableName => "";
+
+	/// <summary>
+	/// Text that will be displayed next to the name ex. Remaining ammo.
+	/// </summary>
+	public virtual string SlotText => "";
+
+	/// <summary>
+	/// The path to the world model to use.
+	/// </summary>
 
 	/// <summary>
 	/// The path to the world model to use.
@@ -38,18 +56,18 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// The time in seconds since the primary attack was last used.
 	/// </summary>
-	[Net] protected TimeSince TimeSinceLastPrimary { get; set; }
+	[Net, Predicted] protected TimeSince TimeSinceLastPrimary { get; set; }
 
 	/// <summary>
 	/// The time in seconds since the secondary attack was last used.
 	/// </summary>
-	[Net] protected TimeSince TimeSinceLastSecondary { get; set; }
+	[Net, Predicted] protected TimeSince TimeSinceLastSecondary { get; set; }
 
 	/// <summary>
 	/// Whether or not the primary attack is released.
 	/// </summary>
 	[Net, Predicted] protected bool HasReleasedPrimary { get; set; }
-	
+
 	/// <summary>
 	/// Whether or not the secondary attack is released.
 	/// </summary>
@@ -101,6 +119,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 
 			HasReleasedSecondary = false;
 		}
+
 		if ( Input.Released( InputButton.SecondaryAttack ) )
 		{
 			OnSecondaryReleased();
@@ -111,11 +130,9 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// Invoked once the <see cref="BaseCarriable"/> has been equipped by a player.
 	/// </summary>
-	/// <param name="player">The player that is equipping the <see cref="BaseCarriable"/>.</param>
-	public virtual void OnEquipped( Player player )
+	public virtual void OnEquipped()
 	{
-		Owner = player;
-		SetParent( player, true );
+		SetParent( Owner, true );
 
 		HasReleasedPrimary = true;
 		HasReleasedSecondary = true;
@@ -126,8 +143,17 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	public virtual void OnHolstered()
 	{
-		Owner = null;
-		Parent = null;
+		if ( !HasReleasedPrimary )
+		{
+			HasReleasedPrimary = true;
+			OnPrimaryReleased();
+		}
+
+		if ( !HasReleasedSecondary )
+		{
+			HasReleasedSecondary = true;
+			OnSecondaryReleased();
+		}
 	}
 
 	/// <summary>
@@ -135,7 +161,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected virtual void OnPrimaryAttack()
 	{
-		if ( Player.IsDazed )
+		if ( Owner.IsDazed )
 			return;
 
 		TimeSinceLastPrimary = 0;
@@ -151,7 +177,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected virtual void OnSecondaryAttack()
 	{
-		if ( Player.IsDazed )
+		if ( Owner.IsDazed )
 			return;
 
 		TimeSinceLastSecondary = 0;
@@ -161,4 +187,43 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// Invoked once a secondary attack has finished.
 	/// </summary>
 	protected virtual void OnSecondaryReleased() { }
+
+	/// <summary>
+	/// Holsters the <see cref="BaseCarriable"/> to the holster_spraycan attachment on the player.
+	/// </summary>
+	protected void HolsterToHip()
+	{
+		Game.AssertServer();
+
+		HolsterTo( "holster_spraycan" );
+	}
+
+	/// <summary>
+	/// Holsters the <see cref="BaseCarriable"/> to the holster_weapon attachment on the player.
+	/// </summary>
+	protected void HolsterToBack()
+	{
+		Game.AssertServer();
+
+		HolsterTo( "holster_weapon" );
+	}
+
+	/// <summary>
+	/// Holsters the <see cref="BaseCarriable"/> to an attachment point on the player.
+	/// </summary>
+	/// <param name="attachmentPoint">The name of the attachment point.</param>
+	protected void HolsterTo( string attachmentPoint )
+	{
+		Game.AssertServer();
+
+		var holster = Owner.GetAttachment( attachmentPoint, true )
+			?? throw new ArgumentException( $"The attachment point \"{attachmentPoint}\" does not exist", nameof( attachmentPoint ) );
+
+		SetParent( null );
+
+		Position = holster.Position;
+		Rotation = holster.Rotation;
+
+		SetParent( Owner, attachmentPoint );
+	}
 }

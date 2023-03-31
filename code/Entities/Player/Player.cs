@@ -1,4 +1,4 @@
-namespace GangJam.Entities;
+namespace ParkourPainters.Entities;
 
 [Prefab]
 public sealed partial class Player : AnimatedEntity
@@ -26,11 +26,11 @@ public sealed partial class Player : AnimatedEntity
 	/// <summary>
 	/// Whether or not the player is currently dazed.
 	/// </summary>
-	public bool IsDazed => TimeSinceDazed <= GangJam.DazeTime;
+	public bool IsDazed => TimeSinceDazed <= ParkourPainters.DazeTime;
 	/// <summary>
 	/// Whether or not the player is currently immune to dazing.
 	/// </summary>
-	public bool IsImmune => TimeSinceDazed > GangJam.DazeTime && TimeSinceDazed <= GangJam.ImmuneTime;
+	public bool IsImmune => TimeSinceDazed > ParkourPainters.DazeTime && TimeSinceDazed <= ParkourPainters.ImmuneTime;
 
 	/// <summary>
 	/// The current type of daze the player is experiencing.
@@ -72,7 +72,6 @@ public sealed partial class Player : AnimatedEntity
 		EnableHitboxes = true;
 
 		Tags.Add( "player" );
-		Tags.Add( "solid" );
 
 		Components.Create<PlayerController>();
 
@@ -80,14 +79,30 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<AirMoveMechanic>();
 		Components.Create<JumpMechanic>();
 		Components.Create<UnstuckMechanic>();
+		Components.Create<WallJumpMechanic>();
+		Components.Create<LedgeGrabMechanic>();
+		Components.Create<GrindMechanic>();
+		Components.Create<DashMechanic>();
+
+		var sprayCan = AddToInventory<SprayCan>();
+		// TODO: This is jank
+		sprayCan.OnEquipped();
+		sprayCan.OnHolstered();
 	}
 
 	/// <inheritdoc/>
 	public sealed override void Simulate( IClient cl )
 	{
+		if ( LastHeldItem != HeldItem )
+		{
+			LastHeldItem?.OnHolstered();
+			HeldItem?.OnEquipped();
+			LastHeldItem = HeldItem;
+		}
+
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
-		Carrying?.Simulate( cl );
+		HeldItem?.Simulate( cl );
 	}
 
 	/// <inheritdoc/>
@@ -163,32 +178,12 @@ public sealed partial class Player : AnimatedEntity
 			.ToList()
 			.ForEach( x => x.EnableDrawing = true );
 
-		var team = Team;
-		if ( team is null )
-		{
-			Components.GetOrCreate<DashMechanic>();
-			Components.GetOrCreate<GrindMechanic>();
-			Components.GetOrCreate<LedgeGrabMechanic>();
-			Components.GetOrCreate<WallJumpMechanic>();
-		}
-		else
-		{
-			if ( team.Group.DashEnabled )
-				Components.GetOrCreate<DashMechanic>();
-			if ( team.Group.GrindEnabled )
-				Components.GetOrCreate<GrindMechanic>();
-			if ( team.Group.LedgeGrabEnabled )
-				Components.GetOrCreate<LedgeGrabMechanic>();
-			if ( team.Group.WallJumpEnabled )
-				Components.GetOrCreate<WallJumpMechanic>();
-		}
-
 		Components.Create<PlayerAnimator>();
 		Components.Create<PlayerCamera>();
 
 		SetupClothing();
 
-		GangJam.Current.MoveToSpawnpoint( this );
+		ParkourPainters.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
 	}
 
@@ -203,7 +198,7 @@ public sealed partial class Player : AnimatedEntity
 		if ( IsDazed || IsImmune )
 			return false;
 
-		if ( GangJam.FriendlyFire && attacker.Team == Team )
+		if ( ParkourPainters.FriendlyFire && attacker.Team == Team )
 			return false;
 
 		TimeSinceDazed = 0;
