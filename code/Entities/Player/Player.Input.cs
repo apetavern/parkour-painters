@@ -93,9 +93,9 @@ public partial class Player
 	}
 
 	/// <summary>
-	/// Switches the currently held item to one at the desired index into the <see cref="HeldItems"/>.
+	/// Switches the currently held item to one at the desired index into the <see cref="Inventory"/> items.
 	/// </summary>
-	/// <param name="index">The index into <see cref="HeldItems"/> to look at.</param>
+	/// <param name="index">The index into the <see cref="Inventory"/> items to look at.</param>
 	private void SwitchTo( int? index = null )
 	{
 		if ( index is null )
