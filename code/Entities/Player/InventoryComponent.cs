@@ -1,5 +1,8 @@
 ﻿namespace ParkourPainters.Entities;
 
+/// <summary>
+/// Contains an inventory of items that the player can use.
+/// </summary>
 internal sealed partial class InventoryComponent : EntityComponent<Player>, ISingletonComponent
 {
 	/// <summary>
