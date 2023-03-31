@@ -105,8 +105,7 @@ public sealed partial class Spray : ModelEntity
 	[Event.Tick.Server]
 	private void DebugDraw()
 	{
-		DebugOverlay.Text( $"{SprayProgress}/100", Position + Vector3.Up );
-		DebugOverlay.Text( $"{TeamOwner?.Name}", Position + Vector3.Up * 10 );
+		DebugOverlay.Text( $"{SprayProgress}/100 ({TeamOwner})", Position );
 	}
 #endif
 }

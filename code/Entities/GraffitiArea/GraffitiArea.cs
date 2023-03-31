@@ -131,9 +131,6 @@ public sealed partial class GraffitiArea : ModelEntity
 	private void DebugDraw()
 	{
 		DebugOverlay.Text( $"{Sprays.Count} sprays (Latest from {(AreaOwner?.ToString() ?? "No one")})", Position );
-
-		foreach ( var spray in Sprays )
-			DebugOverlay.Text( $"{spray.SprayProgress} ({spray.TeamOwner})", spray.Position );
 	}
 #endif
 }
