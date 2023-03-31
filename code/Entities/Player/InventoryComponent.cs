@@ -3,9 +3,13 @@
 internal sealed partial class InventoryComponent : EntityComponent<Player>
 {
 	/// <summary>
-	/// Contains all carriable items that the player has.
+	/// Contains all carriable items.
 	/// </summary>
-	[Net] public IList<BaseCarriable> Items { get; private set; }
+	[Net] private IList<BaseCarriable> items { get; set; }
+	/// <summary>
+	/// A readonly list of all carriable items contained.
+	/// </summary>
+	internal IReadOnlyList<BaseCarriable> Items => items as IReadOnlyList<BaseCarriable>;
 
 	/// <summary>
 	/// A queue of items that are waiting to be removed from the inventory.
@@ -18,7 +22,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <param name="carriableType">The type of the <see cref="BaseCarriable"/> to add.</param>
 	/// <returns>The newly created <see cref="BaseCarriable"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when the type provided is either not assignable to <see cref="BaseCarriable"/> or is already in the inventory.</exception>
-	public BaseCarriable AddToInventory( TypeDescription carriableType )
+	internal BaseCarriable AddToInventory( TypeDescription carriableType )
 	{
 		if ( !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 			throw new ArgumentException( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}", nameof( carriableType ) );
@@ -28,7 +32,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 
 		var carriable = carriableType.Create<BaseCarriable>();
 		carriable.Owner = Entity;
-		Items.Add( carriable );
+		items.Add( carriable );
 		return carriable;
 	}
 
@@ -38,7 +42,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <typeparam name="T">The type of the <see cref="BaseCarriable"/> to add.</typeparam>
 	/// <returns>The newly created <see cref="BaseCarriable"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when the type is already in the inventory.</exception>
-	public T AddToInventory<T>() where T : BaseCarriable, new()
+	internal T AddToInventory<T>() where T : BaseCarriable, new()
 	{
 		if ( !CanAddItem<T>() )
 			throw new ArgumentException( $"An item of type \"{typeof( T ).Name}\" is already in the inventory", nameof( T ) );
@@ -47,7 +51,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 		{
 			Owner = Entity
 		};
-		Items.Add( carriable );
+		items.Add( carriable );
 		return carriable;
 	}
 
@@ -57,7 +61,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <param name="carriable">The item to remove from the inventory.</param>
 	/// <returns>True if the item is queued for removal. False if it already was.</returns>
 	/// <exception cref="ArgumentException">Thrown when the item provided is not from the owners inventory.</exception>
-	public bool RemoveFromInventory( BaseCarriable carriable )
+	internal bool RemoveFromInventory( BaseCarriable carriable )
 	{
 		if ( !Items.Contains( carriable ) )
 			throw new ArgumentException( $"{carriable} is not a part of this inventory", nameof( carriable ) );
@@ -72,7 +76,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>The item from the inventory.</returns>
 	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
-	public BaseCarriable GetItem( Type type, bool fuzzy = false )
+	internal BaseCarriable GetItem( Type type, bool fuzzy = false )
 	{
 		if ( CanAddItem( type, fuzzy ) )
 			throw new ArgumentException( $"No item of type \"{type.Name}\" is in the inventory", nameof( type ) );
@@ -89,14 +93,14 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>The item from the inventory.</returns>
 	/// <exception cref="ArgumentException">Thrown when no item of type <see ref="T"/> is in the inventory.</exception>
-	public T GetItem<T>( bool fuzzy = false ) where T : BaseCarriable => (T)GetItem( typeof( T ), fuzzy );
+	internal T GetItem<T>( bool fuzzy = false ) where T : BaseCarriable => (T)GetItem( typeof( T ), fuzzy );
 
 	/// <summary>
 	/// Gets an item from the inventory. If it doesn't exist, it creates and returns it.
 	/// </summary>
 	/// <typeparam name="T">The type of the item to get and/or create.</typeparam>
 	/// <returns>The item from the inventory.</returns>
-	public T GetItemOrAddToInventory<T>() where T : BaseCarriable, new()
+	internal T GetItemOrAddToInventory<T>() where T : BaseCarriable, new()
 	{
 		if ( CanAddItem<T>() )
 			return AddToInventory<T>();
@@ -110,7 +114,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <param name="type">The carriable type.</param>
 	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
-	public bool CanAddItem( Type type, bool fuzzy = false )
+	internal bool CanAddItem( Type type, bool fuzzy = false )
 	{
 		if ( !type.IsAssignableTo( typeof( BaseCarriable ) ) )
 			return false;
@@ -126,7 +130,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <param name="typeDescription">The carriable type.</param>
 	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
-	public bool CanAddItem( TypeDescription typeDescription, bool fuzzy = false ) => CanAddItem( typeDescription.TargetType, fuzzy );
+	internal bool CanAddItem( TypeDescription typeDescription, bool fuzzy = false ) => CanAddItem( typeDescription.TargetType, fuzzy );
 
 	/// <summary>
 	/// Returns whether or not a type of a <see cref="BaseCarriable"/> can be added to the inventory.
@@ -134,7 +138,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 	/// <typeparam name="T">The carriable type.</typeparam>
 	/// <param name="fuzzy">Whether or not the type is a derivative of multiple types.</param>
 	/// <returns>Whether or not the type of <see cref="BaseCarriable"/> can be added to the inventory.</returns>
-	public bool CanAddItem<T>( bool fuzzy = false ) where T : BaseCarriable => CanAddItem( typeof( T ), fuzzy );
+	internal bool CanAddItem<T>( bool fuzzy = false ) where T : BaseCarriable => CanAddItem( typeof( T ), fuzzy );
 
 	/// <summary>
 	/// Called when simulating as part of a player's tick. Like if it's a pawn.
@@ -149,7 +153,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>
 
 		foreach ( var itemToDelete in defferedItemRemoval )
 		{
-			Items.Remove( itemToDelete );
+			items.Remove( itemToDelete );
 			itemToDelete.Delete();
 		}
 	}
