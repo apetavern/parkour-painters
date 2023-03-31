@@ -8,11 +8,4 @@ namespace ParkourPainters.Entities;
 [HammerEntity, Path( "path_generic_node" )]
 internal sealed class GrindSpot : GenericPathEntity
 {
-	/// <inheritdoc/>
-	public sealed override void Spawn()
-	{
-		base.Spawn();
-
-		Transmit = TransmitType.Always;
-	}
 }
