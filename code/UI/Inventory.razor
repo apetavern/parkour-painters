@@ -19,6 +19,9 @@
     protected override int BuildHash()
     {
         var player = Game.LocalPawn as Entities.Player;
+        if (player is null)
+            return 0;
+
         return HashCode.Combine(player.HeldItems.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.HeldItem?.GetHashCode());
     }
 }
