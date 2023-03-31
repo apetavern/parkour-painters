@@ -48,7 +48,6 @@ public sealed partial class Spray : ModelEntity
 		SprayProgress = Math.Clamp( SprayProgress + player.SprayAmount, 0, 100 );
 		TimeSinceLastSprayed = 0;
 
-
 		if ( Game.IsClient )
 		{
 			SceneObject.Attributes.Set( "fade_amount", SprayProgress / 10 );

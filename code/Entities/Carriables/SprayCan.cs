@@ -65,6 +65,9 @@ public sealed partial class SprayCan : BaseCarriable
 
 		base.OnPrimaryAttack();
 
+		if ( !Prediction.FirstTime )
+			return;
+
 		Ammo--;
 		Owner.SetAnimParameter( "b_spray", true );
 
