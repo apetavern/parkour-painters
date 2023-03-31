@@ -3,9 +3,8 @@ namespace ParkourPainters.Entities;
 internal partial class PlayerController : EntityComponent<Player>, ISingletonComponent
 {
 	[Net, Predicted] public Entity GroundEntity { get; set; }
-	[Net, Predicted] public Vector3 BaseVelocity { get; set; }
-	[Net, Predicted] public Vector3 GroundNormal { get; set; }
-	[Net, Predicted] public float CurrentGroundAngle { get; set; }
+	public Vector3 BaseVelocity { get; set; }
+	public float CurrentGroundAngle { get; set; }
 
 	public Player Player => Entity;
 

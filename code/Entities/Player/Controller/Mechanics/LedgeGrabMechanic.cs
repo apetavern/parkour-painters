@@ -47,14 +47,25 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 	{
 		var girth = Controller.BodyGirth * 0.5f;
 		var center = Controller.Position;
-		center.z += 50;
+
+		// Trace from the bottom looking for a wall.
+		var trDownwards = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
+			.Ignore( Player )
+			.WithoutTags( "player" )
+			.Radius( 3 )
+			.Run();
 
 		// Tracing forwards looking for a wall.
+		center.z += 50;
 		var tr = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
 			.Radius( 3 )
 			.Run();
+
+		// Make sure we aren't trying to grab slope.
+		if ( trDownwards.Hit && !trDownwards.Distance.AlmostEqual( tr.Distance, 5f ) )
+			return false;
 
 		if ( !tr.Hit )
 			return false;

@@ -7,7 +7,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 	public float GroundAngle => 46.0f;
 	public float GroundFriction => 4.0f;
 	public float MaxNonJumpVelocity => 140.0f;
-	[Net, Predicted] public float SurfaceFriction { get; set; } = 1f;
+	public float SurfaceFriction { get; set; } = 1f;
 	public float Acceleration => 6f;
 
 	public override float? WishSpeed => 275f;
@@ -203,8 +203,6 @@ public sealed partial class WalkMechanic : ControllerMechanic
 
 	private void UpdateGroundEntity( TraceResult tr )
 	{
-		Controller.GroundNormal = tr.Normal;
-
 		SurfaceFriction = tr.Surface.Friction * 1.25f;
 		if ( SurfaceFriction > 1 )
 			SurfaceFriction = 1;
