@@ -15,14 +15,14 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	[Net] public TimeSince TimeSinceLastPickup { get; private set; }
 
 	/// <summary>
-	/// The model for the spawner chosen by hammer.
-	/// </summary>
-	[Property] private Model SpawnerModel { get; set; }
-
-	/// <summary>
 	/// Whether or not this ammo spawner is a one time use.
 	/// </summary>
 	[Property] public bool OneTimeUse { get; private set; }
+
+	/// <summary>
+	/// The model for the spawner chosen by hammer.
+	/// </summary>
+	[Property] private Model SpawnerModel { get; set; }
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
