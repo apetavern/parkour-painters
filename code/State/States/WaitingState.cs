@@ -95,8 +95,8 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		// if ( Game.Clients.Count >= 2 && TimeUntilGameStart <= 0 )
-		// 	PlayState.SetActive();
+		if ( Game.Clients.Count >= 2 && TimeUntilGameStart <= 0 )
+			PlayState.SetActive();
 	}
 
 #if DEBUG
