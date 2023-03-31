@@ -64,4 +64,14 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
 		}
 	}
+
+	/// <summary>
+	/// Sets velocity animation to default on the player.
+	/// </summary>
+	internal void Reset()
+	{
+		var animHelper = new CustomAnimationHelper( Entity );
+		animHelper.WithWishVelocity( Vector3.Zero );
+		animHelper.WithVelocity( Vector3.Zero );
+	}
 }
