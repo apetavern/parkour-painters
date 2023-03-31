@@ -54,7 +54,7 @@ public sealed partial class Spray : ModelEntity
 			SceneObject.Attributes.Set( "fade_amount", SprayProgress / 10 );
 
 			// Create spray cloud clientside.
-			if ( SprayCloud is null )
+			if ( SprayCloud is null && Prediction.FirstTime )
 			{
 				SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", Position );
 
