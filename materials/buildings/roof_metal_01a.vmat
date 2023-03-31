@@ -1,0 +1,27 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated.shader_c"
+
+	//---- Color ----
+	Color "materials/buildings/textures/roof_metal_01a_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "materials/buildings/textures/roof_metal_01a_metal.png"
+
+	//---- Normal ----
+	Normal "materials/buildings/textures/roof_metal_01a_normal.png"
+
+	//---- Roughness ----
+	Roughness "materials/buildings/textures/roof_metal_01a_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+}
