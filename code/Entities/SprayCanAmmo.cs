@@ -3,7 +3,6 @@
 /// <summary>
 /// A spawner for a <see cref="SprayCan"/>s ammo.
 /// </summary>
-[Library( "ent_spray_can_ammo" )]
 [Title( "Spray Can Ammo" ), Category( "Parkour Painters" )]
 [EditorModel( "models/entities/spray_paint/spray_paint.vmdl" )]
 [HammerEntity]
