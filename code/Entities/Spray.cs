@@ -24,9 +24,12 @@ public sealed partial class Spray : ModelEntity
 
 	public bool IsSprayCompleted => SprayProgress >= 100;
 
+	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
 		base.Spawn();
+
+		EnableShadowCasting = false;
 
 		SetModel( "models/entities/spray_plane/spray_plane.vmdl" );
 
