@@ -58,10 +58,8 @@ public sealed partial class Spray : ModelEntity
 			{
 				SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", Position );
 
-				if ( player.Team?.Group is null )
-					return;
-
-				SprayCloud.SetPosition( 1, player.Team.Group.SprayColor.ToVector3() );
+				if ( player.Team?.Group?.SprayColor is not null )
+					SprayCloud.SetPosition( 1, player.Team.Group.SprayColor.ToVector3() );
 			}
 		}
 
