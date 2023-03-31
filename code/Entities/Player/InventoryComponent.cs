@@ -1,6 +1,4 @@
-﻿using ParkourPainters.UI;
-
-namespace ParkourPainters.Entities;
+﻿namespace ParkourPainters.Entities;
 
 internal sealed partial class InventoryComponent : EntityComponent<Player>
 {
