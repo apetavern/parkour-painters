@@ -35,6 +35,11 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] private TimeUntil TimeUntilResetGame { get; set; }
 
+	/// <summary>
+	/// A list containing all of the graffiti spots to look at.
+	/// </summary>
+	[Net] public IList<GraffitiSpot> Spots { get; private set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -78,12 +83,29 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
-		TimeUntilResetGame = ParkourPainters.GameResetTimer;
+		foreach ( var spot in All.OfType<GraffitiSpot>() )
+			Spots.Add( spot );
+
+		foreach ( var client in Game.Clients )
+		{
+			var startPosition = client.Position;
+			client.Pawn = new GameOverSpectator()
+			{
+				Position = startPosition
+			};
+		}
+
+		TimeUntilResetGame = (GameOverSpectator.TravelTimeToSpot + GameOverSpectator.StareTime) * Spots.Count + ParkourPainters.GameResetTimer;
 	}
 
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
+		Spots.Clear();
+
+		foreach ( var player in All.WithTags( "player" ) )
+			player.Delete();
+
 		WinningTeam?.Delete();
 		foreach ( var drawingTeam in DrawingTeams )
 			drawingTeam.Delete();
