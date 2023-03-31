@@ -25,7 +25,7 @@
       },
       "SprayAmount": {
         "Type": "Single",
-        "Value": "2"
+        "Value": "2.5"
       }
     }
   }
