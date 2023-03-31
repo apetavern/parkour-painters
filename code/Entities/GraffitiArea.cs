@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// A spot that a player can graffiti.
@@ -96,7 +96,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			else
 			{
 				// Overwrite other teams spray.
-				Event.Run( GangJam.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
+				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
 				if ( Game.IsServer )
 					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
@@ -107,7 +107,7 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// <summary>
 	/// Resets the <see cref="GraffitiArea"/> back to default once the <see cref="PlayState"/> has been entered/exited.
 	/// </summary>
-	[GangJam.Events.EnterGameState]
+	[ParkourPainters.Events.EnterGameState]
 	private void CleanupOnStateChange( IGameState newGameState, IGameState oldGameState )
 	{
 		if ( newGameState is not PlayState && oldGameState is not PlayState )

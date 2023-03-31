@@ -17,11 +17,11 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The current <see cref="GraffitiSpot"/> the spectator is looking at.
 	/// </summary>
-	internal GraffitiSpot CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
+	internal GraffitiArea CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
 	/// <summary>
 	/// The last <see cref="GraffitiSpot"/> the spectator was looking at. Null if <see ref="LastSpot"/> is 0.
 	/// </summary>
-	internal GraffitiSpot LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
+	internal GraffitiArea LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
 
 	/// <summary>
 	/// The current index that the spectator is at in the <see cref="GameOverState.Spots"/> list.

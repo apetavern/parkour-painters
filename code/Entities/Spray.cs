@@ -1,4 +1,4 @@
-﻿namespace GangJam.Entities;
+﻿namespace ParkourPainters.Entities;
 
 public sealed partial class Spray : ModelEntity
 {
@@ -72,7 +72,7 @@ public sealed partial class Spray : ModelEntity
 	/// <param name="sprayer">The player that completed the <see cref="GraffitiArea"/>.</param>
 	private void OnSprayCompleted( Player sprayer )
 	{
-		Event.Run( GangJam.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
+		Event.Run( ParkourPainters.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
 	}
 
 	public static Spray CreateFrom( Team team, Transform transform )
