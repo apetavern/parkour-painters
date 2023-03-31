@@ -8,7 +8,11 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// The player that owns the carriable.
 	/// </summary>
-	protected Player Player => Owner as Player;
+	public new Player Owner
+	{
+		get => (Player)base.Owner;
+		set => base.Owner = value;
+	}
 
 	/// <summary>
 	/// The path to the world model to use.
@@ -101,6 +105,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 
 			HasReleasedSecondary = false;
 		}
+
 		if ( Input.Released( InputButton.SecondaryAttack ) )
 		{
 			OnSecondaryReleased();
@@ -111,11 +116,9 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// Invoked once the <see cref="BaseCarriable"/> has been equipped by a player.
 	/// </summary>
-	/// <param name="player">The player that is equipping the <see cref="BaseCarriable"/>.</param>
-	public virtual void OnEquipped( Player player )
+	public virtual void OnEquipped()
 	{
-		Owner = player;
-		SetParent( player, true );
+		SetParent( Owner, true );
 
 		HasReleasedPrimary = true;
 		HasReleasedSecondary = true;
@@ -137,8 +140,6 @@ public abstract partial class BaseCarriable : AnimatedEntity
 			HasReleasedSecondary = true;
 			OnSecondaryReleased();
 		}
-
-		Owner = null;
 	}
 
 	/// <summary>
@@ -146,7 +147,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected virtual void OnPrimaryAttack()
 	{
-		if ( Player.IsDazed )
+		if ( Owner.IsDazed )
 			return;
 
 		TimeSinceLastPrimary = 0;
@@ -162,7 +163,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected virtual void OnSecondaryAttack()
 	{
-		if ( Player.IsDazed )
+		if ( Owner.IsDazed )
 			return;
 
 		TimeSinceLastSecondary = 0;
@@ -201,7 +202,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	{
 		Game.AssertServer();
 
-		var holster = Player.GetAttachment( attachmentPoint, true )
+		var holster = Owner.GetAttachment( attachmentPoint, true )
 			?? throw new ArgumentException( $"The attachment point \"{attachmentPoint}\" does not exist", nameof( attachmentPoint ) );
 
 		SetParent( null );
@@ -209,6 +210,6 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		Position = holster.Position;
 		Rotation = holster.Rotation;
 
-		SetParent( Player, attachmentPoint );
+		SetParent( Owner, attachmentPoint );
 	}
 }

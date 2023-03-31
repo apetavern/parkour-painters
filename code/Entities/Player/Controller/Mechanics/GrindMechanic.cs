@@ -51,41 +51,40 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		HandleSparkParticles();
-
-		if ( _currentNodeIndex >= 0 && _currentNodeIndex < _path.PathNodes.Count )
+		if ( _currentNodeIndex < 0 || _currentNodeIndex >= _path.PathNodes.Count )
 		{
-			_isGrinding = true;
-
-			var increment = _isReverse ? -1 : +1;
-			var currentNode = _path.PathNodes[_currentNodeIndex];
-			var nextNodeIndex = _currentNodeIndex + increment;
-			var nextNode = _path.PathNodes.ElementAtOrDefault( nextNodeIndex ) ?? currentNode;
-			var distanceBetweenNodes = currentNode.WorldPosition.Distance( nextNode.WorldPosition );
-
-			var nextPosition = _path.GetPointBetweenNodes( currentNode, nextNode, _alpha, _isReverse );
-
-			_alpha += Time.Delta * (300f / distanceBetweenNodes);
-			if ( _alpha >= 0.98f )
-			{
-				_alpha = 0;
-				_currentNodeIndex += increment;
-			}
-
-			Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
-			Controller.Position = Vector3.Lerp( Controller.Position, nextPosition, Time.Delta );
-			Player.Rotation = Controller.Velocity.Normal.EulerAngles.WithPitch( 0 ).ToRotation();
-
-			if ( Input.Pressed( InputButton.Jump ) )
-			{
-				Player.JumpMechanic.Start();
-				Stop();
-			}
-
+			Stop();
 			return;
 		}
 
-		Stop();
+		HandleSparkParticles();
+
+		_isGrinding = true;
+
+		var increment = _isReverse ? -1 : +1;
+		var currentNode = _path.PathNodes[_currentNodeIndex];
+		var nextNodeIndex = _currentNodeIndex + increment;
+		var nextNode = _path.PathNodes.ElementAtOrDefault( nextNodeIndex ) ?? currentNode;
+		var distanceBetweenNodes = currentNode.WorldPosition.Distance( nextNode.WorldPosition );
+
+		var nextPosition = _path.GetPointBetweenNodes( currentNode, nextNode, _alpha, _isReverse );
+
+		_alpha += Time.Delta * (300f / distanceBetweenNodes);
+		if ( _alpha >= 0.98f )
+		{
+			_alpha = 0;
+			_currentNodeIndex += increment;
+		}
+
+		Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
+		Controller.Position = Vector3.Lerp( Controller.Position, nextPosition, Time.Delta );
+		Player.Rotation = Controller.Velocity.Normal.EulerAngles.WithPitch( 0 ).ToRotation();
+
+		if ( Input.Pressed( InputButton.Jump ) )
+		{
+			Player.JumpMechanic.Start();
+			Stop();
+		}
 	}
 
 	private void HandleSparkParticles()

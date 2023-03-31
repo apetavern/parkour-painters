@@ -26,6 +26,7 @@ partial class Player
 			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already in the inventory", nameof( carriableType ) );
 
 		var carriable = carriableType.Create<BaseCarriable>();
+		carriable.Owner = this;
 		HeldItems.Add( carriable );
 		return carriable;
 	}
@@ -41,7 +42,10 @@ partial class Player
 		if ( !CanAddItem<T>() )
 			throw new ArgumentException( $"An item of type \"{typeof( T ).Name}\" is already in the inventory", nameof( T ) );
 
-		var carriable = new T();
+		var carriable = new T
+		{
+			Owner = this
+		};
 		HeldItems.Add( carriable );
 		return carriable;
 	}

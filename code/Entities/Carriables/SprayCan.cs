@@ -26,27 +26,27 @@ public sealed partial class SprayCan : BaseCarriable
 	internal const int MaxAmmo = 500;
 
 	/// <inheritdoc/>
-	public sealed override void OnEquipped( Player player )
+	public sealed override void OnEquipped()
 	{
-		base.OnEquipped( player );
+		base.OnEquipped();
 
-		player.SetAnimParameter( "b_haspaint", true );
+		Owner.SetAnimParameter( "b_haspaint", true );
 	}
 
 	/// <inheritdoc/>
 	public sealed override void OnHolstered()
 	{
-		Player.SetAnimParameter( "b_haspaint", false );
+		base.OnHolstered();
+
+		Owner.SetAnimParameter( "b_haspaint", false );
 		if ( Game.IsServer )
 			HolsterToHip();
-
-		base.OnHolstered();
 	}
 
 	/// <inheritdoc/>
 	protected sealed override void OnPrimaryAttack()
 	{
-		if ( Player.IsDazed || Ammo <= 0 )
+		if ( Owner.IsDazed || Ammo <= 0 )
 		{
 			if ( !HasReleasedPrimary )
 			{
@@ -60,15 +60,15 @@ public sealed partial class SprayCan : BaseCarriable
 		base.OnPrimaryAttack();
 
 		Ammo--;
-		Player.SetAnimParameter( "b_spray", true );
+		Owner.SetAnimParameter( "b_spray", true );
 
 		// Create spray particles
 		if ( SprayParticles is null )
 		{
 			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
-			if ( Player?.Team?.Group?.SprayColor is not null )
-				SprayParticles.SetPosition( 1, Player.Team.Group.SprayColor.ToVector3() );
+			if ( Owner.Team?.Group?.SprayColor is not null )
+				SprayParticles.SetPosition( 1, Owner.Team.Group.SprayColor.ToVector3() );
 		}
 
 		var nozzleTransform = GetAttachment( "nozzle" );
@@ -76,13 +76,13 @@ public sealed partial class SprayCan : BaseCarriable
 		var reachTrace = Trace.Ray( nozzleTransform.Value.Position - nozzleTransform.Value.Rotation.Forward * 20f, nozzleTransform.Value.Position + nozzleTransform.Value.Rotation.Forward * 200f )
 			.WithAnyTags( "graffiti_spot", "player" )
 			.Ignore( this )
-			.Ignore( Player )
+			.Ignore( Owner )
 			.Run();
 
 		if ( reachTrace.Entity is GraffitiSpot graffitiSpot )
-			graffitiSpot.OnSprayReceived( Player );
+			graffitiSpot.OnSprayReceived( Owner );
 		else if ( reachTrace.Entity is Player player )
-			player.Daze( Player, DazeType.Inhalation );
+			player.Daze( Owner, DazeType.Inhalation );
 	}
 
 	/// <inheritdoc/>
@@ -90,7 +90,7 @@ public sealed partial class SprayCan : BaseCarriable
 	{
 		base.OnPrimaryReleased();
 
-		Player.SetAnimParameter( "b_spray", false );
+		Owner.SetAnimParameter( "b_spray", false );
 
 		SprayParticles?.Destroy();
 		SprayParticles = null;

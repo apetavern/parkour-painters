@@ -87,7 +87,7 @@ public sealed partial class Player : AnimatedEntity
 
 		var sprayCan = AddToInventory<SprayCan>();
 		// TODO: This is jank
-		sprayCan.OnEquipped( this );
+		sprayCan.OnEquipped();
 		sprayCan.OnHolstered();
 	}
 
@@ -97,7 +97,7 @@ public sealed partial class Player : AnimatedEntity
 		if ( LastHeldItem != HeldItem )
 		{
 			LastHeldItem?.OnHolstered();
-			HeldItem?.OnEquipped( this );
+			HeldItem?.OnEquipped();
 			LastHeldItem = HeldItem;
 		}
 
