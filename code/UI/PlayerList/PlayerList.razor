@@ -1,0 +1,33 @@
+@namespace ParkourPainters.UI
+
+<root>
+    <div class="players">
+        @foreach (var client in Game.Clients)
+        {
+            <PlayerEntry Client=@client />
+        }
+    </div>
+</root>
+
+@code {
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Game.Clients.HashCombine(c => c.SteamId));
+    }
+}
+
+<style>
+    PlayerList {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .players {
+            background-color: #00000042;
+            backdrop-filter-blur: 20px;
+            max-width: 1000px;
+            flex-wrap: wrap;
+        }
+    }
+</style>

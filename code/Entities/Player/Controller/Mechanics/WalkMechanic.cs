@@ -136,16 +136,12 @@ public sealed partial class WalkMechanic : ControllerMechanic
 		if ( GroundEntity == null )
 			return;
 
-		LastGroundEntity = GroundEntity;
 		GroundEntity = null;
 		SurfaceFriction = 1.0f;
 	}
 
 	public void SetGroundEntity( Entity entity )
 	{
-		LastGroundEntity = GroundEntity;
-		LastVelocity = Velocity;
-
 		GroundEntity = entity;
 
 		if ( GroundEntity != null )

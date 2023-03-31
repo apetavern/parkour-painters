@@ -1,0 +1,36 @@
+@namespace ParkourPainters.UI
+
+<root>
+    <img src="avatar:@Client.SteamId" />
+    <label>@Client.Name</label>
+</root>
+
+@code {
+    public IClient Client { get; set; }
+}
+
+<style>
+    PlayerEntry {
+        align-items: center;
+        flex-shrink: 0;
+        white-space: nowrap;
+        width: 200px;
+        padding: 5px;
+
+        img {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+
+        label {
+            text-align: center;
+            width: 100%;
+            font-size: 38px;
+            color: white;
+            font-family: Poppins;
+            text-shadow: 2px 2px 0px black;
+            text-overflow: ellipsis;
+        }
+    }
+</style>
