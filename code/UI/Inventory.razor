@@ -10,7 +10,8 @@
     {
         <div class="carriable @(player.HeldItem is not null && player.HeldItem == item ? "active" : "")">
             <label class="slot">@item.SlotText</label>
-            <label>@item.CarriableName</label>
+            <label style="padding-right: 5px;">@item.CarriableName</label>
+            <label>(@(player.Inventory.Items.IndexOf(item) + 1))</label>
         </div>
     }
 </root>
