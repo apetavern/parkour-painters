@@ -58,7 +58,7 @@ PS
 	SamplerState g_sSampler0 < Filter( POINT ); AddressU( WRAP ); AddressV( WRAP ); >;
 	CreateInputTexture2D( Color, Srgb, 8, "None", "_color", "Color,0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateInputTexture2D( TintMask, Linear, 8, "None", "_mask", "Color,0/,0/4", Default4( 1.00, 1.00, 1.00, 1.00 ) );
-	CreateInputTexture2D( Translucency, Linear, 8, "None", "_trans", "Translucent,1/,0/2", Default4( 1.00, 1.00, 1.00, 1.00 ) );
+	CreateInputTexture2D( Translucency, Linear, 8, "None", "_trans", "Translucent,1/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateInputTexture2D( Normal, Linear, 8, "NormalizeNormals", "_normal", "Normal,1/,0/1", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateInputTexture2D( Roughness, Linear, 8, "None", "_rough", "Roughness,2/,0/2", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateInputTexture2D( Metallic, Linear, 8, "None", "_metal", "Metalness,3/,0/3", Default4( 0.00, 0.00, 0.00, 1.00 ) );
@@ -71,6 +71,8 @@ PS
 	float2 g_vTiling < UiGroup( "Texture Coordinates,5/,0/0" ); Default2( 1,1 ); >;
 	float4 g_vColorTint < UiType( Color ); UiGroup( "Color,1/,0/0" ); Default4( 1.00, 1.00, 1.00, 1.00 ); >;
 	float g_flModelTintAmount < UiGroup( "Color,2/,0/0" ); Default1( 1 ); Range1( 0, 1 ); >;
+	float g_flSmoothStepMin < UiGroup( "Translucent,1/,0/1" ); Default1( 0 ); Range1( 0, 1 ); >;
+	float g_flSmoothStepMax < UiGroup( "Translucent,1/,0/2" ); Default1( 1 ); Range1( 0, 1 ); >;
 
 	float4 MainPs( PixelInput i ) : SV_Target0
 	{
@@ -96,18 +98,21 @@ PS
 		float4 local8 = lerp( local5, local3, local7 );
 		float local9 = g_flModelTintAmount;
 		float4 local10 = lerp( local3, local8, local9 );
-		float4 local11 = Tex2DS( g_tTranslucency, g_sSampler0, local2 );
-		float4 local12 = saturate( local11 );
-		float4 local13 = Tex2DS( g_tNormal, g_sSampler0, local2 );
-		float3 local14 = TransformNormal( i, DecodeNormal( local13.xyz ) );
-		float4 local15 = Tex2DS( g_tRoughness, g_sSampler0, local2 );
-		float4 local16 = Tex2DS( g_tMetallic, g_sSampler0, local2 );
+		float local11 = g_flSmoothStepMin;
+		float local12 = g_flSmoothStepMax;
+		float4 local13 = Tex2DS( g_tTranslucency, g_sSampler0, local2 );
+		float4 local14 = smoothstep( local11, local12, local13 );
+		float4 local15 = saturate( local14 );
+		float4 local16 = Tex2DS( g_tNormal, g_sSampler0, local2 );
+		float3 local17 = TransformNormal( i, DecodeNormal( local16.xyz ) );
+		float4 local18 = Tex2DS( g_tRoughness, g_sSampler0, local2 );
+		float4 local19 = Tex2DS( g_tMetallic, g_sSampler0, local2 );
 
 		m.Albedo = local10.xyz;
-		m.Opacity = local12.x;
-		m.Normal = local14;
-		m.Roughness = local15.x;
-		m.Metalness = local16.x;
+		m.Opacity = local15.x;
+		m.Normal = local17;
+		m.Roughness = local18.x;
+		m.Metalness = local19.x;
 		m.AmbientOcclusion = 1;
 
 		m.AmbientOcclusion = saturate( m.AmbientOcclusion );

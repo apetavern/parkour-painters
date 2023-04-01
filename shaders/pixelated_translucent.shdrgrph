@@ -267,11 +267,11 @@
     {
       "_class": "Saturate",
       "Input": {
-        "Identifier": "16",
+        "Identifier": "18",
         "Output": "Result"
       },
       "Identifier": "15",
-      "Position": "1024,1216"
+      "Position": "1552,1072"
     },
     {
       "_class": "TextureSampler",
@@ -289,7 +289,6 @@
         "Extension": "Trans",
         "ColorSpace": "Linear",
         "ImageFormat": "BC7",
-        "Priority": 2,
         "PrimaryGroup": {
           "Name": "Translucent",
           "Priority": 1
@@ -328,6 +327,55 @@
       "DefaultAmbientOcclusion": 1,
       "Identifier": "17",
       "Position": "1936,496"
+    },
+    {
+      "_class": "SmoothStep",
+      "Input": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "Edge1": {
+        "Identifier": "19",
+        "Output": "Result"
+      },
+      "Edge2": {
+        "Identifier": "20",
+        "Output": "Result"
+      },
+      "Identifier": "18",
+      "Position": "1328,1152"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Smooth Step Min",
+      "Value": 0,
+      "UI": {
+        "Priority": 1,
+        "PrimaryGroup": {
+          "Name": "Translucent",
+          "Priority": 1
+        }
+      },
+      "Identifier": "19",
+      "Position": "1072,1264"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Smooth Step Max",
+      "Value": 1,
+      "UI": {
+        "Priority": 2,
+        "PrimaryGroup": {
+          "Name": "Translucent",
+          "Priority": 1
+        }
+      },
+      "Identifier": "20",
+      "Position": "1072,1328"
     }
   ]
 }
