@@ -39,6 +39,13 @@ public sealed partial class GraffitiArea : ModelEntity
 	[Net] public IList<Spray> Sprays { get; set; }
 
 	/// <summary>
+	/// The player that is currently spraying this GraffitiArea
+	/// </summary>
+	[Net] private Player SprayingPlayer { get; set; }
+
+	[Net] private TimeSince TimeSinceLastSprayed { get; set; }
+
+	/// <summary>
 	/// Returns whether or not the area has been sprayed.
 	/// </summary>
 	public bool IsAreaSprayed => Sprays.Any( x => x.IsSprayCompleted );
@@ -64,6 +71,10 @@ public sealed partial class GraffitiArea : ModelEntity
 		if ( player.Team is null )
 			return;
 
+		// Do nothing if this is already being sprayed by a different player.
+		if ( SprayingPlayer is not null && SprayingPlayer != player )
+			return;
+
 		var mostRecentSpray = Sprays.LastOrDefault();
 
 		// No sprays
@@ -76,6 +87,9 @@ public sealed partial class GraffitiArea : ModelEntity
 
 				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + Vector3.Up * verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
 			}
+
+			SprayingPlayer = player;
+			TimeSinceLastSprayed = 0;
 		}
 		else
 		{
@@ -106,6 +120,9 @@ public sealed partial class GraffitiArea : ModelEntity
 				if ( Game.IsServer )
 					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
 			}
+
+			SprayingPlayer = player;
+			TimeSinceLastSprayed = 0;
 		}
 	}
 
@@ -116,6 +133,15 @@ public sealed partial class GraffitiArea : ModelEntity
 	private Vector3 GetNearestSafeArea( Vector3 wishPosition )
 	{
 		return Vector3.Zero;
+	}
+
+	[Event.Tick.Server]
+	public void OnTickServer()
+	{
+		if ( TimeSinceLastSprayed > 1f )
+			SprayingPlayer = null;
+
+		DebugOverlay.Text( SprayingPlayer?.ToString(), Position );
 	}
 
 	/// <summary>
