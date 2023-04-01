@@ -6,8 +6,15 @@
 }
 
 <root>
-    @* TODO: Show other abilities here. *@
-
+    @if (player.CurrentPowerup is SpeedPowerup)
+    {
+        <label
+        @ref=PowerupIcon
+        class="icon active"
+        style="color: orange">
+            @player.CurrentPowerup.Icon
+        </label>
+    }
     @* Dash is always available on the player *@
     <label
     @ref=DashIcon
@@ -18,12 +25,13 @@
 </root>
 
 @code {
+    private Label PowerupIcon { get; set; }
     private Label DashIcon { get; set; }
 
     @* Extremely hacky solution because linear-gradient fills up the icon completely before 100% is reached. *@
     private double GetDashPercentage(Entities.Player player)
     {
-        return Math.Max(player.DashMechanic.ActiveDashPercentage - 20, 0);
+        return Math.Max(player.DashMechanic.ActiveDashPercentage - 6, 0);
     }
 
     public override void Tick()
@@ -31,7 +39,16 @@
         if (Game.LocalPawn is not Entities.Player player)
             return;
 
-        DashIcon.SetClass("active", player.DashMechanic.ActiveDashPercentage >= 100);
+        // Start blinking if we have 3 seconds remaining.
+        if (player.CurrentPowerup is not null)
+        {
+            var isBlinking = player.CurrentPowerup.TimeSinceAdded >= player.CurrentPowerup.ExpiryTime - 3;
+            // Wow I can't play two animations at the same time...
+            PowerupIcon?.SetClass("active", !isBlinking);
+            PowerupIcon?.SetClass("blickerton", isBlinking);
+        }
+
+        DashIcon?.SetClass("active", player.DashMechanic.ActiveDashPercentage >= 100);
     }
 
     protected override int BuildHash()
@@ -40,7 +57,7 @@
         if (player is null)
             return 0;
 
-        return HashCode.Combine(player.DashMechanic.ActiveDashPercentage);
+        return HashCode.Combine(player.DashMechanic.ActiveDashPercentage, player.CurrentPowerup?.GetHashCode(), player.CurrentPowerup?.Icon.GetHashCode());
     }
 }
 
@@ -50,11 +67,20 @@
         bottom: 300px;
         right: 200px;
         transition: all 200ms ease-in-out;
+        flex-direction: column;
+        align-items: flex-end;
 
         .icon {
             font-family: MaterialIcons;
             font-size: 150px;
             text-shadow: 2px 2px 0px black;
+            line-height: 100px;
+
+            &.blickerton {
+                animation-duration: 1s;
+                animation-name: blickerton;
+                animation-iteration-count: infinite;
+            }
 
             &.active {
                 animation-duration: 1s;
@@ -75,6 +101,20 @@
 
         100% {
             transform: translateY(0);
+        }
+    }
+
+    @@keyframes blickerton {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 </style>

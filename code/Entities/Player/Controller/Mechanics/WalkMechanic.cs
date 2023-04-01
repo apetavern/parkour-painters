@@ -19,6 +19,9 @@ public sealed partial class WalkMechanic : ControllerMechanic
 			if ( Player.IsSprayed )
 				speed *= ParkourPainters.SprayedSpeedFactor;
 
+			if ( Player.CurrentPowerup is SpeedPowerup powerup )
+				speed *= powerup.IncreaseFactor;
+
 			return speed;
 		}
 	}

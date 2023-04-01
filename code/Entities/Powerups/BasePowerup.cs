@@ -6,6 +6,11 @@
 internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponent
 {
 	/// <summary>
+	/// The google font icon that will be displayed in the UI.
+	/// </summary>
+	internal virtual string Icon => string.Empty;
+
+	/// <summary>
 	/// The time in seconds till the power up will expire.
 	/// </summary>
 	internal virtual float ExpiryTime => float.MaxValue;
