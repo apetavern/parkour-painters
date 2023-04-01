@@ -81,7 +81,7 @@ public sealed partial class Spray : ModelEntity
 		{
 			TeamOwner = team,
 			Transform = transform,
-			Scale = 3 // Scale in this instance applies n * 16
+			Scale = transform.Scale // Scale in this instance applies n * 16
 		};
 	}
 

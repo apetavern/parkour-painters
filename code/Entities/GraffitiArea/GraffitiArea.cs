@@ -24,6 +24,12 @@ public sealed partial class GraffitiArea : ModelEntity
 	[Property, Net] public GraffitiAreaDifficulty PointsType { get; set; } = GraffitiAreaDifficulty.Easy;
 
 	/// <summary>
+	/// How big should sprays appear in this graffiti area?
+	/// </summary>
+	[Property]
+	public float SprayScale { get; set; } = 3;
+
+	/// <summary>
 	/// Returns the spray that was last fully completed.
 	/// </summary>
 	public Spray LastCompletedSpray => Sprays.LastOrDefault( x => x.IsSprayCompleted );
@@ -75,18 +81,18 @@ public sealed partial class GraffitiArea : ModelEntity
 		if ( SprayingPlayer is not null && SprayingPlayer != player )
 			return;
 
+		// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
+		var verticalOffsetZ = Vector3.Up * 10f;
+		if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+			return;
+
 		var mostRecentSpray = Sprays.LastOrDefault();
 
 		// No sprays
 		if ( mostRecentSpray is null )
 		{
 			if ( Game.IsServer )
-			{
-				// By default the spray sprays quite low, offset vertically it manually.
-				var verticalOffsetZ = 20f;
-
-				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + Vector3.Up * verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
-			}
+				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
 
 			SprayingPlayer = player;
 			TimeSinceLastSprayed = 0;
@@ -118,7 +124,7 @@ public sealed partial class GraffitiArea : ModelEntity
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
 				if ( Game.IsServer )
-					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
+					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 			}
 
 			SprayingPlayer = player;
@@ -127,11 +133,51 @@ public sealed partial class GraffitiArea : ModelEntity
 	}
 
 	/// <summary>
+	/// Returns whether or not spraying in this position will overlap the bounds of the GraffitiArea.
+	/// </summary>
+	/// <param name="wishPosition"></param>
+	/// <returns></returns>
+	private bool InPermittedSprayZone( Vector3 wishPosition )
+	{
+		var spraySize = 16 * SprayScale;
+
+		Vector3[] tracePositions = new Vector3[]
+		{
+			wishPosition + (Rotation.Left + Rotation.Up) * spraySize / 2,
+			wishPosition + (Rotation.Right + Rotation.Up) * spraySize / 2,
+			wishPosition + (Rotation.Left + Rotation.Down) * spraySize / 2,
+			wishPosition + (Rotation.Right + Rotation.Down) * spraySize / 2
+		};
+
+		foreach ( var testPoint in tracePositions )
+		{
+			var backwardTrace = Trace.Ray( testPoint + Rotation.Forward * 10, testPoint + Rotation.Backward * 60f ).WithTag( "graffiti_area" ).Run();
+
+			DebugOverlay.Sphere( testPoint, 2f, backwardTrace.Hit ? Color.Green : Color.Red );
+
+			if ( !backwardTrace.Hit )
+				return false;
+		}
+
+		return true;
+	}
+
+	/// <summary>
 	/// Returns the nearest Vector3 to the players wishPosition that can safely accomodate a spray without overhang.
 	/// </summary>
 	/// <returns></returns>
 	private Vector3 GetNearestSafeArea( Vector3 wishPosition )
 	{
+		DebugOverlay.Sphere( wishPosition, 2f, Color.White, 2f );
+
+		var bbox = CollisionBounds;
+		Log.Info( bbox.Mins );
+
+		var leftEdge = Position + bbox.Maxs.WithZ( bbox.Center.z );
+		var rightEdge = Position + bbox.Mins.WithZ( bbox.Center.z );
+		var topEdge = Position + bbox.Center.WithZ( bbox.Maxs.z );
+		var bottomEdge = Position + bbox.Center.WithZ( bbox.Mins.z );
+
 		return Vector3.Zero;
 	}
 

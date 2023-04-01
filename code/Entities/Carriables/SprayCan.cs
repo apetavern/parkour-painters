@@ -13,6 +13,7 @@ public sealed partial class SprayCan : BaseCarriable
 
 	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/spray_paint/spray_paint.vmdl";
+
 	/// <inheritdoc/>
 	protected override float PrimaryFireRate => 0.05f;
 
