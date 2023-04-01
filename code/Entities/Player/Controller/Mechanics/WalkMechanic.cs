@@ -2,15 +2,26 @@ namespace ParkourPainters.Entities;
 
 public sealed partial class WalkMechanic : ControllerMechanic
 {
-	public float StopSpeed => 150f;
-	public float StepSize => 18.0f;
-	public float GroundAngle => 46.0f;
-	public float GroundFriction => 4.0f;
-	public float MaxNonJumpVelocity => 140.0f;
-	public float SurfaceFriction { get; set; } = 1f;
-	public float Acceleration => 6f;
+	private readonly float _wishSpeed = 275f;
+	private float _stopSpeed => 150f;
+	private float _stepSize => 18.0f;
+	private float _groundAngle => 46.0f;
+	private float _groundFriction => 4.0f;
+	private float _maxNonJumpVelocity => 140.0f;
+	private float _surfaceFriction { get; set; } = 1f;
+	private float _acceleration => 6f;
 
-	public override float? WishSpeed => 275f;
+	public override float? WishSpeed
+	{
+		get
+		{
+			var speed = _wishSpeed;
+			if ( Player.IsSprayed )
+				speed *= ParkourPainters.SprayedSpeedFactor;
+
+			return speed;
+		}
+	}
 
 	protected override bool ShouldStart()
 	{
@@ -55,7 +66,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 	private void StayOnGround()
 	{
 		var start = Controller.Position + Vector3.Up * 2;
-		var end = Controller.Position + Vector3.Down * StepSize;
+		var end = Controller.Position + Vector3.Down * _stepSize;
 
 		// See how far up we can go without getting stuck
 		var trace = Controller.TraceBBox( Controller.Position, start );
@@ -73,7 +84,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 		if ( trace.StartedSolid )
 			return;
 
-		if ( Vector3.GetAngle( Vector3.Up, trace.Normal ) > GroundAngle )
+		if ( Vector3.GetAngle( Vector3.Up, trace.Normal ) > _groundAngle )
 			return;
 
 		Controller.Position = trace.EndPosition;
@@ -86,12 +97,12 @@ public sealed partial class WalkMechanic : ControllerMechanic
 		var wishVel = ctrl.GetWishVelocity( true );
 		var wishdir = wishVel.Normal;
 		var wishspeed = wishVel.Length;
-		var friction = GroundFriction * SurfaceFriction;
+		var friction = _groundFriction * _surfaceFriction;
 
 		ctrl.Velocity = ctrl.Velocity.WithZ( 0 );
-		ctrl.ApplyFriction( StopSpeed, friction );
+		ctrl.ApplyFriction( _stopSpeed, friction );
 
-		var accel = Acceleration;
+		var accel = _acceleration;
 
 		ctrl.Velocity = ctrl.Velocity.WithZ( 0 );
 		ctrl.Accelerate( wishdir, wishspeed, 0, accel );
@@ -137,7 +148,7 @@ public sealed partial class WalkMechanic : ControllerMechanic
 			return;
 
 		GroundEntity = null;
-		SurfaceFriction = 1.0f;
+		_surfaceFriction = 1.0f;
 	}
 
 	public void SetGroundEntity( Entity entity )
@@ -153,22 +164,22 @@ public sealed partial class WalkMechanic : ControllerMechanic
 
 	public void CategorizePosition( bool bStayOnGround )
 	{
-		SurfaceFriction = 1.0f;
+		_surfaceFriction = 1.0f;
 
 		var point = Position - Vector3.Up * 2;
 		var vBumpOrigin = Position;
-		bool bMovingUpRapidly = Velocity.z > MaxNonJumpVelocity;
+		bool bMovingUpRapidly = Velocity.z > _maxNonJumpVelocity;
 		bool bMoveToEndPos = false;
 
 		if ( GroundEntity != null )
 		{
 			bMoveToEndPos = true;
-			point.z -= StepSize;
+			point.z -= _stepSize;
 		}
 		else if ( bStayOnGround )
 		{
 			bMoveToEndPos = true;
-			point.z -= StepSize;
+			point.z -= _stepSize;
 		}
 
 		if ( bMovingUpRapidly )
@@ -182,13 +193,13 @@ public sealed partial class WalkMechanic : ControllerMechanic
 		var angle = Vector3.GetAngle( Vector3.Up, pm.Normal );
 		Controller.CurrentGroundAngle = angle;
 
-		if ( pm.Entity == null || Vector3.GetAngle( Vector3.Up, pm.Normal ) > GroundAngle )
+		if ( pm.Entity == null || Vector3.GetAngle( Vector3.Up, pm.Normal ) > _groundAngle )
 		{
 			ClearGroundEntity();
 			bMoveToEndPos = false;
 
 			if ( Velocity.z > 0 )
-				SurfaceFriction = 0.25f;
+				_surfaceFriction = 0.25f;
 		}
 		else
 		{
@@ -203,9 +214,9 @@ public sealed partial class WalkMechanic : ControllerMechanic
 
 	private void UpdateGroundEntity( TraceResult tr )
 	{
-		SurfaceFriction = tr.Surface.Friction * 1.25f;
-		if ( SurfaceFriction > 1 )
-			SurfaceFriction = 1;
+		_surfaceFriction = tr.Surface.Friction * 1.25f;
+		if ( _surfaceFriction > 1 )
+			_surfaceFriction = 1;
 
 		SetGroundEntity( tr.Entity );
 	}
