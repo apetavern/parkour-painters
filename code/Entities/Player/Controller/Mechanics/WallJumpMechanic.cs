@@ -6,7 +6,6 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 	public TimeSince TimeSinceLeftWall { get; private set; }
 
 	private float WallJumpConnectangle => 0.95f;
-	private float WallJumpStrength => 400f;
 	private float WallJumpKickStrength => 250f;
 	private float WallJumpFriction => 650f;
 	private float WallJumpTraceDistance => 25f;
@@ -101,7 +100,7 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 	{
 		var jumpVec = _hitNormal * WallJumpKickStrength;
 
-		Controller.Velocity = Controller.Velocity.WithZ( WallJumpStrength );
+		Controller.Velocity = Controller.Velocity.WithZ( Player.JumpMechanic.Strength * 1.2f );
 		Controller.Velocity += jumpVec;
 		Controller.Position += Controller.Velocity * Time.Delta;
 		IsActive = false;

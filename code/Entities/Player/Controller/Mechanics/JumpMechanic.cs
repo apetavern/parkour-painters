@@ -3,6 +3,7 @@ namespace ParkourPainters.Entities;
 public sealed partial class JumpMechanic : ControllerMechanic
 {
 	public override int SortOrder => 25;
+	public float Strength => Player.CurrentPowerup is JumpPowerup powerup ? 325f * powerup.IncreaseFactor : 325f;
 	private float Gravity => 700f;
 
 	protected override bool ShouldStart()
@@ -22,10 +23,9 @@ public sealed partial class JumpMechanic : ControllerMechanic
 	protected override void OnStart()
 	{
 		float flGroundFactor = 1.0f;
-		float flMul = 325f;
 		float startz = Velocity.z;
 
-		Velocity = Velocity.WithZ( startz + flMul * flGroundFactor );
+		Velocity = Velocity.WithZ( startz + Strength * flGroundFactor );
 		Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
 
 		Controller.GetMechanic<WalkMechanic>()

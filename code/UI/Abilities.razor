@@ -31,7 +31,7 @@
     @* Extremely hacky solution because linear-gradient fills up the icon completely before 100% is reached. *@
     private double GetDashPercentage(Entities.Player player)
     {
-        return Math.Max(player.DashMechanic.ActiveDashPercentage - 6, 0);
+        return Math.Max(player.DashMechanic.ActiveDashPercentage - 20, 0);
     }
 
     public override void Tick()
@@ -74,7 +74,6 @@
             font-family: MaterialIcons;
             font-size: 150px;
             text-shadow: 2px 2px 0px black;
-            line-height: 100px;
 
             &.blickerton {
                 animation-duration: 1s;
