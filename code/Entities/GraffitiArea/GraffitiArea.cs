@@ -48,7 +48,7 @@ public sealed partial class GraffitiArea : ModelEntity
 	{
 		base.Spawn();
 
-		SetupPhysicsFromAABB( PhysicsMotionType.Static, Mins, Maxs );
+		SetupPhysicsFromOBB( PhysicsMotionType.Static, Mins, Maxs );
 
 		Tags.Add( "graffiti_area" );
 	}
@@ -107,6 +107,15 @@ public sealed partial class GraffitiArea : ModelEntity
 					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ) ) );
 			}
 		}
+	}
+
+	/// <summary>
+	/// Returns the nearest Vector3 to the players wishPosition that can safely accomodate a spray without overhang.
+	/// </summary>
+	/// <returns></returns>
+	private Vector3 GetNearestSafeArea( Vector3 wishPosition )
+	{
+		return Vector3.Zero;
 	}
 
 	/// <summary>

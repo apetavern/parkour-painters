@@ -83,13 +83,17 @@ public sealed partial class SprayCan : BaseCarriable
 		var nozzleTransform = GetAttachment( "nozzle" );
 
 		var reachTrace = Trace.Ray( nozzleTransform.Value.Position - nozzleTransform.Value.Rotation.Forward * 20f, nozzleTransform.Value.Position + nozzleTransform.Value.Rotation.Forward * 80f )
-			.WithAnyTags( "graffiti_area", "player" )
 			.Ignore( this )
 			.Ignore( Owner )
+			.WithAnyTags( "graffiti_area", "player" )
 			.Run();
 
+		// Catch cases where the player is inside something.
+		if ( reachTrace.StartedSolid )
+			return;
+
 		if ( reachTrace.Entity is GraffitiArea graffitiArea )
-			graffitiArea.OnSprayReceived( Owner, reachTrace.EndPosition );
+			graffitiArea.OnSprayReceived( Owner, reachTrace.HitPosition );
 		else if ( reachTrace.Entity is Player player )
 			player.Spray( Owner );
 	}
