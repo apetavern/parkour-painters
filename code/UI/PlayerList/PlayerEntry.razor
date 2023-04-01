@@ -24,16 +24,17 @@
     PlayerEntry {
         align-items: center;
         flex-shrink: 0;
-        white-space: nowrap;
         width: 300px;
         padding: 5px;
 
         .name {
             flex-grow: 1;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .ping {
-            margin-left: 20px;
+            flex-shrink: 0;
             color: white;
         }
 
@@ -48,7 +49,6 @@
             font-size: 38px;
             font-family: Poppins;
             text-shadow: 2px 2px 0px black;
-            text-overflow: ellipsis;
         }
     }
 </style>
