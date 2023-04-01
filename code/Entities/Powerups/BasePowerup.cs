@@ -27,4 +27,38 @@ internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponen
 
 		TimeSinceAdded = 0;
 	}
+
+	/// <summary>
+	/// A debug command to give yourself an ability
+	/// </summary>
+	[ConCmd.Admin( "pp_givepowerup" )]
+	private static void GivePowerUp( string requestedPowerup )
+	{
+		if ( ConsoleSystem.Caller is null )
+		{
+			Log.Warning( "This command can only be used by players" );
+			return;
+		}
+
+		if ( ConsoleSystem.Caller.Pawn is not Entities.Player player )
+		{
+			Log.Warning( "You do not have the correct pawn to use this command" );
+			return;
+		}
+
+		var powerupType = TypeLibrary.GetType( requestedPowerup );
+		if ( powerupType is null )
+		{
+			Log.Error( $"The type \"{powerupType}\" does not exist" );
+			return;
+		}
+
+		if ( !powerupType.TargetType.IsAssignableTo( typeof( BasePowerup ) ) )
+		{
+			Log.Error( $"The type {powerupType.Name} is not assignable to {nameof( BasePowerup )}" );
+			return;
+		}
+
+		player.Components.Add( powerupType.Create<BasePowerup>() );
+	}
 }
