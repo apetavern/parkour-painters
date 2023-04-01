@@ -3,7 +3,7 @@ namespace ParkourPainters.Entities;
 public sealed partial class DashMechanic : ControllerMechanic
 {
 	public double ActiveDashPercentage => Math.Ceiling( Math.Clamp( _timeSinceLastDash / DashRechargeTime * 100, 0, 100 ) );
-	private int DashRechargeTime => ParkourPainters.InfiniteDash ? 0 : 3;
+	private int DashRechargeTime => ParkourPainters.InfiniteDash ? 0 : Player.CurrentPowerup is DashPowerup powerup ? powerup.RechargeTime : 3;
 	private TimeSince _timeSinceLastDash { get; set; }
 
 	protected override bool ShouldStart()
