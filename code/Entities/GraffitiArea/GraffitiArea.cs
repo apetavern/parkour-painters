@@ -140,8 +140,6 @@ public sealed partial class GraffitiArea : ModelEntity
 	{
 		if ( TimeSinceLastSprayed > 1f )
 			SprayingPlayer = null;
-
-		DebugOverlay.Text( SprayingPlayer?.ToString(), Position );
 	}
 
 	/// <summary>
