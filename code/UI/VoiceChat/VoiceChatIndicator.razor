@@ -27,7 +27,7 @@
 
     public override void Tick()
     {
-        if (!_player.IsValid())
+        if (!_player.IsValid() || _player.LifeState == LifeState.Dead)
         {
             Delete(true);
             return;
@@ -43,7 +43,7 @@
         _voiceLevel = _voiceLevel.LerpTo(_activeVoiceLevel, Time.Delta * 40.0f);
 
         var transform = _player.GetBoneTransform("head");
-        transform.Position += Vector3.Up * 5f + (Vector3.Up * _voiceLevel);
+        transform.Position += Vector3.Up * 10f + (Vector3.Up * _voiceLevel);
         transform.Rotation = Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f);
         this.Transform = transform;
     }

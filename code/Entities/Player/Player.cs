@@ -111,6 +111,13 @@ public sealed partial class Player : AnimatedEntity
 	}
 
 	/// <inheritdoc/>
+	public sealed override void ClientSpawn()
+	{
+		if ( !IsLocalPawn )
+			_ = new UI.NameWorldPanel( this );
+	}
+
+	/// <inheritdoc/>
 	public sealed override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );

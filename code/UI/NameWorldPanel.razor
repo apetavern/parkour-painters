@@ -1,0 +1,52 @@
+@inherits Sandbox.UI.WorldPanel
+@namespace ParkourPainters.UI
+
+<root>
+    <label style="color: @(_player?.Team?.Group?.SprayColor.Hex ?? Color.White.Hex)">@_player?.Client?.Name</label>
+</root>
+
+@code {
+    private Entities.Player _player;
+
+    public NameWorldPanel(Entities.Player player)
+    {
+        _player = player;
+    }
+
+    public override void Tick()
+    {
+        if (!_player.IsValid())
+        {
+            Delete(true);
+            return;
+        }
+
+        SetClass("hidden", _player.LifeState == LifeState.Dead);
+
+        var transform = _player.GetBoneTransform("head");
+        transform.Position += Vector3.Up * 2f;
+        transform.Rotation = Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f);
+        this.Transform = transform;
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(_player?.Team?.GetHashCode());
+    }
+}
+
+<style>
+    NameWorldPanel {
+        justify-content: center;
+
+        label {
+            font-family: ADDCN;
+            font-size: 80px;
+            text-shadow: 2px 2px 0px rgba(black, 0.75);
+        }
+
+        &.hidden {
+            opacity: 0;
+        }
+    }
+</style>
