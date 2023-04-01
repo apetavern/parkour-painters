@@ -1,0 +1,33 @@
+@namespace ParkourPainters.UI
+
+@if (Game.LocalPawn is not Entities.Player player || player.Team is null)
+{
+    return;
+}
+
+<root>
+    <label style="color: white;">Gang:</label>
+    <label style="color: @player.Team.Group.SprayColor.Hex;">@player.Team.Group.Name</label>
+</root>
+
+@code {
+    protected override int BuildHash()
+    {
+        var player = Game.LocalPawn as Entities.Player;
+        return HashCode.Combine(player?.Team?.GetHashCode());
+    }
+}
+
+<style>
+    GangIndicator {
+        position: absolute;
+        bottom: 100px;
+        left: 200px;
+
+        label {
+            font-size: 70px;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
+        }
+    }
+</style>
