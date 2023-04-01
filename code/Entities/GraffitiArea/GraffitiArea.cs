@@ -81,8 +81,10 @@ public sealed partial class GraffitiArea : ModelEntity
 		if ( SprayingPlayer is not null && SprayingPlayer != player )
 			return;
 
-		// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
+
 		var verticalOffsetZ = Vector3.Up * 10f;
+
+		// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
 		if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
 			return;
 
@@ -153,32 +155,11 @@ public sealed partial class GraffitiArea : ModelEntity
 		{
 			var backwardTrace = Trace.Ray( testPoint + Rotation.Forward * 10, testPoint + Rotation.Backward * 60f ).WithTag( "graffiti_area" ).Run();
 
-			DebugOverlay.Sphere( testPoint, 2f, backwardTrace.Hit ? Color.Green : Color.Red );
-
 			if ( !backwardTrace.Hit )
 				return false;
 		}
 
 		return true;
-	}
-
-	/// <summary>
-	/// Returns the nearest Vector3 to the players wishPosition that can safely accomodate a spray without overhang.
-	/// </summary>
-	/// <returns></returns>
-	private Vector3 GetNearestSafeArea( Vector3 wishPosition )
-	{
-		DebugOverlay.Sphere( wishPosition, 2f, Color.White, 2f );
-
-		var bbox = CollisionBounds;
-		Log.Info( bbox.Mins );
-
-		var leftEdge = Position + bbox.Maxs.WithZ( bbox.Center.z );
-		var rightEdge = Position + bbox.Mins.WithZ( bbox.Center.z );
-		var topEdge = Position + bbox.Center.WithZ( bbox.Maxs.z );
-		var bottomEdge = Position + bbox.Center.WithZ( bbox.Mins.z );
-
-		return Vector3.Zero;
 	}
 
 	[Event.Tick.Server]
