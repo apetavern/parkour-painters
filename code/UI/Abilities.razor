@@ -6,7 +6,7 @@
 }
 
 <root>
-    @if (player.CurrentPowerup is SpeedPowerup)
+    @if (player.CurrentPowerup is not null)
     {
         <label
         @ref=PowerupIcon
