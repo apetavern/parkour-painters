@@ -83,6 +83,7 @@ public sealed partial class SprayCan : BaseCarriable
 		var nozzleTransform = GetAttachment( "nozzle" );
 
 		var reachTrace = Trace.Ray( nozzleTransform.Value.Position - nozzleTransform.Value.Rotation.Forward * 20f, nozzleTransform.Value.Position + nozzleTransform.Value.Rotation.Forward * 80f )
+			.Radius( 3f )
 			.Ignore( this )
 			.Ignore( Owner )
 			.WithAnyTags( "graffiti_area", "player" )
