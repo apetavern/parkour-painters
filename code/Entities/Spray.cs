@@ -77,6 +77,8 @@ public sealed partial class Spray : ModelEntity
 	private void OnSprayCompleted( Player sprayer )
 	{
 		Event.Run( ParkourPainters.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
+
+		Sound.FromWorld( "spray_completed", Position );
 	}
 
 	public static Spray CreateFrom( Team team, Transform transform )
@@ -94,7 +96,7 @@ public sealed partial class Spray : ModelEntity
 	/// </summary>
 	private void DoCompletedGlow()
 	{
-		float glowSpeed = 15f;
+		float glowSpeed = 18f;
 
 		if ( !HasGlowed )
 		{

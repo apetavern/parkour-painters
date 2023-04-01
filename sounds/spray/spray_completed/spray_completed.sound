@@ -1,0 +1,12 @@
+{
+  "UI": false,
+  "Volume": "1.00,1.00,0",
+  "Pitch": "1.00,1.00,0",
+  "Decibels": 95,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/spray/spray_completed/spray_completed.vsnd"
+  ],
+  "MaximumDistance": 2080,
+  "MinimumDistance": 104
+}

@@ -56,6 +56,8 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// </summary>
 	public bool IsAreaSprayed => Sprays.Any( x => x.IsSprayCompleted );
 
+	private TimeSince TimeSinceLastSprayFailEffect { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -90,7 +92,10 @@ public sealed partial class GraffitiArea : ModelEntity
 		{
 			// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
 			if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+			{
+				DoSprayFailEffects( wishPosition );
 				return;
+			}
 
 			if ( Game.IsServer )
 				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
@@ -106,7 +111,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			if ( Vector3.DistanceBetween( wishPosition, mostRecentSpray.Position ) > distanceToleranceUnits )
 			{
 				// Convey to the player that they're spraying too far away.
-				// TODO: This ^
+				DoSprayFailEffects( wishPosition );
 				return;
 			}
 
@@ -115,7 +120,10 @@ public sealed partial class GraffitiArea : ModelEntity
 			{
 				// Continue spray if it isn't already completed.
 				if ( mostRecentSpray.IsSprayCompleted )
+				{
+					DoSprayFailEffects( wishPosition );
 					return;
+				}
 
 				mostRecentSpray.ReceiveSprayFrom( player );
 			}
@@ -123,7 +131,10 @@ public sealed partial class GraffitiArea : ModelEntity
 			{
 				// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
 				if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+				{
+					DoSprayFailEffects( wishPosition );
 					return;
+				}
 
 				// Overwrite other teams spray.
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
@@ -135,6 +146,18 @@ public sealed partial class GraffitiArea : ModelEntity
 			SprayingPlayer = player;
 			TimeSinceLastSprayed = 0;
 		}
+	}
+
+	private void DoSprayFailEffects( Vector3 position )
+	{
+		if ( Game.IsServer )
+			return;
+
+		if ( TimeSinceLastSprayFailEffect < 0.2f )
+			return;
+
+		Particles.Create( "particles/paint/spray_fail.vpcf", position + Rotation.Forward );
+		TimeSinceLastSprayFailEffect = 0;
 	}
 
 	/// <summary>
