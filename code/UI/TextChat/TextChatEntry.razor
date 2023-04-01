@@ -5,15 +5,16 @@
     {
         <img src="avatar:@SteamId" />
     }
-    <label class="name" text=@Name style="font-color: @Color.Hex;" />
-    <label class="msg" text=@Message />
+    <label class="name" text=@Name style="font-color: @NameColor.Hex;" />
+    <label class="msg" text=@Message style="font-color: @MessageColor.Hex" />
 </root>
 
 @code
 {
-    public string Name { get; set; }
-    public Color Color { get; set; }
-    public string Message { get; set; }
+    public string Name { get; set; } = "";
+    public Color NameColor { get; set; } = Color.White;
+    public string Message { get; set; } = "";
+    public Color MessageColor { get; set; } = Color.White.Darken(0.2f);
     public long SteamId { get; set; }
     public TimeSince Lifetime { get; init; } = 0;
 }

@@ -100,12 +100,12 @@ public partial class TextChat : Panel
 	[ClientRpc]
 	public static void AddChatEntry( string name, Color color, string message, long steamId )
 	{
-		_instance?.AddEntry( new TextChatEntry { Name = name, Color = color, Message = message, SteamId = steamId } );
+		_instance?.AddEntry( new TextChatEntry { Name = name, NameColor = color, Message = message, SteamId = steamId } );
 	}
 
 	[ClientRpc]
 	public static void AddInfoChatEntry( string message )
 	{
-		_instance?.AddEntry( new TextChatEntry { Name = message, Color = Color.Orange } );
+		_instance?.AddEntry( new TextChatEntry { Message = message, MessageColor = Color.Orange } );
 	}
 }
