@@ -25,7 +25,9 @@ public sealed partial class DashMechanic : ControllerMechanic
 
 	protected override void OnStart()
 	{
-		float flGroundFactor = Controller.GroundEntity.IsValid() ? 3f : 1.2f;
+		Controller.GetMechanic<WalkMechanic>().ClearGroundEntity();
+
+		float flAirFactor = 1.3f;
 		float flMul = 150f * 1.2f;
 		float forMul = 150f * 2.2f;
 
@@ -35,8 +37,8 @@ public sealed partial class DashMechanic : ControllerMechanic
 		particles.SetEntityBone( 0, Player, Player.GetBoneIndex( "spine_0" ) );
 		particles.SetOrientation( 1, Player.Rotation );
 
-		Controller.Velocity = direction * forMul * flGroundFactor;
-		Controller.Velocity = Controller.Velocity.WithZ( flMul * flGroundFactor );
+		Controller.Velocity = direction * forMul * flAirFactor;
+		Controller.Velocity = Controller.Velocity.WithZ( flMul * flAirFactor );
 		Controller.Velocity -= new Vector3( 0, 0, 800f * 0.5f ) * Time.Delta;
 
 		_timeSinceLastDash = 0;
