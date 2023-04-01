@@ -84,15 +84,15 @@ public sealed partial class GraffitiArea : ModelEntity
 
 		var verticalOffsetZ = Vector3.Up * 10f;
 
-		// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
-		if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
-			return;
-
 		var mostRecentSpray = Sprays.LastOrDefault();
 
 		// No sprays
 		if ( mostRecentSpray is null )
 		{
+			// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
+			if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+				return;
+
 			if ( Game.IsServer )
 				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 
@@ -122,6 +122,10 @@ public sealed partial class GraffitiArea : ModelEntity
 			}
 			else
 			{
+				// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
+				if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+					return;
+
 				// Overwrite other teams spray.
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
