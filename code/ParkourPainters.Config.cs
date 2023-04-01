@@ -63,6 +63,18 @@ partial class ParkourPainters
 	public static float DazeTime { get; private set; } = 3;
 
 	/// <summary>
+	/// Defines the amount of time that a player will be slowed when sprayed by another player.
+	/// </summary>
+	[ConVar.Replicated( "pp_spraytime" )]
+	public static float SprayTime { get; private set; } = 0.3f;
+
+	/// <summary>
+	/// Defines the percentage factor that a player will be slowed to when sprayed by another player.
+	/// </summary>
+	[ConVar.Replicated( "pp_sprayedspeedfactor" )]
+	public static float SprayedSpeedFactor { get; private set; } = 0.7f;
+
+	/// <summary>
 	/// Defines the amount of time that a player will be immune after being dazed by another player.
 	/// </summary>
 	[ConVar.Replicated( "pp_immunetime" )]

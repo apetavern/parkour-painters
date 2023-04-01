@@ -14,7 +14,8 @@
     "/particles/*",
     "/prefabs/*",
     "/shaders/*",
-    "/sounds/*"
+    "/sounds/*",
+    "/data/*"
   ],
   "HasCode": true,
   "CodePath": "/code/",
@@ -134,6 +135,28 @@
         "DefaultValue": "true",
         "Description": "",
         "Group": ""
+      },
+      {
+        "DisplayType": "Float",
+        "Choices": [],
+        "ConVarName": "pp_spraytime",
+        "DisplayName": "Spray Time",
+        "DefaultValue": "0.3",
+        "Description": "",
+        "Group": "",
+        "Maximum": 1,
+        "Step": 0.01
+      },
+      {
+        "DisplayType": "Float",
+        "Choices": [],
+        "ConVarName": "pp_sprayedspeedfactor",
+        "DisplayName": "Sprayed Speed Factor",
+        "DefaultValue": "0.7",
+        "Description": "",
+        "Group": "",
+        "Maximum": 1,
+        "Step": 0.01
       }
     ],
     "Collision": {

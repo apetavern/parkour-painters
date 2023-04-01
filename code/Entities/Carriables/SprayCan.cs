@@ -91,7 +91,7 @@ public sealed partial class SprayCan : BaseCarriable
 		if ( reachTrace.Entity is GraffitiArea graffitiArea )
 			graffitiArea.OnSprayReceived( Owner, reachTrace.EndPosition );
 		else if ( reachTrace.Entity is Player player )
-			player.Daze( Owner, DazeType.Inhalation );
+			player.Spray( Owner );
 	}
 
 	/// <inheritdoc/>

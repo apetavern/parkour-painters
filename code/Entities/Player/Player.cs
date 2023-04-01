@@ -1,3 +1,5 @@
+using Sandbox;
+
 namespace ParkourPainters.Entities;
 
 [Prefab]
@@ -31,6 +33,10 @@ public sealed partial class Player : AnimatedEntity
 	/// </summary>
 	public bool IsDazed => TimeSinceDazed <= ParkourPainters.DazeTime;
 	/// <summary>
+	/// Whether or not the player is currently sprayed.
+	/// </summary>
+	public bool IsSprayed => TimeSinceSprayed <= ParkourPainters.SprayTime;
+	/// <summary>
 	/// Whether or not the player is currently immune to dazing.
 	/// </summary>
 	public bool IsImmune => TimeSinceDazed > ParkourPainters.DazeTime && TimeSinceDazed <= ParkourPainters.ImmuneTime;
@@ -46,14 +52,24 @@ public sealed partial class Player : AnimatedEntity
 	[Net] private TimeSince TimeSinceDazed { get; set; } = float.MaxValue;
 
 	/// <summary>
-	/// The time in seconds since the last footstep animation event happened.
-	/// </summary>
-	private TimeSince TimeSinceFootstep { get; set; } = 0;
-
-	/// <summary>
 	/// The particles that are shown when the player is dazed.
 	/// </summary>
 	private Particles DazeParticles { get; set; }
+
+	/// <summary>
+	/// The time in seconds since the player was last sprayed.
+	/// </summary>
+	[Net] private TimeSince TimeSinceSprayed { get; set; } = float.MaxValue;
+
+	/// <summary>
+	/// The particles that are shown when the player has been sprayed.
+	/// </summary>
+	private Particles SprayCloud { get; set; }
+
+	/// <summary>
+	/// The time in seconds since the last footstep animation event happened.
+	/// </summary>
+	private TimeSince TimeSinceFootstep { get; set; } = 0;
 
 	private static readonly Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
 
@@ -221,6 +237,22 @@ public sealed partial class Player : AnimatedEntity
 		return true;
 	}
 
+	/// <summary>
+	/// Sprays the player.
+	/// </summary>
+	/// <param name="attacker">The person that caused the daze to occur.</param>
+	internal void Spray( Player attacker )
+	{
+		if ( IsImmune || ParkourPainters.FriendlyFire && attacker.Team == Team )
+			return;
+
+		var wasSprayed = IsSprayed;
+		TimeSinceSprayed = 0;
+
+		if ( !wasSprayed )
+			SprayPlayerParticles( To.Everyone, attacker.Team?.Group?.SprayColor ?? Color.Black );
+	}
+
 	private async void AsyncRespawn()
 	{
 		await GameTask.DelaySeconds( 3f );
@@ -246,11 +278,20 @@ public sealed partial class Player : AnimatedEntity
 		if ( !IsDazed )
 			DazeType = DazeType.None;
 
-		if ( !Game.IsClient || IsDazed )
+		if ( !Game.IsClient )
 			return;
 
-		DazeParticles?.Destroy();
-		DazeParticles = null;
+		if ( !IsDazed )
+		{
+			DazeParticles?.Destroy();
+			DazeParticles = null;
+		}
+
+		if ( !IsSprayed )
+		{
+			SprayCloud?.Destroy();
+			SprayCloud = null;
+		}
 	}
 
 	[ClientRpc]
@@ -260,6 +301,13 @@ public sealed partial class Player : AnimatedEntity
 			particle = "particles/stun/stun_base.vpcf";
 
 		DazeParticles = Particles.Create( particle, this, "hat" );
+	}
+
+	[ClientRpc]
+	private void SprayPlayerParticles( Vector3 cloudColor )
+	{
+		SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", this, "eyes" );
+		SprayCloud.SetPosition( 1, cloudColor );
 	}
 
 	[ClientRpc]
