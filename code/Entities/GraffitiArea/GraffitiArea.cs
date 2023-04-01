@@ -136,6 +136,11 @@ public sealed partial class GraffitiArea : ModelEntity
 					return;
 				}
 
+				var maxOverlappedSprays = 2;
+
+				if ( Game.IsServer && Sprays.Count + 1 > maxOverlappedSprays )
+					Sprays.First().Delete();
+
 				// Overwrite other teams spray.
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
