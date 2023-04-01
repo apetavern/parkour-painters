@@ -12,8 +12,8 @@ Layer0
 
 	//---- Glow ----
 	g_flGlowMix "0.000"
-	g_flGlowPower "0.000"
-	g_vGlowColor "[1.000000 1.000000 1.000000 1.000000]"
+	g_flGlowPower "25.000"
+	g_vGlowColor "[0.862745 0.078431 0.235294 1.000000]"
 
 	//---- Metalness ----
 	g_flMetallic "0.000"
@@ -34,6 +34,7 @@ Layer0
 
 	DynamicParams
 	{
+		g_flGlowMix "glow_amount"
 		g_flFadeamount "fade_amount"
 		Translucency "fade_amount"
 	}

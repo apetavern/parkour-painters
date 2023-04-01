@@ -81,7 +81,6 @@ public sealed partial class GraffitiArea : ModelEntity
 		if ( SprayingPlayer is not null && SprayingPlayer != player )
 			return;
 
-
 		var verticalOffsetZ = Vector3.Up * 10f;
 
 		var mostRecentSpray = Sprays.LastOrDefault();

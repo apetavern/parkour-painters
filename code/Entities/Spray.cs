@@ -24,6 +24,10 @@ public sealed partial class Spray : ModelEntity
 
 	public bool IsSprayCompleted => SprayProgress >= 100;
 
+	private float GlowAmount { get; set; }
+
+	private bool HasGlowed { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -86,11 +90,34 @@ public sealed partial class Spray : ModelEntity
 	}
 
 	/// <summary>
+	/// An effect for when the spray has been completed.
+	/// </summary>
+	private void DoCompletedGlow()
+	{
+		float glowSpeed = 15f;
+
+		if ( !HasGlowed )
+		{
+			GlowAmount = Math.Clamp( GlowAmount + 0.1f * Time.Delta * glowSpeed, 0, 1 );
+
+			if ( GlowAmount >= 1 )
+				HasGlowed = true;
+		}
+		else
+			GlowAmount = Math.Clamp( GlowAmount - 0.1f * Time.Delta * glowSpeed, 0, 1 );
+
+		SceneObject.Attributes.Set( "glow_amount", GlowAmount );
+	}
+
+	/// <summary>
 	/// Performs various client-side checks for the <see cref="Spray"/>.
 	/// </summary>
 	[Event.Tick.Client]
-	private void SprayCloudCleanup()
+	private void OnTickClient()
 	{
+		if ( IsSprayCompleted )
+			DoCompletedGlow();
+
 		if ( TimeSinceLastSprayed <= 0.2f )
 			return;
 
