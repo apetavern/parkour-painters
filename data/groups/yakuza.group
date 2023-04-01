@@ -1,7 +1,7 @@
 {
   "Name": "Yakuza",
   "Description": "Literally killers.",
-  "SprayColor": "255,255,0,1",
+  "SprayColor": "0.97647,0.86277,0.36078,1",
   "AvailableSprays": [
     "materials/sprays/nerds_csharp_01a.vmat"
   ],

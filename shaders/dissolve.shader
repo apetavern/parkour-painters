@@ -103,14 +103,16 @@ PS
 		float local16 = lerp( 0, 1, local15.x );
 		float local17 = smoothstep( local11, local12, local16 );
 		float local18 = saturate( local17 );
-		float local19 = g_flRoughness;
-		float local20 = g_flMetallic;
+		float local19 = ( saturate( ( (local13) - (0) ) / ( (10) - (0) ) ) * ((1) - (0)) ) + (0);
+		float local20 = lerp( 0, local18, local19 );
+		float local21 = g_flRoughness;
+		float local22 = g_flMetallic;
 
 		m.Albedo = local4.xyz;
 		m.Emission = local10.xyz;
-		m.Opacity = local18;
-		m.Roughness = local19;
-		m.Metalness = local20;
+		m.Opacity = local20;
+		m.Roughness = local21;
+		m.Metalness = local22;
 		m.AmbientOcclusion = 1;
 
 		m.AmbientOcclusion = saturate( m.AmbientOcclusion );

@@ -1,7 +1,7 @@
 {
   "Name": "Nineties",
   "Description": "Might as well be boomers",
-  "SprayColor": "0,0,255,1",
+  "SprayColor": "0.98431,0.38039,0.02745,1",
   "AvailableSprays": [
     "materials/sprays/nineties_cup_01a.vmat"
   ],

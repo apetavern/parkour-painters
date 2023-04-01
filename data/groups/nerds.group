@@ -1,7 +1,7 @@
 {
   "Name": "Nerds",
   "Description": "A nerdy bunch",
-  "SprayColor": "27.00007,1000,0,1",
+  "SprayColor": "0.27886,0.75273,0.89884,1",
   "AvailableSprays": [
     "materials/sprays/nerds_csharp_01a.vmat"
   ],

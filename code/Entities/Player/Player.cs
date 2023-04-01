@@ -111,6 +111,13 @@ public sealed partial class Player : AnimatedEntity
 	}
 
 	/// <inheritdoc/>
+	public sealed override void ClientSpawn()
+	{
+		if ( !IsLocalPawn )
+			_ = new UI.NameWorldPanel( this );
+	}
+
+	/// <inheritdoc/>
 	public sealed override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );
@@ -316,7 +323,7 @@ public sealed partial class Player : AnimatedEntity
 		Audio.SetEffect( effectName, strength, velocity: 20.0f, fadeOut: 4.0f * strength );
 	}
 
-	[ConCmd.Server( "kill" )]
+	[ConCmd.Admin( "kill" )]
 	public static void DoSuicide()
 	{
 		(ConsoleSystem.Caller.Pawn as Player)?.TakeDamage( DamageInfo.Generic( 1000f ) );

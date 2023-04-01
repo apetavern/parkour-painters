@@ -14,7 +14,7 @@
         "Output": "Result"
       },
       "Opacity": {
-        "Identifier": "10",
+        "Identifier": "25",
         "Output": "Result"
       },
       "Normal": {},
@@ -390,6 +390,57 @@
       "DefaultB": 1,
       "Identifier": "23",
       "Position": "304,-320"
+    },
+    {
+      "_class": "RemapValue",
+      "A": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "B": {},
+      "C": {},
+      "D": {},
+      "E": {},
+      "In": 0.5,
+      "InMin": 0,
+      "InMax": 10,
+      "OutMin": 0,
+      "OutMax": 1,
+      "Clamp": true,
+      "Identifier": "24",
+      "Position": "-176,464"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "26",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "24",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "25",
+      "Position": "544,288"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "",
+      "Value": 0,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "26",
+      "Position": "80,352"
     }
   ]
 }
