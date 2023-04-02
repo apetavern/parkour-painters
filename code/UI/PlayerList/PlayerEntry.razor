@@ -1,13 +1,8 @@
 @namespace ParkourPainters.UI
 
-@if (Client.Pawn is not Entities.Player player)
-{
-    return;
-}
-
 <root>
     <img src="avatar:@Client.SteamId" />
-    <label class="name" style="color: @(player?.Team?.Group?.SprayColor.Hex ?? Color.White.Hex)">@Client.Name</label>
+    <label class="name" style="color: @((Client.Pawn as Entities.Player)?.Team?.Group?.SprayColor.Hex ?? Color.White.Hex)">@Client.Name</label>
     <label class="ping">@Client.Ping</label>
 </root>
 
