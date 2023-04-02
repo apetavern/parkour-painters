@@ -113,6 +113,14 @@ public partial class Player
 		if ( HeldItem == Inventory.Items[index.Value] )
 			heldItemInput = null;
 		else
+		{
+			if ( !Inventory.Items[index.Value].CanUseWhileClimbing && IsClimbing )
+			{
+				heldItemInput = null;
+				return;
+			}
+
 			heldItemInput = Inventory.Items[index.Value];
+		}
 	}
 }

@@ -1,6 +1,4 @@
-﻿using static ParkourPainters.Util.CustomAnimationHelper;
-
-namespace ParkourPainters.Entities;
+﻿namespace ParkourPainters.Entities;
 
 /// <summary>
 /// The base class for all carriable items.
@@ -25,6 +23,11 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// Text that will be displayed next to the name ex. Remaining ammo.
 	/// </summary>
 	public virtual string SlotText => "";
+
+	/// <summary>
+	/// Whether or not this carriable can be equipped and used while climbing.
+	/// </summary>
+	public virtual bool CanUseWhileClimbing => true;
 
 	/// <summary>
 	/// The path to the world model to use.

@@ -6,10 +6,11 @@ public sealed partial class StunWeapon : BaseCarriable
 
 	public override string SlotText => "";
 
+	public override bool CanUseWhileClimbing => false;
+
 	protected override string ModelPath => "models/entities/melee_weapons/melee_weapons.vmdl";
 
 	[Net] private int _bodyGroup { get; set; }
-
 	[Net] private bool _holdtypeAttack { get; set; }
 
 	public override void Spawn()

@@ -40,6 +40,10 @@ public sealed partial class Player : AnimatedEntity
 	/// Whether or not the player is currently immune to dazing.
 	/// </summary>
 	public bool IsImmune => CurrentPowerup is ShieldPowerup || TimeSinceDazed > ParkourPainters.DazeTime && TimeSinceDazed <= ParkourPainters.ImmuneTime;
+	/// <summary>
+	/// Whether or not the player is currently climbing.
+	/// </summary>
+	public bool IsClimbing => LedgeGrabMechanic.IsActive || WallJumpMechanic.IsActive;
 
 	/// <summary>
 	/// The current type of daze the player is experiencing.
