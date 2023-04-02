@@ -5,19 +5,9 @@
 /// </summary>
 [Title( "Graffiti Area" ), Category( "Parkour Painters" )]
 [HammerEntity]
-[BoundsHelper( "Mins", "Maxs" ), DrawAngles]
+[DrawAngles, Solid, AutoApplyMaterial( "materials/sprays/spray_area_hatching.vmat" )]
 public sealed partial class GraffitiArea : ModelEntity
 {
-	/// <summary>
-	/// The mins property populated by the BoundsHelper when used in Hammer.
-	/// </summary>
-	[Property] public Vector3 Mins { get; set; }
-
-	/// <summary>
-	/// The maxs property populated by the BoundsHelper when used in Hammer.
-	/// </summary>
-	[Property] public Vector3 Maxs { get; set; }
-
 	/// <summary>
 	/// How difficult is it to reach this zone?
 	/// </summary>
@@ -63,9 +53,16 @@ public sealed partial class GraffitiArea : ModelEntity
 	{
 		base.Spawn();
 
-		SetupPhysicsFromOBB( PhysicsMotionType.Static, Mins, Maxs );
+		SetupPhysicsFromModel( PhysicsMotionType.Static );
 
 		Tags.Add( "graffiti_area" );
+	}
+
+	public override void ClientSpawn()
+	{
+		base.ClientSpawn();
+
+
 	}
 
 	/// <summary>
@@ -198,6 +195,18 @@ public sealed partial class GraffitiArea : ModelEntity
 	{
 		if ( TimeSinceLastSprayed > 1f )
 			SprayingPlayer = null;
+	}
+
+	[Event.Tick.Client]
+	public void OnTickClient()
+	{
+		// Hatching based on player distance
+		var player = Game.LocalPawn;
+
+		if ( !Sprays.Any() )
+			SceneObject.Attributes.Set( "glow_amount", Vector3.DistanceBetween( player.Position, Position ) / 60 - 4 );
+		else
+			SceneObject.Attributes.Set( "glow_amount", 0 );
 	}
 
 	/// <summary>
