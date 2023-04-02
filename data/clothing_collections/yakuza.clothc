@@ -19,6 +19,14 @@
     {
       "Clothing": "data/clothing/yakuza_suit_open_striped.clothing",
       "TintMode": "Random"
+    },
+    {
+      "Clothing": "data/clothing/yakuza_suit_open_reversed.clothing",
+      "TintMode": "Random"
+    },
+    {
+      "Clothing": "data/clothing/yakuza_suit_open_striped_reversed.clothing",
+      "TintMode": "Random"
     }
   ],
   "Gloves": null,
