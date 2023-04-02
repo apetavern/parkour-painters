@@ -1,0 +1,30 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated.shader_c"
+
+	//---- Rendering ----
+	F_RENDER_BACKFACES 1
+
+	//---- Color ----
+	Color "models/outfits/yakuza/torso/suit_open/materials/striped/suit_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 1.000000]"
+	TintMask "models/outfits/yakuza/torso/suit_open/materials/shirt_mask.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "models/outfits/yakuza/torso/suit_open/materials/striped/suit_metal.png"
+
+	//---- Normal ----
+	Normal "models/outfits/yakuza/torso/suit_open/materials/striped/suit_normal.png"
+
+	//---- Roughness ----
+	Roughness "models/outfits/yakuza/torso/suit_open/materials/striped/suit_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+}

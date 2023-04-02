@@ -1,0 +1,15 @@
+{
+  "Title": "Yakuza Suit (open)",
+  "Subtitle": "Something yakuza-like here",
+  "Category": "Tops",
+  "SubCategory": "yakuza",
+  "Parent": null,
+  "Model": "models/outfits/yakuza/torso/suit_open_reversed_colors.vmdl",
+  "SkinMaterial": null,
+  "EyesMaterial": null,
+  "MaterialGroup": "",
+  "SlotsUnder": "Chest, LeftArm, RightArm",
+  "SlotsOver": "Chest, LeftArm, RightArm",
+  "HideBody": "Chest",
+  "Icon": {}
+}
