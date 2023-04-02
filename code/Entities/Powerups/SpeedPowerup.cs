@@ -8,5 +8,8 @@ internal partial class SpeedPowerup : BasePowerup
 	internal override string Icon => "directions_run";
 
 	/// <inheritdoc/>
+	internal override string Description => "Movement speed increase!";
+
+	/// <inheritdoc/>
 	internal override float ExpiryTime => 10;
 }

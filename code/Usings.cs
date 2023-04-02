@@ -7,6 +7,7 @@ global using ParkourPainters.Util;
 global using Sandbox;
 global using Sandbox.UI;
 global using System;
+global using System.Threading.Tasks;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
 global using System.ComponentModel;

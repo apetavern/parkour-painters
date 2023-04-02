@@ -11,6 +11,11 @@ internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponen
 	internal virtual string Icon => string.Empty;
 
 	/// <summary>
+	/// A quick little description that popups on the users screen explaining the powerup.
+	/// </summary>
+	internal virtual string Description => string.Empty;
+
+	/// <summary>
 	/// The time in seconds till the power up will expire.
 	/// </summary>
 	internal virtual float ExpiryTime => float.MaxValue;
@@ -35,8 +40,13 @@ internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponen
 		if ( Game.IsServer )
 		{
 			ActiveParticles = Particles.Create( "particles/powerups/power_up_base.vpcf", Entity );
-			ActiveParticles.SetPosition( 1, Entity.Team.Group.SprayColor.ToVector3() );
+
+			if ( Entity.Team is not null )
+				ActiveParticles.SetPosition( 1, Entity.Team.Group.SprayColor.ToVector3() );
 		}
+
+		if ( Entity.IsLocalPawn && !string.IsNullOrEmpty( Description ) )
+			Game.RootPanel.AddChild( new UI.PowerupPopup() { Desc = Description } );
 	}
 
 	protected override void OnDeactivate()

@@ -8,5 +8,8 @@ internal partial class JumpPowerup : BasePowerup
 	internal override string Icon => "upgrade";
 
 	/// <inheritdoc/>
+	internal override string Description => "Jump higher!";
+
+	/// <inheritdoc/>
 	internal override float ExpiryTime => 10;
 }

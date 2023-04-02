@@ -8,5 +8,8 @@ internal partial class DashPowerup : BasePowerup
 	internal override string Icon => "fast_forward";
 
 	/// <inheritdoc/>
+	internal override string Description => "Faster dash recharge!";
+
+	/// <inheritdoc/>
 	internal override float ExpiryTime => 10;
 }

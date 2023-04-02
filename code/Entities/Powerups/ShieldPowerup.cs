@@ -6,5 +6,8 @@ internal partial class ShieldPowerup : BasePowerup
 	internal override string Icon => "security";
 
 	/// <inheritdoc/>
+	internal override string Description => "Protective shield!";
+
+	/// <inheritdoc/>
 	internal override float ExpiryTime => 10;
 }
