@@ -255,6 +255,7 @@ public sealed partial class Player : AnimatedEntity
 
 		var wasSprayed = IsSprayed;
 		TimeSinceSprayed = 0;
+		DazeType = DazeType.Inhalation;
 
 		if ( !wasSprayed )
 			SprayPlayerParticles( To.Everyone, attacker.Team?.Group?.SprayColor ?? Color.Black );
@@ -282,7 +283,10 @@ public sealed partial class Player : AnimatedEntity
 		else
 			RenderColor = RenderColor.WithAlpha( 1 );
 
-		if ( !IsDazed )
+		if ( !IsDazed && DazeType != DazeType.Inhalation )
+			DazeType = DazeType.None;
+
+		if ( !IsSprayed && DazeType == DazeType.Inhalation )
 			DazeType = DazeType.None;
 
 		if ( !Game.IsClient )

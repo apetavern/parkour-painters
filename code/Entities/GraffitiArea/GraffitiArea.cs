@@ -203,10 +203,13 @@ public sealed partial class GraffitiArea : ModelEntity
 	[Event.Tick.Client]
 	public void OnTickClient()
 	{
+		if ( SceneObject is null )
+			return;
+
 		// Hatching based on player distance
 		var player = Game.LocalPawn;
 
-		if ( !Sprays.Any() )
+		if ( player is not null && !Sprays.Any() )
 			SceneObject.Attributes.Set( "glow_amount", Vector3.DistanceBetween( player.Position, Position ) / 60 - 4 );
 		else
 			SceneObject.Attributes.Set( "glow_amount", 0 );
