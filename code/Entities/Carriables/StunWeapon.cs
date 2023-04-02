@@ -4,7 +4,7 @@ public sealed partial class StunWeapon : BaseCarriable
 {
 	public override string CarriableName => "Stun Weapon";
 
-	public override string SlotText => "Single Use";
+	public override string SlotText => "";
 
 	protected override string ModelPath => "models/entities/melee_weapons/melee_weapons.vmdl";
 
