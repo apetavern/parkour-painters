@@ -15,13 +15,13 @@ internal sealed partial class GameOverSpectator : Entity
 	internal bool Staring => TimeSinceTravelStarted > TravelTimeToSpot && TimeSinceTravelStarted <= TravelTimeToSpot + StareTime;
 
 	/// <summary>
-	/// The current <see cref="Spray"/> the spectator is looking at.
+	/// The current <see cref="GraffitiArea"/> the spectator is looking at.
 	/// </summary>
-	internal Spray CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
+	internal GraffitiArea CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
 	/// <summary>
-	/// The last <see cref="Spray"/> the spectator was looking at. Null if <see ref="LastSpot"/> is 0.
+	/// The last <see cref="GraffitiArea"/> the spectator was looking at. Null if <see ref="LastSpot"/> is 0.
 	/// </summary>
-	internal Spray LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
+	internal GraffitiArea LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
 
 	/// <summary>
 	/// The current index that the spectator is at in the <see cref="GameOverState.Spots"/> list.
