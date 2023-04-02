@@ -14,6 +14,9 @@ public partial class GrindMechanic : ControllerMechanic
 	/// </summary>
 	private Particles SparkParticles { get; set; }
 
+	private Sound _grindSound;
+	private bool _isLooping;
+
 	protected override bool ShouldStart()
 	{
 		if ( _isGrinding )
@@ -61,6 +64,8 @@ public partial class GrindMechanic : ControllerMechanic
 
 		_isGrinding = true;
 
+		ToggleGrindSound( true );
+
 		var increment = _isReverse ? -1 : +1;
 		var currentNode = _path.PathNodes[_currentNodeIndex];
 		var nextNodeIndex = _currentNodeIndex + increment;
@@ -107,5 +112,24 @@ public partial class GrindMechanic : ControllerMechanic
 
 		SparkParticles?.Destroy();
 		SparkParticles = null;
+
+		ToggleGrindSound( false );
+		Player.PlaySound( "grind_exit" );
+	}
+
+	private void ToggleGrindSound( bool toggle )
+	{
+		if ( toggle && !_isLooping )
+		{
+			_isLooping = true;
+			_grindSound = Player.PlaySound( "grind_loop" );
+			return;
+		}
+
+		if ( !toggle )
+		{
+			_isLooping = false;
+			_grindSound.Stop();
+		}
 	}
 }
