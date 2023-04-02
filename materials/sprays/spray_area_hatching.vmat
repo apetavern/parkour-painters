@@ -34,6 +34,7 @@ Layer0
 
 	DynamicParams
 	{
+		g_vTexCoordOffset "texture_offset"
 		g_flFadeamount "glow_amount"
 	}
 }

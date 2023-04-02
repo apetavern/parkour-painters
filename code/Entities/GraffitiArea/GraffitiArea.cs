@@ -48,6 +48,8 @@ public sealed partial class GraffitiArea : ModelEntity
 
 	private TimeSince TimeSinceLastSprayFailEffect { get; set; }
 
+	private float SprayHintOffset { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -210,7 +212,12 @@ public sealed partial class GraffitiArea : ModelEntity
 		var player = Game.LocalPawn;
 
 		if ( player is not null && !Sprays.Any() )
+		{
 			SceneObject.Attributes.Set( "glow_amount", Vector3.DistanceBetween( player.Position, Position ) / 60 - 4 );
+			SceneObject.Attributes.Set( "texture_offset", SprayHintOffset );
+
+			SprayHintOffset += 0.03f * Time.Delta;
+		}
 		else
 			SceneObject.Attributes.Set( "glow_amount", 0 );
 	}
