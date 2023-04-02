@@ -1,3 +1,5 @@
+using ParkourPainters.Entities.Carriables;
+
 namespace ParkourPainters.Entities;
 
 /// <summary>
@@ -13,6 +15,8 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 	{
 		var player = Entity;
 		var controller = player.Controller;
+
+		// Movement and Aim
 		var animHelper = new CustomAnimationHelper( player )
 		{
 			AimAngle = player.EyeRotation,
@@ -38,6 +42,7 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			animHelper.WithLookAt( player.EyePosition + player.Rotation.Forward * 100.0f, 1.0f, 1.0f, 0.5f );
 		}
 
+		// Ledge Grab
 		if ( player.LedgeGrabMechanic.IsActive )
 		{
 			// Ledge grab sets velocity to be zero, so let's use wish velocity here instead. 
@@ -62,6 +67,18 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		else if ( player.GrindMechanic.IsActive )
 		{
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
+		}
+
+		// Weapon Hold
+		if ( player.HeldItem is BaseCarriable carriable )
+		{
+			if ( carriable is StunWeapon )
+			{
+				animHelper.HoldType = CustomAnimationHelper.HoldTypes.Swing;
+			}
+		} else
+		{
+			animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
 		}
 	}
 

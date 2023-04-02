@@ -1,4 +1,6 @@
-﻿namespace ParkourPainters.Entities;
+﻿using static ParkourPainters.Util.CustomAnimationHelper;
+
+namespace ParkourPainters.Entities;
 
 /// <summary>
 /// The base class for all carriable items.
