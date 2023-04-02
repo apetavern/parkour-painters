@@ -60,7 +60,7 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		var center = Controller.Position;
 
 		// Trace from the bottom looking for a wall.
-		var trDownwards = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 40f) )
+		var trDownwards = Trace.Ray( center, center + (Player.Rotation.Forward.WithZ( 0 ).Normal * 20f) )
 			.Ignore( Player )
 			.WithoutTags( "player" )
 			.WithTag( "solid" )
