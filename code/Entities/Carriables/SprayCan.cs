@@ -32,6 +32,9 @@ public sealed partial class SprayCan : BaseCarriable
 	/// </summary>
 	internal const int MaxAmmo = 500;
 
+	private Sound _spraySound;
+	private bool _isLooping = false;
+
 	/// <inheritdoc/>
 	public sealed override void OnEquipped()
 	{
@@ -68,6 +71,8 @@ public sealed partial class SprayCan : BaseCarriable
 
 		if ( !Prediction.FirstTime )
 			return;
+
+		ToggleSpraySound( true );
 
 		Ammo--;
 		Owner.SetAnimParameter( "b_spray", true );
@@ -109,5 +114,22 @@ public sealed partial class SprayCan : BaseCarriable
 
 		SprayParticles?.Destroy();
 		SprayParticles = null;
+		ToggleSpraySound( false );
+	}
+
+	private void ToggleSpraySound( bool toggle )
+	{
+		if ( toggle && !_isLooping )
+		{
+			_isLooping = true;
+			_spraySound = PlaySound( "spray_loop" );
+			return;
+		}
+
+		if ( !toggle )
+		{
+			_isLooping = false;
+			_spraySound.Stop();
+		}
 	}
 }
