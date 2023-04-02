@@ -29,6 +29,16 @@ public sealed partial class StunWeapon : BaseCarriable
 		_holdtypeAttack = !_holdtypeAttack;
 		Owner.SetAnimParameter( "holdtype_attack", _holdtypeAttack ? 0 : 1 );
 		Owner.SetAnimParameter( "b_attack", true );
+
+		var armPosition = Owner.EyePosition - Vector3.Up * 16f;
+		var tr = Trace.Ray( armPosition, armPosition + Owner.LookInput.ToRotation().Forward * 50f )
+			.Ignore( Owner )
+			.Run();
+
+		if ( tr.Hit && tr.Entity is Player player )
+		{
+			player.Daze( Owner, DazeType.PhysicalTrauma );
+		}
 	}
 
 	public override void OnHolstered()
