@@ -1,20 +1,27 @@
-"Layer0"
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
 {
-	"shader"		"shaders/complex.shader_c"
-	"g_flAmbientOcclusionDirectDiffuse"		"0.000000"
-	"g_flAmbientOcclusionDirectSpecular"		"0.000000"
-	"TextureAmbientOcclusion"		"models/entities/melee_weapons/materials/meleeweapons_ao.png"
-	"g_flModelTintAmount"		"1.000000"
-	"g_vColorTint"		"[1.000000 1.000000 1.000000 0.000000]"
-	"TextureColor"		"models/entities/melee_weapons/materials/meleeweapons_color.png"
-	"g_flFadeExponent"		"1.000000"
-	"g_bFogEnabled"		"1"
-	"g_flMetalness"		"0.000000"
-	"TextureNormal"		"models/entities/melee_weapons/materials/meleeweapons_normal.png"
-	"TextureRoughness"		"models/entities/melee_weapons/materials/meleeweapons_rough.png"
-	"g_nScaleTexCoordUByModelScaleAxis"		"0"
-	"g_nScaleTexCoordVByModelScaleAxis"		"0"
-	"g_vTexCoordOffset"		"[0.000 0.000]"
-	"g_vTexCoordScale"		"[1.000 1.000]"
-	"g_vTexCoordScrollSpeed"		"[0.000 0.000]"
+	shader "shaders/pixelated.shader_c"
+
+	//---- Color ----
+	Color "models/entities/melee_weapons/materials/meleeweapons_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "models/entities/melee_weapons/materials/meleeweapons_metal.png"
+
+	//---- Normal ----
+	Normal "models/entities/melee_weapons/materials/meleeweapons_normal.png"
+
+	//---- Roughness ----
+	Roughness "models/entities/melee_weapons/materials/meleeweapons_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
 }
