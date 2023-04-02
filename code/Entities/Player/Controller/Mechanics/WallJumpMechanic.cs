@@ -105,6 +105,8 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 		Controller.Position += Controller.Velocity * Time.Delta;
 		IsActive = false;
 		UsedWallJump = true;
+
+		Player.PlaySound( "wall_jump" );
 	}
 
 	private void Cancel()

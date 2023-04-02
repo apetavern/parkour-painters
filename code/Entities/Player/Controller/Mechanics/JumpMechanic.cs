@@ -28,6 +28,8 @@ public sealed partial class JumpMechanic : ControllerMechanic
 		Velocity = Velocity.WithZ( startz + Strength * flGroundFactor );
 		Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
 
+		Player.PlaySound( "jump" );
+
 		Controller.GetMechanic<WalkMechanic>()
 			.ClearGroundEntity();
 	}

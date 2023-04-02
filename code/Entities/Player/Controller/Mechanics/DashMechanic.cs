@@ -41,6 +41,8 @@ public sealed partial class DashMechanic : ControllerMechanic
 		Controller.Velocity = Controller.Velocity.WithZ( flMul * flAirFactor );
 		Controller.Velocity -= new Vector3( 0, 0, 800f * 0.5f ) * Time.Delta;
 
+		Player.PlaySound( "dash" );
+
 		_timeSinceLastDash = 0;
 	}
 
