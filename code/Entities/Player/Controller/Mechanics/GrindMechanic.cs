@@ -14,6 +14,7 @@ public partial class GrindMechanic : ControllerMechanic
 	/// </summary>
 	private Particles SparkParticles { get; set; }
 
+	private float _incomingSpeed;
 	private Sound _grindSound;
 	private bool _isLooping;
 
@@ -73,15 +74,16 @@ public partial class GrindMechanic : ControllerMechanic
 		var distanceBetweenNodes = currentNode.WorldPosition.Distance( nextNode.WorldPosition );
 
 		var nextPosition = _path.GetPointBetweenNodes( currentNode, nextNode, _alpha, _isReverse );
+		var speed = Math.Max( 300f, _incomingSpeed );
 
-		_alpha += Time.Delta * (300f / distanceBetweenNodes);
+		_alpha += Time.Delta * (speed / distanceBetweenNodes);
 		if ( _alpha >= 0.98f )
 		{
 			_alpha = 0;
 			_currentNodeIndex += increment;
 		}
 
-		Controller.Velocity = (nextPosition - Controller.Position).Normal * 300f;
+		Controller.Velocity = (nextPosition - Controller.Position).Normal * speed;
 		Controller.Position = Vector3.Lerp( Controller.Position, nextPosition, Time.Delta );
 		Player.Rotation = Controller.Velocity.Normal.EulerAngles.WithPitch( 0 ).ToRotation();
 
@@ -102,6 +104,11 @@ public partial class GrindMechanic : ControllerMechanic
 				SparkParticles.SetEntityBone( 0, Player, Player.GetBoneIndex( "ankle_L" ) );
 			}
 		}
+	}
+
+	protected override void OnStart()
+	{
+		_incomingSpeed = Player.Velocity.Length;
 	}
 
 	protected override void OnStop()
