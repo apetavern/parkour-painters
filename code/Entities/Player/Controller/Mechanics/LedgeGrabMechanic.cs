@@ -139,6 +139,8 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 
 		Velocity = Velocity.WithZ( startz + flMul * flGroundFactor );
 
+		Player.PlaySound( "wall_jump" );
+
 		Stop();
 	}
 }
