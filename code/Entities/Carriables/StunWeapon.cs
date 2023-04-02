@@ -18,4 +18,12 @@ public sealed partial class StunWeapon : BaseCarriable
 		_bodyGroup = Game.Random.Int( 0, 2 );
 		SetBodyGroup( "weapontype", _bodyGroup );
 	}
+
+	public override void OnHolstered()
+	{
+		base.OnHolstered();
+
+		if ( Game.IsServer )
+			HolsterToBack();
+	}
 }

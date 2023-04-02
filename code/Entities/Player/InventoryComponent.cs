@@ -35,6 +35,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>, ISin
 
 		var carriable = carriableType.Create<BaseCarriable>();
 		carriable.Owner = Entity;
+		carriable.OnHolstered();
 		items.Add( carriable );
 		return carriable;
 	}
