@@ -27,7 +27,7 @@ Layer0
 
 	//---- Translucent ----
 	g_flOpacityScale "1.000"
-	g_flSmoothStepMax "0.924"
-	g_flSmoothStepMin "0.930"
+	g_flSmoothStepMax "1.000"
+	g_flSmoothStepMin "0.000"
 	Translucency "models/environment/trees/tree1/materials/phong1_opacity.png"
 }
