@@ -212,7 +212,7 @@
         }
       },
       "Identifier": "10",
-      "Position": "-176,-448"
+      "Position": "-368,-464"
     },
     {
       "_class": "Lerp",
@@ -247,7 +247,7 @@
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "10",
+        "Identifier": "17",
         "Output": "Result"
       },
       "B": {
@@ -291,6 +291,26 @@
       "Fraction": 0.5,
       "Identifier": "15",
       "Position": "464,-192"
+    },
+    {
+      "_class": "VertexColor",
+      "Identifier": "16",
+      "Position": "-368,-544"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "17",
+      "Position": "-96,-432"
     }
   ]
 }

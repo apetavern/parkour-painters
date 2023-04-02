@@ -6,7 +6,7 @@
     {
       "_class": "Result",
       "Albedo": {
-        "Identifier": "18",
+        "Identifier": "17",
         "Output": "Result"
       },
       "Emission": {},
@@ -198,26 +198,9 @@
       "Position": "-176,-96"
     },
     {
-      "_class": "Float4",
-      "Name": "Color Tint",
-      "Value": "1,1,1,1",
-      "UI": {
-        "Type": "Color",
-        "PrimaryGroup": {
-          "Name": "Color",
-          "Priority": 1
-        },
-        "SecondaryGroup": {
-          "Name": ""
-        }
-      },
-      "Identifier": "10",
-      "Position": "-176,-448"
-    },
-    {
       "_class": "Lerp",
       "A": {
-        "Identifier": "13",
+        "Identifier": "12",
         "Output": "Result"
       },
       "B": {
@@ -225,11 +208,11 @@
         "Output": "Result"
       },
       "C": {
-        "Identifier": "12",
+        "Identifier": "11",
         "Output": "Result"
       },
       "Fraction": 0.5,
-      "Identifier": "11",
+      "Identifier": "10",
       "Position": "192,-224"
     },
     {
@@ -241,13 +224,13 @@
       },
       "DefaultA": 1,
       "DefaultB": 0,
-      "Identifier": "12",
+      "Identifier": "11",
       "Position": "64,-112"
     },
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "10",
+        "Identifier": "24",
         "Output": "Result"
       },
       "B": {
@@ -256,7 +239,7 @@
       },
       "DefaultA": 0,
       "DefaultB": 1,
-      "Identifier": "13",
+      "Identifier": "12",
       "Position": "64,-336"
     },
     {
@@ -271,7 +254,7 @@
           "Priority": 2
         }
       },
-      "Identifier": "14",
+      "Identifier": "13",
       "Position": "240,-96"
     },
     {
@@ -281,26 +264,26 @@
         "Output": "Result"
       },
       "B": {
-        "Identifier": "11",
+        "Identifier": "10",
         "Output": "Result"
       },
       "C": {
-        "Identifier": "14",
+        "Identifier": "13",
         "Output": "Result"
       },
       "Fraction": 0.5,
-      "Identifier": "15",
+      "Identifier": "14",
       "Position": "464,-192"
     },
     {
       "_class": "ScreenCoordinate",
-      "Identifier": "16",
+      "Identifier": "15",
       "Position": "-944,368"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "19",
+        "Identifier": "18",
         "Output": "Result"
       },
       "Texture": "materials/vfx/fakereflect_png_4f6117bb.generated.vtex",
@@ -318,11 +301,26 @@
           "Name": ""
         }
       },
-      "Identifier": "17",
+      "Identifier": "16",
       "Position": "-544,480"
     },
     {
       "_class": "Add",
+      "A": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "20",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "17",
+      "Position": "688,-48"
+    },
+    {
+      "_class": "Multiply",
       "A": {
         "Identifier": "15",
         "Output": "Result"
@@ -332,23 +330,8 @@
         "Output": "Result"
       },
       "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "18",
-      "Position": "688,-48"
-    },
-    {
-      "_class": "Multiply",
-      "A": {
-        "Identifier": "16",
-        "Output": "Result"
-      },
-      "B": {
-        "Identifier": "22",
-        "Output": "Result"
-      },
-      "DefaultA": 0,
       "DefaultB": 6,
-      "Identifier": "19",
+      "Identifier": "18",
       "Position": "-688,464"
     },
     {
@@ -372,42 +355,42 @@
           "Name": ""
         }
       },
-      "Identifier": "20",
+      "Identifier": "19",
       "Position": "-176,672"
     },
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "20",
+        "Identifier": "19",
         "Output": "Result"
       },
       "B": {
-        "Identifier": "17",
+        "Identifier": "16",
         "Output": "Result"
       },
       "DefaultA": 0,
       "DefaultB": 1,
-      "Identifier": "21",
+      "Identifier": "20",
       "Position": "336,576"
     },
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "23",
+        "Identifier": "22",
         "Output": "Result"
       },
       "B": {
-        "Identifier": "24",
+        "Identifier": "23",
         "Output": "Result"
       },
       "DefaultA": 0,
       "DefaultB": 6,
-      "Identifier": "22",
+      "Identifier": "21",
       "Position": "-832,496"
     },
     {
       "_class": "ViewDirection",
-      "Identifier": "23",
+      "Identifier": "22",
       "Position": "-1072,480"
     },
     {
@@ -417,8 +400,45 @@
       "Name": "Fake Reflect Multiplier",
       "Value": 6,
       "UI": {},
-      "Identifier": "24",
+      "Identifier": "23",
       "Position": "-1056,576"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "25",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "26",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "24",
+      "Position": "-64,-480"
+    },
+    {
+      "_class": "VertexColor",
+      "Identifier": "25",
+      "Position": "-352,-592"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Color Tint",
+      "Value": "1,1,1,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": "Color",
+          "Priority": 1
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "26",
+      "Position": "-352,-512"
     }
   ]
 }
