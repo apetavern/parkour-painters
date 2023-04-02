@@ -12,6 +12,7 @@ internal static class ColorExtensions
 	/// <returns>The <see cref="Vector3"/> created from the <see cref="Color"/>.</returns>
 	internal static Vector3 ToVector3( this Color color )
 	{
-		return new( color.r, color.g, color.b );
+		var byteColor = Color32.FromRgba( color.RgbaInt );
+		return new( byteColor.r, byteColor.g, byteColor.b );
 	}
 }
