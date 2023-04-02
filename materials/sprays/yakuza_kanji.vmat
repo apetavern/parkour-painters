@@ -1,0 +1,34 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/dissolve.shader_c"
+
+	//---- Color ----
+	Color "materials/sprays/textures/yakuza_kanji_01a_color.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Glow ----
+	g_flGlowMix "0.000"
+	g_flGlowPower "0.000"
+	g_vGlowColor "[1.000000 1.000000 1.000000 1.000000]"
+
+	//---- Metalness ----
+	g_flMetallic "0.000"
+
+	//---- Roughness ----
+	g_flRoughness "1.000"
+
+	//---- Texture Coordinates ----
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+
+	//---- Translucent ----
+	g_flFadeamount "0.000"
+	g_flOpacityScale "1.000"
+	g_flSmoothStepMax "1.000"
+	g_flSmoothStepMin "0.000"
+	Translucency "materials/sprays/textures/yakuza_kanji_01a_reveal.png"
+}
