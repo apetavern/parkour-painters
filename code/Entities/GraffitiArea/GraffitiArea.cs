@@ -63,6 +63,8 @@ public sealed partial class GraffitiArea : ModelEntity
 		SetupPhysicsFromModel( PhysicsMotionType.Static );
 
 		Tags.Add( "graffiti_area" );
+
+		EnableShadowCasting = false;
 	}
 
 	public override void ClientSpawn()
