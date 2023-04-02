@@ -50,6 +50,11 @@ public sealed partial class GraffitiArea : ModelEntity
 
 	private float SprayHintOffset { get; set; }
 
+	/// <summary>
+	/// The vertical offset from the trace hit position.
+	/// </summary>
+	private Vector3 SprayPositionZOffset = Vector3.Up * 10f;
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -85,22 +90,20 @@ public sealed partial class GraffitiArea : ModelEntity
 		if ( SprayingPlayer is not null && SprayingPlayer != player )
 			return;
 
-		var verticalOffsetZ = Vector3.Up * 10f;
-
 		var mostRecentSpray = Sprays.LastOrDefault();
 
 		// No sprays
 		if ( mostRecentSpray is null )
 		{
 			// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
-			if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+			if ( !InPermittedSprayZone( hitTrace ) )
 			{
 				DoSprayFailEffects( wishPosition );
 				return;
 			}
 
 			if ( Game.IsServer )
-				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 
 			SprayingPlayer = player;
 			TimeSinceLastSprayed = 0;
@@ -132,7 +135,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			else
 			{
 				// Do nothing if the spray won't fit in this area, or overlaps an edge of this graffiti area.
-				if ( !InPermittedSprayZone( wishPosition + verticalOffsetZ ) )
+				if ( !InPermittedSprayZone( hitTrace ) )
 				{
 					DoSprayFailEffects( wishPosition );
 					return;
@@ -147,7 +150,7 @@ public sealed partial class GraffitiArea : ModelEntity
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
 				if ( Game.IsServer )
-					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 			}
 
 			SprayingPlayer = player;
@@ -170,23 +173,26 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// <summary>
 	/// Returns whether or not spraying in this position will overlap the bounds of the GraffitiArea.
 	/// </summary>
-	/// <param name="wishPosition"></param>
+	/// <param name="hitTrace"></param>
 	/// <returns></returns>
-	private bool InPermittedSprayZone( Vector3 wishPosition )
+	private bool InPermittedSprayZone( TraceResult hitTrace )
 	{
 		var spraySize = 16 * SprayScale;
+		var wishPosition = hitTrace.HitPosition + SprayPositionZOffset;
+		var leftRotation = Vector3.Cross( Vector3.Down, hitTrace.Normal );
+		var rightRotation = Vector3.Cross( Vector3.Up, hitTrace.Normal );
 
 		Vector3[] tracePositions = new Vector3[]
 		{
-			wishPosition + (Rotation.Left + Rotation.Up) * spraySize / 2,
-			wishPosition + (Rotation.Right + Rotation.Up) * spraySize / 2,
-			wishPosition + (Rotation.Left + Rotation.Down) * spraySize / 2,
-			wishPosition + (Rotation.Right + Rotation.Down) * spraySize / 2
+			wishPosition + (leftRotation + Vector3.Up) * spraySize / 2,
+			wishPosition + (rightRotation + Vector3.Up) * spraySize / 2,
+			wishPosition + (leftRotation + Vector3.Down) * spraySize / 2,
+			wishPosition + (rightRotation + Vector3.Down) * spraySize / 2
 		};
 
 		foreach ( var testPoint in tracePositions )
 		{
-			var backwardTrace = Trace.Ray( testPoint + Rotation.Forward * 10, testPoint + Rotation.Backward * 60f ).WithTag( "graffiti_area" ).Run();
+			var backwardTrace = Trace.Ray( testPoint + hitTrace.Normal * 10, testPoint + -hitTrace.Normal * 60f ).WithTag( "graffiti_area" ).Run();
 
 			if ( !backwardTrace.Hit )
 				return false;
