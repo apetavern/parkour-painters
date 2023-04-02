@@ -2,10 +2,11 @@ namespace ParkourPainters.Entities;
 
 public partial class LedgeGrabMechanic : ControllerMechanic
 {
-	private TimeSince TimeSinceDrop { get; set; }
-
 	[Net, Predicted] private Vector3 _grabNormal { get; set; }
 	[Net, Predicted] private Vector3 _ledgeGrabLocation { get; set; }
+	private TimeSince TimeSinceDrop { get; set; }
+	private TimeSince _timeSinceLastSound = 0;
+	private TraceResult _grabTrace;
 
 	protected override bool ShouldStart()
 	{
@@ -30,8 +31,15 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		Controller.Position = Vector3.Lerp( Controller.Position, _ledgeGrabLocation, Time.Delta * 10.0f );
 		Player.Rotation = (-_grabNormal).EulerAngles.WithPitch( 0 ).ToRotation();
 
+		var wishVelocity = Controller.GetWishVelocity();
+		if ( wishVelocity.Length > 0 && _timeSinceLastSound > 0.5 )
+		{
+			_grabTrace.Surface.DoFootstep( Player, _grabTrace, Random.Shared.Int( 0, 1 ), 1f );
+			_timeSinceLastSound = 0;
+		}
+
 		// The player is moving in a direction away from the ledge, therefore we should drop them.
-		var isMovingFromLedge = Vector3.Dot( Controller.GetWishVelocity(), Player.Rotation.Forward ) < -30;
+		var isMovingFromLedge = Vector3.Dot( wishVelocity, Player.Rotation.Forward ) < -30;
 
 		if ( Input.Pressed( InputButton.Duck ) || isMovingFromLedge )
 		{
@@ -117,8 +125,14 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 
 		_ledgeGrabLocation = originTestPos;
 		_grabNormal = normal;
+		_grabTrace = tr;
 
 		return true;
+	}
+
+	protected override void OnStart()
+	{
+		_grabTrace.Surface.DoFootstep( Player, _grabTrace, Random.Shared.Int( 0, 1 ), 1f );
 	}
 
 	protected override void OnStop()
