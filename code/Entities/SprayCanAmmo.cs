@@ -28,7 +28,11 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	{
 		base.Spawn();
 
-		Model = SpawnerModel;
+		if ( SpawnerModel is null )
+			SetModel( "models/entities/spray_paint/spray_paint.vmdl" );
+		else
+			Model = SpawnerModel;
+
 		EnableTouch = true;
 
 		_ = new PickupTrigger() { Position = Position, Parent = this };
