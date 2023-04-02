@@ -3,8 +3,8 @@
 /// <summary>
 /// A spawner for a <see cref="BaseCarriable"/>.
 /// </summary>
-[Title("Carriable Spawner"), Category("Parkour Painters")]
-[EditorModel("models/entities/spray_paint/spray_paint.vmdl")]
+[Title( "Carriable Spawner" ), Category( "Parkour Painters" )]
+[EditorModel( "models/entities/spray_paint/spray_paint.vmdl" )]
 [HammerEntity]
 internal sealed partial class CarriableSpawner : AnimatedEntity
 {
@@ -19,9 +19,9 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	[Property] public bool OneTimeUse { get; private set; }
 
 	/// <summary>
-	/// The name of a type that derives from <see cref="BaseCarriable"/> to spawn.
+	/// The name of a type that derives from <see cref="BaseCarriable"/> or <see cref="BasePowerup"/> to spawn.
 	/// </summary>
-	[Property] private string CarriableType { get; set; }
+	[Property] private string TargetType { get; set; }
 
 	/// <summary>
 	/// The model for the spawner chosen by hammer.
@@ -29,7 +29,7 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	[Property] private Model SpawnerModel { get; set; }
 
 	/// <summary>
-	/// The type that was found from <see ref="CarriableType"/>.
+	/// The type that was found from <see ref="TargetType"/>.
 	/// </summary>
 	private TypeDescription foundType;
 
@@ -38,9 +38,9 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	{
 		base.Spawn();
 
-		if (SpawnerModel is null)
+		if ( SpawnerModel is null )
 		{
-			Log.Error($"{nameof(SpawnerModel)} was not set in hammer for {this}");
+			Log.Error( $"{nameof( SpawnerModel )} was not set in hammer for {this}" );
 			return;
 		}
 
@@ -52,16 +52,17 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 		var bobbing = Components.Create<BobbingComponent>();
 		bobbing.PositionOffset = Vector3.Up * 10;
 
-		var carriableType = TypeLibrary.GetType(CarriableType);
-		if (carriableType is null)
+		var carriableType = TypeLibrary.GetType( TargetType );
+
+		if ( carriableType is null )
 		{
-			Log.Error($"The type \"{CarriableType}\" from {this} does not exist");
+			Log.Error( $"The type \"{TargetType}\" from {this} does not exist" );
 			return;
 		}
 
-		if (!carriableType.TargetType.IsAssignableTo(typeof(BaseCarriable)))
+		if ( !carriableType.TargetType.IsAssignableTo( typeof( BasePowerup ) ) && !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 		{
-			Log.Error($"The type {carriableType.Name} is not assignable to {nameof(BaseCarriable)}");
+			Log.Error( $"The type {carriableType.Name} is not assignable to {nameof( BasePowerup )} or {nameof( BaseCarriable )}" );
 			return;
 		}
 
@@ -69,19 +70,27 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	}
 
 	/// <inheritdoc/>
-	public sealed override void StartTouch(Entity other)
+	public sealed override void StartTouch( Entity other )
 	{
-		base.StartTouch(other);
+		base.StartTouch( other );
 
-		if (other is not Player player)
+		if ( other is not Player player )
 			return;
 
-		if ( player.Inventory.CanAddItem(foundType))
-			player.Inventory.AddToInventory(foundType);
+		if ( foundType.TargetType.IsAssignableTo( typeof( BasePowerup ) ) )
+		{
+			player.Components.Add( TypeLibrary.Create<BasePowerup>( TargetType ) );
+		}
+
+		if ( foundType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
+		{
+			if ( player.Inventory.CanAddItem( foundType ) )
+				player.Inventory.AddToInventory( foundType );
+		}
 
 		TimeSinceLastPickup = 0f;
 
-		if (OneTimeUse)
+		if ( OneTimeUse )
 			Delete();
 	}
 }
