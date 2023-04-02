@@ -76,7 +76,12 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			{
 				animHelper.HoldType = CustomAnimationHelper.HoldTypes.Swing;
 			}
-		} else
+			else
+			{
+				animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
+			}
+		} 
+		else
 		{
 			animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
 		}
