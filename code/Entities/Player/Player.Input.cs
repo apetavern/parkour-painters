@@ -128,4 +128,10 @@ public partial class Player
 			heldItemInput = Inventory.Items[index.Value];
 		}
 	}
+
+	[ClientRpc]
+	public void UnsetHeldItemInput()
+	{
+		heldItemInput = null;
+	}
 }

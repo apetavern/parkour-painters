@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace ParkourPainters.Entities;
 
 public partial class LedgeGrabMechanic : ControllerMechanic
@@ -132,6 +134,9 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 
 	protected override void OnStart()
 	{
+		if ( Player.HeldItem is not null && !Player.HeldItem.CanUseWhileClimbing )
+			Player.UnsetHeldItemInput( To.Single( Player ) );
+
 		_grabTrace.Surface.DoFootstep( Player, _grabTrace, Random.Shared.Int( 0, 1 ), 1f );
 	}
 
