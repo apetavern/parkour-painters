@@ -1,0 +1,22 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/powerup.shader_c"
+
+	//---- Adjustments ----
+	g_flGapOpacity "0.500"
+	g_flMasterOpacity "0.500"
+	g_flSpeed "2.000"
+	g_flTiling "-0.250"
+
+	//---- Colour ----
+	g_flColourStrength "2.000"
+	g_vColour "[0.949020 1.000000 0.000000 1.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Translucent ----
+	g_flOpacityScale "1.000"
+}

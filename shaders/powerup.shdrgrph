@@ -1,0 +1,243 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Translucent",
+  "nodes": [
+    {
+      "_class": "Result",
+      "Albedo": {},
+      "Emission": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "Opacity": {
+        "Identifier": "12",
+        "Output": "Result"
+      },
+      "Normal": {},
+      "Roughness": {},
+      "Metalness": {},
+      "AmbientOcclusion": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "-288,-224"
+    },
+    {
+      "_class": "SwizzleVector",
+      "Input": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "RedOut": "Blue",
+      "GreenOut": "Blue",
+      "BlueOut": "Blue",
+      "AlphaOut": "Alpha",
+      "Identifier": "1",
+      "Position": "-1888,-208"
+    },
+    {
+      "_class": "WorldPosition",
+      "Identifier": "2",
+      "Position": "-2176,-208"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 5,
+      "Name": "Speed",
+      "Value": 2.5,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Adjustments"
+        },
+        "SecondaryGroup": {
+          "Name": "Speed",
+          "Priority": 2
+        }
+      },
+      "Identifier": "3",
+      "Position": "-2176,0"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "3",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 2.5,
+      "Identifier": "4",
+      "Position": "-1888,-48"
+    },
+    {
+      "_class": "Float",
+      "Min": -1,
+      "Max": 1,
+      "Name": "Tiling",
+      "Value": -0.2,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Adjustments"
+        },
+        "SecondaryGroup": {
+          "Name": "Tiling",
+          "Priority": 1
+        }
+      },
+      "Identifier": "5",
+      "Position": "-1888,-128"
+    },
+    {
+      "_class": "TileAndOffset",
+      "Coords": {
+        "Identifier": "1",
+        "Output": "Output"
+      },
+      "Tile": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Offset": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "DefaultTile": "1,1",
+      "DefaultOffset": "0,0",
+      "WrapTo01": false,
+      "Identifier": "6",
+      "Position": "-1584,-160"
+    },
+    {
+      "_class": "Time",
+      "Identifier": "7",
+      "Position": "-2176,-64"
+    },
+    {
+      "_class": "SimplexNoise",
+      "Coords": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "Identifier": "8",
+      "Position": "-1344,-160"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Gap Opacity",
+      "Value": 0.5,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Adjustments"
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "9",
+      "Position": "-1040,-240"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Master Opacity",
+      "Value": 0.5,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Adjustments"
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "10",
+      "Position": "-1040,-64"
+    },
+    {
+      "_class": "Step",
+      "Input": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "Edge": {},
+      "DefaultInput": 0,
+      "DefaultEdge": 0.005,
+      "Identifier": "11",
+      "Position": "-1040,-160"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "12",
+      "Position": "-720,-176"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Colour",
+      "Value": "0,448.0834,500,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": "Colour",
+          "Priority": 1
+        },
+        "SecondaryGroup": {
+          "Name": "Emission",
+          "Priority": 1
+        }
+      },
+      "Identifier": "13",
+      "Position": "-832,-512"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "13",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "15",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "14",
+      "Position": "-464,-384"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 25,
+      "Name": "Colour Strength",
+      "Value": 5,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": "Colour"
+        }
+      },
+      "Identifier": "15",
+      "Position": "-832,-352"
+    }
+  ]
+}

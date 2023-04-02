@@ -15,11 +15,11 @@
 						[
 							{
 								from = "jump.vmat"
-								to = "materials/dev/dev_measuregeneric01.vmat"
+								to = "materials/vfx/powerup.vmat"
 							},
 						]
-						use_global_default = false
-						global_default_material = ""
+						use_global_default = true
+						global_default_material = "materials/vfx/powerup.vmat"
 					},
 				]
 			},
