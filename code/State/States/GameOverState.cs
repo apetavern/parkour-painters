@@ -38,7 +38,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <summary>
 	/// A list containing all of the graffiti spots to look at.
 	/// </summary>
-	[Net] public IList<GraffitiArea> Spots { get; private set; }
+	[Net] public IList<Spray> Spots { get; private set; }
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -83,7 +83,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
-		foreach ( var spot in All.OfType<GraffitiArea>() )
+		foreach ( var spot in All.OfType<Spray>() )
 			Spots.Add( spot );
 
 		foreach ( var client in Game.Clients )

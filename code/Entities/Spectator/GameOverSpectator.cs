@@ -1,27 +1,27 @@
 ﻿namespace ParkourPainters.Entities;
 
 /// <summary>
-/// A pawn that looks at all of the <see cref="GraffitiSpot"/>s at the end of the game.
+/// A pawn that looks at all of the <see cref="Spray"/>s at the end of the game.
 /// </summary>
 internal sealed partial class GameOverSpectator : Entity
 {
 	/// <summary>
-	/// Whether or not the spectator has finished looking at all the <see cref="GraffitiSpot"/>s.
+	/// Whether or not the spectator has finished looking at all the <see cref="Spray"/>s.
 	/// </summary>
 	internal bool Finished => SpotIndex >= GameOverState.Instance.Spots.Count;
 	/// <summary>
-	/// Whether or not the spectator is looking at a <see cref="GraffitiSpot"/>.
+	/// Whether or not the spectator is looking at a <see cref="Spray"/>.
 	/// </summary>
 	internal bool Staring => TimeSinceTravelStarted > TravelTimeToSpot && TimeSinceTravelStarted <= TravelTimeToSpot + StareTime;
 
 	/// <summary>
-	/// The current <see cref="GraffitiSpot"/> the spectator is looking at.
+	/// The current <see cref="Spray"/> the spectator is looking at.
 	/// </summary>
-	internal GraffitiArea CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
+	internal Spray CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
 	/// <summary>
-	/// The last <see cref="GraffitiSpot"/> the spectator was looking at. Null if <see ref="LastSpot"/> is 0.
+	/// The last <see cref="Spray"/> the spectator was looking at. Null if <see ref="LastSpot"/> is 0.
 	/// </summary>
-	internal GraffitiArea LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
+	internal Spray LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
 
 	/// <summary>
 	/// The current index that the spectator is at in the <see cref="GameOverState.Spots"/> list.
@@ -33,11 +33,11 @@ internal sealed partial class GameOverSpectator : Entity
 	[Net, Predicted] private TimeSince TimeSinceTravelStarted { get; set; } = 0;
 
 	/// <summary>
-	/// The time in seconds it takes to travel between <see cref="GraffitiSpot"/>s.
+	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
 	/// </summary>
 	internal const float TravelTimeToSpot = 2;
 	/// <summary>
-	/// The time in seconds that the spectator will stare at the <see cref="GraffitiSpot"/>.
+	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
 	/// </summary>
 	internal const float StareTime = 2;
 
@@ -75,13 +75,13 @@ internal sealed partial class GameOverSpectator : Entity
 
 		var startPos = LastSpot is null
 			? Position
-			: LastSpot.Position + CurrentSpot.Rotation.Forward * 200;
-		var targetPos = CurrentSpot.Position + CurrentSpot.Rotation.Forward * 200;
+			: LastSpot.Position + LastSpot.Rotation.Up * 200;
+		var targetPos = CurrentSpot.Position + CurrentSpot.Rotation.Up * 200;
 
 		var startRot = LastSpot is null
 			? Rotation
-			: LastSpot.Rotation.RotateAroundAxis( Vector3.Up, 180 );
-		var targetRot = CurrentSpot.Rotation.RotateAroundAxis( Vector3.Up, 180 );
+			: Rotation.LookAt( LastSpot.Position - Camera.Position );
+		var targetRot = Rotation.LookAt( CurrentSpot.Position - Camera.Position );
 
 		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
 
