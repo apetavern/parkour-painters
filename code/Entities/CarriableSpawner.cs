@@ -49,6 +49,8 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 		EnableTouch = true;
 
 		_ = new PickupTrigger() { Position = Position, Parent = this };
+		var bobbing = Components.Create<BobbingComponent>();
+		bobbing.PositionOffset = Vector3.Up * 10;
 
 		var carriableType = TypeLibrary.GetType(CarriableType);
 		if (carriableType is null)

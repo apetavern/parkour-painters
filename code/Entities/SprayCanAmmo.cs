@@ -32,6 +32,8 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 		EnableTouch = true;
 
 		_ = new PickupTrigger() { Position = Position, Parent = this };
+		var bobbing = Components.Create<BobbingComponent>();
+		bobbing.PositionOffset = Vector3.Up * 10;
 	}
 
 	/// <inheritdoc/>
