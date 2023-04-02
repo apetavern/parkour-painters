@@ -20,7 +20,12 @@ public partial class Player
 		get
 		{
 			if ( Client.IsBot && heldItemInput is not null )
-				return Inventory.GetItem( heldItemInput.GetType() );
+			{
+				if ( Inventory.CanAddItem( heldItemInput.GetType() ) )
+					return Inventory.GetItem( heldItemInput.GetType() );
+				else
+					return null;
+			}
 
 			return (BaseCarriable)heldItemInput;
 		}
