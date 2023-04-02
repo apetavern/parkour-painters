@@ -69,9 +69,12 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// Invoked when the spot has been sprayed by a player.
 	/// </summary>
 	/// <param name="player">The player that is spraying on the spot.</param>
-	/// <param name="wishPosition">The position that player wants to spray at.</param>
-	public void OnSprayReceived( Player player, Vector3 wishPosition )
+	/// <param name="hitTrace">The TraceResult that this method is fired with.</param>
+	public void OnSprayReceived( Player player, TraceResult hitTrace )
 	{
+		var wishPosition = hitTrace.HitPosition;
+		var hitNormal = hitTrace.Normal;
+
 		// Do nothing if the player isn't assigned to a team.
 		if ( player.Team is null )
 			return;
@@ -95,7 +98,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			}
 
 			if ( Game.IsServer )
-				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 
 			SprayingPlayer = player;
 			TimeSinceLastSprayed = 0;
@@ -142,7 +145,7 @@ public sealed partial class GraffitiArea : ModelEntity
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
 				if ( Game.IsServer )
-					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + verticalOffsetZ ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 			}
 
 			SprayingPlayer = player;
