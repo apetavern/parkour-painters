@@ -16,6 +16,11 @@ internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponen
 	internal virtual float ExpiryTime => float.MaxValue;
 
 	/// <summary>
+	/// The particles that indicate that a powerup is being used.
+	/// </summary>
+	internal Particles ActiveParticles { get; set; }
+
+	/// <summary>
 	/// The time in seconds since the power up was added to the player.
 	/// </summary>
 	[Net] internal TimeSince TimeSinceAdded { get; private set; }
@@ -26,6 +31,19 @@ internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponen
 		base.OnActivate();
 
 		TimeSinceAdded = 0;
+
+		if ( Game.IsServer )
+		{
+			ActiveParticles = Particles.Create( "particles/powerups/power_up_base.vpcf", Entity );
+			ActiveParticles.SetPosition( 1, Entity.Team.Group.SprayColor.ToVector3() );
+		}
+	}
+
+	protected override void OnDeactivate()
+	{
+		base.OnDeactivate();
+
+		ActiveParticles?.Destroy();
 	}
 
 	/// <summary>
