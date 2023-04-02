@@ -27,10 +27,6 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// The path to the world model to use.
 	/// </summary>
-
-	/// <summary>
-	/// The path to the world model to use.
-	/// </summary>
 	protected virtual string ModelPath => "";
 
 	/// <summary>
