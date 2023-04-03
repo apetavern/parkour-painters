@@ -105,7 +105,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			}
 
 			if ( Game.IsServer )
-				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( hitNormal, Vector3.Up ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
 
 			SprayingPlayer = player;
 			TimeSinceLastSprayed = 0;
