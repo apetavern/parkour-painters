@@ -1,0 +1,12 @@
+{
+  "UI": false,
+  "Volume": "1.00,1.00,0",
+  "Pitch": "1.00,1.00,0",
+  "Decibels": 85,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/bat_swing.vsnd"
+  ],
+  "MaximumDistance": 1671.5345,
+  "MinimumDistance": 83.57673
+}

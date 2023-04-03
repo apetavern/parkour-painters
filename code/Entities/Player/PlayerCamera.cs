@@ -50,5 +50,7 @@ internal sealed class PlayerCamera : EntityComponent<Player>, ISingletonComponen
 		Camera.FieldOfView = Camera.FieldOfView.LerpTo( fov, Time.Delta );
 		Camera.ZNear = 6;
 		Camera.FirstPersonViewer = null;
+
+		Sound.Listener = player.Transform;
 	}
 }

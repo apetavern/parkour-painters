@@ -30,6 +30,8 @@ public sealed partial class StunWeapon : BaseCarriable
 		Owner.SetAnimParameter( "holdtype_attack", _holdtypeAttack ? 0 : 1 );
 		Owner.SetAnimParameter( "b_attack", true );
 
+		PlaySound( "sounds/weapons/bat_swing.sound" );
+
 		var armPosition = Owner.EyePosition - Vector3.Up * 16f;
 		var tr = Trace.Ray( armPosition, armPosition + Owner.LookInput.ToRotation().Forward * 50f )
 			.Ignore( Owner )
