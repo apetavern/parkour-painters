@@ -151,6 +151,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
+		BackgroundMusic.Stop();
 	}
 
 	/// <inheritdoc/>
