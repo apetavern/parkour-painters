@@ -1,0 +1,69 @@
+@namespace ParkourPainters.UI
+
+@if (ParkourPainters.Current.CurrentState is not WaitingState state)
+{
+    return;
+}
+
+<root>
+    <label class="hint">C: <span style="color: orange; margin-left: 15px;">Guide</span></label>
+    <div class="window @(Input.Down(InputButton.View) ? "" : "hide")">
+        <label>Paint as many locations as you can with your gang. You can wall jump, grab ledges, and grind!</label>
+        <label>Equippables are available with [1] and [2].</label>
+        <label>Dash is available with SHIFT.</label>
+        <label>Powerups are available around the map to enhance movement.</label>
+    </div>
+</root>
+
+@code {
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(ParkourPainters.Current.CurrentState.GetHashCode(), Input.Down(InputButton.View));
+    }
+}
+
+<style>
+    Instructions {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .hint {
+            position: absolute;
+            bottom: 100px;
+            left: 200px;
+
+            font-size: 70px;
+            color: white;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
+        }
+
+        .window {
+            background-color: #00000042;
+            backdrop-filter-blur: 20px;
+            width: 1250px;
+            height: 750px;
+            padding: 20px;
+            border-radius: 8px;
+            flex-direction: column;
+            justify-content: space-around;
+            transition: all 100ms ease-out;
+            transform: scale(1.05);
+
+            label {
+                font-size: 50px;
+                color: white;
+                font-family: Poppins;
+                text-shadow: 2px 2px 0px black;
+            }
+
+            &.hide {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+    }
+</style>
