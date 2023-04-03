@@ -58778,7 +58778,7 @@
 								{
 									_class = "CBoneMaskAnimNode"
 									m_sName = "Unnamed"
-									m_vecPosition = [ -576.0, 528.0 ]
+									m_vecPosition = [ -576.0, 512.0 ]
 									m_nNodeID = 
 									{
 										m_id = 55277548
@@ -59400,7 +59400,7 @@
 											{
 												m_nodeID = 
 												{
-													m_id = 55277548
+													m_id = 974737544
 												}
 												m_outputID = 
 												{
