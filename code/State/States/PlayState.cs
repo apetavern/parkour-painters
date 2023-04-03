@@ -7,7 +7,7 @@
 public sealed partial class PlayState : Entity, IGameState
 {
 	/// <inheritdoc/>
-	public string StateName { get; set; } = "Tag";
+	public string StateName { get; set; } = "Paint!";
 
 	/// <summary>
 	/// The active instance of <see cref="PlayState"/>. This can be null.
