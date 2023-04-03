@@ -51,10 +51,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 		foreach ( var client in Game.Clients )
 		{
 			client.Pawn?.Delete();
-
-			var defaultPlayer = new Entities.Player();
-			client.Pawn = defaultPlayer;
-			defaultPlayer.Respawn();
+			CreatePlayer( client );
 		}
 
 		TimeUntilGameStart = ParkourPainters.GameStartGracePeriod;
@@ -69,9 +66,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientJoined( IClient cl )
 	{
-		var player = new Entities.Player();
-		cl.Pawn = player;
-		player.Respawn();
+		CreatePlayer( cl );
 
 		TimeUntilGameStart = ParkourPainters.GameStartGracePeriod;
 	}
@@ -97,6 +92,21 @@ internal sealed partial class WaitingState : Entity, IGameState
 	{
 		if ( Game.Clients.Count >= 2 && TimeUntilGameStart <= 0 )
 			PlayState.SetActive();
+	}
+
+	/// <summary>
+	/// Creates a pawn the player can use while waiting for the game to start.
+	/// </summary>
+	/// <param name="client">The client that is getting this pawn.</param>
+	private void CreatePlayer( IClient client )
+	{
+		var defaultPlayer = new Entities.Player();
+		client.Pawn = defaultPlayer;
+
+		var clothing = new ClothingContainer();
+		clothing.LoadFromClient( client );
+		defaultPlayer.SetupClothing( clothing );
+		defaultPlayer.Respawn();
 	}
 
 #if DEBUG

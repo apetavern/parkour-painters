@@ -63,4 +63,37 @@ partial class Player
 				anim.RenderColor = tint;
 		}
 	}
+
+	/// <summary>
+	/// Sets up the pawns clothing.
+	/// </summary>
+	/// <param name="container">The container of clothing to put on the pawn.</param>
+	public void SetupClothing( ClothingContainer container )
+	{
+		ClothingContainer?.ClearEntities();
+		ClothingContainer = container;
+
+		// Find correct skin.
+		{
+			var preferredClothing = new ClothingContainer();
+			preferredClothing.LoadFromClient( Client );
+
+			var skin = preferredClothing.Clothing.Where( x => x.Category == Clothing.ClothingCategory.Skin ).FirstOrDefault();
+			if ( skin is not null )
+			{
+				var skinName = skin.Title + "_pixelated";
+				foreach ( var clothingItem in ResourceLibrary.GetAll<Clothing>() )
+				{
+					if ( !clothingItem.Title.Contains( skinName ) )
+						continue;
+
+					ClothingContainer.Toggle( clothingItem );
+					break;
+				}
+			}
+		}
+
+		// Dress
+		ClothingContainer.DressEntity( this );
+	}
 }
