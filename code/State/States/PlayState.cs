@@ -42,6 +42,14 @@ public sealed partial class PlayState : Entity, IGameState
 	/// </summary>
 	private readonly Dictionary<IClient, Team> clientTeamMap = new();
 
+	private Sound BackgroundMusic { get; set; }
+
+	[ConVar.Client( "pp_backgroundmusicenabled" )]
+	public static bool EnableBackgroundMusic { get; set; } = true;
+
+	[ConVar.Client( "pp_backgroundmusiclevel" )]
+	public static float BackgroundMusicLevel { get; set; } = 1.0f;
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -168,6 +176,13 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
+		if ( !EnableBackgroundMusic )
+			BackgroundMusic.SetVolume( 0.0f );
+		else
+			BackgroundMusic.SetVolume( BackgroundMusicLevel );
+
+		if ( !BackgroundMusic.IsPlaying )
+			BackgroundMusic = Sound.FromScreen( "painters_bg_music" );
 	}
 
 	/// <inheritdoc/>

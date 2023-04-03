@@ -1,0 +1,12 @@
+{
+  "UI": true,
+  "Volume": "0.60,0.60,0",
+  "Pitch": "1.00,1.00,0",
+  "Decibels": 75,
+  "SelectionMode": "RandomExclusive",
+  "Sounds": [
+    "sounds/music/spray_down.vsnd"
+  ],
+  "MaximumDistance": 1308.4543,
+  "MinimumDistance": 65.42272
+}
