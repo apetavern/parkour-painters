@@ -189,8 +189,8 @@
 						_class = "Attachment"
 						name = "holster_weapon"
 						parent_bone = "spine_2"
-						relative_origin = [ -17.349325, -24.255527, 10.554001 ]
-						relative_angles = [ 38.179035, 0.644872, 1.87292 ]
+						relative_origin = [ -34.452938, -19.171162, -17.668552 ]
+						relative_angles = [ 59.341293, 2.281762, 4.013783 ]
 						weight = 1.0
 						ignore_rotation = false
 					},
