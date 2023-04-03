@@ -28,7 +28,7 @@ Layer0
 	//---- Translucent ----
 	g_flFadeamount "10.000"
 	g_flOpacityScale "1.000"
-	g_flSmoothStepMax "1.000"
+	g_flSmoothStepMax "0.591"
 	g_flSmoothStepMin "0.488"
 	Translucency "materials/sprays/textures/punk_anarchy_01a_reveal.png"
 
