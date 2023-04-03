@@ -13,6 +13,11 @@ public partial class Player
 	[ClientInput] public Angles LookInput { get; private set; }
 
 	/// <summary>
+	/// The last weapon that the player has equipped.
+	/// </summary>
+	[Net, Predicted] internal BaseCarriable LastEquippedItem { get; private set; }
+
+	/// <summary>
 	/// The currently held item.
 	/// </summary>
 	public BaseCarriable HeldItem
@@ -33,13 +38,7 @@ public partial class Player
 	/// <summary>
 	/// The currently held item.
 	/// </summary>
-	[ClientInput]
-	private Entity heldItemInput { get; set; }
-
-	/// <summary>
-	/// The last held item.
-	/// </summary>
-	[Net, Predicted] private BaseCarriable LastHeldItem { get; set; }
+	[ClientInput] private Entity heldItemInput { get; set; }
 
 	/// <summary>
 	/// Position a player should be looking from in world space.

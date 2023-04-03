@@ -129,11 +129,11 @@ public sealed partial class Player : AnimatedEntity
 		if ( CurrentPowerup is not null && CurrentPowerup.TimeSinceAdded >= CurrentPowerup.ExpiryTime )
 			CurrentPowerup.Remove();
 
-		if ( LastHeldItem != HeldItem )
+		if ( LastEquippedItem != HeldItem )
 		{
-			LastHeldItem?.OnHolstered();
-			HeldItem?.OnEquipped();
-			LastHeldItem = HeldItem;
+			LastEquippedItem?.OnHolstered();
+			LastEquippedItem = HeldItem;
+			LastEquippedItem?.OnEquipped();
 		}
 
 		Controller?.Simulate( cl );
