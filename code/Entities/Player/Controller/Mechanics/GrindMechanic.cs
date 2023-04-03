@@ -55,7 +55,7 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		if ( _currentNodeIndex < 0 || _currentNodeIndex >= _path.PathNodes.Count )
+		if ( _currentNodeIndex < 0 || _path is null || _path.PathNodes is null || _currentNodeIndex >= _path.PathNodes.Count )
 		{
 			Stop();
 			return;
