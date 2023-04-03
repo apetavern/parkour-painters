@@ -1,0 +1,40 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated_translucent_masked.shader_c"
+
+	//---- Rendering ----
+	F_RENDER_BACKFACES 1
+
+	//---- Z-Buffering ----
+	F_DISABLE_Z_PREPASS 1
+
+	//---- Color ----
+	Color "materials/nature/leaves/phong1_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "materials/default/default_metal.tga"
+
+	//---- Normal ----
+	Normal "materials/nature/leaves/phong1_normal.png"
+
+	//---- Roughness ----
+	Roughness "materials/nature/leaves/phong1_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+
+	//---- Translucent ----
+	g_flAlphaTestReference "0.524"
+	g_flAntiAliasedEdgeStrength "1.000"
+	g_flSmoothStepMax "0.319"
+	g_flSmoothStepMin "0.256"
+	Translucency "materials/nature/leaves/phong1_opacity.png"
+}
