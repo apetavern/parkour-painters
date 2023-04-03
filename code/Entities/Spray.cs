@@ -108,8 +108,7 @@ public sealed partial class Spray : ModelEntity
 		else
 			GlowAmount = Math.Clamp( GlowAmount - 0.1f * Time.Delta * glowSpeed, 0, 1 );
 
-		if ( SceneObject is not null )
-			SceneObject.Attributes.Set( "glow_amount", GlowAmount );
+		SceneObject?.Attributes.Set( "glow_amount", GlowAmount );
 	}
 
 	/// <summary>
