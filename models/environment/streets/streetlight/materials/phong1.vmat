@@ -1,0 +1,27 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated.shader_c"
+
+	//---- Color ----
+	Color "models/environment/streets/streetlight/materials/phong1_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TintMask "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "models/environment/streets/streetlight/materials/phong1_metal.png"
+
+	//---- Normal ----
+	Normal "models/environment/streets/streetlight/materials/phong1_normal.png"
+
+	//---- Roughness ----
+	Roughness "models/environment/streets/streetlight/materials/phong1_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+}
