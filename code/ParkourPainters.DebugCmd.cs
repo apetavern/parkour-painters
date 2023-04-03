@@ -20,7 +20,7 @@ partial class ParkourPainters
 
 		if ( !type.Interfaces.Contains( typeof( IGameState ) ) )
 		{
-			Log.Warning( $"\"{stateName}\" is not a " + nameof(IGameState) );
+			Log.Warning( $"\"{stateName}\" is not a " + nameof( IGameState ) );
 			return;
 		}
 

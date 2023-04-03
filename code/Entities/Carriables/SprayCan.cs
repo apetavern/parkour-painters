@@ -112,7 +112,7 @@ public sealed partial class SprayCan : BaseCarriable
 
 		Cleanup();
 	}
-	
+
 	/// <inheritdoc/>
 	protected sealed override void Cleanup()
 	{

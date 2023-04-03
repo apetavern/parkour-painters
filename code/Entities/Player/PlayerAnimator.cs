@@ -80,7 +80,7 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			{
 				animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
 			}
-		} 
+		}
 		else
 		{
 			animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
