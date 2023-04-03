@@ -3,7 +3,7 @@
   "Description": "Literally killers.",
   "SprayColor": "0.97647,0.86277,0.36078,1",
   "AvailableSprays": [
-    "materials/sprays/nerds_csharp_01a.vmat"
+    "materials/sprays/yakuza_kanji.vmat"
   ],
   "DazeParticles": {
     "Inhalation": "particles/stun/stun_base.vpcf",
