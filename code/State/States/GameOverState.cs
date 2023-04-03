@@ -88,7 +88,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 
 		foreach ( var client in Game.Clients )
 		{
-			(client.Pawn as Entities.Player)?.Animator.Reset();
+			(client.Pawn as Entities.Player)?.Animator?.Reset();
 			var startPosition = client.Position;
 			client.Pawn = new GameOverSpectator()
 			{
