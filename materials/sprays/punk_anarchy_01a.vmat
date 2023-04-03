@@ -5,7 +5,7 @@ Layer0
 	shader "shaders/dissolve.shader_c"
 
 	//---- Color ----
-	Color "[0.898039 0.066667 0.180392 1.000000]"
+	Color "materials/sprays/textures/punk_anarchy_01a_color.psd"
 
 	//---- Fog ----
 	g_bFogEnabled "1"
@@ -26,10 +26,10 @@ Layer0
 	g_vTexCoordScale "[1.000 1.000]"
 
 	//---- Translucent ----
-	g_flFadeamount "0.000"
+	g_flFadeamount "10.000"
 	g_flOpacityScale "1.000"
-	g_flSmoothStepMax "0.500"
-	g_flSmoothStepMin "0.300"
+	g_flSmoothStepMax "1.000"
+	g_flSmoothStepMin "0.488"
 	Translucency "materials/sprays/textures/punk_anarchy_01a_reveal.png"
 
 	DynamicParams

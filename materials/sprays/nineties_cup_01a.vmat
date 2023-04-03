@@ -26,10 +26,10 @@ Layer0
 	g_vTexCoordScale "[1.000 1.000]"
 
 	//---- Translucent ----
-	g_flFadeamount "0.000"
+	g_flFadeamount "10.000"
 	g_flOpacityScale "1.000"
-	g_flSmoothStepMax "0.500"
-	g_flSmoothStepMin "0.300"
+	g_flSmoothStepMax "0.355"
+	g_flSmoothStepMin "0.346"
 	Translucency "materials/sprays/textures/nineties_cup_01a_reveal.png"
 
 	DynamicParams
