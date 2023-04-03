@@ -21,8 +21,8 @@
     {
         get
         {
-            if (SpectatedPlayer.IsValid())
-                return SpectatedPlayer;
+            if (SpectatorCamera.SpectatedPlayer.IsValid())
+                return SpectatorCamera.SpectatedPlayer;
 
             if (Game.LocalPawn is Entities.Player localPlayer)
                 return localPlayer;
@@ -30,8 +30,6 @@
             return null;
         }
     }
-
-    public static Entities.Player SpectatedPlayer { get; set; }
 
     public Hud()
     {

@@ -2,6 +2,8 @@
 
 internal sealed class SpectatorCamera : EntityComponent<Spectator>, ISingletonComponent
 {
+	public static Player SpectatedPlayer { get; set; }
+
 	private float MinDistance => 120.0f;
 	private float MaxDistance => 350.0f;
 
