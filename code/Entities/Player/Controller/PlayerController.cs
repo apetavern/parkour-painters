@@ -250,7 +250,7 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 		var mover = new MoveHelper( Position, Velocity );
 		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs )
 			.WithoutTags( "player" )
-			.WithTag( "solid" )
+			.WithAnyTags( "solid", "playerclip" )
 			.Ignore( Player );
 		mover.MaxStandableAngle = groundAngle;
 
@@ -265,7 +265,7 @@ internal partial class PlayerController : EntityComponent<Player>, ISingletonCom
 		var mover = new MoveHelper( Position, Velocity );
 		mover.Trace = mover.Trace.Size( Hull.Mins, Hull.Maxs )
 			.WithoutTags( "player" )
-			.WithTag( "solid" )
+			.WithAnyTags( "solid", "playerclip" )
 			.Ignore( Player );
 		mover.MaxStandableAngle = groundAngle;
 
