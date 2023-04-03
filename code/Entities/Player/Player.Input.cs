@@ -19,8 +19,9 @@ public partial class Player
 
 	/// <summary>
 	/// The currently held item.
+	/// NOTE: Use <see cref="LastEquippedItem"/> if you are getting this from another client.
 	/// </summary>
-	public BaseCarriable HeldItem
+	internal BaseCarriable HeldItem
 	{
 		get
 		{

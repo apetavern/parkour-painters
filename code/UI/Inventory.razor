@@ -8,7 +8,7 @@
 <root>
     @foreach (var item in Hud.DisplayedPlayer.Inventory.Items)
     {
-        <div class="carriable @(Hud.DisplayedPlayer.HeldItem is not null && Hud.DisplayedPlayer.HeldItem == item ? "active" : "")">
+        <div class="carriable @(Hud.DisplayedPlayer.HeldItem is not null && Hud.DisplayedPlayer.LastEquippedItem == item ? "active" : "")">
             <label class="slot">@item.SlotText</label>
             <label style="padding-right: 5px;">@item.CarriableName</label>
             <label>(@(Hud.DisplayedPlayer.Inventory.Items.IndexOf(item) + 1))</label>
