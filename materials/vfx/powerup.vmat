@@ -12,7 +12,7 @@ Layer0
 
 	//---- Colour ----
 	g_flColourStrength "2.000"
-	g_vColour "[0.949020 1.000000 0.000000 1.000000]"
+	g_vColour "[1.000000 0.349020 0.000000 1.000000]"
 
 	//---- Fog ----
 	g_bFogEnabled "1"
