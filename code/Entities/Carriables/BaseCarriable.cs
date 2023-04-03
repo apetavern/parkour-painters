@@ -92,8 +92,11 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	{
 		base.Simulate( client );
 
-		if ( Holstered )
+		if ( Holstered || Owner.LifeState == LifeState.Dead )
+		{
+			Cleanup();
 			return;
+		}
 
 		// Primary fire
 		if ( Input.Down( InputButton.PrimaryAttack ) && !Input.Down( InputButton.SecondaryAttack ) )
@@ -196,6 +199,11 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// Invoked once a secondary attack has finished.
 	/// </summary>
 	protected virtual void OnSecondaryReleased() { }
+
+	/// <summary>
+	/// Invoked once a cleanup of the weapon has been requested.
+	/// </summary>
+	protected virtual void Cleanup() { }
 
 	/// <summary>
 	/// Holsters the <see cref="BaseCarriable"/> to the holster_spraycan attachment on the player.

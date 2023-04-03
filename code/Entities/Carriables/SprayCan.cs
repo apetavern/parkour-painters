@@ -110,6 +110,14 @@ public sealed partial class SprayCan : BaseCarriable
 	{
 		base.OnPrimaryReleased();
 
+		Cleanup();
+	}
+	
+	/// <inheritdoc/>
+	protected sealed override void Cleanup()
+	{
+		base.Cleanup();
+
 		Owner.SetAnimParameter( "b_spray", false );
 
 		SprayParticles?.Destroy();
