@@ -1,17 +1,17 @@
 @namespace ParkourPainters.UI
 
-@if (Game.LocalPawn is not Entities.Player player)
+@if (!Hud.DisplayedPlayer.IsValid())
 {
     return;
 }
 
 <root>
-    @foreach (var item in player.Inventory.Items)
+    @foreach (var item in Hud.DisplayedPlayer.Inventory.Items)
     {
-        <div class="carriable @(player.HeldItem is not null && player.HeldItem == item ? "active" : "")">
+        <div class="carriable @(Hud.DisplayedPlayer.HeldItem is not null && Hud.DisplayedPlayer.HeldItem == item ? "active" : "")">
             <label class="slot">@item.SlotText</label>
             <label style="padding-right: 5px;">@item.CarriableName</label>
-            <label>(@(player.Inventory.Items.IndexOf(item) + 1))</label>
+            <label>(@(Hud.DisplayedPlayer.Inventory.Items.IndexOf(item) + 1))</label>
         </div>
     }
 </root>
@@ -19,10 +19,10 @@
 @code {
     protected override int BuildHash()
     {
-        var player = Game.LocalPawn as Entities.Player;
-        if (player is null)
+        if (!Hud.DisplayedPlayer.IsValid())
             return 0;
 
+        var player = Hud.DisplayedPlayer;
         return HashCode.Combine(player.Inventory.Items.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.HeldItem?.GetHashCode());
     }
 }

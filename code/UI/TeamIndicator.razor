@@ -1,20 +1,19 @@
 @namespace ParkourPainters.UI
 
-@if (Game.LocalPawn is not Entities.Player player || player.Team is null)
+@if (!Hud.DisplayedPlayer.IsValid() || Hud.DisplayedPlayer.Team is null)
 {
     return;
 }
 
 <root>
     <label style="color: white;">Gang:</label>
-    <label style="color: @player.Team.Group.SprayColor.Hex;">@player.Team.Group.Name</label>
+    <label style="color: @Hud.DisplayedPlayer.Team.Group.SprayColor.Hex;">@Hud.DisplayedPlayer.Team.Group.Name</label>
 </root>
 
 @code {
     protected override int BuildHash()
     {
-        var player = Game.LocalPawn as Entities.Player;
-        return HashCode.Combine(player?.Team?.GetHashCode());
+        return HashCode.Combine(Hud.DisplayedPlayer?.Team?.GetHashCode());
     }
 }
 

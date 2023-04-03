@@ -73,7 +73,7 @@ internal sealed class Spectator : Entity
 			} while ( Game.Clients.ElementAt( ClientIndex ).Pawn is not Player );
 		}
 
-		if ( Input.Pressed(  InputButton.SecondaryAttack ) )
+		if ( Input.Pressed( InputButton.SecondaryAttack ) )
 		{
 			// Move down until we find a valid client.
 			do
@@ -99,6 +99,8 @@ internal sealed class Spectator : Entity
 					ClientIndex = Game.Clients.Count - 1;
 			} while ( Game.Clients.ElementAt( ClientIndex ).Pawn is not Player );
 		}
+
+		UI.Hud.SpectatedPlayer = Game.Clients.ElementAt( ClientIndex ).Pawn as Player;
 
 		var lookInput = (LookInput + Input.AnalogLook).Normal;
 		LookInput = lookInput.WithPitch( lookInput.pitch.Clamp( -90f, 90f ) );

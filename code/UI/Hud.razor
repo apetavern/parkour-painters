@@ -14,6 +14,25 @@
 
 @code
 {
+    /// <summary>
+    /// The player we are displaying the UI elements of.
+    /// </summary>
+    public static Entities.Player DisplayedPlayer
+    {
+        get
+        {
+            if (SpectatedPlayer.IsValid())
+                return SpectatedPlayer;
+
+            if (Game.LocalPawn is Entities.Player localPlayer)
+                return localPlayer;
+
+            return null;
+        }
+    }
+
+    public static Entities.Player SpectatedPlayer { get; set; }
+
     public Hud()
     {
         Game.AssertClient();

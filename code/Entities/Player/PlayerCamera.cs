@@ -51,6 +51,8 @@ internal sealed class PlayerCamera : EntityComponent<Player>, ISingletonComponen
 		Camera.ZNear = 6;
 		Camera.FirstPersonViewer = null;
 
+		UI.Hud.SpectatedPlayer = player;
+
 		Sound.Listener = player.Transform;
 	}
 }

@@ -2,16 +2,16 @@ namespace ParkourPainters.Entities;
 
 public sealed partial class DashMechanic : ControllerMechanic
 {
-	public double ActiveDashPercentage => Math.Ceiling( Math.Clamp( _timeSinceLastDash / DashRechargeTime * 100, 0, 100 ) );
+	[Net, Predicted] private TimeSince TimeSinceLastDash { get; set; }
+	public double ActiveDashPercentage => Math.Ceiling( Math.Clamp( TimeSinceLastDash / DashRechargeTime * 100, 0, 100 ) );
 	private int DashRechargeTime => ParkourPainters.InfiniteDash ? 0 : Player.CurrentPowerup is DashPowerup powerup ? powerup.RechargeTime : 3;
-	private TimeSince _timeSinceLastDash { get; set; }
 
 	protected override bool ShouldStart()
 	{
 		if ( Player.IsDazed )
 			return false;
 
-		if ( _timeSinceLastDash <= DashRechargeTime )
+		if ( TimeSinceLastDash <= DashRechargeTime )
 			return false;
 
 		if ( !Input.Pressed( InputButton.Run ) )
@@ -43,7 +43,7 @@ public sealed partial class DashMechanic : ControllerMechanic
 
 		Player.PlaySound( "dash" );
 
-		_timeSinceLastDash = 0;
+		TimeSinceLastDash = 0;
 	}
 
 #if DEBUG
