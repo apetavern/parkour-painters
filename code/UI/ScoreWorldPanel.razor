@@ -1,0 +1,42 @@
+﻿@inherits Sandbox.UI.WorldPanel
+@namespace ParkourPainters.UI
+
+<root>
+    <label style="color: @(Area.AreaOwner?.Group.SprayColor.Hex ?? Color.White.Hex)">+1</label>
+</root>
+
+@code
+{
+    /// <summary>
+    /// The area that the score is displaying for.
+    /// </summary>
+    internal GraffitiArea Area { get; set; }
+
+    /// <inheritdoc/>
+    public sealed override void Tick()
+    {
+        var transform = new Transform();
+        transform.Position = Area.Sprays.LastOrDefault()?.Position ?? Area.Position;
+        transform.Rotation = Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f);
+        Transform = transform;
+    }
+
+    /// <inheritdoc/>
+    protected sealed override int BuildHash()
+    {
+        return Area.AreaOwner?.NetworkIdent ?? 0;
+    }
+}
+
+<style>
+    ScoreWorldPanel {
+        justify-content: center;
+
+        label
+        {
+            font-family: ADDCN;
+            font-size: 200px;
+            text-shadow: 2px 2px 0px rgba(black, 0.75);
+        }
+    }
+</style>

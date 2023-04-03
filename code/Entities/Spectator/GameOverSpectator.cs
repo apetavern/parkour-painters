@@ -32,6 +32,8 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	[Net, Predicted] private TimeSince TimeSinceTravelStarted { get; set; } = 0;
 
+	private ScoreWorldPanel ScoreWorldPanel { get; set; }
+
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
 	/// </summary>
@@ -40,6 +42,14 @@ internal sealed partial class GameOverSpectator : Entity
 	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
 	/// </summary>
 	internal const float StareTime = 2;
+
+	public GameOverSpectator()
+	{
+		if ( !Game.IsClient )
+			return;
+
+		ScoreWorldPanel = new ScoreWorldPanel();
+	}
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -58,11 +68,20 @@ internal sealed partial class GameOverSpectator : Entity
 	}
 
 	/// <inheritdoc/>
-	public override void FrameSimulate( IClient cl )
+	public sealed override void FrameSimulate( IClient cl )
 	{
 		base.FrameSimulate( cl );
 
 		LerpToSpot();
+	}
+
+	/// <inheritdoc/>
+	protected sealed override void OnDestroy()
+	{
+		base.OnDestroy();
+
+		if ( Game.IsClient )
+			ScoreWorldPanel.Delete();
 	}
 
 	/// <summary>
@@ -72,6 +91,9 @@ internal sealed partial class GameOverSpectator : Entity
 	{
 		if ( Finished )
 			return;
+
+		if ( Game.IsClient )
+			ScoreWorldPanel.Area = CurrentSpot;
 
 		var startPos = LastSpot is null
 			? Position

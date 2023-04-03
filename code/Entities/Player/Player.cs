@@ -24,7 +24,7 @@ public sealed partial class Player : AnimatedEntity
 	public Team Team => Client.GetTeam();
 
 	/// <summary>
-	/// The amount of spray percent to add each tick to a <see cref="GraffitiSpot"/>.
+	/// The amount of spray percent to add each tick to a <see cref="GraffitiArea"/>.
 	/// </summary>
 	[Net, Prefab] public float SprayAmount { get; private set; } = 1;
 
