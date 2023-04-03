@@ -5,6 +5,8 @@
 /// </summary>
 internal sealed class Spectator : Entity
 {
+	public Player SpectatedPlayer { get; private set; }
+
 	/// <summary>
 	/// The instance of <see cref="SpectatorCamera"/> on this entity.
 	/// </summary>
@@ -100,7 +102,7 @@ internal sealed class Spectator : Entity
 			} while ( Game.Clients.ElementAt( ClientIndex ).Pawn is not Player );
 		}
 
-		SpectatorCamera.SpectatedPlayer = Game.Clients.ElementAt( ClientIndex ).Pawn as Player;
+		SpectatedPlayer = Game.Clients.ElementAt( ClientIndex ).Pawn as Player;
 
 		var lookInput = (LookInput + Input.AnalogLook).Normal;
 		LookInput = lookInput.WithPitch( lookInput.pitch.Clamp( -90f, 90f ) );

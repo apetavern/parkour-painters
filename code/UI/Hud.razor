@@ -21,8 +21,8 @@
     {
         get
         {
-            if (SpectatorCamera.SpectatedPlayer.IsValid())
-                return SpectatorCamera.SpectatedPlayer;
+            if (Game.LocalPawn is Spectator spectator)
+                return spectator.SpectatedPlayer;
 
             if (Game.LocalPawn is Entities.Player localPlayer)
                 return localPlayer;
