@@ -31,4 +31,9 @@ Layer0
 	g_flSmoothStepMax "0.203"
 	g_flSmoothStepMin "0.169"
 	Translucency "materials/sprays/textures/yakuza_kanji_01a_reveal.png"
+
+	DynamicParams
+	{
+		g_flFadeamount "fade_amount"
+	}
 }
