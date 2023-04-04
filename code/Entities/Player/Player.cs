@@ -335,10 +335,10 @@ public sealed partial class Player : AnimatedEntity
 	}
 
 	[ClientRpc]
-	private void SprayPlayerParticles( Vector3 cloudColor )
+	private void SprayPlayerParticles( Color cloudColor )
 	{
 		SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", this, "eyes" );
-		SprayCloud.SetPosition( 1, cloudColor );
+		SprayCloud.SetPosition( 1, cloudColor.ToVector3() );
 	}
 
 	[ClientRpc]
