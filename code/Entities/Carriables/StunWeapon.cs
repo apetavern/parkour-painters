@@ -26,6 +26,9 @@ public sealed partial class StunWeapon : BaseCarriable
 	{
 		base.OnPrimaryAttack();
 
+		if ( Owner.IsDazed )
+			return;
+
 		_holdtypeAttack = !_holdtypeAttack;
 		Owner.SetAnimParameter( "holdtype_attack", _holdtypeAttack ? 0 : 1 );
 		Owner.SetAnimParameter( "b_attack", true );
