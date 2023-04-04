@@ -3,9 +3,16 @@
 <root>
     @foreach (var entry in _scores)
     {
-        <div style="flex-direction: column;">
-            <label style="color: @entry.Key.Group.SprayColor.Hex;">@entry.Key.Group.Name</label>
-            <div class="fill" />
+        var teamColor = entry.Key.Group.SprayColor.Hex;
+        <div style="flex-direction: column; padding: 5px;">
+            <label style="color: @teamColor;">@entry.Key.Group.Name</label>
+            <div class="score" style="border-color: @teamColor;">
+                <div
+                class="fill"
+                style="
+                width: @(GetScorePercentage(entry.Key))%;
+                background-color: @teamColor;" />
+            </div>
         </div>
     }
 </root>
@@ -31,9 +38,16 @@
         }
     }
 
+    private int GetScorePercentage(Team team)
+    {
+        // TODO: Calculate the percentage of total score.
+        var currentScore = _scores[team];
+        return currentScore;
+    }
+
     protected override int BuildHash()
     {
-        return HashCode.Combine(_scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
+        return HashCode.Combine(_scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode(), GetScorePercentage(e.Key))));
     }
 }
 
@@ -51,8 +65,16 @@
             text-shadow: 2px 2px 0px black;
         }
 
-        .fill {
-            width: 300px;
+        .score {
+            width: 350px;
+            height: 40px;
+            border-width: 5px;
+            box-shadow: 3px 3px 10px black;
+
+            .fill {
+                transition: all 750ms ease-in-out;
+                height: 100%;
+            }
         }
     }
 </style>
