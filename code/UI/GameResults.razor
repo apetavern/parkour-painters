@@ -1,7 +1,12 @@
 @namespace ParkourPainters.UI
 
+@if (Game.LocalPawn is not GameOverSpectator spectator)
+{
+    return;
+}
+
 <root>
-    @foreach (var entry in _scores)
+    @foreach (var entry in spectator.AccumulatingScores)
     {
         var teamColor = entry.Key.Group.SprayColor.Hex;
         <div style="flex-direction: column; padding: 5px;">
@@ -10,7 +15,7 @@
                 <div
                 class="fill"
                 style="
-                width: @(GetScorePercentage(entry.Key))%;
+                width: @(spectator.AccumulatingScores[entry.Key] / GameOverState.Instance.TotalPossibleScore)%;
                 background-color: @teamColor;" />
             </div>
         </div>
@@ -18,36 +23,12 @@
 </root>
 
 @code {
-    private Dictionary<Team, int> _scores = new();
-
-    public override void Tick()
-    {
-        // TODO: Init this somewhere else...
-        if (GameOverState.Instance is not null)
-            _scores.Clear();
-
-        if (PlayState.Instance is null)
-            return;
-
-        foreach (var team in PlayState.Instance.Teams)
-        {
-            if (!_scores.ContainsKey(team))
-            {
-                _scores.Add(team, 0);
-            }
-        }
-    }
-
-    private int GetScorePercentage(Team team)
-    {
-        // TODO: Calculate the percentage of total score.
-        var currentScore = _scores[team];
-        return currentScore;
-    }
-
     protected override int BuildHash()
     {
-        return HashCode.Combine(_scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode(), GetScorePercentage(e.Key))));
+        if (Game.LocalPawn is not GameOverSpectator spectator)
+            return 0;
+
+        return HashCode.Combine(spectator.AccumulatingScores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
     }
 }
 

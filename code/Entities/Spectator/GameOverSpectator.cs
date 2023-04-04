@@ -32,7 +32,7 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	[Net, Predicted] private TimeSince TimeSinceTravelStarted { get; set; } = 0;
 
-	private ScoreWorldPanel ScoreWorldPanel { get; set; }
+	public Dictionary<Team, int> AccumulatingScores { get; private set; } = new();
 
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
@@ -43,20 +43,21 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	internal const float StareTime = 2;
 
-	public GameOverSpectator()
-	{
-		if ( !Game.IsClient )
-			return;
-
-		ScoreWorldPanel = new ScoreWorldPanel();
-	}
-
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
 		base.Spawn();
 
 		Tags.Add( "player" );
+	}
+
+	/// <inheritdoc/>
+	public sealed override void ClientSpawn()
+	{
+		foreach ( var team in GameOverState.Instance.Teams )
+		{
+			AccumulatingScores.Add( team, 0 );
+		}
 	}
 
 	/// <inheritdoc/>
@@ -75,15 +76,6 @@ internal sealed partial class GameOverSpectator : Entity
 		LerpToSpot();
 	}
 
-	/// <inheritdoc/>
-	protected sealed override void OnDestroy()
-	{
-		base.OnDestroy();
-
-		if ( Game.IsClient )
-			ScoreWorldPanel.Delete();
-	}
-
 	/// <summary>
 	/// Lerps to the next spot to look at.
 	/// </summary>
@@ -91,9 +83,6 @@ internal sealed partial class GameOverSpectator : Entity
 	{
 		if ( Finished )
 			return;
-
-		if ( Game.IsClient )
-			ScoreWorldPanel.Area = CurrentSpot;
 
 		var startPos = LastSpot is null
 			? Position
@@ -112,6 +101,12 @@ internal sealed partial class GameOverSpectator : Entity
 
 		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
 			return;
+
+		Log.Info( CurrentSpot.AreaOwner );
+		Log.Info( CurrentSpot.LastCompletedSpray );
+
+		if ( CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
+			AccumulatingScores[CurrentSpot.AreaOwner] += 1;
 
 		SpotIndex++;
 		TimeSinceTravelStarted = 0;

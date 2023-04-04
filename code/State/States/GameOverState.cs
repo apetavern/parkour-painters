@@ -20,6 +20,11 @@ internal sealed partial class GameOverState : Entity, IGameState
 	[Net] internal GameResult GameResult { get; private set; }
 
 	/// <summary>
+	/// The teams that participated in the game.
+	/// </summary>
+	[Net] internal IList<Team> Teams { get; private set; }
+
+	/// <summary>
 	/// The team that has won the game.
 	/// If <see cref="GameResult"/> is <see cref="GameResult.Abandoned"/> or <see cref="GameResult.Draw"/>, this will be null.
 	/// </summary>
@@ -39,6 +44,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// A list containing all of the graffiti spots to look at.
 	/// </summary>
 	[Net] public IList<GraffitiArea> Spots { get; private set; }
+
+	[Net] public int TotalPossibleScore { get; private set; } = 0;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -83,8 +90,13 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
+		Teams = playState.Teams.ToArray();
+
 		foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
+		{
 			Spots.Add( area );
+			TotalPossibleScore += 1;
+		}
 
 		foreach ( var client in Game.Clients )
 		{
