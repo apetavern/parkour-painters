@@ -37,11 +37,11 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
 	/// </summary>
-	internal const float TravelTimeToSpot = 2;
+	internal const float TravelTimeToSpot = 1;
 	/// <summary>
 	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
 	/// </summary>
-	internal const float StareTime = 2;
+	internal const float StareTime = 0.5f;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
