@@ -67,13 +67,6 @@ public sealed partial class GraffitiArea : ModelEntity
 		EnableShadowCasting = false;
 	}
 
-	public override void ClientSpawn()
-	{
-		base.ClientSpawn();
-
-
-	}
-
 	/// <summary>
 	/// Invoked when the spot has been sprayed by a player.
 	/// </summary>

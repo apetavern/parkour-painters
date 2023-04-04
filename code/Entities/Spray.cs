@@ -38,9 +38,6 @@ public partial class Spray : ModelEntity
 		SetModel( "models/entities/spray_plane/spray_plane.vmdl" );
 
 		SprayProgress = 0;
-
-		if ( TeamOwner is not null )
-			SetMaterialOverride( Material.Load( Random.Shared.FromList( TeamOwner.Group.AvailableSprays ) ) );
 	}
 
 	public void ReceiveSprayFrom( Player player )
