@@ -98,7 +98,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	{
 		base.Simulate( client );
 
-		if ( Holstered || Owner.LifeState == LifeState.Dead )
+		if ( Holstered || Owner.IsDazed || Owner.LifeState == LifeState.Dead )
 		{
 			Cleanup();
 			return;
