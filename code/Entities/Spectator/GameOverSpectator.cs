@@ -92,13 +92,13 @@ internal sealed partial class GameOverSpectator : Entity
 
 		var startPos = LastSpot is null
 			? Position
-			: LastSpot.Position + LastSpot.Sprays[0].Rotation.Up * 200;
-		var targetPos = CurrentSpot.Position + CurrentSpot.Sprays[0].Rotation.Up * 200;
+			: LastSpot.Position + LastSpot.Sprays.LastOrDefault()?.Rotation.Up ?? Rotation.Up * 200;
+		var targetPos = CurrentSpot.Position + CurrentSpot.Sprays.LastOrDefault()?.Rotation.Up ?? Rotation.Up * 200;
 
 		var startRot = LastSpot is null
 			? Rotation
-			: Rotation.LookAt( LastSpot.Sprays[0].Position - Camera.Position );
-		var targetRot = Rotation.LookAt( CurrentSpot.Sprays[0].Position - Camera.Position );
+			: Rotation.LookAt( LastSpot.Sprays.LastOrDefault()?.Position ?? LastSpot.Position - Camera.Position );
+		var targetRot = Rotation.LookAt( CurrentSpot.Sprays.LastOrDefault()?.Position ?? CurrentSpot.Position - Camera.Position );
 
 		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
 
