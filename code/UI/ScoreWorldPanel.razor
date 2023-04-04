@@ -15,6 +15,9 @@
     /// <inheritdoc/>
     public sealed override void Tick()
     {
+        if (Area is null)
+            return;
+
         var transform = new Transform();
         transform.Position = Area.Sprays.LastOrDefault()?.Position ?? Area.Position;
         transform.Rotation = Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f);
@@ -24,6 +27,9 @@
     /// <inheritdoc/>
     protected sealed override int BuildHash()
     {
+        if (Area is null)
+            return 0;
+
         return Area.AreaOwner?.NetworkIdent ?? 0;
     }
 }
