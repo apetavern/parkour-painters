@@ -48,7 +48,8 @@ public sealed partial class ParkourPainters : GameManager
 	/// <inheritdoc/>
 	public sealed override void OnVoicePlayed( IClient client )
 	{
-		UI.VoiceChatIndicators.Instance.IsSpeaking( client );
+		if ( client.Pawn is Entities.Player player )
+			player.IsSpeaking();
 	}
 
 	/// <inheritdoc/>

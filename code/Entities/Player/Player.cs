@@ -75,6 +75,11 @@ public sealed partial class Player : AnimatedEntity
 	/// </summary>
 	private TimeSince TimeSinceFootstep { get; set; } = 0;
 
+	/// <summary>
+	/// Clientside voice chat indicator.
+	/// </summary>
+	private VoiceChatIndicator VoiceChatIndicator { get; set; }
+
 	private static readonly Model PlayerModel = Model.Load( "models/player/player_gangjam.vmdl" );
 
 	/// <summary>
@@ -118,7 +123,7 @@ public sealed partial class Player : AnimatedEntity
 	public sealed override void ClientSpawn()
 	{
 		if ( !IsLocalPawn )
-			_ = new UI.NameWorldPanel( this );
+			_ = new NameWorldPanel( this );
 	}
 
 	/// <inheritdoc/>
@@ -149,6 +154,9 @@ public sealed partial class Player : AnimatedEntity
 		Controller?.FrameSimulate( cl );
 		Camera?.Update( this );
 		Inventory?.FrameSimulate( cl );
+
+		if ( Voice.IsRecording )
+			IsSpeaking();
 	}
 
 	/// <inheritdoc/>
@@ -198,6 +206,14 @@ public sealed partial class Player : AnimatedEntity
 		if ( !tr.Hit ) return;
 
 		tr.Surface.DoFootstep( this, tr, foot, volume );
+	}
+
+	public void IsSpeaking()
+	{
+		if ( !VoiceChatIndicator.IsValid() )
+			VoiceChatIndicator = new VoiceChatIndicator( this );
+
+		VoiceChatIndicator.IsSpeaking();
 	}
 
 	/// <summary>

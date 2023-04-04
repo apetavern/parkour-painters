@@ -6,7 +6,6 @@
 </root>
 
 @code {
-    public long SteamId { get; private set; }
     private readonly float _voiceTimeout = 0.1f;
     private Entities.Player _player;
     private float _activeVoiceLevel;
@@ -15,18 +14,20 @@
 
     public VoiceChatIndicator(Entities.Player player)
     {
-        SteamId = player.Client.SteamId;
         _player = player;
     }
 
-    public void IsSpeaking(IClient client)
+    public void IsSpeaking()
     {
         _timeSincePlayed = 0;
-        _activeVoiceLevel = client.Voice.CurrentLevel;
+        _activeVoiceLevel = _player.Client.Voice.CurrentLevel;
     }
 
     public override void Tick()
     {
+        if (IsDeleting)
+            return;
+
         if (!_player.IsValid() || _player.LifeState == LifeState.Dead)
         {
             Delete(true);
@@ -36,9 +37,11 @@
         var timeoutInv = 1 - (_timeSincePlayed / _voiceTimeout);
         timeoutInv = MathF.Min(timeoutInv * 2.0f, 1.0f);
 
-        SetClass("hidden", timeoutInv < 0);
         if (timeoutInv < 0)
+        {
+            Delete(true);
             return;
+        }
 
         _voiceLevel = _voiceLevel.LerpTo(_activeVoiceLevel, Time.Delta * 40.0f);
 
@@ -58,10 +61,6 @@
             font-family: MaterialIcons;
             font-size: 75px;
             text-shadow: 2px 2px 0px rgba(black, 0.75);
-        }
-
-        &.hidden {
-            opacity: 0;
         }
     }
 </style>
