@@ -30,7 +30,7 @@ partial class ParkourPainters
 	/// Defines the maximum amount of teams to have in the game.
 	/// </summary>
 	[ConVar.Replicated( "pp_maxteams" )]
-	public static int MaxTeams { get; private set; } = 2;
+	public static int MaxTeams { get; private set; } = 4;
 
 	/// <summary>
 	/// Defines whether or not each team is a unique type.

@@ -57,7 +57,7 @@
         "Choices": [],
         "ConVarName": "pp_maxteams",
         "DisplayName": "Max Teams",
-        "DefaultValue": "2",
+        "DefaultValue": "4",
         "Description": "The maximum amount of teams that can exist in the game.",
         "Group": "",
         "Minimum": 2,
