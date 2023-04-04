@@ -28,7 +28,7 @@ Layer0
 	//---- Translucent ----
 	g_flFadeamount "10.000"
 	g_flOpacityScale "1.000"
-	g_flSmoothStepMax "0.449"
-	g_flSmoothStepMin "0.435"
+	g_flSmoothStepMax "0.203"
+	g_flSmoothStepMin "0.169"
 	Translucency "materials/sprays/textures/yakuza_kanji_01a_reveal.png"
 }
