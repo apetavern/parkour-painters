@@ -108,8 +108,11 @@ internal sealed partial class GameOverSpectator : Entity
 		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
 			return;
 
-		if ( CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
-			_gameResultsPanel?.AddScore( CurrentSpot.AreaOwner, 1 );
+		if ( Game.IsClient && CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
+		{
+			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, 1 );
+			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, CurrentSpot.Position + CurrentSpot.Rotation.Forward * 5f );
+		}
 
 		SpotIndex++;
 		TimeSinceTravelStarted = 0;
