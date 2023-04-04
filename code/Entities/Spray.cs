@@ -40,6 +40,11 @@ public partial class Spray : ModelEntity
 		SprayProgress = 0;
 	}
 
+	public override void ClientSpawn()
+	{
+		base.ClientSpawn();
+	}
+
 	public void ReceiveSprayFrom( Player player )
 	{
 		// First time being sprayed.
@@ -87,7 +92,7 @@ public partial class Spray : ModelEntity
 		{
 			TeamOwner = team,
 			Transform = transform,
-			Scale = transform.Scale // Scale in this instance applies n * 16
+			Scale = transform.Scale, // Scale in this instance applies n * 16
 		};
 	}
 
@@ -109,6 +114,14 @@ public partial class Spray : ModelEntity
 			GlowAmount = Math.Clamp( GlowAmount - 0.1f * Time.Delta * glowSpeed, 0, 1 );
 
 		SceneObject?.Attributes.Set( "glow_amount", GlowAmount );
+	}
+
+	[ClientRpc]
+	public void UpdateRenderOrder( bool isOnTop )
+	{
+		Log.Info( isOnTop );
+		SceneObject.RenderLayer = isOnTop ? SceneRenderLayer.OverlayWithDepth : SceneRenderLayer.Default;
+		RenderColor = isOnTop ? RenderColor.WithAlpha( 1f ) : RenderColor.WithAlpha( 0.1f );
 	}
 
 	/// <summary>

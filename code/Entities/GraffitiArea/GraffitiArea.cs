@@ -140,9 +140,20 @@ public sealed partial class GraffitiArea : ModelEntity
 				}
 
 				var maxOverlappedSprays = 2;
+				var sprayForwardOverlapUnits = 1f;
 
 				if ( Game.IsServer && Sprays.Count + 1 > maxOverlappedSprays )
-					Sprays.First().Delete();
+				{
+					// Cleanup old spray.
+					var sprayToDelete = Sprays.First();
+					var deletedSprayForward = sprayToDelete.Rotation.Up;
+					Sprays.Remove( sprayToDelete );
+					sprayToDelete.Delete();
+
+					// Move remaining spray backwards.
+					var remainingSpray = Sprays.Last();
+					remainingSpray.Position -= deletedSprayForward * sprayForwardOverlapUnits;
+				}
 
 				// Overwrite other teams spray.
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
@@ -150,7 +161,10 @@ public sealed partial class GraffitiArea : ModelEntity
 				if ( Game.IsServer )
 				{
 					var sprayLookDirection = (player.Position - wishPosition).Normal.ProjectOnNormal( hitNormal );
-					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( sprayLookDirection, Vector3.Up ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset + (Sprays.Last().Rotation.Up * sprayForwardOverlapUnits) ).WithRotation( Rotation.LookAt( sprayLookDirection, Vector3.Up ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+
+					Sprays.First().UpdateRenderOrder( false );
+					Sprays.Last().UpdateRenderOrder( true );
 				}
 			}
 
