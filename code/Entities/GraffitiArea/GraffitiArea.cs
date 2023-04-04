@@ -227,7 +227,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			SprayHintOffset += 0.03f * Time.Delta;
 		}
 		else
-			SceneObject.Attributes.Set( "glow_amount", 0 );
+			SceneObject.Attributes.Set( "glow_amount", -1f );
 	}
 
 	/// <summary>
