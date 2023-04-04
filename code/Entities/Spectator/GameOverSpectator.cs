@@ -32,7 +32,7 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	[Net, Predicted] private TimeSince TimeSinceTravelStarted { get; set; } = 0;
 
-	public Dictionary<Team, int> AccumulatingScores { get; private set; } = new();
+	private GameResults _gameResultsPanel;
 
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
@@ -54,10 +54,7 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <inheritdoc/>
 	public sealed override void ClientSpawn()
 	{
-		foreach ( var team in GameOverState.Instance.Teams )
-		{
-			AccumulatingScores.Add( team, 0 );
-		}
+		_gameResultsPanel = Game.RootPanel.AddChild<GameResults>();
 	}
 
 	/// <inheritdoc/>
@@ -74,6 +71,15 @@ internal sealed partial class GameOverSpectator : Entity
 		base.FrameSimulate( cl );
 
 		LerpToSpot();
+	}
+
+	/// <inheritdoc/>
+	protected sealed override void OnDestroy()
+	{
+		base.OnDestroy();
+
+		if ( Game.IsClient )
+			_gameResultsPanel.Delete();
 	}
 
 	/// <summary>
@@ -102,11 +108,9 @@ internal sealed partial class GameOverSpectator : Entity
 		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
 			return;
 
-		Log.Info( CurrentSpot.AreaOwner );
-		Log.Info( CurrentSpot.LastCompletedSpray );
-
+		// Why is AreaOwner null?
 		if ( CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
-			AccumulatingScores[CurrentSpot.AreaOwner] += 1;
+			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, 1 );
 
 		SpotIndex++;
 		TimeSinceTravelStarted = 0;

@@ -1,12 +1,8 @@
+@inherits Sandbox.UI.Panel
 @namespace ParkourPainters.UI
 
-@if (Game.LocalPawn is not GameOverSpectator spectator)
-{
-    return;
-}
-
 <root>
-    @foreach (var entry in spectator.AccumulatingScores)
+    @foreach (var entry in _scores)
     {
         var teamColor = entry.Key.Group.SprayColor.Hex;
         <div style="flex-direction: column; padding: 5px;">
@@ -15,7 +11,7 @@
                 <div
                 class="fill"
                 style="
-                width: @(spectator.AccumulatingScores[entry.Key] / GameOverState.Instance.TotalPossibleScore)%;
+                width: 50%;
                 background-color: @teamColor;" />
             </div>
         </div>
@@ -23,12 +19,19 @@
 </root>
 
 @code {
+    private Dictionary<Team, int> _scores = new();
+
+    public void AddScore(Team team, int score)
+    {
+        if (!_scores.ContainsKey(team))
+            _scores.TryAdd(team, 0);
+
+        _scores[team] += score;
+    }
+
     protected override int BuildHash()
     {
-        if (Game.LocalPawn is not GameOverSpectator spectator)
-            return 0;
-
-        return HashCode.Combine(spectator.AccumulatingScores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
+        return HashCode.Combine(_scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
     }
 }
 
