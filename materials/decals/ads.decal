@@ -1,0 +1,12 @@
+{
+  "Decals": [
+    {
+      "Material": "materials/decals/ads_01a.vmat",
+      "Width": "10.00,0.00,0",
+      "Height": "10.00,0.00,0",
+      "KeepAspect": true,
+      "Depth": "1.00,0.00,0",
+      "Rotation": "0.00,360.00,1"
+    }
+  ]
+}
