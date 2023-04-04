@@ -236,7 +236,7 @@ public sealed partial class GraffitiArea : ModelEntity
 
 		if ( player is not null && !Sprays.Any() )
 		{
-			SceneObject.Attributes.Set( "glow_amount", Vector3.DistanceBetween( player.Position, Position ) / 60 - 4 );
+			SceneObject.Attributes.Set( "glow_amount", Vector3.DistanceBetween( player.Position, Position ) / 60 );
 			SceneObject.Attributes.Set( "texture_offset", SprayHintOffset );
 
 			SprayHintOffset += 0.03f * Time.Delta;
