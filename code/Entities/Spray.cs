@@ -119,7 +119,6 @@ public partial class Spray : ModelEntity
 	[ClientRpc]
 	public void UpdateRenderOrder( bool isOnTop )
 	{
-		Log.Info( isOnTop );
 		SceneObject.RenderLayer = isOnTop ? SceneRenderLayer.OverlayWithDepth : SceneRenderLayer.Default;
 		RenderColor = isOnTop ? RenderColor.WithAlpha( 1f ) : RenderColor.WithAlpha( 0.1f );
 	}
