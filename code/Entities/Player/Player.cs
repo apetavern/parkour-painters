@@ -255,7 +255,7 @@ public sealed partial class Player : AnimatedEntity
 		if ( IsDazed || IsImmune )
 			return false;
 
-		if ( ParkourPainters.FriendlyFire && attacker.Team == Team )
+		if ( !ParkourPainters.FriendlyFire && attacker.Team == Team )
 			return false;
 
 		TimeSinceDazed = 0;
@@ -270,7 +270,7 @@ public sealed partial class Player : AnimatedEntity
 	/// <param name="attacker">The person that caused the daze to occur.</param>
 	internal void Spray( Player attacker )
 	{
-		if ( IsImmune || ParkourPainters.FriendlyFire && attacker.Team == Team )
+		if ( IsImmune || !ParkourPainters.FriendlyFire && attacker.Team == Team )
 			return;
 
 		var wasSprayed = IsSprayed;
