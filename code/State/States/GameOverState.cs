@@ -40,6 +40,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] public IList<GraffitiArea> Spots { get; private set; }
 
+	[Net] public int TotalPossibleScore { get; private set; } = 0;
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -84,7 +86,10 @@ internal sealed partial class GameOverState : Entity, IGameState
 		}
 
 		foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
+		{
 			Spots.Add( area );
+			TotalPossibleScore += 1;
+		}
 
 		foreach ( var client in Game.Clients )
 		{

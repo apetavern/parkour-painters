@@ -1,6 +1,6 @@
 ﻿namespace ParkourPainters.Entities;
 
-public sealed partial class Spray : ModelEntity
+public partial class Spray : ModelEntity
 {
 	/// <summary>
 	/// The team that owns this spray.

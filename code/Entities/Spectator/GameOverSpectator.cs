@@ -32,7 +32,7 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	[Net, Predicted] private TimeSince TimeSinceTravelStarted { get; set; } = 0;
 
-	private ScoreWorldPanel ScoreWorldPanel { get; set; }
+	private GameResults _gameResultsPanel;
 
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
@@ -43,20 +43,18 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	internal const float StareTime = 2;
 
-	public GameOverSpectator()
-	{
-		if ( !Game.IsClient )
-			return;
-
-		ScoreWorldPanel = new ScoreWorldPanel();
-	}
-
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
 		base.Spawn();
 
 		Tags.Add( "player" );
+	}
+
+	/// <inheritdoc/>
+	public sealed override void ClientSpawn()
+	{
+		_gameResultsPanel = Game.RootPanel.AddChild<GameResults>();
 	}
 
 	/// <inheritdoc/>
@@ -81,7 +79,7 @@ internal sealed partial class GameOverSpectator : Entity
 		base.OnDestroy();
 
 		if ( Game.IsClient )
-			ScoreWorldPanel.Delete();
+			_gameResultsPanel.Delete();
 	}
 
 	/// <summary>
@@ -91,9 +89,6 @@ internal sealed partial class GameOverSpectator : Entity
 	{
 		if ( Finished )
 			return;
-
-		if ( Game.IsClient )
-			ScoreWorldPanel.Area = CurrentSpot;
 
 		var startPos = LastSpot is null
 			? Position
@@ -112,6 +107,10 @@ internal sealed partial class GameOverSpectator : Entity
 
 		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
 			return;
+
+		// Why is AreaOwner null?
+		if ( CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
+			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, 1 );
 
 		SpotIndex++;
 		TimeSinceTravelStarted = 0;
