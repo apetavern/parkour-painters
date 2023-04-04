@@ -15,7 +15,13 @@ public class VoiceChatIndicators : Panel
 		if ( client.Pawn is not Entities.Player player )
 			return;
 
-		var indicator = _indicators.FirstOrDefault( i => i.SteamId == client.SteamId ) ?? new VoiceChatIndicator( player );
+		var indicator = _indicators.FirstOrDefault( i => i.SteamId == client.SteamId );
+		if ( indicator is null )
+		{
+			indicator = new VoiceChatIndicator( player );
+			_indicators.Add( indicator );
+		}
+
 		indicator.IsSpeaking( client );
 	}
 
