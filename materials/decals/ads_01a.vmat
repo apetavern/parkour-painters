@@ -1,0 +1,36 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/projected_decals.shader_c"
+
+	//---- Decal ----
+	F_ALPHA_MODE 1 // Cutoff
+
+	//---- Normal ----
+	F_NORMAL_MAP 1
+
+	//---- Alpha ----
+	g_flAlphaCutoffSoftness "0.100"
+
+	//---- Ambient Occlusion ----
+	TextureAmbientOcclusion "materials/decals/textures/floor_paper/ads1/phong1_ao.png"
+
+	//---- Color ----
+	TextureColor "materials/decals/textures/floor_paper/ads1/phong1_color.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	TextureMetalness "materials/default/default_metal.tga"
+
+	//---- Normal ----
+	TextureNormal "materials/decals/textures/floor_paper/ads1/phong1_normal.png"
+
+	//---- Roughness ----
+	TextureRoughness "materials/decals/textures/floor_paper/ads1/phong1_rough.png"
+
+	//---- Translucent ----
+	TextureTranslucency "materials/decals/textures/floor_paper/ads1/phong1_opacity.png"
+}
