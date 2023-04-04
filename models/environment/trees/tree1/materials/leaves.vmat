@@ -2,7 +2,10 @@
 
 Layer0
 {
-	shader "shaders/pixelated_translucent.shader_c"
+	shader "shaders/pixelated_translucent_masked.shader_c"
+
+	//---- Z-Buffering ----
+	F_DISABLE_Z_PREPASS 1
 
 	//---- Color ----
 	Color "models/environment/trees/tree1/materials/phong1_color.png"
@@ -26,8 +29,9 @@ Layer0
 	g_vTiling "[1.000 1.000]"
 
 	//---- Translucent ----
-	g_flOpacityScale "1.000"
-	g_flSmoothStepMax "1.000"
+	g_flAlphaTestReference "0.500"
+	g_flAntiAliasedEdgeStrength "1.000"
+	g_flSmoothStepMax "0.877"
 	g_flSmoothStepMin "0.000"
 	Translucency "models/environment/trees/tree1/materials/phong1_opacity.png"
 }
