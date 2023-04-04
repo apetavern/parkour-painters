@@ -1,17 +1,23 @@
 @inherits Sandbox.UI.Panel
 @namespace ParkourPainters.UI
 
+@if (GameOverState.Instance is null)
+{
+    return;
+}
+
 <root>
     @foreach (var entry in _scores)
     {
         var teamColor = entry.Key.Group.SprayColor.Hex;
-        <div style="flex-direction: column; padding: 5px;">
+        var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : (entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
+        <div class="team" style="flex-direction: column; padding: 5px;">
             <label style="color: @teamColor;">@entry.Key.Group.Name</label>
             <div class="score" style="border-color: @teamColor;">
                 <div
                 class="fill"
                 style="
-                width: 50%;
+                width: @(percentageScore)%;
                 background-color: @teamColor;" />
             </div>
         </div>
@@ -31,7 +37,7 @@
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(_scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
+        return HashCode.Combine(GameOverState.Instance?.GetHashCode(), _scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
     }
 }
 
@@ -49,15 +55,26 @@
             text-shadow: 2px 2px 0px black;
         }
 
-        .score {
-            width: 350px;
-            height: 40px;
-            border-width: 5px;
-            box-shadow: 3px 3px 10px black;
+        .team {
+            opacity: 1;
+            transition: all 500ms ease-in-out;
+            bottom: 100px;
 
-            .fill {
-                transition: all 750ms ease-in-out;
-                height: 100%;
+            .score {
+                width: 350px;
+                height: 40px;
+                border-width: 5px;
+                box-shadow: 3px 3px 10px black;
+
+                .fill {
+                    transition: all 750ms ease-in-out;
+                    height: 100%;
+                }
+            }
+
+            &:intro {
+                bottom: 50px;
+                opacity: 0;
             }
         }
     }

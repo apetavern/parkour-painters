@@ -40,7 +40,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] public IList<GraffitiArea> Spots { get; private set; }
 
-	[Net] public int TotalPossibleScore { get; private set; } = 0;
+	[Net] public int TotalPossibleMapScore { get; private set; } = 0;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -85,10 +85,16 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
+		// TODO: Someone fix this I don't know why the top parents don't work.
+		foreach ( var team in playState.Teams )
+		{
+			team.Parent = this;
+		}
+
 		foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
 		{
 			Spots.Add( area );
-			TotalPossibleScore += 1;
+			TotalPossibleMapScore += 1; // TODO: These spots should have unique point values?
 		}
 
 		foreach ( var client in Game.Clients )
