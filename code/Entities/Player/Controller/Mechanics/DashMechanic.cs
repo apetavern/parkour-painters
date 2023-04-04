@@ -46,11 +46,12 @@ public sealed partial class DashMechanic : ControllerMechanic
 		TimeSinceLastDash = 0;
 	}
 
-#if DEBUG
 	[Event.Tick.Client]
 	private void DebugDraw()
 	{
+		if ( !ParkourPainters.DebugMode )
+			return;
+
 		DebugOverlay.ScreenText( $"Dash: {ActiveDashPercentage}%", 20 );
 	}
-#endif
 }

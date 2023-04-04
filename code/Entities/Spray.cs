@@ -127,14 +127,15 @@ public partial class Spray : ModelEntity
 		SprayCloud = null;
 	}
 
-#if DEBUG
 	/// <summary>
 	/// Debug draws information relating to the <see cref="GraffitiArea"/>.
 	/// </summary>
 	[Event.Tick.Server]
 	private void DebugDraw()
 	{
+		if ( !ParkourPainters.DebugMode )
+			return;
+
 		DebugOverlay.Text( $"{SprayProgress}/100 ({TeamOwner})", Position );
 	}
-#endif
 }

@@ -110,5 +110,11 @@ partial class ParkourPainters
 
 		player.Inventory.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
 	}
+
+	/// <summary>
+	/// Whether or not debug mode for the game is active.
+	/// </summary>
+	[ConVar.Replicated( "pp_debug" )]
+	internal static bool DebugMode { get; private set; } = false;
 }
 #endif

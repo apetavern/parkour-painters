@@ -195,10 +195,12 @@ public sealed partial class PlayState : Entity, IGameState
 			GameOverState.SetActive();
 	}
 
-#if DEBUG
 	[Event.Tick.Client]
 	private void DebugDraw()
 	{
+		if ( !ParkourPainters.DebugMode )
+			return;
+
 		DebugOverlay.ScreenText( $"Time Left: {TimeUntilGameEnds} seconds" );
 
 		var linesUsed = 2;
@@ -218,7 +220,6 @@ public sealed partial class PlayState : Entity, IGameState
 			linesUsed++;
 		}
 	}
-#endif
 
 	/// <summary>
 	/// Sets the <see cref="PlayState"/> as the active state in the game. This can only be invoked on the server.

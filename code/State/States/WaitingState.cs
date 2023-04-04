@@ -109,16 +109,17 @@ internal sealed partial class WaitingState : Entity, IGameState
 		defaultPlayer.Respawn();
 	}
 
-#if DEBUG
 	[Event.Tick.Client]
 	private void DebugDraw()
 	{
+		if ( !ParkourPainters.DebugMode )
+			return;
+
 		if ( GameStarting )
 			DebugOverlay.ScreenText( $"Game starting in {Math.Ceiling( TimeUntilGameStart )} seconds" );
 		else
 			DebugOverlay.ScreenText( "Waiting for players" );
 	}
-#endif
 
 	/// <summary>
 	/// Sets the <see cref="WaitingState"/> as the active state in the game. This can only be invoked on the server.

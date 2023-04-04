@@ -246,11 +246,12 @@ public sealed partial class GraffitiArea : ModelEntity
 		Sprays.Clear();
 	}
 
-#if DEBUG
 	[Event.Tick.Client]
 	private void DebugDraw()
 	{
+		if ( !ParkourPainters.DebugMode )
+			return;
+
 		DebugOverlay.Text( $"{Sprays.Count} sprays (Latest from {(AreaOwner?.ToString() ?? "No one")})", Position );
 	}
-#endif
 }
