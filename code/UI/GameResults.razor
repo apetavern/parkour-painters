@@ -10,7 +10,7 @@
     @foreach (var entry in _scores)
     {
         var teamColor = entry.Key.Group.SprayColor.Hex;
-        var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : (entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
+        var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : ((float)entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
         <div class="team" style="flex-direction: column; padding: 5px;">
             <label style="color: @teamColor;">@entry.Key.Group.Name</label>
             <div class="score" style="border-color: @teamColor;">
