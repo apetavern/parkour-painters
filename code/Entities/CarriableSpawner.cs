@@ -19,6 +19,11 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	[Net] internal TimeSince TimeSinceLastPickup { get; private set; }
 
 	/// <summary>
+	/// The body group chosen randomly during spawn.
+	/// </summary>
+	private int ChosenBodyGroup { get; set; }
+
+	/// <summary>
 	/// Whether or not this <see cref="CarriableSpawner"/> is a one time use.
 	/// </summary>
 	[Property] internal bool OneTimeUse { get; private set; }
@@ -32,6 +37,11 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	/// The name of a type that derives from <see cref="BaseCarriable"/> or <see cref="BasePowerup"/> to spawn.
 	/// </summary>
 	[Property] private string TargetType { get; set; }
+
+	/// <summary>
+	/// The number of body groups that the carriable target has.
+	/// </summary>
+	[Property] private int BodyGroups { get; set; } = 0;
 
 	/// <summary>
 	/// The model for the spawner chosen by hammer.
@@ -59,7 +69,10 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 			return;
 		}
 
+		ChosenBodyGroup = Game.Random.Int( 0, BodyGroups - 1 );
+
 		Model = SpawnerModel;
+		SetBodyGroup( "weapontype", ChosenBodyGroup );
 		Scale = 2f;
 		EnableTouch = true;
 

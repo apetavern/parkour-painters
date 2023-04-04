@@ -79,12 +79,18 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// </summary>
 	protected bool Holstered => Owner.HeldItem != this;
 
+	/// <summary>
+	/// The body group to assign to this carriable's model.
+	/// </summary>
+	[Net] protected int BodyGroup { get; set; } = 0;
+
 	/// <inheritdoc/>
 	public override void Spawn()
 	{
 		base.Spawn();
 
 		SetModel( ModelPath );
+		SetBodyGroup( "weapontype", BodyGroup );
 	}
 
 	/// <inheritdoc/>
