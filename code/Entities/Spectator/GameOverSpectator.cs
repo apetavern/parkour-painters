@@ -37,11 +37,11 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
 	/// </summary>
-	internal const float TravelTimeToSpot = 2;
+	internal const float TravelTimeToSpot = 1;
 	/// <summary>
 	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
 	/// </summary>
-	internal const float StareTime = 2;
+	internal const float StareTime = 0.5f;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -90,19 +90,24 @@ internal sealed partial class GameOverSpectator : Entity
 		if ( Finished )
 			return;
 
+		var lastSpray = LastSpot is null
+			? null
+			: LastSpot.LastCompletedSpray;
+		var currentSpray = CurrentSpot.LastCompletedSpray;
+
 		var startPos = LastSpot is null
 			? Position
-			: LastSpot.Position + LastSpot.Sprays.LastOrDefault()?.Rotation.Up ?? Rotation.Up * 200;
-		var targetPos = CurrentSpot.Position + CurrentSpot.Sprays.LastOrDefault()?.Rotation.Up ?? Rotation.Up * 200;
+			: LastSpot.Position + lastSpray?.Rotation.Up * 200 ?? Rotation.Up * 200;
+		var targetPos = CurrentSpot.Position + currentSpray?.Rotation.Up * 200 ?? Rotation.Up * 200;
 
 		var startRot = LastSpot is null
 			? Rotation
-			: Rotation.LookAt( LastSpot.Sprays.LastOrDefault()?.Position ?? LastSpot.Position - Camera.Position );
-		var targetRot = Rotation.LookAt( CurrentSpot.Sprays.LastOrDefault()?.Position ?? CurrentSpot.Position - Camera.Position );
+			: Rotation.LookAt( lastSpray?.Position - Camera.Position ?? LastSpot.Position - Camera.Position );
+		var targetRot = Rotation.LookAt( currentSpray?.Position - Camera.Position ?? CurrentSpot.Position - Camera.Position );
 
 		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
 
-		Camera.Position = startPos.LerpTo( targetPos, fraction );
+		Camera.Position = Vector3.Lerp( startPos, targetPos, fraction );
 		Camera.Rotation = Rotation.Lerp( startRot, targetRot, fraction );
 
 		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
@@ -111,7 +116,7 @@ internal sealed partial class GameOverSpectator : Entity
 		if ( Game.IsClient && CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
 		{
 			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, (int)CurrentSpot.PointsType + 1 );
-			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, CurrentSpot.Position + CurrentSpot.Rotation.Forward * 5f );
+			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, currentSpray.Position + currentSpray.Rotation.Up * 10f );
 		}
 
 		SpotIndex++;
