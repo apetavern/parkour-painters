@@ -85,16 +85,13 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WinningTeam = highestScoreTeam;
 		}
 
-		// TODO: Someone fix this I don't know why the top parents don't work.
 		foreach ( var team in playState.Teams )
-		{
-			team.Parent = this;
-		}
+			team.SetParent( this );
 
 		foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
 		{
 			Spots.Add( area );
-			TotalPossibleMapScore += 1; // TODO: These spots should have unique point values?
+			TotalPossibleMapScore += (int)area.PointsType + 1;
 		}
 
 		foreach ( var client in Game.Clients )

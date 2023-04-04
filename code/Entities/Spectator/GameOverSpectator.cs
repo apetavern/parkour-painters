@@ -110,7 +110,7 @@ internal sealed partial class GameOverSpectator : Entity
 
 		if ( Game.IsClient && CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
 		{
-			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, 1 );
+			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, (int)CurrentSpot.PointsType + 1 );
 			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, CurrentSpot.Position + CurrentSpot.Rotation.Forward * 5f );
 		}
 
