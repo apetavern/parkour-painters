@@ -2,7 +2,7 @@
 @namespace ParkourPainters.UI
 
 <root>
-    <label style="color: @(Area.AreaOwner?.Group.SprayColor.Hex ?? Color.White.Hex)">+1</label>
+    <label style="color: @(Area is not null ? Area.AreaOwner?.Group.SprayColor.Hex ?? Color.White.Hex : Color.White.Hex)">+1</label>
 </root>
 
 @code

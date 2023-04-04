@@ -64,6 +64,7 @@ public sealed partial class PlayState : Entity, IGameState
 	{
 		base.OnDestroy();
 
+		BackgroundMusic.Stop();
 		clientTeamMap.Clear();
 
 		if ( !Game.IsServer )
