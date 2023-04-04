@@ -1,0 +1,80 @@
+@namespace ParkourPainters.UI
+
+<root>
+    @foreach (var entry in _scores)
+    {
+        var teamColor = entry.Key.Group.SprayColor.Hex;
+        <div style="flex-direction: column; padding: 5px;">
+            <label style="color: @teamColor;">@entry.Key.Group.Name</label>
+            <div class="score" style="border-color: @teamColor;">
+                <div
+                class="fill"
+                style="
+                width: @(GetScorePercentage(entry.Key))%;
+                background-color: @teamColor;" />
+            </div>
+        </div>
+    }
+</root>
+
+@code {
+    private Dictionary<Team, int> _scores = new();
+
+    public override void Tick()
+    {
+        // TODO: Init this somewhere else...
+        if (GameOverState.Instance is not null)
+            _scores.Clear();
+
+        if (PlayState.Instance is null)
+            return;
+
+        foreach (var team in PlayState.Instance.Teams)
+        {
+            if (!_scores.ContainsKey(team))
+            {
+                _scores.Add(team, 0);
+            }
+        }
+    }
+
+    private int GetScorePercentage(Team team)
+    {
+        // TODO: Calculate the percentage of total score.
+        var currentScore = _scores[team];
+        return currentScore;
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(_scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode(), GetScorePercentage(e.Key))));
+    }
+}
+
+<style>
+    GameResults {
+        position: absolute;
+        bottom: 100px;
+        left: 50%;
+        align-items: flex-end;
+        transform: translateX(-50%);
+
+        label {
+            font-size: 70px;
+            font-family: ADDCN;
+            text-shadow: 2px 2px 0px black;
+        }
+
+        .score {
+            width: 350px;
+            height: 40px;
+            border-width: 5px;
+            box-shadow: 3px 3px 10px black;
+
+            .fill {
+                transition: all 750ms ease-in-out;
+                height: 100%;
+            }
+        }
+    }
+</style>
