@@ -98,7 +98,10 @@ public sealed partial class GraffitiArea : ModelEntity
 			}
 
 			if ( Game.IsServer )
-				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( hitNormal, Vector3.Up ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+			{
+				var sprayLookDirection = (player.Position - wishPosition).Normal.ProjectOnNormal( hitNormal );
+				Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( sprayLookDirection, Vector3.Up ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+			}
 
 			SprayingPlayer = player;
 			TimeSinceLastSprayed = 0;
@@ -145,7 +148,10 @@ public sealed partial class GraffitiArea : ModelEntity
 				Event.Run( ParkourPainters.Events.GraffitiSpotTampered, mostRecentSpray.TeamOwner, player.Team, player );
 
 				if ( Game.IsServer )
-					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( hitNormal ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+				{
+					var sprayLookDirection = (player.Position - wishPosition).Normal.ProjectOnNormal( hitNormal );
+					Sprays.Add( Spray.CreateFrom( player.Team, new Transform().WithPosition( wishPosition + SprayPositionZOffset ).WithRotation( Rotation.LookAt( sprayLookDirection, Vector3.Up ) * Rotation.FromPitch( 90 ) ).WithScale( SprayScale ) ) );
+				}
 			}
 
 			SprayingPlayer = player;
@@ -188,6 +194,8 @@ public sealed partial class GraffitiArea : ModelEntity
 		foreach ( var testPoint in tracePositions )
 		{
 			var backwardTrace = Trace.Ray( testPoint + hitTrace.Normal * 10, testPoint + -hitTrace.Normal * 60f ).WithTag( "graffiti_area" ).Run();
+
+			//DebugOverlay.Sphere( testPoint, 2f, Color.White, 20f );
 
 			if ( !backwardTrace.Hit )
 				return false;
