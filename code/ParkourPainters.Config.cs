@@ -54,7 +54,7 @@ partial class ParkourPainters
 	/// Defines whether or not a teamates can daze each other.
 	/// </summary>
 	[ConVar.Replicated( "pp_friendlyfire" )]
-	public static bool FriendlyFire { get; private set; } = true;
+	public static bool FriendlyFire { get; private set; } = false;
 
 	/// <summary>
 	/// Defines the amount of time that a player will be dazed for when dazed by another player.

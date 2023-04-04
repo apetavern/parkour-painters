@@ -77,7 +77,7 @@
         "Choices": [],
         "ConVarName": "pp_friendlyfire",
         "DisplayName": "Friendly Fire",
-        "DefaultValue": "true",
+        "DefaultValue": "false",
         "Description": "",
         "Group": ""
       },
