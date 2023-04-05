@@ -54,6 +54,8 @@ public sealed partial class ParkourPainters : GameManager
 	/// <inheritdoc/>
 	public sealed override void OnVoicePlayed( IClient client )
 	{
+		client.Voice.WantsStereo = PlayState.Instance is not null;
+
 		if ( client.Pawn is Entities.Player player )
 			player.IsSpeaking();
 	}
