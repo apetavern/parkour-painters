@@ -20,8 +20,6 @@ public sealed partial class StunWeapon : BaseCarriable
 	/// </summary>
 	[Net] public int Charges { get; internal set; } = 1;
 
-	private TimeUntil TimeUntilSwingEnd { get; set; }
-
 	public override void Spawn()
 	{
 		base.Spawn();
