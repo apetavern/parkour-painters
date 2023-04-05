@@ -4,7 +4,7 @@ public sealed partial class StunWeapon : BaseCarriable
 {
 	public override string CarriableName => "Stun Weapon";
 
-	public override string SlotText => "";
+	public override string SlotText => Charges.ToString();
 
 	public override bool CanUseWhileClimbing => false;
 
@@ -14,6 +14,11 @@ public sealed partial class StunWeapon : BaseCarriable
 	/// A boolean representation of the next attack anim type (swing at side or overhead)
 	/// </summary>
 	[Net] private bool _holdtypeAttack { get; set; }
+
+	/// <summary>
+	/// The number of charges before it is removed from the inventory.
+	/// </summary>
+	[Net] public int Charges { get; internal set; } = 1;
 
 	public override void Spawn()
 	{
@@ -39,9 +44,12 @@ public sealed partial class StunWeapon : BaseCarriable
 			.Ignore( Owner )
 			.Run();
 
-		if ( tr.Hit && tr.Entity is Player player )
+		if ( tr.Hit && tr.Entity is Player player && !player.IsImmune )
 		{
 			player.Daze( Owner, DazeType.PhysicalTrauma );
+			Charges -= 1;
+			if ( Charges >= 0 )
+				_ = WaitForAnimationFinish();
 		}
 	}
 
@@ -51,5 +59,19 @@ public sealed partial class StunWeapon : BaseCarriable
 
 		if ( Game.IsServer )
 			HolsterToBack();
+	}
+
+	private async Task WaitForAnimationFinish()
+	{
+		await GameTask.Delay( 150 );
+
+		if ( !Game.IsServer )
+			return;
+
+		if ( Owner.HeldItem == this )
+		{
+			Owner.UnsetHeldItemInput( To.Single( Owner ) );
+			Owner.Inventory.RemoveFromInventory( this );
+		}
 	}
 }
