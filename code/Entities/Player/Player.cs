@@ -258,6 +258,9 @@ public sealed partial class Player : AnimatedEntity
 		if ( !ParkourPainters.FriendlyFire && attacker.Team == Team )
 			return false;
 
+		if ( dazeType == DazeType.PhysicalTrauma )
+			PlaySound( "bat_hit" );
+
 		TimeSinceDazed = 0;
 		DazeType = dazeType;
 		DazePlayerParticles( To.Everyone );
