@@ -23,6 +23,10 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	/// </summary>
 	[Property] private Model SpawnerModel { get; set; }
 
+	/// <summary>
+	/// The amount of ammo the spawner gives.
+	/// </summary>
+	[Property] private int AmmoAmount { get; set; } = SprayCan.MaxAmmo;
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -48,7 +52,7 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 		if ( other is not Player player )
 			return;
 
-		player.Inventory.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
+		player.Inventory.GetItem<SprayCan>().Ammo += AmmoAmount;
 		TimeSinceLastPickup = 0f;
 
 		if ( OneTimeUse )
