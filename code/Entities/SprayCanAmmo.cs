@@ -9,6 +9,11 @@
 internal sealed partial class SprayCanAmmo : AnimatedEntity
 {
 	/// <summary>
+	/// Whether or not the <see cref="SprayCanAmmo"/> can be used to retrieve a carriable.
+	/// </summary>
+	internal bool IsUnavailable => TimeSinceLastPickup <= UnavailableTime;
+
+	/// <summary>
 	/// The time in seconds since an item was last picked up from the spawner.
 	/// </summary>
 	[Net] public TimeSince TimeSinceLastPickup { get; private set; }
@@ -19,6 +24,11 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	[Property] public bool OneTimeUse { get; private set; }
 
 	/// <summary>
+	/// The time in seconds that the <see cref="SprayCanAmmo"/> will not give another carriable after being used.
+	/// </summary>
+	[Property] private float UnavailableTime { get; set; } = 5;
+
+	/// <summary>
 	/// The model for the spawner chosen by hammer.
 	/// </summary>
 	[Property] private Model SpawnerModel { get; set; }
@@ -27,6 +37,12 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	/// The amount of ammo the spawner gives.
 	/// </summary>
 	[Property] private int AmmoAmount { get; set; } = SprayCan.MaxAmmo;
+
+	/// <summary>
+	/// The alpha component of the render color when the spawner is unavailable.
+	/// </summary>
+	private const float UnavailableAlpha = 0.6f;
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -49,7 +65,7 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	{
 		base.StartTouch( other );
 
-		if ( other is not Player player )
+		if ( IsUnavailable || other is not Player player )
 			return;
 
 		player.Inventory.GetItem<SprayCan>().Ammo += AmmoAmount;
@@ -57,5 +73,16 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 
 		if ( OneTimeUse )
 			Delete();
+	}
+
+	/// <summary>
+	/// Handles the render color of the spawner when it is (un)available.
+	/// </summary>
+	[Event.Tick.Client]
+	private void ClientTick()
+	{
+		RenderColor = IsUnavailable
+			? RenderColor.WithAlpha( UnavailableAlpha )
+			: RenderColor.WithAlpha( 1 );
 	}
 }
