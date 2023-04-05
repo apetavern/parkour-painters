@@ -2,6 +2,8 @@
 
 public partial class Spray : ModelEntity
 {
+	public const int LockDuration = 10;
+
 	/// <summary>
 	/// The team that owns this spray.
 	/// </summary>
@@ -16,6 +18,13 @@ public partial class Spray : ModelEntity
 	/// The time in seconds since the spot was last sprayed on.
 	/// </summary>
 	[Net] public TimeSince TimeSinceLastSprayed { get; private set; }
+
+	/// <summary>
+	/// The time in seconds since the spot was last completed.
+	/// </summary>
+	[Net] public TimeSince TimeSinceLastCompletedSpray { get; set; } = float.MaxValue;
+
+	public bool IsLocked => TimeSinceLastCompletedSpray < LockDuration;
 
 	/// <summary>
 	/// The particle system that is shown when spraying on the spot.
@@ -82,8 +91,9 @@ public partial class Spray : ModelEntity
 	private void OnSprayCompleted( Player sprayer )
 	{
 		Event.Run( ParkourPainters.Events.GraffitiSpotCompleted, sprayer.Team, sprayer );
-
 		Sound.FromWorld( "spray_completed", Position );
+
+		TimeSinceLastCompletedSpray = 0;
 	}
 
 	public static Spray CreateFrom( Team team, Transform transform )

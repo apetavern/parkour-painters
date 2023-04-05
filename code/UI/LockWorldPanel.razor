@@ -6,25 +6,17 @@
 </root>
 
 @code {
-    private TimeUntil TimeUntilUnlock { get; set; }
     private Color Color { get; set; }
 
-    public LockWorldPanel(Vector3 position, Color color, TimeUntil timeUntilUnlock)
+    public LockWorldPanel(Spray spray, Color color)
     {
-        TimeUntilUnlock = timeUntilUnlock;
+        SceneObject.RenderLayer = SceneRenderLayer.OverlayWithDepth;
+
+        Position = spray.Position + spray.Position.Normal * -5;
+        Rotation = spray.Rotation;
+        Rotation = Rotation.RotateAroundAxis(Vector3.Right, 90);
+
         Color = color;
-    }
-
-    [Event.Client.Frame]
-    private void OnClientFrame()
-    {
-        if (TimeUntilUnlock)
-        {
-            Delete(true);
-            return;
-        }
-
-        SetClass("blinkerton", TimeUntilUnlock + 3 >= 0);
     }
 }
 
@@ -32,12 +24,18 @@
     LockWorldPanel {
         justify-content: center;
         align-items: center;
+        transition: all 2s ease-out;
+        opacity: 1;
 
         label {
             color: @Color.Hex;
             font-family: MaterialIcons;
-            font-size: 75px;
+            font-size: 150px;
             text-shadow: 2px 2px 0px rgba(black, 0.75);
+        }
+
+        &:intro {
+            opacity: 0;
         }
     }
 </style>
