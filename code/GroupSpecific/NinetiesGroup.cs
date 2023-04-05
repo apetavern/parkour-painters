@@ -11,13 +11,13 @@ internal static class NinetiesGroup
 	[Event.Tick.Client]
 	private static void GraffitiView()
 	{
-		if ( Game.LocalClient.GetTeam() is not Team team )
-			return;
+		// if ( Game.LocalClient.GetTeam() is not Team team )
+		// 	return;
 
-		if ( team.Group.Name != "Nineties" )
-			return;
+		// if ( team.Group.Name != "Nineties" )
+		// 	return;
 
-		foreach ( var graffitiSpot in Entity.All.OfType<GraffitiArea>() )
-			DebugOverlay.Text( "GRAFFITI SPOT HERE", graffitiSpot.Position - Vector3.Up * 10, 0, 9999 );
+		// foreach ( var graffitiSpot in Entity.All.OfType<GraffitiArea>() )
+		// 	DebugOverlay.Text( "GRAFFITI SPOT HERE", graffitiSpot.Position - Vector3.Up * 10, 0, 9999 );
 	}
 }

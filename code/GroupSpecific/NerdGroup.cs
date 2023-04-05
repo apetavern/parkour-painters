@@ -14,7 +14,7 @@ internal static partial class NerdGroup
 		if ( oldTeam.Group.Name != "Nerds" )
 			return;
 
-		NotifyGraffitiSpotTampered( To.Multiple( oldTeam.Members ), tamperer );
+		// NotifyGraffitiSpotTampered( To.Multiple( oldTeam.Members ), tamperer );
 	}
 
 	/// <summary>
