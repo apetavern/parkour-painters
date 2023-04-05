@@ -7,21 +7,23 @@
 }
 
 <root>
-    @foreach (var entry in _scores)
-    {
-        var teamColor = entry.Key.Group.SprayColor.Hex;
-        var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : ((float)entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
-        <div class="team" style="flex-direction: column; padding: 5px;">
-            <label style="color: @teamColor;">@entry.Key.Group.Name</label>
-            <div class="score" style="border-color: @teamColor;">
-                <div
-                class="fill"
-                style="
+    <div class="teams">
+        @foreach (var entry in _scores)
+        {
+            var teamColor = entry.Key.Group.SprayColor.Hex;
+            var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : ((float)entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
+            <div class="team" style="flex-direction: column; padding: 5px;">
+                <label style="color: @teamColor;">@entry.Key.Group.Name</label>
+                <div class="score" style="border-color: @teamColor;">
+                    <div
+                    class="fill"
+                    style="
                 width: @(percentageScore)%;
                 background-color: @teamColor;" />
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </root>
 
 @code {
@@ -45,9 +47,7 @@
     GameResults {
         position: absolute;
         bottom: 100px;
-        left: 50%;
-        align-items: flex-end;
-        transform: translateX(-50%);
+        width: 100%;
 
         label {
             font-size: 70px;
@@ -55,26 +55,31 @@
             text-shadow: 2px 2px 0px black;
         }
 
-        .team {
-            opacity: 1;
-            transition: all 500ms ease-in-out;
-            bottom: 100px;
+        .teams {
+            width: 100%;
+            justify-content: center;
 
-            .score {
-                width: 350px;
-                height: 40px;
-                border-width: 5px;
-                box-shadow: 3px 3px 10px black;
+            .team {
+                opacity: 1;
+                transition: all 500ms ease-in-out;
+                bottom: 100px;
 
-                .fill {
-                    transition: all 750ms ease-out;
-                    height: 100%;
+                .score {
+                    width: 350px;
+                    height: 40px;
+                    border-width: 5px;
+                    box-shadow: 3px 3px 10px black;
+
+                    .fill {
+                        transition: all 750ms ease-out;
+                        height: 100%;
+                    }
                 }
-            }
 
-            &:intro {
-                bottom: 50px;
-                opacity: 0;
+                &:intro {
+                    bottom: 50px;
+                    opacity: 0;
+                }
             }
         }
     }
