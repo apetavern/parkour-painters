@@ -39,7 +39,7 @@ public partial class Player
 	/// <summary>
 	/// The currently held item.
 	/// </summary>
-	[ClientInput] public Entity heldItemInput { get; set; }
+	[ClientInput] private Entity heldItemInput { get; set; }
 
 	/// <summary>
 	/// Position a player should be looking from in world space.
