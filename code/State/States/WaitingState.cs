@@ -37,6 +37,13 @@ internal sealed partial class WaitingState : Entity, IGameState
 
 	internal TimeSince _timeSinceLastMessage;
 
+	// TODO: Revert back to Convar.Client.
+	[ConVar.Replicated( "pp_warmupmusicenabled" )]
+	public static bool EnableWarmupMusic { get; set; } = true;
+
+	[ConVar.Client( "pp_warmupmusiclevel" )]
+	public static float WarmupMusicLevel { get; set; } = 1.0f;
+
 	private Sound WarmupMusic { get; set; }
 
 	/// <inheritdoc/>
@@ -90,6 +97,11 @@ internal sealed partial class WaitingState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
+		if ( !EnableWarmupMusic )
+			WarmupMusic.SetVolume( 0.0f );
+		else
+			WarmupMusic.SetVolume( WarmupMusicLevel );
+
 		if ( !WarmupMusic.IsPlaying )
 			WarmupMusic = Sound.FromScreen( "painters_warmup" );
 
