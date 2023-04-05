@@ -18,7 +18,7 @@ public sealed partial class StunWeapon : BaseCarriable
 	/// <summary>
 	/// The number of charges before it is removed from the inventory.
 	/// </summary>
-	[Net] public int Charges { get; internal set; } = 1;
+	[Net] public int Charges { get; internal set; } = 3;
 
 	public override void Spawn()
 	{
@@ -48,7 +48,7 @@ public sealed partial class StunWeapon : BaseCarriable
 		{
 			player.Daze( Owner, DazeType.PhysicalTrauma );
 			Charges -= 1;
-			if ( Charges >= 0 )
+			if ( Charges <= 0 )
 				_ = WaitForAnimationFinish();
 		}
 	}
@@ -69,9 +69,8 @@ public sealed partial class StunWeapon : BaseCarriable
 			return;
 
 		if ( Owner.HeldItem == this )
-		{
 			Owner.UnsetHeldItemInput( To.Single( Owner ) );
-			Owner.Inventory.RemoveFromInventory( this );
-		}
+
+		Owner.Inventory.RemoveFromInventory( this );
 	}
 }
