@@ -1,0 +1,72 @@
+@namespace ParkourPainters.UI
+
+@if (PackageData is null)
+{
+    return;
+}
+
+<root style="background-image: url(@PackageData.Thumb)">
+    <div style="align-items: center;">
+        @if (!string.IsNullOrEmpty(PackageData.Org.Thumb))
+        {
+            <div class="org" style="background-image: url(@PackageData.Org.Thumb)" />
+        }
+        <label style="font-size: 45px;">@PackageData.Org.Title</label>
+    </div>
+</root>
+
+@code {
+    public string Ident { get; set; }
+    public Package PackageData { get; private set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var package = await Package.Fetch(Ident, true);
+        if (package is null || package.PackageType != Package.Type.Map)
+        {
+            Delete();
+            return;
+        }
+
+        PackageData = package;
+        StateHasChanged();
+    }
+}
+
+<style>
+    MapIcon {
+        aspect-ratio: 1;
+        width: 30%;
+        height: 100%;
+        transform: scale(1.0);
+        cursor: pointer;
+        justify-content: space-between;
+        flex-direction: column;
+
+        label {
+            color: white;
+            font-family: Poppins;
+            text-shadow: 2px 2px 0px black;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .org {
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            background-position: center;
+            background-size: cover;
+            flex-shrink: 0;
+            margin: 5px;
+        }
+
+        &:hover {
+            transform: scale(1.02);
+        }
+
+        &:active {
+            transform: scale(1.0);
+        }
+    }
+</style>
