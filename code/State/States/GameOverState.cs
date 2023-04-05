@@ -126,6 +126,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientJoined( IClient cl )
 	{
+		cl.Pawn = new GameOverSpectator();
 	}
 
 	/// <inheritdoc/>
