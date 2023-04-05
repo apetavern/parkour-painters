@@ -36,7 +36,7 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	/// <summary>
 	/// The amount of ammo the spawner gives.
 	/// </summary>
-	[Property] private int AmmoAmount { get; set; } = SprayCan.MaxAmmo;
+	[Property] private int AmmoAmount { get; set; } = 50;
 
 	/// <summary>
 	/// The alpha component of the render color when the spawner is unavailable.
