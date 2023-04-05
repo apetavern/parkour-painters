@@ -23,7 +23,7 @@
             return 0;
 
         var player = Hud.DisplayedPlayer;
-        return HashCode.Combine(player.Inventory.Items.HashCombine(i => HashCode.Combine(i.CarriableName.GetHashCode(), i.SlotText.GetHashCode())), player.LastEquippedItem?.GetHashCode());
+        return HashCode.Combine(player.Inventory.Items.HashCombine(i => HashCode.Combine(i?.CarriableName?.GetHashCode(), i?.SlotText?.GetHashCode())), player.LastEquippedItem?.GetHashCode());
     }
 }
 
