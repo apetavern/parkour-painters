@@ -44,8 +44,7 @@ public sealed partial class PlayState : Entity, IGameState
 
 	private Sound BackgroundMusic { get; set; }
 
-	// TODO: Revert back to Convar.Client.
-	[ConVar.Replicated( "pp_backgroundmusicenabled" )]
+	[ConVar.Client( "pp_backgroundmusicenabled" )]
 	public static bool EnableBackgroundMusic { get; set; } = true;
 
 	[ConVar.Client( "pp_backgroundmusiclevel" )]
