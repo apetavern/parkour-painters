@@ -152,15 +152,13 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>, ISin
 		foreach ( var item in Items )
 			item.Simulate( cl );
 
+		if ( !Game.IsServer )
+			return;
+
 		foreach ( var itemToDelete in defferedItemRemoval )
 		{
-			if ( itemToDelete == Entity.HeldItem )
-				Entity.SwitchTo( null );
-
 			items.Remove( itemToDelete );
-
-			if ( Game.IsServer )
-				itemToDelete.Delete();
+			itemToDelete.Delete();
 		}
 	}
 

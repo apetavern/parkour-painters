@@ -203,7 +203,8 @@ public sealed partial class Player : AnimatedEntity
 			.Ignore( this )
 			.Run();
 
-		if ( !tr.Hit ) return;
+		if ( !tr.Hit )
+			return;
 
 		tr.Surface.DoFootstep( this, tr, foot, volume );
 	}

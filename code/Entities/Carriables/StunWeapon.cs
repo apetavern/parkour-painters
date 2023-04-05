@@ -20,6 +20,8 @@ public sealed partial class StunWeapon : BaseCarriable
 	/// </summary>
 	[Net] public int Charges { get; internal set; } = 1;
 
+	private TimeUntil TimeUntilSwingEnd { get; set; }
+
 	public override void Spawn()
 	{
 		base.Spawn();
@@ -47,10 +49,9 @@ public sealed partial class StunWeapon : BaseCarriable
 		if ( tr.Hit && tr.Entity is Player player && !player.IsImmune )
 		{
 			player.Daze( Owner, DazeType.PhysicalTrauma );
-
 			Charges -= 1;
 			if ( Charges >= 0 )
-				Owner.Inventory.RemoveFromInventory( this );
+				_ = WaitForAnimationFinish();
 		}
 	}
 
@@ -60,5 +61,19 @@ public sealed partial class StunWeapon : BaseCarriable
 
 		if ( Game.IsServer )
 			HolsterToBack();
+	}
+
+	private async Task WaitForAnimationFinish()
+	{
+		await GameTask.Delay( 150 );
+
+		if ( !Game.IsServer )
+			return;
+
+		if ( Owner.HeldItem == this )
+		{
+			Owner.UnsetHeldItemInput( To.Single( Owner ) );
+			Owner.Inventory.RemoveFromInventory( this );
+		}
 	}
 }
