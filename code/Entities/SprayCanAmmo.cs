@@ -68,7 +68,8 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 		if ( IsUnavailable || other is not Player player )
 			return;
 
-		player.Inventory.GetItem<SprayCan>().Ammo += AmmoAmount;
+		var sprayCan = player.Inventory.GetItem<SprayCan>();
+		sprayCan.Ammo = Math.Clamp( sprayCan.Ammo + AmmoAmount, 0, SprayCan.MaxAmmo );
 		TimeSinceLastPickup = 0f;
 
 		if ( OneTimeUse )
