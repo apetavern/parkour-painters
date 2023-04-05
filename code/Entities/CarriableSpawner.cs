@@ -110,8 +110,10 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 
 		if ( foundType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 		{
-			if ( player.Inventory.CanAddItem( foundType ) )
-				player.Inventory.AddToInventory( foundType );
+			if ( !player.Inventory.CanAddItem( foundType ) )
+				return;
+
+			player.Inventory.AddToInventory( foundType );
 		}
 
 		TimeSinceLastPickup = 0f;
