@@ -41,7 +41,7 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 	/// <summary>
 	/// The alpha component of the render color when the spawner is unavailable.
 	/// </summary>
-	private const float UnavailableAlpha = 0.6f;
+	private const float UnavailableAlpha = 0f;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
