@@ -34,8 +34,11 @@ public sealed partial class DashMechanic : ControllerMechanic
 		var direction = Player.Rotation.Forward.Normal;
 
 		var particles = Particles.Create( "particles/dash/dash_base.vpcf", Player );
-		particles.SetEntityBone( 0, Player, Player.GetBoneIndex( "spine_0" ) );
-		particles.SetOrientation( 1, Player.Rotation );
+		if ( particles is not null )
+		{
+			particles.SetEntityBone( 0, Player, Player.GetBoneIndex( "spine_0" ) );
+			particles.SetOrientation( 1, Player.Rotation );
+		}
 
 		Controller.Velocity = direction * forMul * flAirFactor;
 		Controller.Velocity = Controller.Velocity.WithZ( flMul * flAirFactor );
