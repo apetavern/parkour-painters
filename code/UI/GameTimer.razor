@@ -10,7 +10,7 @@
             WaitingState => $"{Game.Clients.Count} / {ParkourPainters.MinimumPlayers}",
             PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
             GameOverState => string.Empty,
-            MapVoteState => string.Empty
+            MapVoteState m => $"{FormatTimer(m.TimeUntilMapSwitch)}"
         };
         <label style="padding-left: 10px;">@desc</label>
     }
@@ -26,7 +26,8 @@
     {
         var state = ParkourPainters.Current.CurrentState;
         var playState = state as PlayState;
-        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), Game.Clients.Count, ParkourPainters.MinimumPlayers);
+        var mapVoteState = state as MapVoteState;
+        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), mapVoteState?.TimeUntilMapSwitch.ToString(), Game.Clients.Count, ParkourPainters.MinimumPlayers);
     }
 }
 

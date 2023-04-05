@@ -7,7 +7,7 @@ namespace ParkourPainters.State;
 internal sealed partial class MapVoteState : Entity, IGameState
 {
 	/// <inheritdoc/>
-	public string StateName { get; set; } = "Map Vote!";
+	public string StateName { get; set; } = "Map Vote";
 
 	/// <summary>
 	/// The active instance of <see cref="MapVoteState"/>. This can be null.
@@ -17,7 +17,7 @@ internal sealed partial class MapVoteState : Entity, IGameState
 	/// <summary>
 	/// The time in seconds until the game swaps maps.
 	/// </summary>
-	[Net] private TimeUntil TimeUntilMapSwitch { get; set; }
+	[Net] public TimeUntil TimeUntilMapSwitch { get; private set; }
 
 	/// <summary>
 	/// Client -> ident of map they voted on.
@@ -74,7 +74,15 @@ internal sealed partial class MapVoteState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
+		if ( TimeUntilMapSwitch > 0 )
+			return;
 
+		Game.ChangeLevel
+		(
+			Votes.GroupBy( e => e.Value )
+			.OrderBy( e => e.Count() )
+			.Last().Key
+		);
 	}
 
 	/// <summary>
@@ -99,6 +107,10 @@ internal sealed partial class MapVoteState : Entity, IGameState
 		if ( Instance is null )
 			return;
 
-		Instance.Votes[ConsoleSystem.Caller.Client] = map;
+		var client = ConsoleSystem.Caller;
+		if ( Instance.Votes.ContainsKey( client ) )
+			Instance.Votes[client] = map;
+		else
+			Instance.Votes.Add( client, map );
 	}
 }

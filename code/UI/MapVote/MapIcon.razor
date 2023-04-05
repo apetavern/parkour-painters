@@ -5,7 +5,7 @@
     return;
 }
 
-<root style="background-image: url(@PackageData.Thumb)">
+<root class="@(VotedForMap() ? "selected" : "")" style="background-image: url(@PackageData.Thumb)" @onclick=@VoteMap>
     <div style="align-items: center;">
         @if (!string.IsNullOrEmpty(PackageData.Org.Thumb))
         {
@@ -19,6 +19,14 @@
     public string Ident { get; set; }
     public Package PackageData { get; private set; }
 
+    private bool VotedForMap()
+    {
+        if (MapVoteState.Instance is null || !MapVoteState.Instance.Votes.ContainsKey(Game.LocalClient))
+            return false;
+
+        return MapVoteState.Instance.Votes[Game.LocalClient] == Ident;
+    }
+
     protected override async Task OnParametersSetAsync()
     {
         var package = await Package.Fetch(Ident, true);
@@ -31,6 +39,11 @@
         PackageData = package;
         StateHasChanged();
     }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(VotedForMap());
+    }
 }
 
 <style>
@@ -42,6 +55,7 @@
         cursor: pointer;
         justify-content: space-between;
         flex-direction: column;
+        box-shadow: 3px 3px 10px black;
 
         label {
             color: white;
@@ -67,6 +81,11 @@
 
         &:active {
             transform: scale(1.0);
+        }
+
+        &.selected {
+            border-width: 10px;
+            border-color: orange;
         }
     }
 </style>
