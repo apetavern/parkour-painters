@@ -24,4 +24,9 @@ Layer0
 
 	//---- Texture Coordinates ----
 	g_vTiling "[1.000 1.000]"
+
+	SystemAttributes
+	{
+		PhysicsSurfaceProperties "sand"
+	}
 }

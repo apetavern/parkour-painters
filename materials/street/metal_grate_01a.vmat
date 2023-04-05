@@ -30,4 +30,9 @@ Layer0
 	g_flSmoothStepMax "1.000"
 	g_flSmoothStepMin "0.000"
 	Translucency "materials/street/textures/metal_grate_01a_trans.png"
+
+	SystemAttributes
+	{
+		PhysicsSurfaceProperties "metal.sheet"
+	}
 }
