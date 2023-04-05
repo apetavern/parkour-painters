@@ -1,0 +1,43 @@
+@inherits Sandbox.UI.WorldPanel
+@namespace ParkourPainters.UI
+
+<root>
+    <label>lock</label>
+</root>
+
+@code {
+    private TimeUntil TimeUntilUnlock { get; set; }
+    private Color Color { get; set; }
+
+    public LockWorldPanel(Vector3 position, Color color, TimeUntil timeUntilUnlock)
+    {
+        TimeUntilUnlock = timeUntilUnlock;
+        Color = color;
+    }
+
+    [Event.Client.Frame]
+    private void OnClientFrame()
+    {
+        if (TimeUntilUnlock)
+        {
+            Delete(true);
+            return;
+        }
+
+        SetClass("blinkerton", TimeUntilUnlock + 3 >= 0);
+    }
+}
+
+<style>
+    LockWorldPanel {
+        justify-content: center;
+        align-items: center;
+
+        label {
+            color: @Color.Hex;
+            font-family: MaterialIcons;
+            font-size: 75px;
+            text-shadow: 2px 2px 0px rgba(black, 0.75);
+        }
+    }
+</style>
