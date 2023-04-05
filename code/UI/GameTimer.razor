@@ -10,6 +10,7 @@
             WaitingState => $"{Game.Clients.Count} / {ParkourPainters.MinimumPlayers}",
             PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
             GameOverState => string.Empty,
+            MapVoteState => string.Empty
         };
         <label style="padding-left: 10px;">@desc</label>
     }

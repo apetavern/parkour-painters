@@ -40,6 +40,9 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// </summary>
 	[Net] public IList<GraffitiArea> Spots { get; private set; }
 
+	/// <summary>
+	/// The total possible map score determined by the spray spots that have owners.
+	/// </summary>
 	[Net] public int TotalPossibleMapScore { get; private set; } = 0;
 
 	/// <inheritdoc/>
@@ -138,7 +141,13 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
-		if ( TimeUntilResetGame <= 0 )
+		if ( TimeUntilResetGame > 0 )
+			return;
+
+		ParkourPainters.Current.GamesRemaining -= 1;
+		if ( ParkourPainters.Current.GamesRemaining == 0 )
+			MapVoteState.SetActive();
+		else
 			WaitingState.SetActive();
 	}
 

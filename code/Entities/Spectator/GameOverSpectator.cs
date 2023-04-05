@@ -87,12 +87,10 @@ internal sealed partial class GameOverSpectator : Entity
 	/// </summary>
 	private void LerpToSpot()
 	{
-		if ( Finished )
+		if ( GameOverState.Instance is null || Finished )
 			return;
 
-		var lastSpray = LastSpot is null
-			? null
-			: LastSpot.LastCompletedSpray;
+		var lastSpray = LastSpot?.LastCompletedSpray;
 		var currentSpray = CurrentSpot.LastCompletedSpray;
 
 		var startPos = LastSpot is null
