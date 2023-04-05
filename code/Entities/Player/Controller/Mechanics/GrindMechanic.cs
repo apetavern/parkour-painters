@@ -101,7 +101,7 @@ public partial class GrindMechanic : ControllerMechanic
 			if ( SparkParticles is null )
 			{
 				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", Player );
-				SparkParticles.SetEntityBone( 0, Player, Player.GetBoneIndex( "ankle_L" ) );
+				SparkParticles?.SetEntityBone( 0, Player, Player.GetBoneIndex( "ankle_L" ) );
 			}
 		}
 	}
