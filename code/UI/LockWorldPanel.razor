@@ -9,14 +9,14 @@
     private TimeUntil TimeUntilUnlock { get; set; }
     private Color Color { get; set; }
 
-    public LockWorldPanel(Vector3 position, Color color, TimeUntil timeUntilUnlock)
+    public LockWorldPanel(Spray spray, Color color, TimeUntil timeUntilUnlock)
     {
+        Position = spray.Position + spray.Position.Normal * -5;
         TimeUntilUnlock = timeUntilUnlock;
         Color = color;
     }
 
-    [Event.Client.Frame]
-    private void OnClientFrame()
+    public override void Tick()
     {
         if (TimeUntilUnlock)
         {
@@ -32,12 +32,18 @@
     LockWorldPanel {
         justify-content: center;
         align-items: center;
+        transition: all 2s ease-out;
+        opacity: 1;
 
         label {
             color: @Color.Hex;
             font-family: MaterialIcons;
-            font-size: 75px;
+            font-size: 150px;
             text-shadow: 2px 2px 0px rgba(black, 0.75);
+        }
+
+        &:intro {
+            opacity: 0;
         }
     }
 </style>

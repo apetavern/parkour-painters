@@ -25,6 +25,11 @@ public sealed partial class GraffitiArea : ModelEntity
 	public Spray LastCompletedSpray => Sprays.LastOrDefault( x => x.IsSprayCompleted );
 
 	/// <summary>
+	/// Whether the graffiti area is allowed to receive sprays.
+	/// </summary>
+	public bool IsLocked => Sprays.LastOrDefault( x => x.IsLocked ) is not null;
+
+	/// <summary>
 	/// The team that currently owns the last completed spray.
 	/// </summary>
 	public Team AreaOwner => LastCompletedSpray?.TeamOwner;
@@ -55,6 +60,8 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// </summary>
 	private Vector3 SprayPositionZOffset = Vector3.Up * 10f;
 
+	private LockWorldPanel LockWorldPanel { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -83,6 +90,9 @@ public sealed partial class GraffitiArea : ModelEntity
 
 		// Do nothing if this is already being sprayed by a different player.
 		if ( SprayingPlayer is not null && SprayingPlayer != player )
+			return;
+
+		if ( IsLocked )
 			return;
 
 		var mostRecentSpray = Sprays.LastOrDefault();
@@ -230,6 +240,12 @@ public sealed partial class GraffitiArea : ModelEntity
 	{
 		if ( SceneObject is null )
 			return;
+
+		if ( IsLocked && !LockWorldPanel.IsValid() )
+			LockWorldPanel = new LockWorldPanel( LastCompletedSpray, AreaOwner.Group.SprayColor, Spray.LockDuration );
+
+		if ( !IsLocked && LockWorldPanel.IsValid() )
+			LockWorldPanel.Delete( true );
 
 		// Hatching based on player distance
 		var player = Game.LocalPawn;
