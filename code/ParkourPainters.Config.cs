@@ -69,6 +69,12 @@ partial class ParkourPainters
 	public static float SprayTime { get; private set; } = 0.3f;
 
 	/// <summary>
+	/// The default map we will swap to if nobody voted.
+	/// </summary>
+	[ConVar.Replicated( "pp_defaultmap" )]
+	public static string DefaultMap { get; private set; } = "apetavern.pp_rooftops";
+
+	/// <summary>
 	/// Defines the percentage factor that a player will be slowed to when sprayed by another player.
 	/// </summary>
 	[ConVar.Replicated( "pp_sprayedspeedfactor" )]
@@ -85,4 +91,6 @@ partial class ParkourPainters
 	/// </summary>
 	[ConVar.Replicated( "pp_cheat_infinitedash" )]
 	internal static bool InfiniteDash { get; private set; } = false;
+
+
 }

@@ -77,6 +77,12 @@ internal sealed partial class MapVoteState : Entity, IGameState
 		if ( TimeUntilMapSwitch > 0 )
 			return;
 
+		if ( Votes.Count == 0 )
+		{
+			Game.ChangeLevel( ParkourPainters.DefaultMap );
+			return;
+		}
+
 		Game.ChangeLevel
 		(
 			Votes.GroupBy( e => e.Value )
