@@ -1,5 +1,5 @@
 {
-  "Model": null,
+  "Model": "models/environment/cars/van.vmdl",
   "Description": "",
   "BlendMode": "Opaque",
   "nodes": [
@@ -29,7 +29,7 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "864,-48"
+      "Position": "1024,-64"
     },
     {
       "_class": "TextureCoord",
@@ -72,7 +72,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_color_png_2e4d779b.generated.vtex",
+      "Texture": "models/environment/cars/van/materials/generic_tintable/phong1_color_png_7a21dfaa.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -94,7 +94,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_rough_png_aee0e5e.generated.vtex",
+      "Texture": "models/environment/cars/van/materials/phong1_rough_png_6cdcb208.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -119,7 +119,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_normal_png_d1cf3df7.generated.vtex",
+      "Texture": "models/environment/cars/van/materials/phong1_normal_png_87e63218.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -146,7 +146,7 @@
       },
       "DecodeNormal": true,
       "Identifier": "7",
-      "Position": "32,96"
+      "Position": "192,80"
     },
     {
       "_class": "TextureSampler",
@@ -154,7 +154,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_metal_png_3646b48f.generated.vtex",
+      "Texture": "models/environment/cars/van/materials/phong1_metal_png_6d6f2621.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -179,7 +179,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_mask_png_2e162a21.generated.vtex",
+      "Texture": "models/environment/cars/van/materials/tintmask_png_934cbc95.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -213,7 +213,7 @@
       },
       "Fraction": 0.5,
       "Identifier": "10",
-      "Position": "192,-224"
+      "Position": "352,-240"
     },
     {
       "_class": "Subtract",
@@ -225,7 +225,7 @@
       "DefaultA": 1,
       "DefaultB": 0,
       "Identifier": "11",
-      "Position": "64,-112"
+      "Position": "224,-128"
     },
     {
       "_class": "Multiply",
@@ -240,7 +240,7 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "12",
-      "Position": "64,-336"
+      "Position": "224,-352"
     },
     {
       "_class": "Float",
@@ -255,7 +255,7 @@
         }
       },
       "Identifier": "13",
-      "Position": "240,-96"
+      "Position": "400,-112"
     },
     {
       "_class": "Lerp",
@@ -273,7 +273,7 @@
       },
       "Fraction": 0.5,
       "Identifier": "14",
-      "Position": "464,-192"
+      "Position": "624,-208"
     },
     {
       "_class": "ScreenCoordinate",
@@ -317,7 +317,7 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "17",
-      "Position": "688,-48"
+      "Position": "848,-64"
     },
     {
       "_class": "Multiply",
@@ -371,7 +371,7 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "20",
-      "Position": "336,576"
+      "Position": "496,560"
     },
     {
       "_class": "Multiply",
@@ -406,22 +406,17 @@
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "25",
-        "Output": "Result"
+        "Identifier": "26",
+        "Output": "RGB"
       },
       "B": {
-        "Identifier": "26",
+        "Identifier": "25",
         "Output": "Result"
       },
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "24",
-      "Position": "-64,-480"
-    },
-    {
-      "_class": "VertexColor",
-      "Identifier": "25",
-      "Position": "-352,-592"
+      "Position": "64,-512"
     },
     {
       "_class": "Float4",
@@ -437,8 +432,13 @@
           "Name": ""
         }
       },
+      "Identifier": "25",
+      "Position": "-176,-464"
+    },
+    {
+      "_class": "VertexColor",
       "Identifier": "26",
-      "Position": "-352,-512"
+      "Position": "-176,-544"
     }
   ]
 }

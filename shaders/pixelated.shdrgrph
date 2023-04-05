@@ -29,7 +29,7 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "704,-48"
+      "Position": "864,-48"
     },
     {
       "_class": "TextureCoord",
@@ -146,7 +146,7 @@
       },
       "DecodeNormal": true,
       "Identifier": "7",
-      "Position": "32,96"
+      "Position": "192,96"
     },
     {
       "_class": "TextureSampler",
@@ -212,7 +212,7 @@
         }
       },
       "Identifier": "10",
-      "Position": "-368,-464"
+      "Position": "-176,-448"
     },
     {
       "_class": "Lerp",
@@ -230,7 +230,7 @@
       },
       "Fraction": 0.5,
       "Identifier": "11",
-      "Position": "192,-224"
+      "Position": "352,-224"
     },
     {
       "_class": "Subtract",
@@ -242,7 +242,7 @@
       "DefaultA": 1,
       "DefaultB": 0,
       "Identifier": "12",
-      "Position": "64,-112"
+      "Position": "224,-112"
     },
     {
       "_class": "Multiply",
@@ -257,7 +257,7 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "13",
-      "Position": "64,-336"
+      "Position": "224,-336"
     },
     {
       "_class": "Float",
@@ -272,7 +272,7 @@
         }
       },
       "Identifier": "14",
-      "Position": "240,-96"
+      "Position": "400,-96"
     },
     {
       "_class": "Lerp",
@@ -290,18 +290,18 @@
       },
       "Fraction": 0.5,
       "Identifier": "15",
-      "Position": "464,-192"
+      "Position": "624,-192"
     },
     {
       "_class": "VertexColor",
       "Identifier": "16",
-      "Position": "-368,-544"
+      "Position": "-176,-528"
     },
     {
       "_class": "Multiply",
       "A": {
         "Identifier": "16",
-        "Output": "Result"
+        "Output": "RGB"
       },
       "B": {
         "Identifier": "10",
@@ -310,7 +310,7 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "17",
-      "Position": "-96,-432"
+      "Position": "64,-496"
     }
   ]
 }

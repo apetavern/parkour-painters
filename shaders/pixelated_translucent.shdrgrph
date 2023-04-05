@@ -6,29 +6,29 @@
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "3",
+        "Identifier": "21",
         "Output": "Result"
       },
       "B": {
-        "Identifier": "8",
+        "Identifier": "7",
         "Output": "Result"
       },
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "0",
-      "Position": "1024,192"
+      "Position": "1168,144"
     },
     {
       "_class": "Subtract",
       "A": {},
       "B": {
-        "Identifier": "4",
+        "Identifier": "3",
         "Output": "Result"
       },
       "DefaultA": 1,
       "DefaultB": 0,
       "Identifier": "1",
-      "Position": "1024,416"
+      "Position": "1184,416"
     },
     {
       "_class": "Lerp",
@@ -37,7 +37,7 @@
         "Output": "Result"
       },
       "B": {
-        "Identifier": "8",
+        "Identifier": "7",
         "Output": "Result"
       },
       "C": {
@@ -46,29 +46,12 @@
       },
       "Fraction": 0.5,
       "Identifier": "2",
-      "Position": "1152,304"
-    },
-    {
-      "_class": "Float4",
-      "Name": "Color Tint",
-      "Value": "1,1,1,1",
-      "UI": {
-        "Type": "Color",
-        "PrimaryGroup": {
-          "Name": "Color",
-          "Priority": 1
-        },
-        "SecondaryGroup": {
-          "Name": ""
-        }
-      },
-      "Identifier": "3",
-      "Position": "784,80"
+      "Position": "1312,304"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "10",
+        "Identifier": "9",
         "Output": "Result"
       },
       "Texture": "materials/hotspot/textures/painted_metal_hs_01a_mask_png_2e162a21.generated.vtex",
@@ -86,23 +69,23 @@
           "Name": "Color"
         }
       },
-      "Identifier": "4",
+      "Identifier": "3",
       "Position": "784,432"
     },
     {
       "_class": "TransformNormal",
       "Input": {
-        "Identifier": "6",
+        "Identifier": "5",
         "Output": "Result"
       },
       "DecodeNormal": true,
-      "Identifier": "5",
-      "Position": "992,624"
+      "Identifier": "4",
+      "Position": "1152,624"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "10",
+        "Identifier": "9",
         "Output": "Result"
       },
       "Texture": "materials/hotspot/textures/painted_metal_hs_01a_normal_png_d1cf3df7.generated.vtex",
@@ -121,13 +104,13 @@
           "Priority": 1
         }
       },
-      "Identifier": "6",
+      "Identifier": "5",
       "Position": "784,624"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "10",
+        "Identifier": "9",
         "Output": "Result"
       },
       "Texture": "materials/hotspot/textures/painted_metal_hs_01a_rough_png_aee0e5e.generated.vtex",
@@ -146,13 +129,13 @@
           "Priority": 2
         }
       },
-      "Identifier": "7",
+      "Identifier": "6",
       "Position": "784,816"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "10",
+        "Identifier": "9",
         "Output": "Result"
       },
       "Texture": "materials/hotspot/textures/painted_metal_hs_01a_color_png_2e4d779b.generated.vtex",
@@ -168,7 +151,7 @@
           "Name": "Color"
         }
       },
-      "Identifier": "8",
+      "Identifier": "7",
       "Position": "784,240"
     },
     {
@@ -181,35 +164,35 @@
           "Priority": 5
         }
       },
-      "Identifier": "9",
+      "Identifier": "8",
       "Position": "144,704"
     },
     {
       "_class": "Multiply",
       "A": {
-        "Identifier": "11",
+        "Identifier": "10",
         "Output": "Result"
       },
       "B": {
-        "Identifier": "9",
+        "Identifier": "8",
         "Output": "Result"
       },
       "DefaultA": 0,
       "DefaultB": 1,
-      "Identifier": "10",
+      "Identifier": "9",
       "Position": "400,640"
     },
     {
       "_class": "TextureCoord",
       "UseSecondaryCoord": false,
       "Tiling": "1,1",
-      "Identifier": "11",
+      "Identifier": "10",
       "Position": "144,624"
     },
     {
       "_class": "Lerp",
       "A": {
-        "Identifier": "8",
+        "Identifier": "7",
         "Output": "Result"
       },
       "B": {
@@ -217,12 +200,12 @@
         "Output": "Result"
       },
       "C": {
-        "Identifier": "13",
+        "Identifier": "12",
         "Output": "Result"
       },
       "Fraction": 0.5,
-      "Identifier": "12",
-      "Position": "1424,336"
+      "Identifier": "11",
+      "Position": "1584,336"
     },
     {
       "_class": "Float",
@@ -236,13 +219,13 @@
           "Priority": 2
         }
       },
-      "Identifier": "13",
-      "Position": "1200,432"
+      "Identifier": "12",
+      "Position": "1360,432"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "10",
+        "Identifier": "9",
         "Output": "Result"
       },
       "Texture": "materials/hotspot/textures/painted_metal_hs_01a_metal_png_3646b48f.generated.vtex",
@@ -261,25 +244,25 @@
           "Priority": 3
         }
       },
-      "Identifier": "14",
+      "Identifier": "13",
       "Position": "784,1008"
     },
     {
       "_class": "Saturate",
       "Input": {
-        "Identifier": "18",
+        "Identifier": "17",
         "Output": "Result"
       },
-      "Identifier": "15",
-      "Position": "1552,1072"
+      "Identifier": "14",
+      "Position": "1712,1072"
     },
     {
       "_class": "TextureSampler",
       "Coords": {
-        "Identifier": "10",
+        "Identifier": "9",
         "Output": "Result"
       },
-      "Texture": "materials/sprays/textures/punk_anarchy_01a_trans_png_64bbdc1.generated.vtex",
+      "Texture": "materials/street/textures/chainlink_fence_trans_png_5c1d60df.generated.vtex",
       "Sampler": {
         "Filter": "Point"
       },
@@ -294,30 +277,30 @@
           "Priority": 1
         }
       },
-      "Identifier": "16",
+      "Identifier": "15",
       "Position": "784,1216"
     },
     {
       "_class": "Result",
       "Albedo": {
-        "Identifier": "12",
+        "Identifier": "11",
         "Output": "Result"
       },
       "Emission": {},
       "Opacity": {
-        "Identifier": "15",
+        "Identifier": "14",
         "Output": "Result"
       },
       "Normal": {
-        "Identifier": "5",
+        "Identifier": "4",
         "Output": "Result"
       },
       "Roughness": {
-        "Identifier": "7",
+        "Identifier": "6",
         "Output": "Result"
       },
       "Metalness": {
-        "Identifier": "14",
+        "Identifier": "13",
         "Output": "Result"
       },
       "AmbientOcclusion": {},
@@ -325,25 +308,25 @@
       "DefaultRoughness": 1,
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
-      "Identifier": "17",
-      "Position": "1936,496"
+      "Identifier": "16",
+      "Position": "2096,496"
     },
     {
       "_class": "SmoothStep",
       "Input": {
-        "Identifier": "16",
+        "Identifier": "15",
         "Output": "Result"
       },
       "Edge1": {
-        "Identifier": "19",
+        "Identifier": "18",
         "Output": "Result"
       },
       "Edge2": {
-        "Identifier": "20",
+        "Identifier": "19",
         "Output": "Result"
       },
-      "Identifier": "18",
-      "Position": "1328,1152"
+      "Identifier": "17",
+      "Position": "1488,1152"
     },
     {
       "_class": "Float",
@@ -358,8 +341,8 @@
           "Priority": 1
         }
       },
-      "Identifier": "19",
-      "Position": "1072,1264"
+      "Identifier": "18",
+      "Position": "1232,1264"
     },
     {
       "_class": "Float",
@@ -374,8 +357,50 @@
           "Priority": 1
         }
       },
+      "Identifier": "19",
+      "Position": "1232,1328"
+    },
+    {
+      "_class": "VertexColor",
       "Identifier": "20",
-      "Position": "1072,1328"
+      "Position": "784,144"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "23",
+        "Output": "RGB"
+      },
+      "B": {
+        "Identifier": "22",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "21",
+      "Position": "1024,-64"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Color Tint",
+      "Value": "1,1,1,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": "Color",
+          "Priority": 1
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "22",
+      "Position": "784,-16"
+    },
+    {
+      "_class": "VertexColor",
+      "Identifier": "23",
+      "Position": "784,-96"
     }
   ]
 }
