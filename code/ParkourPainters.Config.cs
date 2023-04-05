@@ -81,6 +81,12 @@ partial class ParkourPainters
 	public static float SprayedSpeedFactor { get; private set; } = 0.7f;
 
 	/// <summary>
+	/// The maximum number of games that can be played before map switch.
+	/// </summary>
+	[ConVar.Replicated( "pp_gamelimit" )]
+	public static int GameLimit { get; private set; } = 5;
+
+	/// <summary>
 	/// Defines the amount of time that a player will be immune after being dazed by another player.
 	/// </summary>
 	[ConVar.Replicated( "pp_immunetime" )]

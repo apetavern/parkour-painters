@@ -144,8 +144,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 		if ( TimeUntilResetGame > 0 )
 			return;
 
-		ParkourPainters.Current.GamesRemaining -= 1;
-		if ( ParkourPainters.Current.GamesRemaining == 0 )
+		ParkourPainters.Current.GamesPlayed += 1;
+		if ( ParkourPainters.Current.GamesPlayed >= ParkourPainters.GameLimit )
 			MapVoteState.SetActive();
 		else
 			WaitingState.SetActive();

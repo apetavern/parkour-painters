@@ -13,10 +13,10 @@ public sealed partial class ParkourPainters : GameManager
 	[Net] internal IGameState CurrentState { get; private set; }
 
 	/// <summary>
-	/// The number of games left to play before map switch.
+	/// The number of games played so far.
 	/// </summary>
 	[Net]
-	public int GamesRemaining { get; set; } = 1;
+	public int GamesPlayed { get; set; } = 0;
 
 	public ParkourPainters()
 	{
