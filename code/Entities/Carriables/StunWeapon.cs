@@ -34,7 +34,8 @@ public sealed partial class StunWeapon : BaseCarriable
 		PlaySound( "sounds/weapons/bat_swing.sound" );
 
 		var armPosition = Owner.EyePosition - Vector3.Up * 16f;
-		var tr = Trace.Ray( armPosition, armPosition + Owner.LookInput.ToRotation().Forward * 50f )
+		var tr = Trace.Ray( armPosition, armPosition + Owner.LookInput.ToRotation().Forward * 65f )
+			.Size( 8f )
 			.Ignore( Owner )
 			.Run();
 
