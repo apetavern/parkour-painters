@@ -6,7 +6,8 @@
   "SelectionMode": "RandomExclusive",
   "Sounds": [
     "sounds/music/spray_down.vsnd",
-    "sounds/music/reloaded.vsnd"
+    "sounds/music/reloaded.vsnd",
+    "sounds/music/concrete_computer.vsnd"
   ],
   "MaximumDistance": 1308.4543,
   "MinimumDistance": 65.42272

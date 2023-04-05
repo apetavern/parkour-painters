@@ -37,6 +37,8 @@ internal sealed partial class WaitingState : Entity, IGameState
 
 	internal TimeSince _timeSinceLastMessage;
 
+	private Sound WarmupMusic { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -61,6 +63,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 	void IGameState.Exit()
 	{
 		(Teams, Spectators) = BuildDefaultTeams();
+		WarmupMusic.Stop();
 	}
 
 	/// <inheritdoc/>
@@ -77,11 +80,21 @@ internal sealed partial class WaitingState : Entity, IGameState
 		TimeUntilGameStart = ParkourPainters.GameStartGracePeriod;
 	}
 
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+
+		WarmupMusic.Stop();
+	}
+
 	/// <inheritdoc/>
 	void IGameState.ClientTick()
 	{
 		if ( !GameStarting || _timeSinceLastMessage < 1 )
 			return;
+
+		if ( !WarmupMusic.IsPlaying )
+			WarmupMusic = Sound.FromScreen( "painters_warmup" );
 
 		_timeSinceLastMessage = 0;
 		UI.TextChat.AddInfoChatEntry( $"Starting in {Math.Round( TimeSpan.FromSeconds( TimeUntilGameStart ).TotalSeconds )}" );
