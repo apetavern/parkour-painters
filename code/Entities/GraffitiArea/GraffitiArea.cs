@@ -242,7 +242,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			return;
 
 		if ( IsLocked && !LockWorldPanel.IsValid() )
-			LockWorldPanel = new LockWorldPanel( LastCompletedSpray, AreaOwner.Group.SprayColor, Spray.LockDuration );
+			LockWorldPanel = new LockWorldPanel( LastCompletedSpray, AreaOwner.Group.SprayColor );
 
 		if ( !IsLocked && LockWorldPanel.IsValid() )
 			LockWorldPanel.Delete( true );
