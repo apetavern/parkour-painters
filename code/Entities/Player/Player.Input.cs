@@ -39,7 +39,7 @@ public partial class Player
 	/// <summary>
 	/// The currently held item.
 	/// </summary>
-	[ClientInput] private Entity heldItemInput { get; set; }
+	[ClientInput] public Entity heldItemInput { get; set; }
 
 	/// <summary>
 	/// Position a player should be looking from in world space.
@@ -101,7 +101,7 @@ public partial class Player
 	/// Switches the currently held item to one at the desired index into the <see cref="Inventory"/> items.
 	/// </summary>
 	/// <param name="index">The index into the <see cref="Inventory"/> items to look at.</param>
-	private void SwitchTo( int? index = null )
+	public void SwitchTo( int? index = null )
 	{
 		if ( index is null )
 		{
