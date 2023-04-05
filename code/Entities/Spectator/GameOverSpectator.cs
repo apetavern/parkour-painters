@@ -26,11 +26,11 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The current index that the spectator is at in the <see cref="GameOverState.Spots"/> list.
 	/// </summary>
-	[Net, Predicted] private int SpotIndex { get; set; }
+	private int SpotIndex { get; set; }
 	/// <summary>
 	/// The time in seconds since the current travel started.
 	/// </summary>
-	[Net, Predicted] private TimeSince TimeSinceTravelStarted { get; set; } = 0;
+	private TimeSince TimeSinceTravelStarted { get; set; } = 0;
 
 	private GameResults _gameResultsPanel;
 
@@ -58,22 +58,6 @@ internal sealed partial class GameOverSpectator : Entity
 	}
 
 	/// <inheritdoc/>
-	public sealed override void Simulate( IClient cl )
-	{
-		base.Simulate( cl );
-
-		LerpToSpot();
-	}
-
-	/// <inheritdoc/>
-	public sealed override void FrameSimulate( IClient cl )
-	{
-		base.FrameSimulate( cl );
-
-		LerpToSpot();
-	}
-
-	/// <inheritdoc/>
 	protected sealed override void OnDestroy()
 	{
 		base.OnDestroy();
@@ -85,6 +69,7 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// Lerps to the next spot to look at.
 	/// </summary>
+	[Event.Tick.Client]
 	private void LerpToSpot()
 	{
 		if ( GameOverState.Instance is null || Finished )
@@ -104,6 +89,7 @@ internal sealed partial class GameOverSpectator : Entity
 		var targetRot = Rotation.LookAt( currentSpray?.Position - Camera.Position ?? CurrentSpot.Position - Camera.Position );
 
 		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
+		Log.Info( fraction );
 
 		Camera.Position = Vector3.Lerp( startPos, targetPos, fraction );
 		Camera.Rotation = Rotation.Lerp( startRot, targetRot, fraction );
