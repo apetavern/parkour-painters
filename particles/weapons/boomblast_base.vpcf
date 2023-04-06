@@ -797,7 +797,7 @@
 					m_vDomainMaxs = [ 0.0, 0.0 ]
 				}
 			}
-			m_nSetMethod = "PARTICLE_SET_ADD_TO_CURRENT_VALUE"
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
 		},
 		{
 			_class = "C_OP_Decay"
