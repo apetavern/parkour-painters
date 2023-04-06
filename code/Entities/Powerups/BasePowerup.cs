@@ -45,6 +45,8 @@ internal partial class BasePowerup : EntityComponent<Player>, ISingletonComponen
 				ActiveParticles.SetPosition( 1, Entity.Team.Group.SprayColor.ToVector3() );
 		}
 
+		Entity.PlaySound( "powerup_pickup" );
+
 		if ( Entity.IsLocalPawn && !string.IsNullOrEmpty( Description ) )
 			Game.RootPanel.AddChild( new UI.PowerupPopup() { Desc = Description } );
 	}
