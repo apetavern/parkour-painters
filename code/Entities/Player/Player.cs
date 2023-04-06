@@ -81,6 +81,16 @@ public sealed partial class Player : AnimatedEntity
 	private Sound SprayLoop { get; set; }
 
 	/// <summary>
+	/// Grind particles.
+	/// </summary>
+	private Particles GrindParticles { get; set; }
+
+	/// <summary>
+	/// Grind sound.
+	/// </summary>
+	private Sound GrindLoop { get; set; }
+
+	/// <summary>
 	/// The time in seconds since the last footstep animation event happened.
 	/// </summary>
 	private TimeSince TimeSinceFootstep { get; set; } = 0;
@@ -152,6 +162,7 @@ public sealed partial class Player : AnimatedEntity
 		}
 
 		HandleSprayParticle();
+		HandleGrindParticle();
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
@@ -401,6 +412,27 @@ public sealed partial class Player : AnimatedEntity
 			SprayLoop.Stop();
 			SprayParticles?.Destroy( true );
 			SprayParticles = null;
+		}
+	}
+
+	private void HandleGrindParticle()
+	{
+		if ( !Game.IsServer )
+			return;
+
+		if ( GrindMechanic.IsActive )
+		{
+			if ( !GrindLoop.IsPlaying )
+				GrindLoop = PlaySound( "grind_loop" );
+
+			GrindParticles ??= Particles.Create( "particles/sparks/sparks_base.vpcf", this );
+			GrindParticles.SetEntityBone( 0, this, GetBoneIndex( "ankle_L" ) );
+		}
+		else
+		{
+			GrindLoop.Stop();
+			GrindParticles?.Destroy( true );
+			GrindParticles = null;
 		}
 	}
 }
