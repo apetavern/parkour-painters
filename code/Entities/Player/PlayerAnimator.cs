@@ -76,6 +76,10 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			{
 				animHelper.HoldType = CustomAnimationHelper.HoldTypes.Swing;
 			}
+			else if ( carriable is BoomBlaster )
+			{
+				animHelper.HoldType = CustomAnimationHelper.HoldTypes.RPG;
+			}
 			else
 			{
 				animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;

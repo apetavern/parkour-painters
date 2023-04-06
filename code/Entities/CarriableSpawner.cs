@@ -46,6 +46,7 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	private readonly Dictionary<string, int> _bodyGroupMapping = new()
 	{
 		{"StunWeapon", 3},
+		{"BoomBlaster", 1},
 	};
 
 	/// <summary>
