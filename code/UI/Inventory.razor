@@ -8,6 +8,11 @@
 <root>
     @foreach (var item in Hud.DisplayedPlayer.Inventory.Items)
     {
+        @if (item is null)
+        {
+            return;
+        }
+
         <div class="carriable @(Hud.DisplayedPlayer.LastEquippedItem is not null && Hud.DisplayedPlayer.LastEquippedItem == item ? "active" : "")">
             <label class="slot">@item.SlotText</label>
             <label style="padding-right: 5px;">@item.CarriableName</label>
