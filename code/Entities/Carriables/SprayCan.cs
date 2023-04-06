@@ -32,8 +32,6 @@ public sealed partial class SprayCan : BaseCarriable
 	/// </summary>
 	internal const int MaxAmmo = 500;
 
-	private bool _isLooping = false;
-
 	/// <inheritdoc/>
 	public sealed override void OnEquipped()
 	{
@@ -78,15 +76,6 @@ public sealed partial class SprayCan : BaseCarriable
 		Ammo--;
 		Owner.SetAnimParameter( "b_spray", true );
 
-		// Create spray particles
-		// if ( SprayParticles is null )
-		// {
-		// 	SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
-
-		// 	if ( Owner.Team?.Group?.SprayColor is not null )
-		// 		SprayParticles.SetPosition( 1, Owner.Team.Group.SprayColor.ToVector3() );
-		// }
-
 		var nozzleTransform = GetAttachment( "nozzle" );
 
 		var reachTrace = Trace.Ray( nozzleTransform.Value.Position - nozzleTransform.Value.Rotation.Forward * 20f, nozzleTransform.Value.Position + nozzleTransform.Value.Rotation.Forward * 80f )
@@ -104,29 +93,5 @@ public sealed partial class SprayCan : BaseCarriable
 			graffitiArea.OnSprayReceived( Owner, reachTrace );
 		else if ( reachTrace.Entity is Player player )
 			player.Spray( Owner );
-	}
-
-	/// <inheritdoc/>
-	protected sealed override void OnPrimaryReleased()
-	{
-		base.OnPrimaryReleased();
-
-		Cleanup();
-	}
-
-	/// <inheritdoc/>
-	protected sealed override void Cleanup()
-	{
-		base.Cleanup();
-
-		// if ( SprayParticles is not null )
-		// {
-		// 	SprayParticles.Simulating = false;
-		// 	SprayParticles?.Destroy( false );
-
-		// 	SprayParticles = null;
-		// }
-
-		Owner.SetAnimParameter( "b_spray", false );
 	}
 }

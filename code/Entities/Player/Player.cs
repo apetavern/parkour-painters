@@ -146,19 +146,7 @@ public sealed partial class Player : AnimatedEntity
 			LastEquippedItem?.OnEquipped();
 		}
 
-		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary && SprayParticles is null )
-		{
-			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
-
-			if ( Team?.Group?.SprayColor is not null )
-				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
-		}
-
-		if ( HeldItem is not SprayCan can2 || can2.HasReleasedPrimary )
-		{
-			SprayParticles?.Destroy( false );
-			SprayParticles = null;
-		}
+		HandleSprayParticle();
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
@@ -384,5 +372,22 @@ public sealed partial class Player : AnimatedEntity
 	public static void SetHP( float value )
 	{
 		(ConsoleSystem.Caller.Pawn as Player).Health = value;
+	}
+
+	private void HandleSprayParticle()
+	{
+		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary && SprayParticles is null )
+		{
+			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
+
+			if ( Team?.Group?.SprayColor is not null )
+				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
+		}
+
+		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary )
+		{
+			SprayParticles?.Destroy( true );
+			SprayParticles = null;
+		}
 	}
 }
