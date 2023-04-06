@@ -21,6 +21,11 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_MaintainEmitter"
+			m_nParticlesToMaintain = 20
 		},
 	]
 	m_Initializers = 
