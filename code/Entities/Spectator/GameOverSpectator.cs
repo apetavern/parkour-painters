@@ -48,6 +48,8 @@ internal sealed partial class GameOverSpectator : Entity
 	{
 		base.Spawn();
 
+		Transmit = TransmitType.Always;
+
 		Tags.Add( "player" );
 	}
 
