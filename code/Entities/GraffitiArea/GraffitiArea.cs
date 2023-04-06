@@ -22,7 +22,7 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// <summary>
 	/// Returns the spray that was last fully completed.
 	/// </summary>
-	public Spray LastCompletedSpray => Sprays.LastOrDefault( x => x.IsSprayCompleted );
+	public Spray LastCompletedSpray => Sprays?.LastOrDefault( x => x.IsSprayCompleted );
 
 	/// <summary>
 	/// Whether the graffiti area is allowed to receive sprays.
