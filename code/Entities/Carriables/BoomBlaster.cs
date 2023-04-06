@@ -17,6 +17,7 @@ public partial class BoomBlaster : BaseCarriable
 
 	protected override string ModelPath => "models/entities/boomblaster.vmdl";
 
+	private const float HitForce = 2500f;
 	[Net] public int Charges { get; internal set; } = 1;
 
 	protected override void OnPrimaryAttack()
@@ -26,11 +27,14 @@ public partial class BoomBlaster : BaseCarriable
 		if ( Owner.IsDazed )
 			return;
 
+		// Play attack anim
+		Owner.SetAnimParameter( "b_attack", true );
+
 		// Play a sound
 
 		// Fire a trace
 		var muzzleTransform = GetAttachment( "muzzle2" ).Value;
-		var tr = Trace.Ray( muzzleTransform.Position, muzzleTransform.Rotation.Forward * 2048f )
+		var tr = Trace.Ray( muzzleTransform.Position, Owner.LookInput.ToRotation().Forward * 2048f )
 				.Ignore( Owner )
 				.Run();
 
@@ -40,10 +44,25 @@ public partial class BoomBlaster : BaseCarriable
 			_ = Particles.Create( "particles/weapons/boomblast_base.vpcf", muzzleTransform.Position );
 
 			// Create explosion at end position
+			var playersHit = FindInSphere( tr.EndPosition, 64 );
+			DebugOverlay.Sphere( tr.EndPosition, 64f, Color.Red, 5f );
 
 			// Do explosion particle at end position
 
 			// Push players away
+			if ( Game.IsServer )
+			{
+				Log.Info( playersHit.Count() );
+				foreach ( var player in playersHit )
+				{
+					Log.Info( player );
+					var impulse = (player.Position - tr.EndPosition).Normal * HitForce;
+					if ( impulse.z < 0f )
+						impulse = impulse.WithZ( 0f );
+					Log.Info( impulse );
+					player.ApplyAbsoluteImpulse( impulse );
+				}
+			}
 		}
 
 		Charges -= 1;
