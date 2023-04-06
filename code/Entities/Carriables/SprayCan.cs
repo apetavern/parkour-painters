@@ -51,6 +51,8 @@ public sealed partial class SprayCan : BaseCarriable
 		Owner.SetAnimParameter( "b_spray", false );
 		Owner.SetAnimParameter( "b_haspaint", false );
 
+		Cleanup();
+
 		if ( Game.IsServer )
 			HolsterToHip();
 	}
@@ -120,10 +122,15 @@ public sealed partial class SprayCan : BaseCarriable
 	{
 		base.Cleanup();
 
-		Owner.SetAnimParameter( "b_spray", false );
+		if ( SprayParticles is not null )
+		{
+			SprayParticles.Simulating = false;
+			SprayParticles?.Destroy( false );
 
-		SprayParticles?.Destroy( true );
-		SprayParticles = null;
+			SprayParticles = null;
+		}
+
+		Owner.SetAnimParameter( "b_spray", false );
 
 		ToggleSpraySound( false );
 	}
