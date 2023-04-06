@@ -2,7 +2,7 @@
 @namespace ParkourPainters.UI
 
 <root>
-    <label>lock</label>
+    <img src="particles/textures/vfx_lock_02.png" class="icon" />
 </root>
 
 @code {
@@ -34,11 +34,11 @@
         transition: all 2s ease-out;
         opacity: 1;
 
-        label {
-            color: @Color.Hex;
-            font-family: MaterialIcons;
-            font-size: 150px;
-            text-shadow: 2px 2px 0px rgba(black, 0.75);
+        .icon {
+            height: 125px;
+            weight: 125px;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         &.blickerton {
