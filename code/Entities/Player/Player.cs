@@ -71,6 +71,11 @@ public sealed partial class Player : AnimatedEntity
 	private Particles SprayCloud { get; set; }
 
 	/// <summary>
+	/// The spray particles that come out when using the can.
+	/// </summary>
+	private Particles SprayParticles { get; set; }
+
+	/// <summary>
 	/// The time in seconds since the last footstep animation event happened.
 	/// </summary>
 	private TimeSince TimeSinceFootstep { get; set; } = 0;
@@ -139,6 +144,19 @@ public sealed partial class Player : AnimatedEntity
 			LastEquippedItem?.OnHolstered();
 			LastEquippedItem = HeldItem;
 			LastEquippedItem?.OnEquipped();
+		}
+
+		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary )
+		{
+			SprayParticles ??= Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
+
+			if ( Team?.Group?.SprayColor is not null )
+				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
+		}
+		else
+		{
+			SprayParticles?.Destroy( false );
+			SprayParticles = null;
 		}
 
 		Controller?.Simulate( cl );

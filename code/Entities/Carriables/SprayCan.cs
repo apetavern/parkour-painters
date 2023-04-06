@@ -25,14 +25,13 @@ public sealed partial class SprayCan : BaseCarriable
 	/// <summary>
 	/// The spray particles that come out when using the can.
 	/// </summary>
-	private Particles SprayParticles { get; set; }
+	// private Particles SprayParticles { get; set; }
 
 	/// <summary>
 	/// The maximum amount of spray that can be held in the spray can.
 	/// </summary>
 	internal const int MaxAmmo = 500;
 
-	private Sound _spraySound;
 	private bool _isLooping = false;
 
 	/// <inheritdoc/>
@@ -76,19 +75,17 @@ public sealed partial class SprayCan : BaseCarriable
 		if ( !Prediction.FirstTime )
 			return;
 
-		ToggleSpraySound( true );
-
 		Ammo--;
 		Owner.SetAnimParameter( "b_spray", true );
 
 		// Create spray particles
-		if ( SprayParticles is null )
-		{
-			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
+		// if ( SprayParticles is null )
+		// {
+		// 	SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", this, "nozzle" );
 
-			if ( Owner.Team?.Group?.SprayColor is not null )
-				SprayParticles.SetPosition( 1, Owner.Team.Group.SprayColor.ToVector3() );
-		}
+		// 	if ( Owner.Team?.Group?.SprayColor is not null )
+		// 		SprayParticles.SetPosition( 1, Owner.Team.Group.SprayColor.ToVector3() );
+		// }
 
 		var nozzleTransform = GetAttachment( "nozzle" );
 
@@ -122,32 +119,14 @@ public sealed partial class SprayCan : BaseCarriable
 	{
 		base.Cleanup();
 
-		if ( SprayParticles is not null )
-		{
-			SprayParticles.Simulating = false;
-			SprayParticles?.Destroy( false );
+		// if ( SprayParticles is not null )
+		// {
+		// 	SprayParticles.Simulating = false;
+		// 	SprayParticles?.Destroy( false );
 
-			SprayParticles = null;
-		}
+		// 	SprayParticles = null;
+		// }
 
 		Owner.SetAnimParameter( "b_spray", false );
-
-		ToggleSpraySound( false );
-	}
-
-	private void ToggleSpraySound( bool toggle )
-	{
-		if ( toggle && !_isLooping )
-		{
-			_isLooping = true;
-			_spraySound = PlaySound( "spray_loop" );
-			return;
-		}
-
-		if ( !toggle )
-		{
-			_isLooping = false;
-			_spraySound.Stop();
-		}
 	}
 }
