@@ -9,14 +9,7 @@ public partial class GrindMechanic : ControllerMechanic
 	[Net, Predicted] private bool _isReverse { get; set; }
 	private TimeSince _timeSinceExit { get; set; }
 
-	/// <summary>
-	/// The spark particles from the grinding mechanic
-	/// </summary>
-	private Particles SparkParticles { get; set; }
-
 	private float _incomingSpeed;
-	private Sound _grindSound;
-	private bool _isLooping;
 
 	protected override bool ShouldStart()
 	{
@@ -61,11 +54,7 @@ public partial class GrindMechanic : ControllerMechanic
 			return;
 		}
 
-		HandleSparkParticles();
-
 		_isGrinding = true;
-
-		ToggleGrindSound( true );
 
 		var increment = _isReverse ? -1 : +1;
 		var currentNode = _path.PathNodes[_currentNodeIndex];
@@ -94,18 +83,6 @@ public partial class GrindMechanic : ControllerMechanic
 		}
 	}
 
-	private void HandleSparkParticles()
-	{
-		if ( IsActive )
-		{
-			if ( SparkParticles is null )
-			{
-				SparkParticles = Particles.Create( "particles/sparks/sparks_base.vpcf", Player );
-				SparkParticles?.SetEntityBone( 0, Player, Player.GetBoneIndex( "ankle_L" ) );
-			}
-		}
-	}
-
 	protected override void OnStart()
 	{
 		_incomingSpeed = Player.Velocity.Length;
@@ -117,26 +94,6 @@ public partial class GrindMechanic : ControllerMechanic
 		_isGrinding = false;
 		_timeSinceExit = 0;
 
-		SparkParticles?.Destroy();
-		SparkParticles = null;
-
-		ToggleGrindSound( false );
 		Player.PlaySound( "grind_exit" );
-	}
-
-	private void ToggleGrindSound( bool toggle )
-	{
-		if ( toggle && !_isLooping )
-		{
-			_isLooping = true;
-			_grindSound = Player.PlaySound( "grind_loop" );
-			return;
-		}
-
-		if ( !toggle )
-		{
-			_isLooping = false;
-			_grindSound.Stop();
-		}
 	}
 }

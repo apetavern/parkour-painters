@@ -14,7 +14,10 @@
         SceneObject.Flags.ViewModelLayer = true;
 
         Team = team;
-        Transform = new Transform(startingPosition, Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f));
+        Transform = new Transform(
+            startingPosition - Camera.Rotation.Forward * 10f, 
+            Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f)
+        );
 
         _ = DelayDelete();
     }
@@ -37,10 +40,11 @@
 <style>
     ScoreWorldPanel {
         justify-content: center;
+        sound-in: spray_ding;
 
         label {
             font-family: ADDCN;
-            font-size: 70px;
+            font-size: 128px;
             text-shadow: 2px 2px 0px rgba(black, 0.75);
         }
 
