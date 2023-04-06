@@ -27,7 +27,7 @@ public sealed partial class GraffitiArea : ModelEntity
 	/// <summary>
 	/// Whether the graffiti area is allowed to receive sprays.
 	/// </summary>
-	public bool IsLocked => Sprays.LastOrDefault( x => x.IsLocked ) is not null;
+	public bool IsLocked => Sprays?.LastOrDefault( x => x.IsLocked ) is not null;
 
 	/// <summary>
 	/// The team that currently owns the last completed spray.

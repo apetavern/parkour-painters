@@ -10,12 +10,13 @@
     <div class="teams">
         @foreach (var entry in _scores)
         {
+            var isWinner = WinningTeam == entry.Key;
             var teamColor = entry.Key.Group.SprayColor.Hex;
             var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : ((float)entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
-            <div class="team" style="flex-direction: column; padding: 5px;">
+            <div class="team @(isWinner ? "winner" : "")" style="flex-direction: column; padding: 5px;">
                 <div>
                     <label class="title" style="color: @teamColor;">@entry.Key.Group.Name</label>
-                    @if (WinningTeam == entry.Key)
+                    @if (isWinner)
                     {
                         <label style="color: orange; font-family: MaterialIcons;">workspace_premium</label>
                     }
@@ -106,11 +107,31 @@
                     }
                 }
 
+                &.winner {
+                    animation-duration: 1s;
+                    animation-name: bob;
+                    animation-iteration-count: infinite;
+                }
+
                 &:intro {
                     bottom: 50px;
                     opacity: 0;
                 }
             }
+        }
+    }
+
+    @@keyframes bob {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(5);
+        }
+
+        100% {
+            transform: translateY(0);
         }
     }
 </style>
