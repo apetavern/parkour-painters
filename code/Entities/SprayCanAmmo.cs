@@ -72,6 +72,8 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 		if ( sprayCan.Ammo == SprayCan.MaxAmmo )
 			return;
 
+		player.PlaySound( "spray_pickup" );
+
 		sprayCan.Ammo = Math.Clamp( sprayCan.Ammo + AmmoAmount, 0, SprayCan.MaxAmmo );
 		TimeSinceLastPickup = 0f;
 
