@@ -247,7 +247,7 @@ public sealed partial class GraffitiArea : ModelEntity
 			LockWorldPanel = new LockWorldPanel( LastCompletedSpray, AreaOwner.Group.SprayColor, LastCompletedSpray.TimeSinceLastCompletedSpray );
 
 		if ( !IsLocked && LockWorldPanel.IsValid() )
-			LockWorldPanel.Delete();
+			LockWorldPanel.Delete( true );
 
 		// Hatching based on player distance
 		var player = Game.LocalPawn;
