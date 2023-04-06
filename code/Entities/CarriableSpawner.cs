@@ -114,6 +114,7 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 				return;
 
 			player.Inventory.AddToInventory( foundType );
+			player.PlaySound( "carriable_pickup" );
 		}
 
 		TimeSinceLastPickup = 0f;
