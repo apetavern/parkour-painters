@@ -41,7 +41,11 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
 	/// </summary>
-	internal const float StareTime = 0.5f;
+	internal const float StareTime = 0.75f;
+	/// <summary>
+	/// Whether or not the score has been created for the game over spot.
+	/// </summary>
+	internal bool _createdScore = false;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -95,17 +99,22 @@ internal sealed partial class GameOverSpectator : Entity
 		Camera.Position = Vector3.Lerp( startPos, targetPos, fraction );
 		Camera.Rotation = Rotation.Lerp( startRot, targetRot, fraction );
 
+		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime - 0.5f )
+			return;
+
+		if ( Game.IsClient && CurrentSpot is not null && CurrentSpot.AreaOwner is not null && !_createdScore )
+		{
+			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, (int)CurrentSpot.PointsType + 1 );
+			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, currentSpray.Position + currentSpray.Rotation.Up * 10f + Camera.Rotation.Backward * 50f );
+			_createdScore = true;
+		}
+
 		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
 			return;
 
-		if ( Game.IsClient && CurrentSpot is not null && CurrentSpot.AreaOwner is not null )
-		{
-			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, (int)CurrentSpot.PointsType + 1 );
-			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, currentSpray.Position + currentSpray.Rotation.Up * 10f );
-		}
-
 		SpotIndex++;
 		TimeSinceTravelStarted = 0;
+		_createdScore = false;
 
 		if ( Finished )
 			_gameResultsPanel.ShowWinner();
