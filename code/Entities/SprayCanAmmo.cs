@@ -54,6 +54,7 @@ internal sealed partial class SprayCanAmmo : AnimatedEntity
 			Model = SpawnerModel;
 
 		EnableTouch = true;
+		Scale = 2f;
 
 		_ = new PickupTrigger() { Position = Position, Parent = this };
 		var bobbing = Components.Create<BobbingComponent>();
