@@ -10,7 +10,7 @@
     <div class="teams">
         @foreach (var entry in _scores)
         {
-            var isWinner = WinningTeam == entry.Key;
+            var isWinner = WinningTeams.Contains(entry.Key);
             var teamColor = entry.Key.Group.SprayColor.Hex;
             var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : ((float)entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
             <div class="team @(isWinner ? "winner" : "")" style="flex-direction: column; padding: 5px;">
@@ -35,7 +35,7 @@
 
 @code {
     private Dictionary<Team, int> _scores = new();
-    private Team WinningTeam { get; set; }
+    private List<Team> WinningTeams = new();
 
     public void AddScore(Team team, int score)
     {
@@ -49,23 +49,20 @@
     public void ShowWinner()
     {
         var sortedScores = _scores.OrderByDescending(s => s.Value);
-        if (sortedScores.Count() >= 2)
-        {
-            var highestScore = sortedScores.First();
-            var secondHighestScore = sortedScores.Skip(1).First();
-            if (highestScore.Value == secondHighestScore.Value)
-                return;
-        }
-
-        if (sortedScores.Count() <= 0)
+        if (sortedScores.Count() == 0)
             return;
 
-        WinningTeam = sortedScores.FirstOrDefault().Key;
+        var maxScore = sortedScores.First().Value;
+        foreach (var entry in sortedScores)
+        {
+            if (entry.Value == maxScore)
+                WinningTeams.Add(entry.Key);
+        }
     }
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(GameOverState.Instance?.GetHashCode(), _scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())), WinningTeam?.GetHashCode());
+        return HashCode.Combine(GameOverState.Instance?.GetHashCode(), _scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())), WinningTeams?.HashCombine(t => t.GetHashCode()));
     }
 }
 
