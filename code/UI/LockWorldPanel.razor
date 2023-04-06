@@ -7,8 +7,9 @@
 
 @code {
     private Color Color { get; set; }
+    private TimeSince TimeSinceLock { get; set; }
 
-    public LockWorldPanel(Spray spray, Color color)
+    public LockWorldPanel(Spray spray, Color color, TimeSince timeSinceLock)
     {
         SceneObject.RenderLayer = SceneRenderLayer.OverlayWithDepth;
 
@@ -17,6 +18,12 @@
         Rotation = Rotation.RotateAroundAxis(Vector3.Right, 90);
 
         Color = color;
+        TimeSinceLock = timeSinceLock;
+    }
+
+    public override void Tick()
+    {
+        SetClass("blickerton", TimeSinceLock + 3 >= Spray.LockDuration);
     }
 }
 
@@ -34,8 +41,32 @@
             text-shadow: 2px 2px 0px rgba(black, 0.75);
         }
 
+        &.blickerton {
+            animation-duration: 1s;
+            animation-name: blickerton;
+            animation-iteration-count: infinite;
+        }
+
         &:intro {
             opacity: 0;
+        }
+
+        &:outro {
+            opacity: 0;
+        }
+    }
+
+    @@keyframes blickerton {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 </style>
