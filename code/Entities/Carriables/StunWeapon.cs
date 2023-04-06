@@ -79,4 +79,12 @@ public sealed partial class StunWeapon : BaseCarriable
 
 		Owner.Inventory.RemoveFromInventory( this );
 	}
+
+	[ConCmd.Admin]
+	public static void TestStun()
+	{
+		var player = ConsoleSystem.Caller.Pawn as Player;
+
+		player.Daze( player, DazeType.PhysicalTrauma );
+	}
 }
