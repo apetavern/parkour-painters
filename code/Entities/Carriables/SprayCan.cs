@@ -94,4 +94,12 @@ public sealed partial class SprayCan : BaseCarriable
 		else if ( reachTrace.Entity is Player player )
 			player.Spray( Owner );
 	}
+
+	/// <inheritdoc/>
+	protected sealed override void OnPrimaryReleased()
+	{
+		base.OnPrimaryReleased();
+
+		Owner.SetAnimParameter( "b_spray", false );
+	}
 }

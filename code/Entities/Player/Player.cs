@@ -76,6 +76,11 @@ public sealed partial class Player : AnimatedEntity
 	private Particles SprayParticles { get; set; }
 
 	/// <summary>
+	/// Spray sound.
+	/// </summary>
+	private Sound SprayLoop { get; set; }
+
+	/// <summary>
 	/// The time in seconds since the last footstep animation event happened.
 	/// </summary>
 	private TimeSince TimeSinceFootstep { get; set; } = 0;
@@ -374,18 +379,26 @@ public sealed partial class Player : AnimatedEntity
 		(ConsoleSystem.Caller.Pawn as Player).Health = value;
 	}
 
+	// TODO: MOVE THIS BACK INTO SPRAY CAN BUT MAYBE JUST ONLY ON SERVER???
 	private void HandleSprayParticle()
 	{
-		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary && SprayParticles is null )
+		if ( !Game.IsServer )
+			return;
+
+		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary )
 		{
-			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
+			SprayParticles ??= Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
 
 			if ( Team?.Group?.SprayColor is not null )
 				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
+
+			if ( !SprayLoop.IsPlaying )
+				SprayLoop = PlaySound( "spray_loop" );
 		}
 
 		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary )
 		{
+			SprayLoop.Stop();
 			SprayParticles?.Destroy( true );
 			SprayParticles = null;
 		}
