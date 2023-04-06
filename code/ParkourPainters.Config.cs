@@ -84,7 +84,7 @@ partial class ParkourPainters
 	/// The maximum number of games that can be played before map switch.
 	/// </summary>
 	[ConVar.Replicated( "pp_gamelimit" )]
-	public static int GameLimit { get; private set; } = 5;
+	public static int GameLimit { get; private set; } = 2;
 
 	/// <summary>
 	/// Defines the amount of time that a player will be immune after being dazed by another player.
