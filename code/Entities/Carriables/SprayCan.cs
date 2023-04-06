@@ -48,7 +48,9 @@ public sealed partial class SprayCan : BaseCarriable
 	{
 		base.OnHolstered();
 
+		Owner.SetAnimParameter( "b_spray", false );
 		Owner.SetAnimParameter( "b_haspaint", false );
+
 		if ( Game.IsServer )
 			HolsterToHip();
 	}
