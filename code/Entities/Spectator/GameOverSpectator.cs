@@ -106,5 +106,8 @@ internal sealed partial class GameOverSpectator : Entity
 
 		SpotIndex++;
 		TimeSinceTravelStarted = 0;
+
+		if ( Finished )
+			_gameResultsPanel.ShowWinner();
 	}
 }

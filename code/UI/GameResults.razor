@@ -13,7 +13,13 @@
             var teamColor = entry.Key.Group.SprayColor.Hex;
             var percentageScore = GameOverState.Instance.TotalPossibleMapScore == 0 ? 0 : ((float)entry.Value / GameOverState.Instance.TotalPossibleMapScore) * 100;
             <div class="team" style="flex-direction: column; padding: 5px;">
-                <label style="color: @teamColor;">@entry.Key.Group.Name</label>
+                <div>
+                    <label class="title" style="color: @teamColor;">@entry.Key.Group.Name</label>
+                    @if (WinningTeam == entry.Key)
+                    {
+                        <label style="color: orange; font-family: MaterialIcons;">workspace_premium</label>
+                    }
+                </div>
                 <div class="score" style="border-color: @teamColor;">
                     <div
                     class="fill"
@@ -28,6 +34,7 @@
 
 @code {
     private Dictionary<Team, int> _scores = new();
+    private Team WinningTeam { get; set; }
 
     public void AddScore(Team team, int score)
     {
@@ -37,9 +44,27 @@
         _scores[team] += score;
     }
 
+    @* Whatever gamejam code... *@
+    public void ShowWinner()
+    {
+        var sortedScores = _scores.OrderByDescending(s => s.Value);
+        if (sortedScores.Count() >= 2)
+        {
+            var highestScore = sortedScores.First();
+            var secondHighestScore = sortedScores.Skip(1).First();
+            if (highestScore.Value == secondHighestScore.Value)
+                return;
+        }
+
+        if (sortedScores.Count() <= 0)
+            return;
+
+        WinningTeam = sortedScores.FirstOrDefault().Key;
+    }
+
     protected override int BuildHash()
     {
-        return HashCode.Combine(GameOverState.Instance?.GetHashCode(), _scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())));
+        return HashCode.Combine(GameOverState.Instance?.GetHashCode(), _scores.HashCombine(e => HashCode.Combine(e.Key.GetHashCode(), e.Value.GetHashCode())), WinningTeam?.GetHashCode());
     }
 }
 
@@ -63,9 +88,14 @@
                 opacity: 1;
                 transition: all 500ms ease-in-out;
                 bottom: 100px;
+                width: 350px;
+
+                .title {
+                    text-overflow: clip;
+                    white-space: nowrap;
+                }
 
                 .score {
-                    width: 350px;
                     height: 40px;
                     border-width: 5px;
                     box-shadow: 3px 3px 10px black;
