@@ -1,4 +1,6 @@
-﻿namespace ParkourPainters.State;
+﻿using Player = ParkourPainters.Entities.Player;
+
+namespace ParkourPainters.State;
 
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.
@@ -44,6 +46,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// The total possible map score determined by the spray spots that have owners.
 	/// </summary>
 	[Net] public int TotalPossibleMapScore { get; private set; } = 0;
+
+	internal List<Player> LeftoverPawns = new();
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -99,7 +103,9 @@ internal sealed partial class GameOverState : Entity, IGameState
 
 		foreach ( var client in Game.Clients )
 		{
-			(client.Pawn as Entities.Player)?.Animator?.Reset();
+			var player = client.Pawn as Player;
+			LeftoverPawns.Add( player );
+
 			var startPosition = client.Position;
 			client.Pawn = new GameOverSpectator()
 			{
@@ -142,6 +148,16 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ServerTick()
 	{
+		foreach ( var player in LeftoverPawns )
+		{
+			if ( player is not null )
+			{
+				player.ResetAnimParameters();
+				player.UnsetHeldItemInput();
+				player.Delete();
+			}
+		}
+
 		if ( TimeUntilResetGame > 0 )
 			return;
 
