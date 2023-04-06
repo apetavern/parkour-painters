@@ -47,6 +47,8 @@ public partial class Spray : ModelEntity
 		SetModel( "models/entities/spray_plane/spray_plane.vmdl" );
 
 		SprayProgress = 0;
+
+		Transmit = TransmitType.Always;
 	}
 
 	public override void ClientSpawn()
