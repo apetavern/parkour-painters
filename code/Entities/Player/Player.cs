@@ -80,6 +80,8 @@ public sealed partial class Player : AnimatedEntity
 	/// </summary>
 	private Sound SprayLoop { get; set; }
 
+	private bool _isPlayingSpray { get; set; } = false;
+
 	/// <summary>
 	/// Grind particles.
 	/// </summary>
@@ -89,6 +91,8 @@ public sealed partial class Player : AnimatedEntity
 	/// Grind sound.
 	/// </summary>
 	private Sound GrindLoop { get; set; }
+
+	private bool _isPlayingGrind { get; set; } = false;
 
 	/// <summary>
 	/// The time in seconds since the last footstep animation event happened.
@@ -393,9 +397,6 @@ public sealed partial class Player : AnimatedEntity
 	// TODO: MOVE THIS BACK INTO SPRAY CAN BUT MAYBE JUST ONLY ON SERVER???
 	private void HandleSprayParticle()
 	{
-		if ( Game.IsClient && (HeldItem is not SprayCan clientCan || clientCan.HasReleasedPrimary) )
-			SprayLoop.Stop();
-
 		if ( !Game.IsServer )
 			return;
 
@@ -406,12 +407,16 @@ public sealed partial class Player : AnimatedEntity
 			if ( Team?.Group?.SprayColor is not null )
 				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
 
-			if ( !SprayLoop.IsPlaying )
+			if ( !_isPlayingSpray )
+			{
 				SprayLoop = PlaySound( "spray_loop" );
+				_isPlayingSpray = true;
+			}
 		}
 
 		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary )
 		{
+			_isPlayingSpray = false;
 			SprayLoop.Stop();
 			SprayParticles?.Destroy( true );
 			SprayParticles = null;
@@ -420,22 +425,23 @@ public sealed partial class Player : AnimatedEntity
 
 	private void HandleGrindParticle()
 	{
-		if ( Game.IsClient && GrindMechanic.IsActive )
-			GrindLoop.Stop();
-
 		if ( !Game.IsServer )
 			return;
 
 		if ( GrindMechanic.IsActive )
 		{
-			if ( !GrindLoop.IsPlaying )
+			if ( !_isPlayingGrind )
+			{
 				GrindLoop = PlaySound( "grind_loop" );
+				_isPlayingGrind = true;
+			}
 
 			GrindParticles ??= Particles.Create( "particles/sparks/sparks_base.vpcf", this );
 			GrindParticles.SetEntityBone( 0, this, GetBoneIndex( "ankle_L" ) );
 		}
 		else
 		{
+			_isPlayingGrind = false;
 			GrindLoop.Stop();
 			GrindParticles?.Destroy( true );
 			GrindParticles = null;
