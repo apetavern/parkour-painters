@@ -23,11 +23,6 @@ public sealed partial class SprayCan : BaseCarriable
 	[Net, Predicted] public int Ammo { get; internal set; } = MaxAmmo;
 
 	/// <summary>
-	/// The spray particles that come out when using the can.
-	/// </summary>
-	// private Particles SprayParticles { get; set; }
-
-	/// <summary>
 	/// The maximum amount of spray that can be held in the spray can.
 	/// </summary>
 	internal const int MaxAmmo = 500;
