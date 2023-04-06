@@ -122,8 +122,9 @@ public sealed partial class SprayCan : BaseCarriable
 
 		Owner.SetAnimParameter( "b_spray", false );
 
-		SprayParticles?.Destroy();
+		SprayParticles?.Destroy( true );
 		SprayParticles = null;
+
 		ToggleSpraySound( false );
 	}
 
