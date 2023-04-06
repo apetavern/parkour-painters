@@ -13,7 +13,7 @@
     {
         SceneObject.RenderLayer = SceneRenderLayer.OverlayWithDepth;
 
-        Position = spray.Position + spray.Position.Normal * -5;
+        Position = spray.Position + (spray.Rotation.Up * 1f);
         Rotation = spray.Rotation;
         Rotation = Rotation.RotateAroundAxis(Vector3.Right, 90);
 
