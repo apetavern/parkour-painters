@@ -400,7 +400,7 @@ public sealed partial class Player : AnimatedEntity
 		if ( !Game.IsServer )
 			return;
 
-		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary )
+		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary && can.Ammo > 0 )
 		{
 			SprayParticles ??= Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
 
