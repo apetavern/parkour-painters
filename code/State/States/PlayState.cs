@@ -164,6 +164,30 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.ClientDisconnected( IClient cl, NetworkDisconnectionReason reason )
 	{
+		var filledTeams = Teams.Count;
+
+		foreach ( var team in Teams )
+		{
+			var teamEmpty = true;
+
+			for ( var i = 0; i < team.Members.Count; i++ )
+			{
+				var member = team.Members[i];
+				if ( member is null || !member.IsValid || member == cl )
+					continue;
+
+				teamEmpty = false;
+			}
+
+			if ( teamEmpty )
+				filledTeams--;
+		}
+
+		if ( filledTeams != 1 )
+			return;
+
+		Abandoned = true;
+		GameOverState.SetActive();
 	}
 
 	/// <inheritdoc/>
