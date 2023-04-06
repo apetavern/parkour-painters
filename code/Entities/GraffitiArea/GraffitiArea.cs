@@ -71,6 +71,8 @@ public sealed partial class GraffitiArea : ModelEntity
 
 		Tags.Add( "graffiti_area" );
 
+		Transmit = TransmitType.Always;
+
 		EnableShadowCasting = false;
 	}
 
