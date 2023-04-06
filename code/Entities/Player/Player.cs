@@ -146,14 +146,15 @@ public sealed partial class Player : AnimatedEntity
 			LastEquippedItem?.OnEquipped();
 		}
 
-		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary )
+		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary && SprayParticles is null )
 		{
-			SprayParticles ??= Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
+			SprayParticles = Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
 
 			if ( Team?.Group?.SprayColor is not null )
 				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
 		}
-		else
+
+		if ( HeldItem is not SprayCan can2 || can2.HasReleasedPrimary )
 		{
 			SprayParticles?.Destroy( false );
 			SprayParticles = null;
