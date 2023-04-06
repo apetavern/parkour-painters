@@ -38,10 +38,13 @@ public partial class BoomBlaster : BaseCarriable
 				.Ignore( Owner )
 				.Run();
 
+		// Do instantaneous particle
+		var particle = Particles.Create( "particles/weapons/boomblast_base.vpcf", muzzleTransform.Position );
+		particle.SetForward( 0, tr.Direction );
+		particle.SetPosition( 1, new Vector3( tr.Distance, 0, 0 ) );
 		if ( tr.Hit )
 		{
-			// Do instantaneous particle
-			_ = Particles.Create( "particles/weapons/boomblast_base.vpcf", muzzleTransform.Position );
+
 
 			// Create explosion at end position
 			var playersHit = FindInSphere( tr.EndPosition, 64 );
