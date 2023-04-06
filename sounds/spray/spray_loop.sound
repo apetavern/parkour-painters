@@ -2,11 +2,11 @@
   "UI": false,
   "Volume": "1.00,1.00,0",
   "Pitch": "0.98,1.02,1",
-  "Decibels": 70,
+  "Decibels": 75,
   "SelectionMode": "Random",
   "Sounds": [
     "sounds/spray/spray_loop.vsnd"
   ],
-  "MaximumDistance": 1143.9335,
-  "MinimumDistance": 57.196674
+  "MaximumDistance": 1308.4543,
+  "MinimumDistance": 65.42272
 }
