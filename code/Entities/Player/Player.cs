@@ -393,6 +393,9 @@ public sealed partial class Player : AnimatedEntity
 	// TODO: MOVE THIS BACK INTO SPRAY CAN BUT MAYBE JUST ONLY ON SERVER???
 	private void HandleSprayParticle()
 	{
+		if ( Game.IsClient && (HeldItem is not SprayCan clientCan || clientCan.HasReleasedPrimary) )
+			SprayLoop.Stop();
+
 		if ( !Game.IsServer )
 			return;
 
@@ -417,6 +420,9 @@ public sealed partial class Player : AnimatedEntity
 
 	private void HandleGrindParticle()
 	{
+		if ( Game.IsClient && GrindMechanic.IsActive )
+			GrindLoop.Stop();
+
 		if ( !Game.IsServer )
 			return;
 
