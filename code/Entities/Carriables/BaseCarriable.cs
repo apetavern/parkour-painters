@@ -67,7 +67,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	/// <summary>
 	/// Whether or not the primary attack is released.
 	/// </summary>
-	[Net, Predicted] protected bool HasReleasedPrimary { get; set; }
+	[Net, Predicted] public bool HasReleasedPrimary { get; protected set; }
 
 	/// <summary>
 	/// Whether or not the secondary attack is released.

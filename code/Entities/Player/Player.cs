@@ -71,6 +71,30 @@ public sealed partial class Player : AnimatedEntity
 	private Particles SprayCloud { get; set; }
 
 	/// <summary>
+	/// The spray particles that come out when using the can.
+	/// </summary>
+	private Particles SprayParticles { get; set; }
+
+	/// <summary>
+	/// Spray sound.
+	/// </summary>
+	private Sound SprayLoop { get; set; }
+
+	private bool _isPlayingSpray { get; set; } = false;
+
+	/// <summary>
+	/// Grind particles.
+	/// </summary>
+	private Particles GrindParticles { get; set; }
+
+	/// <summary>
+	/// Grind sound.
+	/// </summary>
+	private Sound GrindLoop { get; set; }
+
+	private bool _isPlayingGrind { get; set; } = false;
+
+	/// <summary>
 	/// The time in seconds since the last footstep animation event happened.
 	/// </summary>
 	private TimeSince TimeSinceFootstep { get; set; } = 0;
@@ -140,6 +164,9 @@ public sealed partial class Player : AnimatedEntity
 			LastEquippedItem = HeldItem;
 			LastEquippedItem?.OnEquipped();
 		}
+
+		HandleSprayParticle();
+		HandleGrindParticle();
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
@@ -365,5 +392,59 @@ public sealed partial class Player : AnimatedEntity
 	public static void SetHP( float value )
 	{
 		(ConsoleSystem.Caller.Pawn as Player).Health = value;
+	}
+
+	// TODO: MOVE THIS BACK INTO SPRAY CAN BUT MAYBE JUST ONLY ON SERVER???
+	private void HandleSprayParticle()
+	{
+		if ( !Game.IsServer )
+			return;
+
+		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary )
+		{
+			SprayParticles ??= Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
+
+			if ( Team?.Group?.SprayColor is not null )
+				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
+
+			if ( !_isPlayingSpray )
+			{
+				SprayLoop = PlaySound( "spray_loop" );
+				_isPlayingSpray = true;
+			}
+		}
+
+		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary )
+		{
+			_isPlayingSpray = false;
+			SprayLoop.Stop();
+			SprayParticles?.Destroy( true );
+			SprayParticles = null;
+		}
+	}
+
+	private void HandleGrindParticle()
+	{
+		if ( !Game.IsServer )
+			return;
+
+		if ( GrindMechanic.IsActive )
+		{
+			if ( !_isPlayingGrind )
+			{
+				GrindLoop = PlaySound( "grind_loop" );
+				_isPlayingGrind = true;
+			}
+
+			GrindParticles ??= Particles.Create( "particles/sparks/sparks_base.vpcf", this );
+			GrindParticles.SetEntityBone( 0, this, GetBoneIndex( "ankle_L" ) );
+		}
+		else
+		{
+			_isPlayingGrind = false;
+			GrindLoop.Stop();
+			GrindParticles?.Destroy( true );
+			GrindParticles = null;
+		}
 	}
 }
