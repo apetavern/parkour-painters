@@ -39,14 +39,14 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	[Property] private string TargetType { get; set; }
 
 	/// <summary>
-	/// The number of body groups that the carriable target has.
-	/// </summary>
-	[Property] private int BodyGroups { get; set; } = 0;
-
-	/// <summary>
 	/// The model for the spawner chosen by hammer.
 	/// </summary>
 	[Property] private Model SpawnerModel { get; set; }
+
+	private readonly Dictionary<string, int> _bodyGroupMapping = new()
+	{
+		{"StunWeapon", 3},
+	};
 
 	/// <summary>
 	/// The type that was found from <see ref="TargetType"/>.
@@ -69,7 +69,8 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 			return;
 		}
 
-		ChosenBodyGroup = Game.Random.Int( 0, BodyGroups - 1 );
+		var bodyGroupCount = _bodyGroupMapping.TryGetValue( TargetType, out int value ) ? value : 0;
+		ChosenBodyGroup = bodyGroupCount == 0 ? 0 : Game.Random.Int( 0, bodyGroupCount - 1 );
 
 		Model = SpawnerModel;
 		SetBodyGroup( "weapontype", ChosenBodyGroup );
