@@ -169,6 +169,8 @@ public sealed partial class Player : AnimatedEntity
 		EnableAllCollisions = false;
 		EnableDrawing = false;
 
+		UnsetHeldItemInput( To.Single( this ) );
+
 		Animator?.Remove();
 		Camera?.Remove();
 
@@ -261,6 +263,8 @@ public sealed partial class Player : AnimatedEntity
 
 		if ( dazeType == DazeType.PhysicalTrauma )
 			PlaySound( "bat_hit" );
+
+		UnsetHeldItemInput();
 
 		TimeSinceDazed = 0;
 		DazeType = dazeType;
