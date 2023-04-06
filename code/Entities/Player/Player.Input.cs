@@ -132,6 +132,9 @@ public partial class Player
 	[ClientRpc]
 	public void UnsetHeldItemInput()
 	{
+		if ( heldItemInput is BaseCarriable carriable )
+			carriable.OnHolstered();
+			
 		heldItemInput = null;
 	}
 }
