@@ -23,9 +23,10 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>, ISin
 	/// Adds a new <see cref="BaseCarriable"/> that the player can equip.
 	/// </summary>
 	/// <param name="carriableType">The type of the <see cref="BaseCarriable"/> to add.</param>
+	/// <param name="bodyGroup">The optional bodyGroup of the item to be add.</param>
 	/// <returns>The newly created <see cref="BaseCarriable"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when the type provided is either not assignable to <see cref="BaseCarriable"/> or is already in the inventory.</exception>
-	internal BaseCarriable AddToInventory( TypeDescription carriableType )
+	internal BaseCarriable AddToInventory( TypeDescription carriableType, int bodyGroup = 0 )
 	{
 		if ( !carriableType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 			throw new ArgumentException( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}", nameof( carriableType ) );
@@ -35,6 +36,7 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>, ISin
 
 		var carriable = carriableType.Create<BaseCarriable>();
 		carriable.Owner = Entity;
+		carriable.SetBodyGroup( "weapontype", bodyGroup );
 		carriable.OnHolstered();
 		items.Add( carriable );
 		return carriable;
