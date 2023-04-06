@@ -10,6 +10,8 @@ public sealed partial class StunWeapon : BaseCarriable
 
 	protected override string ModelPath => "models/entities/melee_weapons/melee_weapons.vmdl";
 
+	private const int HitForce = 1250;
+
 	/// <summary>
 	/// A boolean representation of the next attack anim type (swing at side or overhead)
 	/// </summary>
@@ -44,9 +46,13 @@ public sealed partial class StunWeapon : BaseCarriable
 			.Ignore( Owner )
 			.Run();
 
-		if ( tr.Hit && tr.Entity is Player player && !player.IsImmune )
+		if ( tr.Hit && tr.Entity is Player player && !player.IsImmune && !player.IsDazed )
 		{
 			player.Daze( Owner, DazeType.PhysicalTrauma );
+
+			if ( Game.IsServer )
+				player.ApplyAbsoluteImpulse( tr.Direction * HitForce );
+
 			Charges -= 1;
 			if ( Charges <= 0 )
 				_ = WaitForAnimationFinish();

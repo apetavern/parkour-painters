@@ -15,6 +15,9 @@ public sealed partial class WalkMechanic : ControllerMechanic
 	{
 		get
 		{
+			if ( Player.IsDazed )
+				return 0;
+
 			var speed = _wishSpeed;
 			if ( Player.IsSprayed )
 				speed *= ParkourPainters.SprayedSpeedFactor;
@@ -24,14 +27,6 @@ public sealed partial class WalkMechanic : ControllerMechanic
 
 			return speed;
 		}
-	}
-
-	protected override bool ShouldStart()
-	{
-		if ( Player.IsDazed )
-			return false;
-
-		return true;
 	}
 
 	protected override void Simulate()

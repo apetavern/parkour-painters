@@ -12,7 +12,7 @@ partial class ParkourPainters
 	/// Defines how long games will be.
 	/// </summary>
 	[ConVar.Replicated( "pp_gamelength" )]
-	public static float GameLength { get; private set; } = 300;
+	public static float GameLength { get; private set; } = 150;
 
 	/// <summary>
 	/// Defines how long until the game moves back to the <see cref="WaitingState"/>.
@@ -60,7 +60,7 @@ partial class ParkourPainters
 	/// Defines the amount of time that a player will be dazed for when dazed by another player.
 	/// </summary>
 	[ConVar.Replicated( "pp_dazetime" )]
-	public static float DazeTime { get; private set; } = 3;
+	public static float DazeTime { get; private set; } = 1f;
 
 	/// <summary>
 	/// Defines the amount of time that a player will be slowed when sprayed by another player.
