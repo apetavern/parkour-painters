@@ -125,6 +125,9 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>, ISin
 		if ( !type.IsAssignableTo( typeof( BaseCarriable ) ) )
 			return false;
 
+		if ( items.Count > 1 )
+			return false;
+
 		return fuzzy
 			? !Items.Any( x => type.IsAssignableTo( type ) )
 			: !Items.Any( x => type.Name == x.GetType().Name );

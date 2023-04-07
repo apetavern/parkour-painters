@@ -17,7 +17,9 @@ public partial class BoomBlaster : BaseCarriable
 
 	protected override string ModelPath => "models/entities/boomblaster.vmdl";
 
-	private const float HitForce = 2500f;
+	private const float HitForce = 1536f;
+	private const float ExplosionRadius = 64f;
+
 	[Net] public int Charges { get; internal set; } = 1;
 
 	protected override void OnPrimaryAttack()
@@ -47,22 +49,20 @@ public partial class BoomBlaster : BaseCarriable
 
 
 			// Create explosion at end position
-			var playersHit = FindInSphere( tr.EndPosition, 64 );
-			DebugOverlay.Sphere( tr.EndPosition, 64f, Color.Red, 5f );
+			var playersHit = FindInSphere( tr.EndPosition, ExplosionRadius );
 
 			// Do explosion particle at end position
 
 			// Push players away
 			if ( Game.IsServer )
 			{
-				Log.Info( playersHit.Count() );
 				foreach ( var player in playersHit )
 				{
-					Log.Info( player );
 					var impulse = (player.Position - tr.EndPosition).Normal * HitForce;
 					if ( impulse.z < 0f )
 						impulse = impulse.WithZ( 0f );
-					Log.Info( impulse );
+					else
+						impulse = impulse.WithZ( HitForce / 2 );
 					player.ApplyAbsoluteImpulse( impulse );
 				}
 			}
