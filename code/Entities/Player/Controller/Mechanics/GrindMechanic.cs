@@ -19,6 +19,9 @@ public partial class GrindMechanic : ControllerMechanic
 		if ( _timeSinceExit < 0.5f )
 			return false;
 
+		if ( Controller.GroundEntity != null )
+			return false;
+
 		foreach ( var path in Sandbox.Entity.All.OfType<GrindSpot>() )
 		{
 			if ( path.PathNodes.Count < 2 )
