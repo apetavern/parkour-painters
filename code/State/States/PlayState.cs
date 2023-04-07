@@ -35,7 +35,7 @@ public sealed partial class PlayState : Entity, IGameState
 	/// <summary>
 	/// The time in seconds until the game ends.
 	/// </summary>
-	public TimeUntil TimeUntilGameEnds => ParkourPainters.GameLength - TimeSinceGameStarted;
+	public TimeUntil TimeUntilGameEnds => (GameLengthEntity.Instance?.GameLength ?? ParkourPainters.GameLength) - TimeSinceGameStarted;
 
 	/// <summary>
 	/// A cache for mapping clients to their teams.
