@@ -77,8 +77,6 @@ public partial class BoomBlaster : BaseCarriable
 
 					var isInfront = Vector3.Dot( muzzledirection, playerdirection ) > 0.2f;
 
-					Log.Info( isInfront );
-
 					if ( isInfront )
 					{
 						var impulse = (Owner.LookInput.ToRotation().Forward + Vector3.Up * 5f) * HitForce;
