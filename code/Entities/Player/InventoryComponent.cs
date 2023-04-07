@@ -32,7 +32,16 @@ internal sealed partial class InventoryComponent : EntityComponent<Player>, ISin
 			throw new ArgumentException( $"The type {carriableType.Name} is not assignable to {nameof( BaseCarriable )}", nameof( carriableType ) );
 
 		if ( !CanAddItem( carriableType ) )
-			throw new ArgumentException( $"An item of type \"{carriableType.Name}\" is already in the inventory", nameof( carriableType ) );
+		{
+			var itemToReplace = Items.FirstOrDefault( c => c is not SprayCan && carriableType.Name != c.GetType().Name );
+			if ( itemToReplace is null )
+				return null;
+
+			if ( Entity.HeldItem == itemToReplace )
+				Entity.UnsetHeldItemInput( To.Single( Entity ) );
+
+			RemoveFromInventory( itemToReplace );
+		}
 
 		var carriable = carriableType.Create<BaseCarriable>();
 		carriable.Owner = Entity;
