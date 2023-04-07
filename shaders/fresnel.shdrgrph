@@ -1,0 +1,134 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Translucent",
+  "nodes": [
+    {
+      "_class": "Result",
+      "Albedo": {},
+      "Emission": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Opacity": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Normal": {},
+      "Roughness": {},
+      "Metalness": {},
+      "AmbientOcclusion": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "784,-32"
+    },
+    {
+      "_class": "ViewDirection",
+      "Identifier": "1",
+      "Position": "-480,64"
+    },
+    {
+      "_class": "WorldNormal",
+      "Identifier": "2",
+      "Position": "-480,0"
+    },
+    {
+      "_class": "DotProduct",
+      "InputA": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "InputB": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "Identifier": "3",
+      "Position": "-240,16"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "Remap In Min",
+      "Value": 0.3,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "4",
+      "Position": "208,96"
+    },
+    {
+      "_class": "RemapValue",
+      "A": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "C": {},
+      "D": {},
+      "E": {},
+      "In": 0.5,
+      "InMin": 0.3304424,
+      "InMax": 1,
+      "OutMin": 0,
+      "OutMax": 1,
+      "Clamp": true,
+      "Identifier": "5",
+      "Position": "464,16"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "",
+      "Value": 1,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "6",
+      "Position": "-48,-80"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Name": "",
+      "Value": 0,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "7",
+      "Position": "-48,-16"
+    },
+    {
+      "_class": "Lerp",
+      "A": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "3",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "Identifier": "8",
+      "Position": "208,-32"
+    }
+  ]
+}
