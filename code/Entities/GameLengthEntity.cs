@@ -5,7 +5,7 @@
 /// </summary>
 [Title( "Game Time" ), Category( "Parkour Painters" )]
 [HammerEntity]
-internal sealed class GameLengthEntity : Entity
+internal sealed partial class GameLengthEntity : Entity
 {
 	/// <summary>
 	/// The only instance of this entity in existance.
@@ -15,7 +15,7 @@ internal sealed class GameLengthEntity : Entity
 	/// <summary>
 	/// The time in seconds that the game will last for.
 	/// </summary>
-	[Property] internal float GameLength { get; private set; } = 150;
+	[Property, Net] internal float GameLength { get; private set; } = 150;
 
 	public GameLengthEntity()
 	{
