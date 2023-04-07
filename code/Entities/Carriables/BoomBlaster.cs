@@ -17,7 +17,7 @@ public partial class BoomBlaster : BaseCarriable
 
 	protected override string ModelPath => "models/entities/boomblaster.vmdl";
 
-	private const float HitForce = 1536f;
+	private const float HitForce = 1000f;//1536f;
 	private const float ExplosionRadius = 64f;
 
 	[Net] public int Charges { get; internal set; } = 1;
@@ -33,10 +33,11 @@ public partial class BoomBlaster : BaseCarriable
 		Owner.SetAnimParameter( "b_attack", true );
 
 		// Play a sound
+		Owner.PlaySound( "boomblaster_blast" );
 
 		// Fire a trace
 		var muzzleTransform = GetAttachment( "muzzle2" ).Value;
-		var tr = Trace.Ray( muzzleTransform.Position, Owner.LookInput.ToRotation().Forward * 2048f )
+		var tr = Trace.Ray( muzzleTransform.Position, muzzleTransform.Position + Owner.LookInput.ToRotation().Forward * 2048f )
 				.Ignore( Owner )
 				.Run();
 
@@ -52,6 +53,9 @@ public partial class BoomBlaster : BaseCarriable
 
 			// Do explosion particle at end position
 			var explosionParticle = Particles.Create( "particles/weapons/boomblast_hit.vpcf", tr.EndPosition );
+
+			//This sucks we'll figure it out later
+			explosionParticle.Destroy( false );
 
 			// Push players away
 			if ( Game.IsServer )
@@ -71,6 +75,14 @@ public partial class BoomBlaster : BaseCarriable
 		Charges -= 1;
 		if ( Charges <= 0 )
 			_ = WaitForAnimationFinish();
+	}
+
+	public override void OnHolstered()
+	{
+		base.OnHolstered();
+
+		if ( Game.IsServer )
+			HolsterToBack();
 	}
 
 	private async Task WaitForAnimationFinish()
