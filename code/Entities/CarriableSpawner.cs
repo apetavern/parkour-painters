@@ -135,16 +135,4 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 			? RenderColor.WithAlpha( UnavailableAlpha )
 			: RenderColor.WithAlpha( 1 );
 	}
-
-	[Event.Tick.Server]
-	private void ServerTick()
-	{
-		if ( TargetType == "BoomBlaster" )
-		{
-			int i = 0;
-			DebugOverlay.ScreenText( $"Unavailable: {IsUnavailable}", i++ );
-			DebugOverlay.ScreenText( $"TimeSinceLastPickup: {TimeSinceLastPickup}", i++ );
-			DebugOverlay.ScreenText( "", i++ );
-		}
-	}
 }

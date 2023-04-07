@@ -51,6 +51,7 @@ public partial class BoomBlaster : BaseCarriable
 			var playersHit = FindInSphere( tr.EndPosition, ExplosionRadius );
 
 			// Do explosion particle at end position
+			var explosionParticle = Particles.Create( "particles/weapons/boomblast_hit.vpcf", tr.EndPosition );
 
 			// Push players away
 			if ( Game.IsServer )
