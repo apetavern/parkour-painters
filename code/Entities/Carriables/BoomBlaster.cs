@@ -44,10 +44,9 @@ public partial class BoomBlaster : BaseCarriable
 		var particle = Particles.Create( "particles/weapons/boomblast_base.vpcf", muzzleTransform.Position );
 		particle.SetForward( 0, tr.Direction );
 		particle.SetPosition( 1, new Vector3( tr.Distance, 0, 0 ) );
+
 		if ( tr.Hit )
 		{
-
-
 			// Create explosion at end position
 			var playersHit = FindInSphere( tr.EndPosition, ExplosionRadius );
 

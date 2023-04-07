@@ -31,7 +31,7 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 	/// <summary>
 	/// The time in seconds that the <see cref="CarriableSpawner"/> will not give another carriable after being used.
 	/// </summary>
-	[Property] private float UnavailableTime { get; set; } = 5;
+	[Property, Net] private float UnavailableTime { get; set; } = 5;
 
 	/// <summary>
 	/// The name of a type that derives from <see cref="BaseCarriable"/> or <see cref="BasePowerup"/> to spawn.
@@ -134,5 +134,17 @@ internal sealed partial class CarriableSpawner : AnimatedEntity
 		RenderColor = IsUnavailable
 			? RenderColor.WithAlpha( UnavailableAlpha )
 			: RenderColor.WithAlpha( 1 );
+	}
+
+	[Event.Tick.Server]
+	private void ServerTick()
+	{
+		if ( TargetType == "BoomBlaster" )
+		{
+			int i = 0;
+			DebugOverlay.ScreenText( $"Unavailable: {IsUnavailable}", i++ );
+			DebugOverlay.ScreenText( $"TimeSinceLastPickup: {TimeSinceLastPickup}", i++ );
+			DebugOverlay.ScreenText( "", i++ );
+		}
 	}
 }
