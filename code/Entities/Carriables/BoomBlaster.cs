@@ -86,8 +86,6 @@ public partial class BoomBlaster : BaseCarriable
 							impulse = impulse.WithZ( HitForce / 2 );
 						player.GroundEntity = null;
 						player.ApplyAbsoluteImpulse( impulse );
-
-						DebugOverlay.Sphere( player.Position, 10f, Color.Red );
 					}
 				}
 			}
