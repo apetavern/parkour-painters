@@ -37,11 +37,11 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
 	/// </summary>
-	internal const float TravelTimeToSpot = 1;
+	internal static float TravelTimeToSpot => (3f / GameOverState.Instance.Spots.Count);
 	/// <summary>
 	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
 	/// </summary>
-	internal const float StareTime = 0.75f;
+	internal static float StareTime => (2f / GameOverState.Instance.Spots.Count);
 	/// <summary>
 	/// Whether or not the score has been created for the game over spot.
 	/// </summary>
@@ -93,6 +93,8 @@ internal sealed partial class GameOverSpectator : Entity
 			? Rotation
 			: Rotation.LookAt( lastSpray?.Position - Camera.Position ?? LastSpot.Position - Camera.Position );
 		var targetRot = Rotation.LookAt( currentSpray?.Position - Camera.Position ?? CurrentSpot.Position - Camera.Position );
+
+		Log.Info( TravelTimeToSpot );
 
 		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
 
