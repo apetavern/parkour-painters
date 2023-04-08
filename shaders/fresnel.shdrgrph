@@ -1,17 +1,20 @@
 {
-  "Model": null,
+  "Model": "models/player/citizen_lod2.vmdl",
   "Description": "",
   "BlendMode": "Translucent",
   "nodes": [
     {
       "_class": "Result",
-      "Albedo": {},
+      "Albedo": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
       "Emission": {
-        "Identifier": "5",
+        "Identifier": "12",
         "Output": "Result"
       },
       "Opacity": {
-        "Identifier": "5",
+        "Identifier": "13",
         "Output": "Result"
       },
       "Normal": {},
@@ -23,7 +26,7 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "784,-32"
+      "Position": "1344,-272"
     },
     {
       "_class": "ViewDirection",
@@ -53,7 +56,7 @@
       "Min": 0,
       "Max": 1,
       "Name": "Remap In Min",
-      "Value": 0.3,
+      "Value": 0.25,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -129,6 +132,78 @@
       "Fraction": 0.5,
       "Identifier": "8",
       "Position": "208,-32"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "10",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "9",
+      "Position": "752,96"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 20,
+      "Name": "Emission Strength",
+      "Value": 5,
+      "UI": {
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "10",
+      "Position": "464,192"
+    },
+    {
+      "_class": "Float4",
+      "Name": "Color",
+      "Value": "1,1,1,1",
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "11",
+      "Position": "224,-272"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "12",
+      "Position": "1008,-224"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "11",
+        "Output": "A"
+      },
+      "B": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "13",
+      "Position": "784,-96"
     }
   ]
 }

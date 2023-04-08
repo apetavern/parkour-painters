@@ -4,6 +4,9 @@ Layer0
 {
 	shader "shaders/fresnel.shader_c"
 
+	g_flEmissionStrength "5.000"
+	g_flRemapInMin "0.300"
+
 	//---- Fog ----
 	g_bFogEnabled "1"
 

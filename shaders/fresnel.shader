@@ -55,7 +55,9 @@ PS
 	#include "common/pixel.color.blending.hlsl"
 	#include "common/proceedural.hlsl"
 
-	float g_flRemapInMin < UiGroup( ",0/,0/0" ); Default1( 0.3 ); Range1( 0, 1 ); >;
+	float4 g_vColor < UiType( Color ); UiGroup( ",0/,0/0" ); Default4( 1.00, 1.00, 1.00, 1.00 ); >;
+	float g_flRemapInMin < UiGroup( ",0/,0/0" ); Default1( 0.25 ); Range1( 0, 1 ); >;
+	float g_flEmissionStrength < UiGroup( ",0/,0/0" ); Default1( 5 ); Range1( 0, 20 ); >;
 
 	float4 MainPs( PixelInput i ) : SV_Target0
 	{
@@ -70,14 +72,20 @@ PS
 		m.Emission = float3( 0, 0, 0 );
 		m.Transmission = 0;
 
-		float3 local0 = CalculatePositionToCameraDirWs( i.vPositionWithOffsetWs.xyz + g_vHighPrecisionLightingOffsetWs.xyz );
-		float local1 = dot( i.vNormalWs, local0 );
-		float local2 = lerp( 1, 0, local1 );
-		float local3 = g_flRemapInMin;
-		float local4 = ( saturate( ( (local2) - (local3) ) / ( (1) - (local3) ) ) * ((1) - (0)) ) + (0);
+		float4 local0 = g_vColor;
+		float3 local1 = CalculatePositionToCameraDirWs( i.vPositionWithOffsetWs.xyz + g_vHighPrecisionLightingOffsetWs.xyz );
+		float local2 = dot( i.vNormalWs, local1 );
+		float local3 = lerp( 1, 0, local2 );
+		float local4 = g_flRemapInMin;
+		float local5 = ( saturate( ( (local3) - (local4) ) / ( (1) - (local4) ) ) * ((1) - (0)) ) + (0);
+		float local6 = g_flEmissionStrength;
+		float local7 = local5 * local6;
+		float4 local8 = local0 * float4( local7, local7, local7, local7 );
+		float local9 = 1 * local5;
 
-		m.Emission = float3( local4, local4, local4 );
-		m.Opacity = local4;
+		m.Albedo = local0.xyz;
+		m.Emission = local8.xyz;
+		m.Opacity = local9;
 		m.Roughness = 1;
 		m.Metalness = 0;
 		m.AmbientOcclusion = 1;
