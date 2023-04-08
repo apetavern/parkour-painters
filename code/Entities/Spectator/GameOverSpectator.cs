@@ -94,8 +94,6 @@ internal sealed partial class GameOverSpectator : Entity
 			: Rotation.LookAt( lastSpray?.Position - Camera.Position ?? LastSpot.Position - Camera.Position );
 		var targetRot = Rotation.LookAt( currentSpray?.Position - Camera.Position ?? CurrentSpot.Position - Camera.Position );
 
-		Log.Info( TravelTimeToSpot );
-
 		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
 
 		Camera.Position = Vector3.Lerp( startPos, targetPos, fraction );
