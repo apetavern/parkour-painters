@@ -198,6 +198,11 @@ public sealed partial class PlayState : Entity, IGameState
 		else
 			BackgroundMusic.SetVolume( BackgroundMusicLevel );
 
+		if ( TimeUntilGameEnds < 60 )
+			BackgroundMusic.SetPitch( 1.08f );
+		else
+			BackgroundMusic.SetPitch( 1.0f );
+
 		if ( !BackgroundMusic.IsPlaying )
 			BackgroundMusic = Sound.FromScreen( "painters_bg_music" );
 	}

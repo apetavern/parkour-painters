@@ -14,10 +14,7 @@
         SceneObject.Flags.ViewModelLayer = true;
 
         Team = team;
-        Transform = new Transform(
-            startingPosition - Camera.Rotation.Forward * 10f, 
-            Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f)
-        );
+        Transform = new Transform(startingPosition - Camera.Rotation.Forward * 10f, Camera.Rotation.RotateAroundAxis(Vector3.Up, 180f));
 
         _ = DelayDelete();
     }
