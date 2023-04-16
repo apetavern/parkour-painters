@@ -14,7 +14,7 @@ public struct GrindPoint
 [Library( "grind_spot" )]
 [Title( "Grind Spot" ), Category( "Movement" )]
 [HammerEntity, Path( "path_generic_node" )]
-public partial class GrindSpot : GenericPathEntity
+internal sealed class GrindSpot : GenericPathEntity
 {
 	public List<GrindPoint> GrindPoints { get; private set; } = new();
 
@@ -38,8 +38,6 @@ public partial class GrindSpot : GenericPathEntity
 	{
 		if ( PathNodes.Count < 2 )
 			return;
-
-		GrindPoints.Clear();
 
 		for ( int i = 0; i < PathNodes.Count - 1; ++i )
 		{
