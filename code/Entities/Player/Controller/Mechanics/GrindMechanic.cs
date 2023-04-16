@@ -2,14 +2,12 @@ namespace ParkourPainters.Entities;
 
 public partial class GrindMechanic : ControllerMechanic
 {
-	[Net, Predicted] private GenericPathEntity _path { get; set; }
-	[Net, Predicted] private int _currentNodeIndex { get; set; }
-	[Net, Predicted] private bool _isGrinding { get; set; }
-	[Net, Predicted] private float _alpha { get; set; }
-	[Net, Predicted] private bool _isReverse { get; set; }
-	private TimeSince _timeSinceExit { get; set; }
-
-	private float _incomingSpeed;
+	private GrindSpot _grindSpot;
+	private int _currentIndex;
+	private bool _isGrinding;
+	private bool _isReverse;
+	private float _alpha;
+	private TimeSince _timeSinceExit;
 
 	protected override bool ShouldStart()
 	{
@@ -22,27 +20,38 @@ public partial class GrindMechanic : ControllerMechanic
 		if ( Controller.GroundEntity != null )
 			return false;
 
-		foreach ( var path in Sandbox.Entity.All.OfType<GrindSpot>() )
+		if ( Controller.Velocity.z > 0 )
+			return false;
+
+		foreach ( var grindSpot in Sandbox.Entity.All.OfType<GrindSpot>() )
 		{
-			if ( path.PathNodes.Count < 2 )
+			if ( grindSpot.PathNodes.Count < 2 || grindSpot.GrindPoints.Count < 2 )
 				continue;
 
-			var closestNode = path.PathNodes.OrderBy( p => Controller.Position.Distance( p.WorldPosition ) ).First();
-			if ( Controller.Position.Distance( closestNode.WorldPosition ) > 50 )
+			var closestGrindPoint = grindSpot.GrindPoints[0];
+			var closestGrindPointIndex = 0;
+
+			for ( int i = 0; i < grindSpot.GrindPoints.Count; ++i )
+			{
+				var grindPoint = grindSpot.GrindPoints[i];
+				if ( Controller.Position.Distance( grindPoint.Position ) < Controller.Position.Distance( closestGrindPoint.Position ) )
+				{
+					closestGrindPoint = grindPoint;
+					closestGrindPointIndex = i;
+				}
+			}
+
+			if ( Controller.Position.Distance( closestGrindPoint.Position ) > 40 )
 				continue;
 
-			if ( Controller.Position.z < closestNode.WorldPosition.z )
-				continue;
-
-			var directionToFirstNode = path.PathNodes[0].WorldPosition - closestNode.WorldPosition;
-			var dot = Vector3.Dot( Player.Rotation.Forward, directionToFirstNode );
-
-			// Lerp the player to the starting node to make the grind seem smoother.
-			Player.Position = Vector3.Lerp( Controller.Position, closestNode.WorldPosition, Time.Delta );
+			GrindPoint secondClosestGrindPoint = closestGrindPointIndex - 1 >= 0 ? grindSpot.GrindPoints[closestGrindPointIndex - 1] : grindSpot.GrindPoints[closestGrindPointIndex];
+			var dot = Vector3.Dot( Player.Rotation.Forward, secondClosestGrindPoint.Position - closestGrindPoint.Position );
 
 			_isReverse = dot > 0;
-			_currentNodeIndex = path.PathNodes.IndexOf( closestNode );
-			_path = path;
+			_currentIndex = _isReverse ? closestGrindPoint.LastNodeIndex : closestGrindPoint.FirstNodeIndex;
+			_grindSpot = grindSpot;
+			_alpha = _isReverse ? 1f - closestGrindPoint.Alpha : closestGrindPoint.Alpha;
+
 			return true;
 		}
 
@@ -51,7 +60,7 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override void Simulate()
 	{
-		if ( _currentNodeIndex < 0 || _path is null || _path.PathNodes is null || _currentNodeIndex >= _path.PathNodes.Count )
+		if ( _currentIndex < 0 || _grindSpot is null || _grindSpot.PathNodes is null || _currentIndex >= _grindSpot.PathNodes.Count )
 		{
 			Stop();
 			return;
@@ -60,19 +69,19 @@ public partial class GrindMechanic : ControllerMechanic
 		_isGrinding = true;
 
 		var increment = _isReverse ? -1 : +1;
-		var currentNode = _path.PathNodes[_currentNodeIndex];
-		var nextNodeIndex = _currentNodeIndex + increment;
-		var nextNode = _path.PathNodes.ElementAtOrDefault( nextNodeIndex ) ?? currentNode;
+		var currentNode = _grindSpot.PathNodes[_currentIndex];
+		var nextNodeIndex = _currentIndex + increment;
+		var nextNode = _grindSpot.PathNodes.ElementAtOrDefault( nextNodeIndex ) ?? currentNode;
 		var distanceBetweenNodes = currentNode.WorldPosition.Distance( nextNode.WorldPosition );
 
-		var nextPosition = _path.GetPointBetweenNodes( currentNode, nextNode, _alpha, _isReverse );
-		var speed = Math.Max( 300f, _incomingSpeed );
+		var nextPosition = _grindSpot.GetPointBetweenNodes( currentNode, nextNode, _alpha, _isReverse );
+		var speed = 300f;
 
 		_alpha += Time.Delta * (speed / distanceBetweenNodes);
-		if ( _alpha >= 0.98f )
+		if ( _alpha >= 0.97f )
 		{
 			_alpha = 0;
-			_currentNodeIndex += increment;
+			_currentIndex += increment;
 		}
 
 		Controller.Velocity = (nextPosition - Controller.Position).Normal * speed;
@@ -84,11 +93,6 @@ public partial class GrindMechanic : ControllerMechanic
 			Player.JumpMechanic.Start();
 			Stop();
 		}
-	}
-
-	protected override void OnStart()
-	{
-		_incomingSpeed = Player.Velocity.Length;
 	}
 
 	protected override void OnStop()
