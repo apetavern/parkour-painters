@@ -11,11 +11,6 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
-		foreach ( var grindSpot in Sandbox.Entity.All.OfType<GrindSpot>() )
-		{
-			grindSpot.DrawGrindSpot();
-		}
-
 		if ( _isGrinding )
 			return true;
 
