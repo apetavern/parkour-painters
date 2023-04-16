@@ -38,11 +38,21 @@ public partial class GrindSpot : GenericPathEntity
 
 		_grindPoints.Clear();
 
-		var firstNode = PathNodes[0];
-		var lastNode = PathNodes[1];
+		var firstPoint = new GrindPoint() { Position = PathNodes[0].WorldPosition, TangentIn = PathNodes[0].WorldTangentIn, TangentOut = PathNodes[0].WorldTangentOut };
+		var lastPoint = new GrindPoint() { Position = PathNodes[1].WorldPosition, TangentIn = PathNodes[1].WorldTangentIn, TangentOut = PathNodes[1].WorldTangentOut };
 
-		_grindPoints.Add( new GrindPoint() { Position = firstNode.WorldPosition, TangentIn = firstNode.WorldTangentIn, TangentOut = firstNode.WorldTangentOut } );
-		_grindPoints.Add( new GrindPoint() { Position = lastNode.WorldPosition, TangentIn = lastNode.WorldTangentIn, TangentOut = lastNode.WorldTangentOut } );
+		_grindPoints.Add( firstPoint );
+
+		var middle = new GrindPoint()
+		{
+			Position = GetPointBetweenNodes( firstPoint, lastPoint, 0.5f ),
+			TangentOut = 0,
+			TangentIn = 0
+		};
+
+		_grindPoints.Add( middle );
+
+		_grindPoints.Add( lastPoint );
 	}
 
 	public void DrawGrindSpot()
