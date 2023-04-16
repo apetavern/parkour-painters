@@ -1,5 +1,5 @@
 {
-  "UI": false,
+  "UI": true,
   "Volume": "0.30,0.30,0",
   "Pitch": "1.00,1.00,1",
   "Decibels": 70,
