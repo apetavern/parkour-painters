@@ -3,8 +3,9 @@ namespace ParkourPainters.Entities;
 public struct GrindPoint
 {
 	public Vector3 Position;
-	public Vector3 TangentIn;
-	public Vector3 TangentOut;
+	public float Alpha;
+	public int FirstNodeIndex;
+	public int LastNodeIndex;
 }
 
 /// <summary>
@@ -15,11 +16,13 @@ public struct GrindPoint
 [HammerEntity, Path( "path_generic_node" )]
 public partial class GrindSpot : GenericPathEntity
 {
-	private readonly List<GrindPoint> _grindPoints = new();
+	public List<GrindPoint> GrindPoints { get; private set; } = new();
 
 	public override void Spawn()
 	{
 		base.Spawn();
+
+		Transmit = TransmitType.Always;
 
 		CreateGrindPoints();
 	}
@@ -36,82 +39,30 @@ public partial class GrindSpot : GenericPathEntity
 		if ( PathNodes.Count < 2 )
 			return;
 
-		_grindPoints.Clear();
+		GrindPoints.Clear();
 
-		var firstPoint = new GrindPoint() { Position = PathNodes[0].WorldPosition, TangentIn = PathNodes[0].WorldTangentIn, TangentOut = PathNodes[0].WorldTangentOut };
-		var lastPoint = new GrindPoint() { Position = PathNodes[1].WorldPosition, TangentIn = PathNodes[1].WorldTangentIn, TangentOut = PathNodes[1].WorldTangentOut };
-
-		_grindPoints.Add( firstPoint );
-
-		var middle = new GrindPoint()
+		for ( int i = 0; i < PathNodes.Count - 1; ++i )
 		{
-			Position = GetPointBetweenNodes( firstPoint, lastPoint, 0.5f ),
-			TangentOut = 0,
-			TangentIn = 0
-		};
+			var firstNode = PathNodes[i];
+			var lastNode = PathNodes[i + 1];
 
-		_grindPoints.Add( middle );
+			var curveLength = GetCurveLength( firstNode, lastNode, 10 );
+			var numGrindPoints = (int)(curveLength / 60);
+			var increment = 1f / numGrindPoints;
 
-		_grindPoints.Add( lastPoint );
-	}
-
-	public void DrawGrindSpot()
-	{
-		for ( var nodeid = 0; nodeid < _grindPoints.Count; nodeid++ )
-		{
-			var node = _grindPoints[nodeid];
-
-			Vector3 nodePos = node.Position;
-
-			// Nodes & IDs
-			DebugOverlay.Sphere( nodePos, 4, Color.White );
-			DebugOverlay.Text( $"{nodeid + 1}", nodePos + Vector3.Up * 6, Color.White, 0, 2500 );
-
-			Vector3 nodeTanIn = node.TangentIn;
-			DebugOverlay.Sphere( nodeTanIn, 2, Color.Yellow );
-			DebugOverlay.Line( nodePos, nodeTanIn, Color.Yellow );
-
-			Vector3 nodeTanOut = node.TangentOut;
-			DebugOverlay.Sphere( nodeTanOut, 6, Color.Orange );
-			DebugOverlay.Line( nodePos, nodeTanOut, Color.Orange );
-
-			if ( nodeid + 1 >= _grindPoints.Count )
-				continue;
-
-			var nodeNext = _grindPoints[nodeid + 1];
-
-			for ( int i = 1; i <= 30; i++ ) // Starting from i = 1 because i = 0 is start.Position
+			for ( float t = 0; t <= 1f; t += increment )
 			{
-				var lerpPos = GetPointBetweenNodes( node, nodeNext, (float)i / 30 );
-
-				DebugOverlay.Line( nodePos, lerpPos, Color.Green );
-
-				nodePos = lerpPos;
+				GrindPoints.Add
+				(
+					new GrindPoint() { Position = GetPointBetweenNodes( firstNode, lastNode, t ), Alpha = t, FirstNodeIndex = i, LastNodeIndex = i + 1 }
+				);
 			}
 		}
 	}
 
-	private Vector3 GetPointBetweenNodes( GrindPoint start, GrindPoint end, float t, bool reverse = false )
+	public void DrawGrindSpot()
 	{
-		Vector3 tanSrc = reverse ? start.TangentIn : start.TangentOut;
-		Vector3 tanTgt = reverse ? end.TangentOut : end.TangentIn;
-
-		return Vector3.CubicBeizer( start.Position, end.Position, tanSrc, tanTgt, t );
-	}
-
-	[ConCmd.Admin( "regen" )]
-	private static void Regen()
-	{
-		foreach ( var path in Sandbox.Entity.All.OfType<GrindSpot>() )
-			path.CreateGrindPoints();
-
-		ClientRegen();
-	}
-
-	[ClientRpc]
-	public static void ClientRegen()
-	{
-		foreach ( var path in Sandbox.Entity.All.OfType<GrindSpot>() )
-			path.CreateGrindPoints();
+		foreach ( var point in GrindPoints )
+			DebugOverlay.Sphere( point.Position, 1f, Color.Blue );
 	}
 }
