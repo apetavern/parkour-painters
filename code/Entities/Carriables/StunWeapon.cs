@@ -42,7 +42,7 @@ public sealed partial class StunWeapon : BaseCarriable
 
 		var armPosition = Owner.EyePosition - Vector3.Up * 16f;
 		var tr = Trace.Ray( armPosition, armPosition + Owner.LookInput.ToRotation().Forward * 65f )
-			.Size( 8f )
+			.Size( 16f )
 			.Ignore( Owner )
 			.Run();
 
