@@ -113,7 +113,8 @@ internal sealed partial class GameOverState : Entity, IGameState
 			};
 		}
 
-		TimeUntilResetGame = (GameOverSpectator.TravelTimeToSpot + GameOverSpectator.StareTime) * Spots.Count + ParkourPainters.GameResetTimer;
+		// TODO: Should depend on if we are done showing everything.
+		TimeUntilResetGame = ParkourPainters.GameResetTimer;
 	}
 
 	/// <inheritdoc/>

@@ -5,47 +5,7 @@
 /// </summary>
 internal sealed partial class GameOverSpectator : Entity
 {
-	/// <summary>
-	/// Whether or not the spectator has finished looking at all the <see cref="Spray"/>s.
-	/// </summary>
-	internal bool Finished => SpotIndex >= GameOverState.Instance.Spots.Count;
-	/// <summary>
-	/// Whether or not the spectator is looking at a <see cref="Spray"/>.
-	/// </summary>
-	internal bool Staring => TimeSinceTravelStarted > TravelTimeToSpot && TimeSinceTravelStarted <= TravelTimeToSpot + StareTime;
-
-	/// <summary>
-	/// The current <see cref="GraffitiArea"/> the spectator is looking at.
-	/// </summary>
-	internal GraffitiArea CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
-	/// <summary>
-	/// The last <see cref="GraffitiArea"/> the spectator was looking at. Null if <see ref="LastSpot"/> is 0.
-	/// </summary>
-	internal GraffitiArea LastSpot => SpotIndex == 0 ? null : GameOverState.Instance.Spots[SpotIndex - 1];
-
-	/// <summary>
-	/// The current index that the spectator is at in the <see cref="GameOverState.Spots"/> list.
-	/// </summary>
-	private int SpotIndex { get; set; }
-	/// <summary>
-	/// The time in seconds since the current travel started.
-	/// </summary>
-	private TimeSince TimeSinceTravelStarted { get; set; } = 0;
-
 	private GameResults _gameResultsPanel;
-
-	/// <summary>
-	/// The time in seconds it takes to travel between <see cref="Spray"/>s.
-	/// </summary>
-	internal static float TravelTimeToSpot => (3f / GameOverState.Instance.Spots.Count);
-	/// <summary>
-	/// The time in seconds that the spectator will stare at the <see cref="Spray"/>.
-	/// </summary>
-	internal static float StareTime => (2f / GameOverState.Instance.Spots.Count);
-	/// <summary>
-	/// Whether or not the score has been created for the game over spot.
-	/// </summary>
-	internal bool _createdScore = false;
 
 	/// <inheritdoc/>
 	public sealed override void Spawn()
@@ -72,51 +32,29 @@ internal sealed partial class GameOverSpectator : Entity
 			_gameResultsPanel.Delete();
 	}
 
-	/// <summary>
-	/// Lerps to the next spot to look at.
-	/// </summary>
 	[Event.Tick.Client]
 	private void LerpToSpot()
 	{
-		if ( GameOverState.Instance is null || Finished )
-			return;
+		var minPoint = new Vector3( float.MaxValue, float.MaxValue, float.MaxValue );
+		var maxPoint = new Vector3( float.MinValue, float.MinValue, float.MinValue );
 
-		var lastSpray = LastSpot?.LastCompletedSpray;
-		var currentSpray = CurrentSpot.LastCompletedSpray;
-
-		var startPos = LastSpot is null
-			? Position
-			: LastSpot.Position + lastSpray?.Rotation.Up * 200 ?? Rotation.Up * 200;
-		var targetPos = CurrentSpot.Position + currentSpray?.Rotation.Up * 200 ?? Rotation.Up * 200;
-
-		var startRot = LastSpot is null
-			? Rotation
-			: Rotation.LookAt( lastSpray?.Position - Camera.Position ?? LastSpot.Position - Camera.Position );
-		var targetRot = Rotation.LookAt( currentSpray?.Position - Camera.Position ?? CurrentSpot.Position - Camera.Position );
-
-		var fraction = TimeSinceTravelStarted / TravelTimeToSpot;
-
-		Camera.Position = Vector3.Lerp( startPos, targetPos, fraction );
-		Camera.Rotation = Rotation.Lerp( startRot, targetRot, fraction );
-
-		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime - 0.5f )
-			return;
-
-		if ( Game.IsClient && CurrentSpot is not null && CurrentSpot.AreaOwner is not null && !_createdScore )
+		foreach ( var area in All.OfType<GraffitiArea>() )
 		{
-			_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, (int)CurrentSpot.PointsType + 1 );
-			_ = new ScoreWorldPanel( CurrentSpot.AreaOwner, currentSpray.Position + currentSpray.Rotation.Up * 10f + Camera.Rotation.Backward * 50f );
-			_createdScore = true;
+			minPoint = Vector3.Min( area.Position, minPoint );
+			maxPoint = Vector3.Max( area.Position, maxPoint );
 		}
 
-		if ( TimeSinceTravelStarted < TravelTimeToSpot + StareTime )
-			return;
+		var center = (minPoint + maxPoint) / 2;
 
-		SpotIndex++;
-		TimeSinceTravelStarted = 0;
-		_createdScore = false;
+		var bounds = new BBox( center, Vector3.Zero );
+		foreach ( var area in All.OfType<GraffitiArea>() )
+		{
+			bounds = bounds.AddPoint( area.Position );
+		}
 
-		if ( Finished )
-			_gameResultsPanel.ShowWinner();
+		var cameraDistance = bounds.Size.Length / MathF.Tan( Camera.FieldOfView * 0.5f * (MathF.PI / 180) );
+
+		Camera.Position = center.WithZ( cameraDistance );
+		Camera.Rotation = Rotation.LookAt( Vector3.Down );
 	}
 }
