@@ -6,17 +6,18 @@
 }
 
 <root>
-    @* TODO: Replace with data populated inside of MapVoteState. *@
     <div class="maps">
-        <MapIcon Ident="apetavern.pp_streets" />
-        <MapIcon Ident="apetavern.pp_rooftops" />
+        @foreach (var mapIdent in MapVoteState.Instance.MapIdents)
+        {
+            <MapIcon Ident=@mapIdent />
+        }
     </div>
 </root>
 
 @code {
     protected override int BuildHash()
     {
-        return 0;
+        return HashCode.Combine(MapVoteState.Instance?.MapIdents.HashCombine(m => m.GetHashCode()));
     }
 }
 
