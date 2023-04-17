@@ -22,6 +22,11 @@
         return TimeSpan.FromSeconds(seconds.CeilToInt()).ToString(@"mm\:ss");
     }
 
+    public override void Tick()
+    {
+        SetClass("bobbing", ParkourPainters.Current.CurrentState is PlayState playState && playState.TimeUntilGameEnds < 30);
+    }
+
     protected override int BuildHash()
     {
         var state = ParkourPainters.Current.CurrentState;
@@ -42,6 +47,26 @@
             color: orange;
             font-family: ADDCN;
             text-shadow: 2px 2px 0px black;
+        }
+
+        &.bobbing {
+            animation-duration: 1s;
+            animation-name: bob;
+            animation-iteration-count: infinite;
+        }
+    }
+
+    @@keyframes bob {
+        0% {
+            transform: translateY(0) scale(1.05);
+        }
+
+        50% {
+            transform: translateY(5);
+        }
+
+        100% {
+            transform: translateY(0);
         }
     }
 </style>
