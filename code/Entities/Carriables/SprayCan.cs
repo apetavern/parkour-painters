@@ -28,7 +28,7 @@ public sealed partial class SprayCan : BaseCarriable
 	/// <summary>
 	/// The maximum amount of spray that can be held in the spray can.
 	/// </summary>
-	internal const int MaxAmmo = 500;
+	internal const int MaxAmmo = 400;
 
 	/// <inheritdoc/>
 	public sealed override void OnEquipped()

@@ -414,7 +414,7 @@ public sealed partial class Player : AnimatedEntity
 			}
 		}
 
-		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary || sprayCan.Ammo < 0 )
+		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary || sprayCan.Ammo <= 0 )
 		{
 			_isPlayingSpray = false;
 			SprayLoop.Stop();
