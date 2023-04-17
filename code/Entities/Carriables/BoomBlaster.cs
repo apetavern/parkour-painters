@@ -10,11 +10,19 @@
  */
 public partial class BoomBlaster : BaseCarriable
 {
+	/// <inheritdoc/>
 	public override string CarriableName => "Boom Blaster";
 
+	/// <inheritdoc/>
 	public override string SlotText => Charges.ToString();
+
+	/// <inheritdoc/>
 	public override bool CanUseWhileClimbing => false;
 
+	/// <inheritdoc/>
+	public override bool IsAiming => true;
+
+	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/boomblaster.vmdl";
 
 	private const float HitForce = 1536f;

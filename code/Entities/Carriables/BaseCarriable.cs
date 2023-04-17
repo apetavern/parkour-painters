@@ -30,10 +30,14 @@ public abstract partial class BaseCarriable : AnimatedEntity
 	public virtual bool CanUseWhileClimbing => true;
 
 	/// <summary>
+	/// Whether or not the weapon is actively aiming.
+	/// </summary>
+	public virtual bool IsAiming => false;
+
+	/// <summary>
 	/// The path to the world model to use.
 	/// </summary>
 	protected virtual string ModelPath => "";
-
 	/// <summary>
 	/// The time in seconds between each time the carriables primary attack can be used.
 	/// </summary>

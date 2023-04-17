@@ -2,12 +2,19 @@
 
 public sealed partial class StunWeapon : BaseCarriable
 {
+	/// <inheritdoc/>
 	public override string CarriableName => "Stun Weapon";
 
+	/// <inheritdoc/>
 	public override string SlotText => Charges.ToString();
 
+	/// <inheritdoc/>
 	public override bool CanUseWhileClimbing => false;
 
+	/// <inheritdoc/>
+	public override bool IsAiming => true;
+
+	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/melee_weapons/melee_weapons.vmdl";
 
 	private const int HitForce = 1250;

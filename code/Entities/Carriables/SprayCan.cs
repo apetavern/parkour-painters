@@ -12,6 +12,9 @@ public sealed partial class SprayCan : BaseCarriable
 	public override string SlotText => Ammo.ToString();
 
 	/// <inheritdoc/>
+	public override bool IsAiming => Input.Down( InputButton.PrimaryAttack );
+
+	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/spray_paint/spray_paint.vmdl";
 
 	/// <inheritdoc/>
