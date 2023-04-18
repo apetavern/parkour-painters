@@ -1,0 +1,39 @@
+@namespace ParkourPainters.UI
+
+<root style="left: @Length.Fraction( ScreenPosition.x ); top: @Length.Fraction( ScreenPosition.y )">
+    <label style="color: @Color.Hex">push_pin</label>
+</root>
+
+@code {
+    private Vector3 MarkerPosition { get; set; }
+    private Vector3 ScreenPosition { get; set; }
+    private Color Color { get; set; }
+
+    public ScoreMarker(Vector3 position, Color color)
+    {
+        MarkerPosition = position;
+        Color = color;
+    }
+
+    public override void Tick()
+    {
+        ScreenPosition = MarkerPosition.ToScreen();
+    }
+
+    protected override int BuildHash() => HashCode.Combine(ScreenPosition, Color);
+}
+
+<style>
+    ScoreMarker {
+        position: absolute;
+        sound-in: spray_ding;
+        transform: translateX(-50%) translateY(-50%);
+
+        label {
+            font-family: MaterialIcons;
+            font-size: 50px;
+            text-shadow: 2px 2px 0px black;
+            text-align: center;
+        }
+    }
+</style>

@@ -38,7 +38,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	[Net] private TimeUntil TimeUntilResetGame { get; set; }
 
 	/// <summary>
-	/// A list containing all of the graffiti spots to look at.
+	/// A list containing all of the graffiti spots.
 	/// </summary>
 	[Net] public IList<GraffitiArea> Spots { get; private set; }
 
