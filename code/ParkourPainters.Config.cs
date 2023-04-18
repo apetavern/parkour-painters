@@ -18,7 +18,7 @@ partial class ParkourPainters
 	/// Defines how long until the game moves back to the <see cref="WaitingState"/>.
 	/// </summary>
 	[ConVar.Replicated( "pp_gameresettimer" )]
-	internal static float GameResetTimer { get; private set; } = 10;
+	internal static float GameResetTimer { get; private set; } = 7;
 
 	/// <summary>
 	/// Defines how many players are needed for the game to start.
