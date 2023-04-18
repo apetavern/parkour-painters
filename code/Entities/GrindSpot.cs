@@ -45,7 +45,7 @@ internal sealed class GrindSpot : GenericPathEntity
 			var lastNode = PathNodes[i + 1];
 
 			var curveLength = GetCurveLength( firstNode, lastNode, 10 );
-			var numGrindPoints = (int)(curveLength / 60);
+			var numGrindPoints = (int)(curveLength / 50);
 			var increment = 1f / numGrindPoints;
 
 			for ( float t = 0; t <= 1f; t += increment )

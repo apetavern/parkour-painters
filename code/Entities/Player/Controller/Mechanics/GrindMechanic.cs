@@ -11,6 +11,12 @@ public partial class GrindMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
+		if ( ParkourPainters.DebugMode )
+		{
+			foreach ( var grindSpot in Sandbox.Entity.All.OfType<GrindSpot>() )
+				grindSpot.DrawGrindSpot();
+		}
+
 		if ( _isGrinding )
 			return true;
 
@@ -41,7 +47,7 @@ public partial class GrindMechanic : ControllerMechanic
 				}
 			}
 
-			if ( Controller.Position.Distance( closestGrindPoint.Position ) > 40 )
+			if ( Controller.Position.Distance( closestGrindPoint.Position ) > 45 )
 				continue;
 
 			GrindPoint secondClosestGrindPoint = closestGrindPointIndex - 1 >= 0 ? grindSpot.GrindPoints[closestGrindPointIndex - 1] : grindSpot.GrindPoints[closestGrindPointIndex];
