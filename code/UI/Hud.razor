@@ -35,4 +35,22 @@
         Game.AssertClient();
         Game.RootPanel = this;
     }
+
+    [ConVar.Client("pp_showhud")]
+    public static bool ShowHud { get; set; } = true;
+
+    public override void Tick()
+    {
+        SetClass("disabled", !ShowHud);
+    }
 }
+
+<style>
+    Hud {
+        opacity: 1;
+
+        &.disabled {
+            opacity: 0;
+        }
+    }
+</style>
