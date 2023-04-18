@@ -8,7 +8,7 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// The amount of time in seconds we wait per spot.
 	/// </summary>
-	public static float TimePerSpot => Math.Min( 1f, 10f / GameOverState.Instance.OwnedSpots.Count );
+	public static float TimePerSpot => Math.Min( 0.9f, 10f / GameOverState.Instance.OwnedSpots.Count );
 
 	/// <summary>
 	/// Whether or not the spectator has finished looking at all the <see cref="Spray"/>s.
