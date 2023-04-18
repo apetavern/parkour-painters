@@ -12,12 +12,12 @@ public sealed partial class StunWeapon : BaseCarriable
 	public override bool CanUseWhileClimbing => false;
 
 	/// <inheritdoc/>
-	public override bool IsAiming => true;
+	public override bool IsAiming => false;
 
 	/// <inheritdoc/>
 	protected override string ModelPath => "models/entities/melee_weapons/melee_weapons.vmdl";
 
-	private const int HitForce = 1250;
+	private const int HitForce = 1500;
 
 	/// <summary>
 	/// A boolean representation of the next attack anim type (swing at side or overhead)
