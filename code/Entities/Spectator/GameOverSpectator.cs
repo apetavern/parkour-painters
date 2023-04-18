@@ -8,15 +8,15 @@ internal sealed partial class GameOverSpectator : Entity
 	/// <summary>
 	/// Whether or not the spectator has finished looking at all the <see cref="Spray"/>s.
 	/// </summary>
-	internal bool Finished => SpotIndex >= GameOverState.Instance.Spots.Count;
+	internal bool Finished => SpotIndex >= GameOverState.Instance.OwnedSpots.Count;
 
 	/// <summary>
 	/// The current <see cref="GraffitiArea"/> the spectator is looking at.
 	/// </summary>
-	internal GraffitiArea CurrentSpot => GameOverState.Instance.Spots[SpotIndex];
+	internal GraffitiArea CurrentSpot => GameOverState.Instance.OwnedSpots[SpotIndex];
 
 	/// <summary>
-	/// The current index that the spectator is at in the <see cref="GameOverState.Spots"/> list.
+	/// The current index that the spectator is at in the <see cref="GameOverState.OwnedSpots"/> list.
 	/// </summary>
 	private int SpotIndex { get; set; }
 

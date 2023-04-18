@@ -38,9 +38,9 @@ internal sealed partial class GameOverState : Entity, IGameState
 	[Net] private TimeUntil TimeUntilResetGame { get; set; }
 
 	/// <summary>
-	/// A list containing all of the graffiti spots.
+	/// A list containing all of the graffiti spots with owners.
 	/// </summary>
-	[Net] public IList<GraffitiArea> Spots { get; private set; }
+	[Net] public IList<GraffitiArea> OwnedSpots { get; private set; }
 
 	/// <summary>
 	/// The total possible map score determined by the spray spots that have owners.
@@ -97,7 +97,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 
 		foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
 		{
-			Spots.Add( area );
+			OwnedSpots.Add( area );
 			TotalPossibleMapScore += (int)area.PointsType + 1;
 		}
 
@@ -120,7 +120,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
-		Spots.Clear();
+		OwnedSpots.Clear();
 
 		foreach ( var player in All.WithTags( "player" ) )
 			player.Delete();
