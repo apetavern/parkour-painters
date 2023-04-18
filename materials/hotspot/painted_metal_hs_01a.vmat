@@ -1,17 +1,32 @@
-"Layer0"
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
 {
-	"shader"		"shaders/pixelated.shader_c"
-	"Color"		"materials/hotspot/textures/painted_metal_hs_01a_color.png"
-	"g_flModelTintAmount"		"1.000000"
-	"g_vColorTint"		"[1.000000 1.000000 1.000000 1.000000]"
-	"TintMask"		"materials/hotspot/textures/painted_metal_hs_01a_mask.png"
-	"g_bFogEnabled"		"1"
-	"Metallic"		"materials/hotspot/textures/painted_metal_hs_01a_metal.png"
-	"Normal"		"materials/hotspot/textures/painted_metal_hs_01a_normal.png"
-	"Roughness"		"materials/hotspot/textures/painted_metal_hs_01a_rough.png"
-	"g_vTiling"		"[1.000 1.000]"
-	"ToolAttributes"
+	shader "shaders/pixelated.shader_c"
+
+	//---- Color ----
+	Color "materials/hotspot/textures/painted_metal_hs_01a_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 1.000000]"
+	TintMask "materials/hotspot/textures/painted_metal_hs_01a_mask.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "materials/hotspot/textures/painted_metal_hs_01a_metal.png"
+
+	//---- Normal ----
+	Normal "materials/hotspot/textures/painted_metal_hs_01a_normal.png"
+
+	//---- Roughness ----
+	Roughness "materials/hotspot/textures/painted_metal_hs_01a_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+
+	ToolAttributes
 	{
-		"SubrectDefinition"		"materials\hotspot\sd_hotspot_layout_a.rect"
+		SubrectDefinition "materials\hotspot\sd_hotspot_layout_a.rect"
 	}
 }

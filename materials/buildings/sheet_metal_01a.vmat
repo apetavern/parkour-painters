@@ -2,26 +2,39 @@
 
 Layer0
 {
-	shader "shaders/pixelated.shader_c"
+	shader "shaders/pixel.shader_c"
+
+	//---- Texture Filtering ----
+	F_TEXTURE_FILTERING 3 // Point Sample
 
 	//---- Color ----
-	Color "materials/street/textures/metal_grate_01a_color.png"
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TintMask "materials/default/default_mask.tga"
+
+	//---- Fade ----
+	g_flFadeExponent "1.000"
 
 	//---- Fog ----
 	g_bFogEnabled "1"
 
-	//---- Metalness ----
-	Metallic "materials/street/textures/metal_grate_01a_metal.png"
+	//---- Lighting ----
+	g_flDirectionalLightmapMinZ "0.050"
+	g_flDirectionalLightmapStrength "1.000"
 
-	//---- Normal ----
-	Normal "materials/street/textures/metal_grate_01a_normal.png"
-
-	//---- Roughness ----
-	Roughness "materials/street/textures/metal_grate_01a_rough.png"
+	//---- Material ----
+	g_flTintColor "[1.000000 1.000000 1.000000 0.000000]"
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
+	TextureBlendMask "materials/default/default_blend.tga"
+	TextureColor "materials/street/textures/metal_grate_01a_color.png"
+	TextureMetalness "materials/street/textures/metal_grate_01a_metal.png"
+	TextureNormal "materials/street/textures/metal_grate_01a_normal.png"
+	TextureRoughness "materials/street/textures/metal_grate_01a_rough.png"
+	TextureTintMask "materials/default/default.tga"
 
 	//---- Texture Coordinates ----
-	g_vTiling "[1.000 1.000]"
+	g_nScaleTexCoordUByModelScaleAxis "0"
+	g_nScaleTexCoordVByModelScaleAxis "0"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	g_vTexCoordScrollSpeed "[0.000 0.000]"
 }
