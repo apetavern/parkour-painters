@@ -6,6 +6,11 @@
 internal sealed partial class GameOverSpectator : Entity
 {
 	/// <summary>
+	/// The amount of time in seconds we wait per spot.
+	/// </summary>
+	public static float TimePerSpot => Math.Min( 1f, 10f / GameOverState.Instance.OwnedSpots.Count );
+
+	/// <summary>
 	/// Whether or not the spectator has finished looking at all the <see cref="Spray"/>s.
 	/// </summary>
 	internal bool Finished => SpotIndex >= GameOverState.Instance.OwnedSpots.Count;
@@ -19,11 +24,6 @@ internal sealed partial class GameOverSpectator : Entity
 	/// The current index that the spectator is at in the <see cref="GameOverState.OwnedSpots"/> list.
 	/// </summary>
 	private int SpotIndex { get; set; }
-
-	/// <summary>
-	/// The amount of time in seconds we wait per spot.
-	/// </summary>
-	public float TimePerSpot { get; set; } = 1f;
 
 	/// <summary>
 	/// The time in seconds since we marked the last spot.
@@ -80,7 +80,7 @@ internal sealed partial class GameOverSpectator : Entity
 			{
 				TimeSinceLastSpot = 0;
 				_gameResultsPanel.AddScore( CurrentSpot.AreaOwner, (int)CurrentSpot.PointsType + 1 );
-				Game.RootPanel.AddChild( new ScoreMarker( CurrentSpot.LastCompletedSpray.Position, CurrentSpot.AreaOwner.Group.SprayColor ) );
+				Game.RootPanel.AddChild( new ScoreMarker( CurrentSpot ) );
 				SpotIndex++;
 			}
 

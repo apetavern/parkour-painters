@@ -5,22 +5,28 @@
 </root>
 
 @code {
-    private Vector3 MarkerPosition { get; set; }
+    private GraffitiArea Spot { get; set; }
     private Vector3 ScreenPosition { get; set; }
     private Color Color { get; set; }
 
-    public ScoreMarker(Vector3 position, Color color)
+    public ScoreMarker(GraffitiArea spot)
     {
-        MarkerPosition = position;
-        Color = color;
+        Spot = spot;
+        Color = spot.AreaOwner.Group.SprayColor;
     }
 
     public override void Tick()
     {
-        ScreenPosition = MarkerPosition.ToScreen();
+        if (GameOverState.Instance is null || Spot is null)
+        {
+            Delete(true);
+            return;
+        }
+
+        ScreenPosition = Spot.LastCompletedSpray.Position.ToScreen();
     }
 
-    protected override int BuildHash() => HashCode.Combine(ScreenPosition, Color);
+    protected override int BuildHash() => HashCode.Combine(ScreenPosition, Spot?.AreaOwner?.Group?.SprayColor);
 }
 
 <style>
@@ -28,6 +34,7 @@
         position: absolute;
         sound-in: spray_ding;
         transform: translateX(-50%) translateY(-50%);
+        z-index: -20;
 
         label {
             font-family: MaterialIcons;
