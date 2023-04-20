@@ -14,7 +14,7 @@ public sealed partial class DashMechanic : ControllerMechanic
 		if ( TimeSinceLastDash <= DashRechargeTime )
 			return false;
 
-		if ( !Input.Pressed( InputButton.Run ) )
+		if ( !Input.Pressed( InputAction.Dash ) )
 			return false;
 
 		if ( Player.WallJumpMechanic.IsActive || Player.LedgeGrabMechanic.IsActive || Player.GrindMechanic.IsActive )

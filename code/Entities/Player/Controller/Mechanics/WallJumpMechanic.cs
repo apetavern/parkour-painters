@@ -71,13 +71,13 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 			return;
 		}
 
-		if ( Input.Pressed( InputButton.Jump ) )
+		if ( Input.Pressed( InputAction.Jump ) )
 		{
 			DoWallJump();
 			return;
 		}
 
-		if ( Input.Pressed( InputButton.Duck ) )
+		if ( Input.Pressed( InputAction.Drop ) )
 		{
 			Cancel();
 			return;

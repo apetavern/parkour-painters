@@ -219,6 +219,110 @@
       "Keyboard": true,
       "Gamepad": true
     },
-    "ReplaceTags": "multiplayer retro movement competitive gangjam"
+    "ReplaceTags": "multiplayer retro movement competitive gangjam",
+    "InputSettings": {
+      "Actions": [
+        {
+          "Name": "forward",
+          "KeyboardCode": "w",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "backward",
+          "KeyboardCode": "s",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "left",
+          "KeyboardCode": "a",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "right",
+          "KeyboardCode": "d",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "jump",
+          "KeyboardCode": "space",
+          "GamepadCode": "A",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "dash",
+          "KeyboardCode": "shift",
+          "GamepadCode": "B",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "drop",
+          "KeyboardCode": "ctrl",
+          "GamepadCode": "LeftJoystickButton",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "primary_attack",
+          "KeyboardCode": "mouse1",
+          "GamepadCode": "RightTrigger",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "secondary_attack",
+          "KeyboardCode": "mouse2",
+          "GamepadCode": "LeftTrigger",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "slot0",
+          "KeyboardCode": "0",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "slot1",
+          "KeyboardCode": "1",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "slot2",
+          "KeyboardCode": "2",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "slot_next",
+          "KeyboardCode": "mouse4",
+          "GamepadCode": "SwitchLeftBumper",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "slot_prev",
+          "KeyboardCode": "mouse5",
+          "GamepadCode": "SwitchRightBumper",
+          "GroupName": "Carriable"
+        },
+        {
+          "Name": "chat",
+          "KeyboardCode": "enter",
+          "GroupName": "UI"
+        },
+        {
+          "Name": "voice",
+          "KeyboardCode": "v",
+          "GamepadCode": "X",
+          "GroupName": "UI"
+        },
+        {
+          "Name": "scoreboard",
+          "KeyboardCode": "tab",
+          "GamepadCode": "Y",
+          "GroupName": "UI"
+        },
+        {
+          "Name": "instructions",
+          "KeyboardCode": "e",
+          "GamepadCode": "DpadSouth",
+          "GroupName": "UI"
+        }
+      ]
+    }
   }
 }

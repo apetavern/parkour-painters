@@ -33,7 +33,7 @@ public sealed partial class Team : Entity
 		.Count();
 
 	/// <summary>
-	/// Initializes a new instance of <see cref="Team"/>. This should only be used by S&box on the client-side.
+	/// Initializes a new instance of <see cref="Team"/>. This should only be used by s&box on the client-side.
 	/// </summary>
 	public Team()
 	{

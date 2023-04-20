@@ -11,7 +11,7 @@ public sealed partial class JumpMechanic : ControllerMechanic
 		if ( Player.IsDazed )
 			return false;
 
-		if ( !Input.Pressed( InputButton.Jump ) )
+		if ( !Input.Pressed( InputAction.Jump ) )
 			return false;
 
 		if ( !Controller.GroundEntity.IsValid() )

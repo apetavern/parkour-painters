@@ -35,15 +35,15 @@ public sealed class NoclipMechanic : ControllerMechanic
 
 		var vel = (rotation.Forward * fwd) + (rotation.Left * left);
 
-		if ( Input.Down( InputButton.Jump ) )
+		if ( Input.Down( InputAction.Jump ) )
 			vel += Vector3.Up * 1;
 
 		vel = vel.Normal * 2000;
 
-		if ( Input.Down( InputButton.Run ) )
+		if ( Input.Down( InputAction.Dash ) )
 			vel *= 5.0f;
 
-		if ( Input.Down( InputButton.Duck ) )
+		if ( Input.Down( InputAction.Drop ) )
 			vel *= 0.2f;
 
 		Velocity += vel * Time.Delta;

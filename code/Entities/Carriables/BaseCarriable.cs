@@ -103,7 +103,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 		}
 
 		// Primary fire
-		if ( Input.Down( InputButton.PrimaryAttack ) && !Input.Down( InputButton.SecondaryAttack ) )
+		if ( Input.Down( InputAction.PrimaryAttack ) && !Input.Down( InputAction.SecondaryAttack ) )
 		{
 			if ( TimeSinceLastPrimary < PrimaryFireRate )
 				return;
@@ -116,14 +116,14 @@ public abstract partial class BaseCarriable : AnimatedEntity
 			HasReleasedPrimary = false;
 		}
 
-		if ( Input.Released( InputButton.PrimaryAttack ) )
+		if ( Input.Released( InputAction.PrimaryAttack ) )
 		{
 			OnPrimaryReleased();
 			HasReleasedPrimary = true;
 		}
 
 		// Secondary fire
-		if ( Input.Down( InputButton.SecondaryAttack ) && !Input.Down( InputButton.PrimaryAttack ) )
+		if ( Input.Down( InputAction.SecondaryAttack ) && !Input.Down( InputAction.PrimaryAttack ) )
 		{
 			if ( TimeSinceLastSecondary < SecondaryFireRate )
 				return;
@@ -136,7 +136,7 @@ public abstract partial class BaseCarriable : AnimatedEntity
 			HasReleasedSecondary = false;
 		}
 
-		if ( Input.Released( InputButton.SecondaryAttack ) )
+		if ( Input.Released( InputAction.SecondaryAttack ) )
 		{
 			OnSecondaryReleased();
 			HasReleasedSecondary = true;

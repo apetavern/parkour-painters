@@ -21,18 +21,18 @@ partial class ParkourPainters
 		/// </summary>
 		internal const string ExitGameState = "ParkourPainters_exitgamestate";
 		/// <summary>
-		/// <para>Invoked once a teams <see cref="GraffitiSpot"/> has been interacted with by another team.
+		/// <para>Invoked once a teams <see cref="GraffitiArea"/> has been interacted with by another team.
 		/// This event is invoked on the server.</para>
-		/// <para>Parameter 0 is the old team that owned the <see cref="GraffitiSpot"/> (type of <see cref="Team"/>).</para>
-		/// <para>Parameter 1 is the new team that owns the <see cref="GraffitiSpot"/> (type of <see cref="Team"/>).</para>
+		/// <para>Parameter 0 is the old team that owned the <see cref="GraffitiArea"/> (type of <see cref="Team"/>).</para>
+		/// <para>Parameter 1 is the new team that owns the <see cref="GraffitiArea"/> (type of <see cref="Team"/>).</para>
 		/// <para>Parameter 2 is the player that caused the tampering (type of <see cref="Player"/>).</para>
 		/// </summary>
 		internal const string GraffitiSpotTampered = "ParkourPainters_graffitispottampered";
 		/// <summary>
-		/// <para>Invoked once a team has completed a <see cref="GraffitiSpot"/>.
+		/// <para>Invoked once a team has completed a <see cref="GraffitiArea"/>.
 		/// This event is invoked on the server.</para>
-		/// <para>Parameter 0 is the team that completed the <see cref="GraffitiSpot"/> (type of <see cref="Team"/>).</para>
-		/// <para>Parameter 1 is the player that completed the <see cref="GraffitiSpot"/> (type of <see cref="Player"/>).</para>
+		/// <para>Parameter 0 is the team that completed the <see cref="GraffitiArea"/> (type of <see cref="Team"/>).</para>
+		/// <para>Parameter 1 is the player that completed the <see cref="GraffitiArea"/> (type of <see cref="Player"/>).</para>
 		/// </summary>
 		internal const string GraffitiSpotCompleted = "ParkourPainters_graffitispotcompleted";
 
@@ -62,10 +62,10 @@ partial class ParkourPainters
 		}
 
 		/// <summary>
-		/// <para>Invoked once a teams <see cref="GraffitiSpot"/> has been interacted with by another team.
+		/// <para>Invoked once a teams <see cref="GraffitiArea"/> has been interacted with by another team.
 		/// This event is invoked on the server.</para>
-		/// <para>Parameter 0 is the old team that owned the <see cref="GraffitiSpot"/> (type of <see cref="Team"/>).</para>
-		/// <para>Parameter 1 is the new team that owns the <see cref="GraffitiSpot"/> (type of <see cref="Team"/>).</para>
+		/// <para>Parameter 0 is the old team that owned the <see cref="GraffitiArea"/> (type of <see cref="Team"/>).</para>
+		/// <para>Parameter 1 is the new team that owns the <see cref="GraffitiArea"/> (type of <see cref="Team"/>).</para>
 		/// <para>Parameter 2 is the player that caused the tampering (type of <see cref="Player"/>).</para>
 		/// </summary>
 		public class GraffitiSpotTamperedAttribute : EventAttribute
@@ -76,10 +76,10 @@ partial class ParkourPainters
 		}
 
 		/// <summary>
-		/// <para>Invoked once a team has completed a <see cref="GraffitiSpot"/>.
+		/// <para>Invoked once a team has completed a <see cref="GraffitiArea"/>.
 		/// This event is invoked on the server.</para>
-		/// <para>Parameter 0 is the team that completed the <see cref="GraffitiSpot"/> (type of <see cref="Team"/>).</para>
-		/// <para>Parameter 1 is the player that completed the <see cref="GraffitiSpot"/> (type of <see cref="Player"/>).</para>
+		/// <para>Parameter 0 is the team that completed the <see cref="GraffitiArea"/> (type of <see cref="Team"/>).</para>
+		/// <para>Parameter 1 is the player that completed the <see cref="GraffitiArea"/> (type of <see cref="Player"/>).</para>
 		/// </summary>
 		public class GraffitiSpotCompletedAttribute : EventAttribute
 		{

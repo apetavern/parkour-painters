@@ -43,13 +43,13 @@ public partial class LedgeGrabMechanic : ControllerMechanic
 		// The player is moving in a direction away from the ledge, therefore we should drop them.
 		var isMovingFromLedge = Vector3.Dot( wishVelocity, Player.Rotation.Forward ) < -30;
 
-		if ( Input.Pressed( InputButton.Duck ) || isMovingFromLedge )
+		if ( Input.Pressed( InputAction.Drop ) || isMovingFromLedge )
 		{
 			Stop();
 			return;
 		}
 
-		if ( Input.Pressed( InputButton.Jump ) )
+		if ( Input.Pressed( InputAction.Jump ) )
 		{
 			Vault();
 			return;

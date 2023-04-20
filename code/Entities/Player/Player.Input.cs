@@ -84,16 +84,16 @@ public partial class Player
 
 		LookInput = lookInput.WithPitch( lookInput.pitch.Clamp( -90f, 90f ) );
 
-		if ( Input.Pressed( InputButton.Slot1 ) )
+		if ( Input.Pressed( InputAction.Slot1 ) )
 			SwitchTo( 0 );
-		if ( Input.Pressed( InputButton.Slot2 ) )
+		if ( Input.Pressed( InputAction.Slot2 ) )
 			SwitchTo( 1 );
-		if ( Input.Pressed( InputButton.Slot0 ) )
+		if ( Input.Pressed( InputAction.Slot0 ) )
 			SwitchTo( null );
 
-		if ( Input.Pressed( InputButton.SlotNext ) )
+		if ( Input.Pressed( InputAction.SlotNext ) )
 			SwitchTo( Inventory.Items.IndexOf( HeldItem ) + 1 );
-		if ( Input.Pressed( InputButton.SlotPrev ) )
+		if ( Input.Pressed( InputAction.SlotPrev ) )
 			SwitchTo( Inventory.Items.IndexOf( HeldItem ) - 1 );
 	}
 
@@ -134,7 +134,7 @@ public partial class Player
 	{
 		if ( heldItemInput is BaseCarriable carriable )
 			carriable.OnHolstered();
-			
+
 		heldItemInput = null;
 	}
 }

@@ -63,7 +63,7 @@ internal sealed class Spectator : Entity
 	/// <inheritdoc/>
 	public sealed override void BuildInput()
 	{
-		if ( Input.Pressed( InputButton.PrimaryAttack ) )
+		if ( Input.Pressed( InputAction.PrimaryAttack ) )
 		{
 			// Move up until we find a valid client.
 			do
@@ -75,7 +75,7 @@ internal sealed class Spectator : Entity
 			} while ( Game.Clients.ElementAt( ClientIndex ).Pawn is not Player );
 		}
 
-		if ( Input.Pressed( InputButton.SecondaryAttack ) )
+		if ( Input.Pressed( InputAction.SecondaryAttack ) )
 		{
 			// Move down until we find a valid client.
 			do
