@@ -36,7 +36,7 @@ internal sealed partial class BoomBlasterSpawner : AnimatedEntity
 	/// <summary>
 	/// The model for the spawner.
 	/// </summary>
-	private Model SpawnerModel => Model.Load( "models/entities/boomblaster.vmdl" );
+	private string SpawnerModel => "models/entities/boomblaster.vmdl";
 
 	/// <summary>
 	/// The type that was found from <see ref="TargetType"/>.
@@ -59,7 +59,7 @@ internal sealed partial class BoomBlasterSpawner : AnimatedEntity
 			return;
 		}
 
-		Model = SpawnerModel;
+		SetModel( SpawnerModel );
 
 		Scale = 2f;
 
