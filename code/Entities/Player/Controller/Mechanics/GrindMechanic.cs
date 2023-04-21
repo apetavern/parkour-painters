@@ -92,11 +92,12 @@ public partial class GrindMechanic : ControllerMechanic
 
 		Controller.Velocity = (nextPosition - Controller.Position).Normal * speed;
 		Controller.Position = Vector3.Lerp( Controller.Position, nextPosition, Time.Delta );
-		Player.Rotation = Controller.Velocity.Normal.EulerAngles.WithPitch( 0 ).ToRotation();
+		Player.Rotation = Controller.Velocity.Normal.EulerAngles.ToRotation();
 
 		if ( Input.Pressed( InputAction.Jump ) )
 		{
 			Player.JumpMechanic.Start();
+
 			Stop();
 		}
 	}
@@ -106,6 +107,8 @@ public partial class GrindMechanic : ControllerMechanic
 		IsActive = false;
 		_isGrinding = false;
 		_timeSinceExit = 0;
+
+		Player.Rotation = Player.Rotation.Angles().WithPitch( 0 ).ToRotation();
 
 		Player.PlaySound( "grind_exit" );
 	}
