@@ -71,7 +71,7 @@ public sealed partial class ParkourPainters : GameManager
 	/// <summary>
 	/// Invoked every frame on the client-side.
 	/// </summary>
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void ClientTick()
 	{
 		CurrentState?.ClientTick();
@@ -80,7 +80,7 @@ public sealed partial class ParkourPainters : GameManager
 	/// <summary>
 	/// Invoked every tick on the server-side.
 	/// </summary>
-	[Event.Tick.Server]
+	[GameEvent.Tick.Server]
 	private void ServerTick()
 	{
 		// Prevent the potential crash whenever the convar is changed.

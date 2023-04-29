@@ -102,7 +102,7 @@ internal sealed partial class BoomBlasterSpawner : AnimatedEntity
 	/// <summary>
 	/// Handles the render color of the spawner when it is (un)available.
 	/// </summary>
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void ClientTick()
 	{
 		RenderColor = IsUnavailable

@@ -330,7 +330,7 @@ public sealed partial class Player : AnimatedEntity
 	/// <summary>
 	/// Slightly fades out immune players.
 	/// </summary>
-	[Event.Tick]
+	[GameEvent.Tick]
 	private void ImmuneTick()
 	{
 		if ( IsImmune )

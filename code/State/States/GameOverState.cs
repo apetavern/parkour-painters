@@ -168,7 +168,7 @@ internal sealed partial class GameOverState : Entity, IGameState
 			WaitingState.SetActive();
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void DebugDraw()
 	{
 		if ( !ParkourPainters.DebugMode )

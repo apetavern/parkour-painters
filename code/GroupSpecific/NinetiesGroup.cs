@@ -8,7 +8,7 @@ internal static class NinetiesGroup
 	/// <summary>
 	/// Marks all <see cref="GraffitiArea"/>s in the map.
 	/// </summary>
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private static void GraffitiView()
 	{
 		// if ( Game.LocalClient.GetTeam() is not Team team )

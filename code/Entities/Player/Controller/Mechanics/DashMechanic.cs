@@ -49,7 +49,7 @@ public sealed partial class DashMechanic : ControllerMechanic
 		TimeSinceLastDash = 0;
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void DebugDraw()
 	{
 		if ( !ParkourPainters.DebugMode )

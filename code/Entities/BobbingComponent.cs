@@ -37,7 +37,7 @@ internal sealed partial class BobbingComponent : EntityComponent<ModelEntity>, I
 	/// <summary>
 	/// Bobs entity that this component is attached to.
 	/// </summary>
-	[Event.Tick.Server]
+	[GameEvent.Tick.Server]
 	private void Bob()
 	{
 		Entity.Rotation = Rotation.From( NoPitch ? 0 : 45, (Time.Now * 90f) + RandomOffset, 0 );

@@ -65,7 +65,7 @@ internal sealed partial class GameOverSpectator : Entity
 			_gameResultsPanel.Delete();
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void ClientTick()
 	{
 		if ( GameOverState.Instance is null || Finished )

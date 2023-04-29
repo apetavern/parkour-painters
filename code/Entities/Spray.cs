@@ -138,7 +138,7 @@ public partial class Spray : ModelEntity
 	/// <summary>
 	/// Performs various client-side checks for the <see cref="Spray"/>.
 	/// </summary>
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void OnTickClient()
 	{
 		if ( IsSprayCompleted )
@@ -154,7 +154,7 @@ public partial class Spray : ModelEntity
 	/// <summary>
 	/// Debug draws information relating to the <see cref="GraffitiArea"/>.
 	/// </summary>
-	[Event.Tick.Server]
+	[GameEvent.Tick.Server]
 	private void DebugDraw()
 	{
 		if ( !ParkourPainters.DebugMode )

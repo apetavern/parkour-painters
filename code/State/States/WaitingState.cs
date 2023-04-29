@@ -134,7 +134,7 @@ internal sealed partial class WaitingState : Entity, IGameState
 		defaultPlayer.Respawn();
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void DebugDraw()
 	{
 		if ( !ParkourPainters.DebugMode )

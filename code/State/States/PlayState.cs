@@ -214,7 +214,7 @@ public sealed partial class PlayState : Entity, IGameState
 			GameOverState.SetActive();
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void DebugDraw()
 	{
 		if ( !ParkourPainters.DebugMode )

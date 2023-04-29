@@ -230,14 +230,14 @@ public sealed partial class GraffitiArea : ModelEntity
 		return true;
 	}
 
-	[Event.Tick.Server]
+	[GameEvent.Tick.Server]
 	public void OnTickServer()
 	{
 		if ( TimeSinceLastSprayed > 1f )
 			SprayingPlayer = null;
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	public void OnTickClient()
 	{
 		if ( SceneObject is null )
@@ -279,7 +279,7 @@ public sealed partial class GraffitiArea : ModelEntity
 		Sprays.Clear();
 	}
 
-	[Event.Tick.Client]
+	[GameEvent.Tick.Client]
 	private void DebugDraw()
 	{
 		if ( !ParkourPainters.DebugMode )
