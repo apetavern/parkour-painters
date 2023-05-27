@@ -111,6 +111,8 @@ public sealed partial class Player : AnimatedEntity
 	/// </summary>
 	private const float ImmuneAlpha = 0.6f;
 
+	private NameWorldPanel _nameTag { get; set; }
+
 	/// <inheritdoc/>
 	public sealed override void Spawn()
 	{
@@ -147,7 +149,7 @@ public sealed partial class Player : AnimatedEntity
 	public sealed override void ClientSpawn()
 	{
 		if ( !IsLocalPawn )
-			_ = new NameWorldPanel( this );
+			_nameTag = new NameWorldPanel( this );
 	}
 
 	/// <inheritdoc/>
@@ -207,6 +209,12 @@ public sealed partial class Player : AnimatedEntity
 			.ForEach( x => x.EnableDrawing = false );
 
 		AsyncRespawn();
+	}
+
+	protected sealed override void OnDestroy()
+	{
+		OnDestroyClient( To.Everyone );
+		base.OnDestroy();
 	}
 
 	/// <summary>
@@ -380,6 +388,13 @@ public sealed partial class Player : AnimatedEntity
 	private void SetAudioEffect( string effectName, float strength, float velocity = 20f, float fadeOut = 4f )
 	{
 		Audio.SetEffect( effectName, strength, velocity: 20.0f, fadeOut: 4.0f * strength );
+	}
+
+	[ClientRpc]
+	private void OnDestroyClient()
+	{
+		if ( !IsLocalPawn )
+			_nameTag.Delete();
 	}
 
 	[ConCmd.Admin( "kill" )]
