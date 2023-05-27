@@ -6,7 +6,10 @@
 }
 
 <root>
-    <label class="hint">E <span style="color: orange; margin-left: 20px;">Guide</span></label>
+    <div class="hint">
+        <label>E</label>
+        <label class="prompt">Guide</label>
+    </div>
     <div class="window @(Input.Down(InputAction.Instructions) ? "" : "hide")">
         <label>Paint as many locations as you can with your gang. You can wall jump, grab ledges, and grind!</label>
         <label>Equippables are available with [1] and [2].</label>
@@ -39,6 +42,10 @@
             color: white;
             font-family: ADDCN;
             text-shadow: 2px 2px 0px black;
+
+            .prompt {
+                color: orange; margin-left: 20px;
+            }
         }
 
         .window {
