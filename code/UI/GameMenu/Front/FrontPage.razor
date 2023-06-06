@@ -7,8 +7,7 @@
 
 <root style="flex-direction: column;">
 
-    <div class="game-title">
-        @Game.Menu.Package.Title
+    <div @ref=Logo class="game-title">
     </div>
 
     <div class="controls">
@@ -47,6 +46,17 @@
 
 @code
 {
+    Panel Logo { get; set; }
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if (!firstTime)
+            return;
+
+        var tex = Texture.Load(FileSystem.Mounted, "images/pp_logo.png");
+        Logo.Style.SetBackgroundImage(tex);
+    }
+
     void LoadSavedGame()
     {
         this.Navigate( "/load" );

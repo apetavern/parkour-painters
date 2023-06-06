@@ -9,10 +9,14 @@
 
 <root class="gamemainmenu">
     <div class="navigator-canvas" slot="navigator-canvas"></div>
+    <ScenePanel @ref=Scene style="position: absolute; width: 100%; height: 100%;"></ScenePanel>
 </root>
 
 @code
 {
+    ScenePanel Scene { get; set; }
+    SceneWorld World { get; set; }
+
     public GameMenu()
     {
         DefaultUrl = "/";
@@ -33,6 +37,25 @@
         BindClass("inlobby", () => Game.Menu.Lobby != null);
     }
 
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if (!firstTime)
+            return;
+
+        World = new();
+        Scene ??= new();
+        Scene.World = World;
+        new SceneMap(World, "maps/prefabs/billboard_01a.vmap");
+
+        Scene.Camera.FieldOfView = 90;
+    }
+
+    public override void Tick()
+    {
+        Scene.Camera.Position += Vector3.Up * 1.2f; 
+        Scene.Camera.Rotation = new Angles(RealTime.Now * 65, 0, 0).ToRotation();
+    }
+    
 	protected override void OnEvent( PanelEvent e )
 	{
 		if ( e.Name == "package.changed" )
