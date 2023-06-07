@@ -7,16 +7,8 @@
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [
-    "/fonts/*",
-    "/materials/*",
-    "/models/*",
-    "/particles/*",
-    "/prefabs/*",
-    "/shaders/*",
-    "/sounds/*",
-    "/data/*"
-  ],
+  "Resources": null,
+  "MenuResources": "\nvideo/loop.mp4\nimages/pp_logo.png",
   "HasCode": true,
   "CodePath": "/code/",
   "PackageReferences": [],
@@ -323,6 +315,7 @@
           "GroupName": "UI"
         }
       ]
-    }
+    },
+    "HttpAllowList": null
   }
 }

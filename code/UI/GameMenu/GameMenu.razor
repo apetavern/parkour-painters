@@ -9,14 +9,14 @@
 
 <root class="gamemainmenu">
     <div class="navigator-canvas" slot="navigator-canvas"></div>
-    <ScenePanel @ref=Scene style="position: absolute; width: 100%; height: 100%; z-index: -1000;"></ScenePanel>
+    @* <img src="images/pp_logo.png" style="margin: 20%; position: absolute; width: 30%: height: 30%;"> *@
+    <div @ref=Video style="position: absolute; z-index: -10; "></div>
 </root>
 
 @code
 {
-    ScenePanel Scene { get; set; }
-    SceneWorld World { get; set; }
-    SceneMap Map { get; set; }
+    Panel Video { get; set; }
+    private VideoPlayer v { get; set; }
 
     public GameMenu()
     {
@@ -36,27 +36,30 @@
 
         BindClass( "ingame", () => Game.InGame );
         BindClass("inlobby", () => Game.Menu.Lobby != null);
+
+        v = new();
+        @* v.Play("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"); *@
+        v.Play(FileSystem.Mounted, "video/loop.mp4");
     }
 
     protected override void OnAfterTreeRender(bool firstTime)
     {
-        World ??= new();
-        Scene ??= new();
-        Scene.World ??= World;
-        Map ??= new SceneMap(World, "maps/pp_menu");
+        if(firstTime)
+        {
+            @* var texture = Texture.Load(FileSystem.Mounted, "images/pp_logo.png");
+            Logo.Style.SetBackgroundImage(texture);
+            Logo.Style.Width = texture.Width;
+            Logo.Style.Height = texture.Height; *@
+        }
     }
 
     public override void Tick()
     {
-        Scene.Camera.Position = Vector3.Up * 256 + Vector3.Forward * 72f;
-        Scene.Camera.Rotation = new Angles(0, -165, 0).ToRotation();
-
-        Scene.Camera.FieldOfView = Screen.CreateVerticalFieldOfView(60);
-    }
-
-    public void Close()
-    {
-
+        Video.Style.Width = Length.Pixels(1920);
+        Video.Style.Height = Length.Pixels(1080);
+        Video.Style.SetBackgroundImage(v.Texture);
+        v.Present();
+        v.Repeat = true;
     }
 
     protected override void OnEvent( PanelEvent e )
