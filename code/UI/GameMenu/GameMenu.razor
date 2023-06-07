@@ -40,9 +40,6 @@
 
     protected override void OnAfterTreeRender(bool firstTime)
     {
-        if (!firstTime)
-            return;
-
         World = new();
         Scene ??= new();
         Scene.World = World;
@@ -84,5 +81,4 @@
 
     [GameEvent.Menu.ServerLeave]
     public void OnServerLeave() => Navigate("/");
-
 }
