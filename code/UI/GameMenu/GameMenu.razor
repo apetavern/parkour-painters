@@ -9,14 +9,16 @@
 
 <root class="gamemainmenu">
     <div class="navigator-canvas" slot="navigator-canvas"></div>
-    @* <img src="images/pp_logo.png" style="margin: 20%; position: absolute; width: 30%: height: 30%;"> *@
-    <img @ref=Video style="position: absolute; top: 50%; left: 50%; z-index: -10; width: 100%; height: 100%; transform: translateX(-50%) translateY(-50%);"></img>
+    <img @ref=Logo class="logo" src="images/pp_logo_2048.png">
+    <img @ref=VideoDisplay style="position: absolute; z-index: -10; width: 100%; height: 100%; filter: blur(22px); opacity: 0.55;">
 </root>
 
 @code
 {
-    Image Video { get; set; }
-    private VideoPlayer v { get; set; }
+    private Image VideoDisplay { get; set; }
+    private VideoPlayer BgVideo { get; set; }
+    private Image Logo { get; set; }
+    private bool _videoLoaded = false;
 
     public GameMenu()
     {
@@ -37,27 +39,25 @@
         BindClass( "ingame", () => Game.InGame );
         BindClass("inlobby", () => Game.Menu.Lobby != null);
 
-        v = new();
-        @* v.Play("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"); *@
-        v.Play(FileSystem.Mounted, "videos/loop.mp4");
+        BgVideo = new VideoPlayer()
+        {
+            Repeat = true,
+        };
+        BgVideo.Play(FileSystem.Mounted, "videos/loop.mp4");
     }
 
     protected override void OnAfterTreeRender(bool firstTime)
     {
         if(firstTime)
         {
-            @* var texture = Texture.Load(FileSystem.Mounted, "images/pp_logo.png");
-            Logo.Style.SetBackgroundImage(texture);
-            Logo.Style.Width = texture.Width;
-            Logo.Style.Height = texture.Height; *@
+            Logo.BindClass("enabled", () => CurrentPanel is FrontPage);
         }
     }
 
     public override void Tick()
     {
-        Video.Texture = v.Texture;
-        v.Present();
-        v.Repeat = true;
+        VideoDisplay.Texture = BgVideo.Texture;
+        BgVideo.Present();
     }
 
     protected override void OnEvent( PanelEvent e )

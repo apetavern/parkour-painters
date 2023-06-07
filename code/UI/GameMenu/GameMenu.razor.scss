@@ -1,5 +1,5 @@
 .gamemainmenu {
-    background-color: #343948;
+    background-color: #000000;
     padding: 0 170px;
     opacity: 1;
     flex-direction: column;
@@ -16,7 +16,21 @@
     }
 
     &.ingame {
-        background-color: #151313ee;
+        background-color: #110d0dee;
+    }
+
+    .logo {
+        position: absolute;
+        width: 2048px;
+        height: 2048px;
+        transform: scale(0.4);
+        top: -700;
+        left: 300;
+        opacity: 0;
+
+        &.enabled {
+            opacity: 1;
+        }
     }
 }
 
