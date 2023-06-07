@@ -40,10 +40,10 @@
 
     protected override void OnAfterTreeRender(bool firstTime)
     {
-        World = new();
+        World ??= new();
         Scene ??= new();
-        Scene.World = World;
-        Map = new SceneMap(World, "maps/pp_menu");
+        Scene.World ??= World;
+        Map ??= new SceneMap(World, "maps/pp_menu");
     }
 
     public override void Tick()
