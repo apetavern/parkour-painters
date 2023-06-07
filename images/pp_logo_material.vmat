@@ -1,0 +1,24 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/projected_decals.shader_c"
+
+	//---- Ambient Occlusion ----
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
+
+	//---- Color ----
+	TextureColor "images/pp_logo_2048x2048.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Lighting ----
+	g_flGlossiness "0.536"
+
+	//---- Metalness ----
+	TextureMetalness "[0.000000 0.000000 0.000000 0.000000]"
+
+	//---- Translucent ----
+	TextureTranslucency "images/pp_logo_2048x2048_trans.png"
+}

@@ -1,0 +1,10 @@
+{
+  "Decals": [
+    {
+      "Material": "images/pp_logo_material.vmat",
+      "Width": "2048.00,0.00,0",
+      "Height": "2048.00,0.00,0",
+      "KeepAspect": true
+    }
+  ]
+}
