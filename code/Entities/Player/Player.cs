@@ -1,6 +1,6 @@
 using Sandbox;
 
-namespace ParkourPainters.Entities;
+namespace SpeedPainters.Entities;
 
 [Prefab]
 public sealed partial class Player : AnimatedEntity

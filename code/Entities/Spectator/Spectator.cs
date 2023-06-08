@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Entities;
+﻿namespace SpeedPainters.Entities;
 
 /// <summary>
 /// A pawn that can spectate other players in the game.

@@ -1,4 +1,4 @@
-namespace ParkourPainters.Entities;
+namespace SpeedPainters.Entities;
 
 /// <summary>
 /// Contains logic for animating a players model.

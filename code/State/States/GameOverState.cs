@@ -1,6 +1,6 @@
-﻿using Player = ParkourPainters.Entities.Player;
+﻿using Player = SpeedPainters.Entities.Player;
 
-namespace ParkourPainters.State;
+namespace SpeedPainters.State;
 
 /// <summary>
 /// The state for when the game has finished and is now displaying the result.

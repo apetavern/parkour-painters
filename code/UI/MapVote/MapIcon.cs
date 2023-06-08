@@ -1,4 +1,4 @@
-namespace ParkourPainters.UI;
+namespace SpeedPainters.UI;
 
 public partial class MapIcon : Panel
 {

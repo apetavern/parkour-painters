@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters;
+﻿namespace SpeedPainters;
 
 partial class ParkourPainters
 {

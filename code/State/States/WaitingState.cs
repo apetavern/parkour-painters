@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.State;
+﻿namespace SpeedPainters.State;
 
 /// <summary>
 /// The state for when waiting for players to join the game.

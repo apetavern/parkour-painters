@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.State;
+﻿namespace SpeedPainters.State;
 
 /// <summary>
 /// The state for when the main game loop has begun.

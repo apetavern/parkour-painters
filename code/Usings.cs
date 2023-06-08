@@ -1,10 +1,10 @@
 ﻿global using Editor;
-global using ParkourPainters.Entities;
-global using ParkourPainters.Extensions;
-global using ParkourPainters.Resources;
-global using ParkourPainters.State;
-global using ParkourPainters.UI;
-global using ParkourPainters.Util;
+global using SpeedPainters.Entities;
+global using SpeedPainters.Extensions;
+global using SpeedPainters.Resources;
+global using SpeedPainters.State;
+global using SpeedPainters.UI;
+global using SpeedPainters.Util;
 global using Sandbox;
 global using Sandbox.UI;
 global using System;

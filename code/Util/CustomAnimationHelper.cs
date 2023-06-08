@@ -1,4 +1,4 @@
-namespace ParkourPainters.Util;
+namespace SpeedPainters.Util;
 
 /// <summary>
 /// A helper struct to make working with citizen related animations easier.

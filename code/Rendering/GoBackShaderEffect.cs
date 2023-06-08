@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Rendering;
+﻿namespace SpeedPainters.Rendering;
 
 [SceneCamera.AutomaticRenderHook]
 internal sealed class GoBackShaderEffect : RenderHook

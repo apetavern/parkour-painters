@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Extensions;
+﻿namespace SpeedPainters.Extensions;
 
 /// <summary>
 /// Contains extension methods for the <see cref="Random"/> class.

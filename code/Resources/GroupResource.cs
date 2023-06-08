@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Resources;
+﻿namespace SpeedPainters.Resources;
 
 /// <summary>
 /// Encapsulates all information that relates to a playable group in the game.

@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Entities;
+﻿namespace SpeedPainters.Entities;
 
 internal sealed class SpectatorCamera : EntityComponent<Spectator>, ISingletonComponent
 {

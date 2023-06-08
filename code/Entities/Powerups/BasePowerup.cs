@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Entities;
+﻿namespace SpeedPainters.Entities;
 
 /// <summary>
 /// The base class for any powerup component.

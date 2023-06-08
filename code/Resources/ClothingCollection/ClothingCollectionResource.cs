@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Resources;
+﻿namespace SpeedPainters.Resources;
 
 /// <summary>
 /// Encapsulates a set of clothing items that are alike and can be worn by a group of citizens.

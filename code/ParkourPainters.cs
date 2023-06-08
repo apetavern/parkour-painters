@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters;
+﻿namespace SpeedPainters;
 
 public sealed partial class ParkourPainters : GameManager
 {

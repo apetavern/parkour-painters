@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Entities;
+﻿namespace SpeedPainters.Entities;
 
 /// <summary>
 /// A basic entity that will override the <see cref="ParkourPainters.GameLength"/> value.

@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Entities;
+﻿namespace SpeedPainters.Entities;
 
 /// <summary>
 /// A component that bobs and rotates the entity it is attached to.

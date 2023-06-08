@@ -1,4 +1,4 @@
-namespace ParkourPainters.Entities;
+namespace SpeedPainters.Entities;
 
 public sealed partial class JumpMechanic : ControllerMechanic
 {

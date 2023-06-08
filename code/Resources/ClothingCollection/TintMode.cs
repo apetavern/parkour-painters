@@ -1,4 +1,4 @@
-﻿namespace ParkourPainters.Resources;
+﻿namespace SpeedPainters.Resources;
 
 /// <summary>
 /// Represents a way to tint a clothing item.

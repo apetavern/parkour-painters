@@ -1,6 +1,6 @@
 using System.Buffers;
 
-namespace ParkourPainters.Entities;
+namespace SpeedPainters.Entities;
 
 public partial class LedgeGrabMechanic : ControllerMechanic
 {
