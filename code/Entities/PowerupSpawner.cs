@@ -3,7 +3,7 @@
 /// <summary>
 /// A spawner for a <see cref="BasePowerup"/>.
 /// </summary>
-[Title( "Powerup Spawner" ), Category( "Parkour Painters" )]
+[Title( "Powerup Spawner" ), Category( "Speed Painters" )]
 [EditorModel( "models/entities/powerups/dash.vmdl" )]
 [HammerEntity]
 internal sealed partial class PowerupSpawner : AnimatedEntity

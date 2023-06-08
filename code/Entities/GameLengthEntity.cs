@@ -3,7 +3,7 @@
 /// <summary>
 /// A basic entity that will override the <see cref="ParkourPainters.GameLength"/> value.
 /// </summary>
-[Title( "Game Time" ), Category( "Parkour Painters" )]
+[Title( "Game Time" ), Category( "Speed Painters" )]
 [HammerEntity]
 internal sealed partial class GameLengthEntity : Entity
 {
