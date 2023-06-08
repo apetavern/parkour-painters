@@ -108,7 +108,6 @@ partial class ParkourPainters
 			return;
 		}
 
-		player.Inventory.GetItem<SprayCan>().Ammo = SprayCan.MaxAmmo;
 	}
 
 	/// <summary>

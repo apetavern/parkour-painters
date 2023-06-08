@@ -8,8 +8,6 @@ public sealed partial class Player : AnimatedEntity
 	[BindComponent] internal PlayerController Controller { get; }
 	[BindComponent] internal PlayerAnimator Animator { get; }
 	[BindComponent] internal PlayerCamera Camera { get; }
-	[BindComponent] internal InventoryComponent Inventory { get; }
-
 	[BindComponent] internal BasePowerup CurrentPowerup { get; }
 
 	[BindComponent] internal JumpMechanic JumpMechanic { get; }
@@ -128,7 +126,6 @@ public sealed partial class Player : AnimatedEntity
 		Tags.Add( "player" );
 
 		Components.Create<PlayerController>();
-		Components.Create<InventoryComponent>();
 
 		Components.Create<WalkMechanic>();
 		Components.Create<AirMoveMechanic>();
@@ -138,11 +135,6 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<LedgeGrabMechanic>();
 		Components.Create<GrindMechanic>();
 		Components.Create<DashMechanic>();
-
-		var sprayCan = Inventory.AddToInventory<SprayCan>();
-		// TODO: This is jank
-		sprayCan.OnEquipped();
-		sprayCan.OnHolstered();
 	}
 
 	/// <inheritdoc/>
@@ -160,19 +152,11 @@ public sealed partial class Player : AnimatedEntity
 		if ( CurrentPowerup is not null && CurrentPowerup.TimeSinceAdded >= CurrentPowerup.ExpiryTime )
 			CurrentPowerup.Remove();
 
-		if ( LastEquippedItem != HeldItem )
-		{
-			LastEquippedItem?.OnHolstered();
-			LastEquippedItem = HeldItem;
-			LastEquippedItem?.OnEquipped();
-		}
-
 		HandleSprayParticle();
 		HandleGrindParticle();
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
-		Inventory?.Simulate( cl );
 	}
 
 	/// <inheritdoc/>
@@ -182,7 +166,6 @@ public sealed partial class Player : AnimatedEntity
 
 		Controller?.FrameSimulate( cl );
 		Camera?.Update( this );
-		Inventory?.FrameSimulate( cl );
 
 		if ( Voice.IsRecording )
 			IsSpeaking();
@@ -415,27 +398,6 @@ public sealed partial class Player : AnimatedEntity
 		if ( !Game.IsServer )
 			return;
 
-		if ( HeldItem is SprayCan can && !can.HasReleasedPrimary && can.Ammo > 0 )
-		{
-			SprayParticles ??= Particles.Create( "particles/paint/spray_base.vpcf", can, "nozzle" );
-
-			if ( Team?.Group?.SprayColor is not null )
-				SprayParticles.SetPosition( 1, Team.Group.SprayColor.ToVector3() );
-
-			if ( !_isPlayingSpray )
-			{
-				SprayLoop = PlaySound( "spray_loop" );
-				_isPlayingSpray = true;
-			}
-		}
-
-		if ( HeldItem is not SprayCan sprayCan || sprayCan.HasReleasedPrimary || sprayCan.Ammo <= 0 )
-		{
-			_isPlayingSpray = false;
-			SprayLoop.Stop();
-			SprayParticles?.Destroy( true );
-			SprayParticles = null;
-		}
 	}
 
 	private void HandleGrindParticle()

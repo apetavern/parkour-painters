@@ -116,9 +116,6 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 
 	protected override void OnStart()
 	{
-		if ( Player.HeldItem is not null && !Player.HeldItem.CanUseWhileClimbing )
-			Player.UnsetHeldItemInput( To.Single( Player ) );
-
 		UsedWallJump = false;
 	}
 

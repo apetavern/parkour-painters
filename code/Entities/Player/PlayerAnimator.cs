@@ -1,5 +1,3 @@
-using ParkourPainters.Entities.Carriables;
-
 namespace ParkourPainters.Entities;
 
 /// <summary>
@@ -69,26 +67,6 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 			animHelper.SpecialMovementType = CustomAnimationHelper.SpecialMovementTypes.Grind;
 		}
 
-		// Weapon Hold
-		if ( player.HeldItem is BaseCarriable carriable )
-		{
-			if ( carriable is StunWeapon )
-			{
-				animHelper.HoldType = CustomAnimationHelper.HoldTypes.Swing;
-			}
-			else if ( carriable is BoomBlaster )
-			{
-				animHelper.HoldType = CustomAnimationHelper.HoldTypes.RPG;
-			}
-			else
-			{
-				animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
-			}
-		}
-		else
-		{
-			animHelper.HoldType = CustomAnimationHelper.HoldTypes.None;
-		}
 	}
 
 	/// <summary>

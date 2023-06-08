@@ -26,13 +26,6 @@ public sealed partial class Team : Entity
 	public IReadOnlyList<IClient> Members => members as IReadOnlyList<IClient>;
 
 	/// <summary>
-	/// The current score that the team has.
-	/// </summary>
-	public int Score => Entity.All.OfType<GraffitiArea>()
-		.Where( spot => spot.AreaOwner == this )
-		.Count();
-
-	/// <summary>
 	/// Initializes a new instance of <see cref="Team"/>. This should only be used by s&box on the client-side.
 	/// </summary>
 	public Team()

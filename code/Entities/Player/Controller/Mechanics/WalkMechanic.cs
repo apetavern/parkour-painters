@@ -1,5 +1,3 @@
-using ParkourPainters.Entities.Carriables;
-
 namespace ParkourPainters.Entities;
 
 public sealed partial class WalkMechanic : ControllerMechanic
@@ -41,14 +39,8 @@ public sealed partial class WalkMechanic : ControllerMechanic
 		{
 			var targetRot = Rotation.LookAt( wishSpeed ).Angles().WithPitch( 0 ).WithRoll( 0 );
 
-			if ( Player.HeldItem.IsValid() && Player.HeldItem.IsAiming && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
-				Player.Rotation = Rotation.Lerp( Player.Rotation, Rotation.LookAt( Player.EyeRotation.Forward.WithZ( 0 ) ), 25f * Time.Delta );
-			else
-				Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
+			Player.Rotation = Rotation.Slerp( Player.Rotation, Rotation.From( targetRot ), 8f * Time.Delta );
 		}
-
-		if ( Player.HeldItem.IsValid() && Player.HeldItem.IsAiming && Player.GetAnimParameterInt( "special_movement_states" ) == 0 )
-			Player.Rotation = Rotation.Lerp( Player.Rotation, Rotation.LookAt( Player.EyeRotation.Forward.WithZ( 0 ) ), 25f * Time.Delta );
 
 		CategorizePosition( Controller.GroundEntity != null );
 	}

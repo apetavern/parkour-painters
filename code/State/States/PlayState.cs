@@ -227,7 +227,6 @@ public sealed partial class PlayState : Entity, IGameState
 		for ( var i = 0; i < Teams.Count; i++ )
 		{
 			var team = Teams[i];
-			DebugOverlay.ScreenText( $"Team {i + 1} ({team.Group.Name}, Score: {team.Score}):", linesUsed );
 			linesUsed++;
 
 			for ( var j = 0; j < team.Members.Count; j++ )

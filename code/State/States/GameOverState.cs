@@ -38,11 +38,6 @@ internal sealed partial class GameOverState : Entity, IGameState
 	[Net] private TimeUntil TimeUntilResetGame { get; set; }
 
 	/// <summary>
-	/// A list containing all of the graffiti spots with owners.
-	/// </summary>
-	[Net] public IList<GraffitiArea> OwnedSpots { get; private set; }
-
-	/// <summary>
 	/// The total possible map score determined by the spray spots that have owners.
 	/// </summary>
 	[Net] public int TotalPossibleMapScore { get; private set; } = 0;
@@ -73,54 +68,52 @@ internal sealed partial class GameOverState : Entity, IGameState
 			return;
 		}
 
-		var highestScoreTeam = playState.Teams.OrderBy( t => t.Score ).First();
-		var equalTeams = playState.Teams.Where( t => t.Score == highestScoreTeam.Score ).ToArray();
+		// var highestScoreTeam = playState.Teams.OrderBy( t => t.Score ).First();
+		// var equalTeams = playState.Teams.Where( t => t.Score == highestScoreTeam.Score ).ToArray();
 
-		if ( equalTeams.Length > 1 )
-		{
-			GameResult = GameResult.Draw;
-			for ( var i = 0; i < equalTeams.Length; i++ )
-			{
-				equalTeams[i].Parent = this;
-				DrawingTeams.Add( equalTeams[i] );
-			}
-		}
-		else
-		{
-			GameResult = GameResult.TeamWon;
-			highestScoreTeam.Parent = this;
-			WinningTeam = highestScoreTeam;
-		}
+		// if ( equalTeams.Length > 1 )
+		// {
+		// 	GameResult = GameResult.Draw;
+		// 	for ( var i = 0; i < equalTeams.Length; i++ )
+		// 	{
+		// 		equalTeams[i].Parent = this;
+		// 		DrawingTeams.Add( equalTeams[i] );
+		// 	}
+		// }
+		// else
+		// {
+		// 	GameResult = GameResult.TeamWon;
+		// 	highestScoreTeam.Parent = this;
+		// 	WinningTeam = highestScoreTeam;
+		// }
 
 		foreach ( var team in playState.Teams )
 			team.SetParent( this );
 
-		foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
-		{
-			OwnedSpots.Add( area );
-			TotalPossibleMapScore += (int)area.PointsType + 1;
-		}
+		// foreach ( var area in All.OfType<GraffitiArea>().Where( area => area.AreaOwner is not null ) )
+		// {
+		// 	OwnedSpots.Add( area );
+		// 	TotalPossibleMapScore += (int)area.PointsType + 1;
+		// }
 
-		foreach ( var client in Game.Clients )
-		{
-			var player = client.Pawn as Player;
-			LeftoverPawns.Add( player );
+		// // foreach ( var client in Game.Clients )
+		// // {
+		// // 	var player = client.Pawn as Player;
+		// // 	LeftoverPawns.Add( player );
 
-			var startPosition = client.Position;
-			client.Pawn = new GameOverSpectator()
-			{
-				Position = startPosition
-			};
-		}
+		// // 	var startPosition = client.Position;
+		// // 	client.Pawn = new GameOverSpectator()
+		// // 	{
+		// // 		Position = startPosition
+		// // 	};
+		// // }
 
-		TimeUntilResetGame = ParkourPainters.GameResetTimer + (GameOverSpectator.TimePerSpot * OwnedSpots.Count);
+		// TimeUntilResetGame = ParkourPainters.GameResetTimer + (GameOverSpectator.TimePerSpot * OwnedSpots.Count);
 	}
 
 	/// <inheritdoc/>
 	void IGameState.Exit()
 	{
-		OwnedSpots.Clear();
-
 		foreach ( var player in All.WithTags( "player" ) )
 			player.Delete();
 

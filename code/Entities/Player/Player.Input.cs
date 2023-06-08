@@ -19,25 +19,6 @@ public partial class Player
 
 	/// <summary>
 	/// The currently held item.
-	/// NOTE: Use <see cref="LastEquippedItem"/> if you are getting this from another client.
-	/// </summary>
-	internal BaseCarriable HeldItem
-	{
-		get
-		{
-			if ( Client.IsBot && heldItemInput is not null )
-			{
-				if ( !Inventory.CanAddItem( heldItemInput.GetType() ) )
-					return Inventory.GetItem( heldItemInput.GetType() );
-				else
-					return null;
-			}
-
-			return (BaseCarriable)heldItemInput;
-		}
-	}
-	/// <summary>
-	/// The currently held item.
 	/// </summary>
 	[ClientInput] private Entity heldItemInput { get; set; }
 
@@ -90,11 +71,6 @@ public partial class Player
 			SwitchTo( 1 );
 		if ( Input.Pressed( InputAction.Slot0 ) )
 			SwitchTo( null );
-
-		if ( Input.Pressed( InputAction.SlotNext ) )
-			SwitchTo( Inventory.Items.IndexOf( HeldItem ) + 1 );
-		if ( Input.Pressed( InputAction.SlotPrev ) )
-			SwitchTo( Inventory.Items.IndexOf( HeldItem ) - 1 );
 	}
 
 	/// <summary>
@@ -103,38 +79,11 @@ public partial class Player
 	/// <param name="index">The index into the <see cref="Inventory"/> items to look at.</param>
 	private void SwitchTo( int? index = null )
 	{
-		if ( index is null )
-		{
-			heldItemInput = null;
-			return;
-		}
-
-		while ( index >= Inventory.Items.Count )
-			index -= Inventory.Items.Count;
-
-		while ( index < 0 )
-			index += Inventory.Items.Count;
-
-		if ( HeldItem == Inventory.Items[index.Value] )
-			heldItemInput = null;
-		else
-		{
-			if ( !Inventory.Items[index.Value].CanUseWhileClimbing && IsClimbing )
-			{
-				heldItemInput = null;
-				return;
-			}
-
-			heldItemInput = Inventory.Items[index.Value];
-		}
 	}
 
 	[ClientRpc]
 	public void UnsetHeldItemInput()
 	{
-		if ( heldItemInput is BaseCarriable carriable )
-			carriable.OnHolstered();
-
 		heldItemInput = null;
 	}
 }

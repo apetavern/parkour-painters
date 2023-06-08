@@ -103,9 +103,6 @@ internal sealed partial class PowerupSpawner : AnimatedEntity
 
 		if ( foundType.TargetType.IsAssignableTo( typeof( BaseCarriable ) ) )
 		{
-			if ( player.Inventory.AddToInventory( foundType, 0 ) is null )
-				return;
-
 			player.PlaySound( "carriable_pickup" );
 		}
 

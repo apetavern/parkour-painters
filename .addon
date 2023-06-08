@@ -1,22 +1,14 @@
 {
-  "Title": "Parkour Painters",
+  "Title": "speed game",
   "Type": "game",
   "Org": "apetavern",
-  "Ident": "parkour_painters",
+  "Ident": "speed_painters",
   "Tags": null,
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [
-    "/fonts/*",
-    "/materials/*",
-    "/models/*",
-    "/particles/*",
-    "/prefabs/*",
-    "/shaders/*",
-    "/sounds/*",
-    "/data/*"
-  ],
+  "Resources": null,
+  "MenuResources": null,
   "HasCode": true,
   "CodePath": "/code/",
   "PackageReferences": [],
@@ -39,7 +31,8 @@
       "RootNamespace": "ParkourPainters",
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
       "NoWarn": "1701;1702;1591;",
-      "References": []
+      "References": [],
+      "DistinctReferences": []
     },
     "PackageSettings": [
       {
@@ -323,6 +316,7 @@
           "GroupName": "UI"
         }
       ]
-    }
+    },
+    "HttpAllowList": null
   }
 }
