@@ -51,46 +51,16 @@ partial class ParkourPainters
 	internal static bool MixClientClothes { get; private set; } = true;
 
 	/// <summary>
-	/// Defines whether or not a teamates can daze each other.
-	/// </summary>
-	[ConVar.Replicated( "pp_friendlyfire" )]
-	public static bool FriendlyFire { get; private set; } = false;
-
-	/// <summary>
-	/// Defines the amount of time that a player will be dazed for when dazed by another player.
-	/// </summary>
-	[ConVar.Replicated( "pp_dazetime" )]
-	public static float DazeTime { get; private set; } = 1f;
-
-	/// <summary>
-	/// Defines the amount of time that a player will be slowed when sprayed by another player.
-	/// </summary>
-	[ConVar.Replicated( "pp_spraytime" )]
-	public static float SprayTime { get; private set; } = 0.3f;
-
-	/// <summary>
 	/// The default map we will swap to if nobody voted.
 	/// </summary>
 	[ConVar.Replicated( "pp_defaultmap" )]
 	public static string DefaultMap { get; private set; } = "apetavern.pp_rooftops";
 
 	/// <summary>
-	/// Defines the percentage factor that a player will be slowed to when sprayed by another player.
-	/// </summary>
-	[ConVar.Replicated( "pp_sprayedspeedfactor" )]
-	public static float SprayedSpeedFactor { get; private set; } = 0.7f;
-
-	/// <summary>
 	/// The maximum number of games that can be played before map switch.
 	/// </summary>
 	[ConVar.Replicated( "pp_gamelimit" )]
 	public static int GameLimit { get; private set; } = 2;
-
-	/// <summary>
-	/// Defines the amount of time that a player will be immune after being dazed by another player.
-	/// </summary>
-	[ConVar.Replicated( "pp_immunetime" )]
-	public static float ImmuneTime { get; private set; } = 5;
 
 	/// <summary>
 	/// Defines whether or not dashing can be infinitely used.

@@ -8,9 +8,6 @@ public sealed partial class DashMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
-		if ( Player.IsDazed )
-			return false;
-
 		if ( TimeSinceLastDash <= DashRechargeTime )
 			return false;
 

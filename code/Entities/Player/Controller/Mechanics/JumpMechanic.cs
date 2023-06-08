@@ -8,9 +8,6 @@ public sealed partial class JumpMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
-		if ( Player.IsDazed )
-			return false;
-
 		if ( !Input.Pressed( InputAction.Jump ) )
 			return false;
 

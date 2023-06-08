@@ -22,41 +22,9 @@ public sealed partial class Player : AnimatedEntity
 	public Team Team => Client.GetTeam();
 
 	/// <summary>
-	/// The amount of spray percent to add each tick to a <see cref="GraffitiArea"/>.
-	/// </summary>
-	[Net, Prefab] public float SprayAmount { get; private set; } = 1;
-
-	/// <summary>
-	/// Whether or not the player is currently dazed.
-	/// </summary>
-	public bool IsDazed => TimeSinceDazed <= ParkourPainters.DazeTime;
-	/// <summary>
-	/// Whether or not the player is currently sprayed.
-	/// </summary>
-	public bool IsSprayed => TimeSinceSprayed <= ParkourPainters.SprayTime;
-	/// <summary>
-	/// Whether or not the player is currently immune to dazing.
-	/// </summary>
-	public bool IsImmune => CurrentPowerup is ShieldPowerup || TimeSinceDazed > ParkourPainters.DazeTime && TimeSinceDazed <= ParkourPainters.ImmuneTime;
-	/// <summary>
 	/// Whether or not the player is currently climbing.
 	/// </summary>
 	public bool IsClimbing => LedgeGrabMechanic.IsActive || WallJumpMechanic.IsActive;
-
-	/// <summary>
-	/// The current type of daze the player is experiencing.
-	/// </summary>
-	[Net] public DazeType DazeType { get; private set; }
-
-	/// <summary>
-	/// The time in seconds since the player was last dazed.
-	/// </summary>
-	[Net] private TimeSince TimeSinceDazed { get; set; } = float.MaxValue;
-
-	/// <summary>
-	/// The particles that are shown when the player is dazed.
-	/// </summary>
-	private Particles DazeParticles { get; set; }
 
 	/// <summary>
 	/// The time in seconds since the player was last sprayed.
@@ -64,21 +32,9 @@ public sealed partial class Player : AnimatedEntity
 	[Net] private TimeSince TimeSinceSprayed { get; set; } = float.MaxValue;
 
 	/// <summary>
-	/// The particles that are shown when the player has been sprayed.
-	/// </summary>
-	private Particles SprayCloud { get; set; }
-
-	/// <summary>
 	/// The spray particles that come out when using the can.
 	/// </summary>
 	private Particles SprayParticles { get; set; }
-
-	/// <summary>
-	/// Spray sound.
-	/// </summary>
-	private Sound SprayLoop { get; set; }
-
-	private bool _isPlayingSpray { get; set; } = false;
 
 	/// <summary>
 	/// Grind particles.
@@ -152,7 +108,6 @@ public sealed partial class Player : AnimatedEntity
 		if ( CurrentPowerup is not null && CurrentPowerup.TimeSinceAdded >= CurrentPowerup.ExpiryTime )
 			CurrentPowerup.Remove();
 
-		HandleSprayParticle();
 		HandleGrindParticle();
 
 		Controller?.Simulate( cl );
@@ -265,48 +220,6 @@ public sealed partial class Player : AnimatedEntity
 		ResetInterpolation();
 	}
 
-	/// <summary>
-	/// Dazes the player.
-	/// </summary>
-	/// <param name="attacker">The person that caused the daze to occur.</param>
-	/// <param name="dazeType">The way that the person is going to be dazed.</param>
-	/// <returns>Whether or not the player was actually dazed.</returns>
-	internal bool Daze( Player attacker, DazeType dazeType )
-	{
-		if ( IsDazed || IsImmune )
-			return false;
-
-		if ( !ParkourPainters.FriendlyFire && attacker.Team == Team )
-			return false;
-
-		if ( dazeType == DazeType.PhysicalTrauma )
-			PlaySound( "bat_hit" );
-
-		UnsetHeldItemInput();
-
-		TimeSinceDazed = 0;
-		DazeType = dazeType;
-		DazePlayerParticles( To.Everyone );
-		return true;
-	}
-
-	/// <summary>
-	/// Sprays the player.
-	/// </summary>
-	/// <param name="attacker">The person that caused the daze to occur.</param>
-	internal void Spray( Player attacker )
-	{
-		if ( IsImmune || !ParkourPainters.FriendlyFire && attacker.Team == Team )
-			return;
-
-		var wasSprayed = IsSprayed;
-		TimeSinceSprayed = 0;
-		DazeType = DazeType.Inhalation;
-
-		if ( !wasSprayed )
-			SprayPlayerParticles( To.Everyone, attacker.Team?.Group?.SprayColor ?? Color.Black );
-	}
-
 	private async void AsyncRespawn()
 	{
 		await GameTask.DelaySeconds( 3f );
@@ -316,55 +229,6 @@ public sealed partial class Player : AnimatedEntity
 	private float GetFootstepVolume()
 	{
 		return Controller.Velocity.WithZ( 0 ).Length.LerpInverse( 0.0f, 200.0f ) * 1f;
-	}
-
-	/// <summary>
-	/// Slightly fades out immune players.
-	/// </summary>
-	[GameEvent.Tick]
-	private void ImmuneTick()
-	{
-		if ( IsImmune )
-			RenderColor = RenderColor.WithAlpha( ImmuneAlpha );
-		else
-			RenderColor = RenderColor.WithAlpha( 1 );
-
-		if ( !IsDazed && DazeType != DazeType.Inhalation )
-			DazeType = DazeType.None;
-
-		if ( !IsSprayed && DazeType == DazeType.Inhalation )
-			DazeType = DazeType.None;
-
-		if ( !Game.IsClient )
-			return;
-
-		if ( !IsDazed )
-		{
-			DazeParticles?.Destroy();
-			DazeParticles = null;
-		}
-
-		if ( !IsSprayed )
-		{
-			SprayCloud?.Destroy();
-			SprayCloud = null;
-		}
-	}
-
-	[ClientRpc]
-	private void DazePlayerParticles()
-	{
-		if ( !Team.Group.DazeParticles.TryGetValue( DazeType, out var particle ) )
-			particle = "particles/stun/stun_base.vpcf";
-
-		DazeParticles = Particles.Create( particle, this, "hat" );
-	}
-
-	[ClientRpc]
-	private void SprayPlayerParticles( Color cloudColor )
-	{
-		SprayCloud = Particles.Create( "particles/paint/spray_cloud.vpcf", this, "eyes" );
-		SprayCloud.SetPosition( 1, cloudColor.ToVector3() );
 	}
 
 	[ClientRpc]
@@ -390,14 +254,6 @@ public sealed partial class Player : AnimatedEntity
 	public static void SetHP( float value )
 	{
 		(ConsoleSystem.Caller.Pawn as Player).Health = value;
-	}
-
-	// TODO: MOVE THIS BACK INTO SPRAY CAN BUT MAYBE JUST ONLY ON SERVER???
-	private void HandleSprayParticle()
-	{
-		if ( !Game.IsServer )
-			return;
-
 	}
 
 	private void HandleGrindParticle()

@@ -18,7 +18,6 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		var animHelper = new CustomAnimationHelper( player )
 		{
 			AimAngle = player.EyeRotation,
-			DazedState = player.DazeType,
 			FootShuffle = 0f,
 			IsGrounded = controller.GroundEntity != null,
 			IsSwimming = player.GetWaterLevel() >= 0.5f,
@@ -28,8 +27,8 @@ internal sealed class PlayerAnimator : EntityComponent<Player>, ISingletonCompon
 		};
 		animHelper.DuckLevel = MathX.Lerp( animHelper.DuckLevel, player.Tags.Has( "ducked" ) ? 1 : 0, Time.Delta * 10.0f );
 
-		animHelper.WithWishVelocity( player.IsDazed ? Vector3.Zero : controller.GetWishVelocity() );
-		animHelper.WithVelocity( player.IsDazed ? Vector3.Zero : controller.Velocity );
+		animHelper.WithWishVelocity( controller.GetWishVelocity() );
+		animHelper.WithVelocity( controller.Velocity );
 
 		if ( Math.Abs( Vector3.Dot( player.EyePosition, player.EyeRotation.Forward ) ) > 50 && controller.Velocity.IsNearlyZero( 10 ) )
 		{

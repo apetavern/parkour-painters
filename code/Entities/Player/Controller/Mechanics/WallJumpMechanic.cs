@@ -15,9 +15,6 @@ public sealed partial class WallJumpMechanic : ControllerMechanic
 
 	protected override bool ShouldStart()
 	{
-		if ( Player.IsDazed )
-			return false;
-
 		if ( Controller.GroundEntity.IsValid() )
 			return false;
 
