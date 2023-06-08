@@ -102,8 +102,8 @@ internal sealed partial class WaitingState : Entity, IGameState
 		else
 			WarmupMusic.SetVolume( WarmupMusicLevel );
 
-		if ( !WarmupMusic.IsPlaying )
-			WarmupMusic = Sound.FromScreen( "painters_warmup" );
+		// if ( !WarmupMusic.IsPlaying )
+		// 	WarmupMusic = Sound.FromScreen( "painters_warmup" );
 
 		if ( !GameStarting || _timeSinceLastMessage < 1 )
 			return;
