@@ -1,23 +1,17 @@
 @namespace SpeedPainters.UI
+@{
+    if (Game.LocalPawn is not SpeedPainters.Entities.Player player)
+        return;
+}
 
 <root>
     @{
-        var stateName = ParkourPainters.Current.CurrentState.StateName;
-        <label>@stateName</label>
-
-        var desc = ParkourPainters.Current.CurrentState switch
-        {
-            WaitingState => $"{Game.Clients.Count} / {ParkourPainters.MinimumPlayers}",
-            PlayState p => $"{FormatTimer(p.TimeUntilGameEnds)}",
-            GameOverState => string.Empty,
-            MapVoteState m => $"{FormatTimer(m.TimeUntilMapSwitch)}",
-            _ => string.Empty
-        };
-        <label style="padding-left: 10px;">@desc</label>
+        <label style="">@(FormatTimer((float)(player.StopWatch)))</label>
     }
 </root>
 
 @code {
+
     private string FormatTimer(float seconds)
     {
         return TimeSpan.FromSeconds(seconds.CeilToInt()).ToString(@"mm\:ss");
@@ -33,15 +27,18 @@
         var state = ParkourPainters.Current.CurrentState;
         var playState = state as PlayState;
         var mapVoteState = state as MapVoteState;
-        return HashCode.Combine(state.StateName, playState?.TimeUntilGameEnds.ToString(), mapVoteState?.TimeUntilMapSwitch.ToString(), Game.Clients.Count, ParkourPainters.MinimumPlayers);
+        return HashCode.Combine(RealTime.Now);
     }
 }
 
 <style>
     GameTimer {
         position: absolute;
-        top: 100px;
-        right: 200px;
+        width: 100%;
+        bottom: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         label {
             font-size: 70px;

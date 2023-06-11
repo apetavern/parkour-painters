@@ -91,6 +91,7 @@ public sealed partial class Player : AnimatedEntity
 		Components.Create<LedgeGrabMechanic>();
 		Components.Create<GrindMechanic>();
 		Components.Create<DashMechanic>();
+
 	}
 
 	/// <inheritdoc/>
@@ -112,6 +113,9 @@ public sealed partial class Player : AnimatedEntity
 
 		Controller?.Simulate( cl );
 		Animator?.Simulate( cl );
+
+		if ( !ReachedEnd )
+			StopWatch += RealTime.SmoothDelta;
 	}
 
 	/// <inheritdoc/>
@@ -218,6 +222,8 @@ public sealed partial class Player : AnimatedEntity
 
 		ParkourPainters.Current.MoveToSpawnpoint( this );
 		ResetInterpolation();
+		StopWatch = 0;
+		ReachedEnd = false;
 	}
 
 	private async void AsyncRespawn()
