@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/pixelated_fakereflect.shader_c"
+	shader "shaders/pixelated_fakereflect.shader"
 
 	g_flFakeReflectMultiplier "6.000"
 
@@ -28,4 +28,10 @@ Layer0
 
 	//---- Texture Coordinates ----
 	g_vTiling "[1.000 1.000]"
+
+	SystemAttributes
+	{
+		WorldMappingWidth "128"
+		WorldMappingHeight "128"
+	}
 }

@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/pixel.shader_c"
+	shader "shaders/pixel.shader"
 
 	//---- Texture Filtering ----
 	F_TEXTURE_FILTERING 3 // Point Sample
@@ -40,7 +40,7 @@ Layer0
 
 	SystemAttributes
 	{
-		WorldMappingWidth "128"
-		WorldMappingHeight "128"
+		WorldMappingWidth "256"
+		WorldMappingHeight "256"
 	}
 }

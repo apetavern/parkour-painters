@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/pixelated.shader_c"
+	shader "shaders/pixelated.shader"
 
 	//---- Color ----
 	Color "materials/street/textures/concrete_01a_color.png"
@@ -28,5 +28,7 @@ Layer0
 	SystemAttributes
 	{
 		PhysicsSurfaceProperties "concrete"
+		WorldMappingWidth "128"
+		WorldMappingHeight "128"
 	}
 }

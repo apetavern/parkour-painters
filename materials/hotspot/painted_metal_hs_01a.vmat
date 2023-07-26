@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/pixelated.shader_c"
+	shader "shaders/pixelated.shader"
 
 	//---- Color ----
 	Color "materials/hotspot/textures/painted_metal_hs_01a_color.png"
@@ -24,6 +24,12 @@ Layer0
 
 	//---- Texture Coordinates ----
 	g_vTiling "[1.000 1.000]"
+
+	SystemAttributes
+	{
+		WorldMappingWidth "256"
+		WorldMappingHeight "256"
+	}
 
 	ToolAttributes
 	{

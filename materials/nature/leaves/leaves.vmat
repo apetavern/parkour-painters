@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/pixelated_translucent_masked.shader_c"
+	shader "shaders/pixelated_translucent_masked.shader"
 
 	//---- Rendering ----
 	F_RENDER_BACKFACES 1
@@ -37,4 +37,10 @@ Layer0
 	g_flSmoothStepMax "0.319"
 	g_flSmoothStepMin "0.256"
 	Translucency "materials/nature/leaves/phong1_opacity.png"
+
+	SystemAttributes
+	{
+		WorldMappingWidth "256"
+		WorldMappingHeight "256"
+	}
 }

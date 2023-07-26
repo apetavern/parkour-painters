@@ -28,6 +28,7 @@
       "DefaultRoughness": 1,
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
+      "PositionOffset": {},
       "Identifier": "0",
       "Position": "864,-48"
     },
@@ -55,8 +56,9 @@
     },
     {
       "_class": "Float2",
-      "Name": "Tiling",
       "Value": "1,1",
+      "Name": "Tiling",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Texture Coordinates",
@@ -72,7 +74,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_color_png_2e4d779b.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -83,7 +85,8 @@
         "SrgbRead": true,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "4",
       "Position": "-176,-288"
@@ -94,7 +97,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_rough_png_aee0e5e.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -108,7 +111,8 @@
         "PrimaryGroup": {
           "Name": "Roughness",
           "Priority": 2
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "5",
       "Position": "-176,288"
@@ -119,7 +123,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_normal_png_d1cf3df7.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -133,7 +137,8 @@
         "PrimaryGroup": {
           "Name": "Normal",
           "Priority": 1
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "6",
       "Position": "-176,96"
@@ -154,7 +159,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_metal_png_3646b48f.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -168,7 +173,8 @@
         "PrimaryGroup": {
           "Name": "Metalness",
           "Priority": 3
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "8",
       "Position": "-176,480"
@@ -179,7 +185,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_mask_png_2e162a21.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -192,15 +198,17 @@
         "Priority": 4,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "9",
       "Position": "-176,-96"
     },
     {
       "_class": "Float4",
-      "Name": "Color Tint",
       "Value": "1,1,1,1",
+      "Name": "Color Tint",
+      "IsAttribute": false,
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {
@@ -263,8 +271,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Model Tint Amount",
       "Value": 1,
+      "Name": "Model Tint Amount",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Color",

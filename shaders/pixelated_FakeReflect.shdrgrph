@@ -28,6 +28,7 @@
       "DefaultRoughness": 1,
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
+      "PositionOffset": {},
       "Identifier": "0",
       "Position": "1024,-64"
     },
@@ -55,8 +56,9 @@
     },
     {
       "_class": "Float2",
-      "Name": "Tiling",
       "Value": "1,1",
+      "Name": "Tiling",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Texture Coordinates",
@@ -72,7 +74,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "models/environment/cars/van/materials/generic_tintable/phong1_color_png_7a21dfaa.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -83,7 +85,8 @@
         "SrgbRead": true,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "4",
       "Position": "-176,-288"
@@ -94,7 +97,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "models/environment/cars/van/materials/phong1_rough_png_6cdcb208.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -108,7 +111,8 @@
         "PrimaryGroup": {
           "Name": "Roughness",
           "Priority": 2
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "5",
       "Position": "-176,288"
@@ -119,7 +123,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "models/environment/cars/van/materials/phong1_normal_png_87e63218.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -133,7 +137,8 @@
         "PrimaryGroup": {
           "Name": "Normal",
           "Priority": 1
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "6",
       "Position": "-176,96"
@@ -154,7 +159,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "models/environment/cars/van/materials/phong1_metal_png_6d6f2621.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -168,7 +173,8 @@
         "PrimaryGroup": {
           "Name": "Metalness",
           "Priority": 3
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "8",
       "Position": "-176,480"
@@ -179,7 +185,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "models/environment/cars/van/materials/tintmask_png_934cbc95.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -192,7 +198,8 @@
         "Priority": 4,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "9",
       "Position": "-176,-96"
@@ -246,8 +253,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Model Tint Amount",
       "Value": 1,
+      "Name": "Model Tint Amount",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Color",
@@ -286,7 +294,7 @@
         "Identifier": "18",
         "Output": "Result"
       },
-      "Texture": "materials/vfx/fakereflect_png_4f6117bb.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -299,7 +307,8 @@
         },
         "SecondaryGroup": {
           "Name": ""
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "16",
       "Position": "-544,480"
@@ -340,7 +349,7 @@
         "Identifier": "2",
         "Output": "Result"
       },
-      "Texture": "models/environment/cars/van/materials/windowmask_color_png_b9889494.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -353,7 +362,8 @@
         },
         "SecondaryGroup": {
           "Name": ""
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "19",
       "Position": "-176,672"
@@ -397,8 +407,9 @@
       "_class": "Float",
       "Min": 1,
       "Max": 12,
-      "Name": "Fake Reflect Multiplier",
       "Value": 6,
+      "Name": "Fake Reflect Multiplier",
+      "IsAttribute": false,
       "UI": {},
       "Identifier": "23",
       "Position": "-1056,576"
@@ -420,8 +431,9 @@
     },
     {
       "_class": "Float4",
-      "Name": "Color Tint",
       "Value": "1,1,1,1",
+      "Name": "Color Tint",
+      "IsAttribute": false,
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {
