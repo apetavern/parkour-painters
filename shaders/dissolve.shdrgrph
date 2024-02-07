@@ -5,6 +5,12 @@
   "nodes": [
     {
       "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "848,32",
       "Albedo": {
         "Identifier": "11",
         "Output": "Result"
@@ -17,7 +23,6 @@
         "Identifier": "25",
         "Output": "Result"
       },
-      "Normal": {},
       "Roughness": {
         "Identifier": "12",
         "Output": "Result"
@@ -25,22 +30,11 @@
       "Metalness": {
         "Identifier": "13",
         "Output": "Result"
-      },
-      "AmbientOcclusion": {},
-      "DefaultOpacity": 1,
-      "DefaultRoughness": 1,
-      "DefaultMetalness": 0,
-      "DefaultAmbientOcclusion": 1,
-      "Identifier": "0",
-      "Position": "848,32"
+      }
     },
     {
       "_class": "TextureSampler",
-      "Coords": {
-        "Identifier": "15",
-        "Output": "Result"
-      },
-      "Texture": "materials/sprays/textures/nineties_cup_01a_trans_png_7cf7e028.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -52,13 +46,21 @@
         "PrimaryGroup": {
           "Name": "Translucent",
           "Priority": 1
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "1",
-      "Position": "-592,128"
+      "Position": "-592,128",
+      "Coords": {
+        "Identifier": "15",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "2",
+      "Position": "-256,-64",
       "A": {
         "Identifier": "3",
         "Output": "Result"
@@ -70,17 +72,15 @@
       "C": {
         "Identifier": "5",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "2",
-      "Position": "-256,-64"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "",
       "Value": 0,
+      "Name": "",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -93,8 +93,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "",
       "Value": 1,
+      "Name": "",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -105,6 +106,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "5",
+      "Position": "-368,64",
       "A": {
         "Identifier": "6",
         "Output": "Result"
@@ -112,18 +117,15 @@
       "B": {
         "Identifier": "1",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "5",
-      "Position": "-368,64"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 10,
-      "Name": "Fade amount",
       "Value": 0,
+      "Name": "Fade amount",
+      "IsAttribute": false,
       "UI": {
         "Priority": 1,
         "PrimaryGroup": {
@@ -136,6 +138,8 @@
     },
     {
       "_class": "SmoothStep",
+      "Identifier": "7",
+      "Position": "80,80",
       "Input": {
         "Identifier": "2",
         "Output": "Result"
@@ -147,16 +151,15 @@
       "Edge2": {
         "Identifier": "9",
         "Output": "Result"
-      },
-      "Identifier": "7",
-      "Position": "80,80"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Smooth Step Min",
       "Value": 0.3,
+      "Name": "Smooth Step Min",
+      "IsAttribute": false,
       "UI": {
         "Priority": 2,
         "PrimaryGroup": {
@@ -171,8 +174,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Smooth Step Max",
       "Value": 0.5,
+      "Name": "Smooth Step Max",
+      "IsAttribute": false,
       "UI": {
         "Priority": 3,
         "PrimaryGroup": {
@@ -185,20 +189,16 @@
     },
     {
       "_class": "Saturate",
+      "Identifier": "10",
+      "Position": "336,80",
       "Input": {
         "Identifier": "7",
         "Output": "Result"
-      },
-      "Identifier": "10",
-      "Position": "336,80"
+      }
     },
     {
       "_class": "TextureSampler",
-      "Coords": {
-        "Identifier": "15",
-        "Output": "Result"
-      },
-      "Texture": "materials/sprays/textures/nineties_cup_01a_color_png_976c85f5.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -208,17 +208,23 @@
         "SrgbRead": true,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "11",
-      "Position": "80,-112"
+      "Position": "80,-112",
+      "Coords": {
+        "Identifier": "15",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Roughness",
       "Value": 1,
+      "Name": "Roughness",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Roughness",
@@ -232,8 +238,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Metallic",
       "Value": 0,
+      "Name": "Metallic",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Metalness",
@@ -252,6 +259,11 @@
     },
     {
       "_class": "TileAndOffset",
+      "DefaultTile": "1,1",
+      "DefaultOffset": "0,0",
+      "WrapTo01": false,
+      "Identifier": "15",
+      "Position": "-1216,-336",
       "Coords": {
         "Identifier": "14",
         "Output": "Result"
@@ -263,17 +275,13 @@
       "Offset": {
         "Identifier": "17",
         "Output": "Result"
-      },
-      "DefaultTile": "1,1",
-      "DefaultOffset": "0,0",
-      "WrapTo01": false,
-      "Identifier": "15",
-      "Position": "-1216,-336"
+      }
     },
     {
       "_class": "Float2",
-      "Name": "Tex Coord Scale",
       "Value": "1,1",
+      "Name": "Tex Coord Scale",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Texture Coordinates",
@@ -285,8 +293,9 @@
     },
     {
       "_class": "Float2",
-      "Name": "Tex Coord Offset",
       "Value": "0,0",
+      "Name": "Tex Coord Offset",
+      "IsAttribute": false,
       "UI": {
         "Priority": 1,
         "PrimaryGroup": {
@@ -299,8 +308,9 @@
     },
     {
       "_class": "Float4",
-      "Name": "Glow Color",
       "Value": "1,1,1,1",
+      "Name": "Glow Color",
+      "IsAttribute": false,
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {
@@ -313,6 +323,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "19",
+      "Position": "432,-240",
       "A": {
         "Identifier": "23",
         "Output": "Result"
@@ -320,18 +334,15 @@
       "B": {
         "Identifier": "20",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "19",
-      "Position": "432,-240"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 25,
-      "Name": "Glow Power",
       "Value": 0,
+      "Name": "Glow Power",
+      "IsAttribute": false,
       "UI": {
         "Priority": 1,
         "PrimaryGroup": {
@@ -344,6 +355,9 @@
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "21",
+      "Position": "576,-128",
       "A": {
         "Identifier": "11",
         "Output": "Result"
@@ -355,17 +369,15 @@
       "C": {
         "Identifier": "22",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "21",
-      "Position": "576,-128"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Glow Mix",
       "Value": 0,
+      "Name": "Glow Mix",
+      "IsAttribute": false,
       "UI": {
         "Priority": 2,
         "PrimaryGroup": {
@@ -378,6 +390,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "23",
+      "Position": "304,-320",
       "A": {
         "Identifier": "18",
         "Output": "Result"
@@ -385,22 +401,10 @@
       "B": {
         "Identifier": "11",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "23",
-      "Position": "304,-320"
+      }
     },
     {
       "_class": "RemapValue",
-      "A": {
-        "Identifier": "6",
-        "Output": "Result"
-      },
-      "B": {},
-      "C": {},
-      "D": {},
-      "E": {},
       "In": 0.5,
       "InMin": 0,
       "InMax": 10,
@@ -408,10 +412,17 @@
       "OutMax": 1,
       "Clamp": true,
       "Identifier": "24",
-      "Position": "-176,464"
+      "Position": "-176,464",
+      "A": {
+        "Identifier": "6",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "25",
+      "Position": "544,288",
       "A": {
         "Identifier": "26",
         "Output": "Result"
@@ -423,17 +434,15 @@
       "C": {
         "Identifier": "24",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "25",
-      "Position": "544,288"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "",
       "Value": 0,
+      "Name": "",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""

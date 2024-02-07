@@ -5,7 +5,12 @@
   "nodes": [
     {
       "_class": "Result",
-      "Albedo": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "-288,-224",
       "Emission": {
         "Identifier": "14",
         "Output": "Result"
@@ -13,30 +18,20 @@
       "Opacity": {
         "Identifier": "12",
         "Output": "Result"
-      },
-      "Normal": {},
-      "Roughness": {},
-      "Metalness": {},
-      "AmbientOcclusion": {},
-      "DefaultOpacity": 1,
-      "DefaultRoughness": 1,
-      "DefaultMetalness": 0,
-      "DefaultAmbientOcclusion": 1,
-      "Identifier": "0",
-      "Position": "-288,-224"
+      }
     },
     {
       "_class": "SwizzleVector",
-      "Input": {
-        "Identifier": "2",
-        "Output": "Result"
-      },
       "RedOut": "Blue",
       "GreenOut": "Blue",
       "BlueOut": "Blue",
       "AlphaOut": "Alpha",
       "Identifier": "1",
-      "Position": "-1888,-208"
+      "Position": "-1888,-208",
+      "Input": {
+        "Identifier": "2",
+        "Output": "Result"
+      }
     },
     {
       "_class": "WorldPosition",
@@ -47,8 +42,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 5,
-      "Name": "Speed",
       "Value": 2.5,
+      "Name": "Speed",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Adjustments"
@@ -63,6 +59,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 2.5,
+      "Identifier": "4",
+      "Position": "-1888,-48",
       "A": {
         "Identifier": "7",
         "Output": "Result"
@@ -70,18 +70,15 @@
       "B": {
         "Identifier": "3",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 2.5,
-      "Identifier": "4",
-      "Position": "-1888,-48"
+      }
     },
     {
       "_class": "Float",
       "Min": -1,
       "Max": 1,
-      "Name": "Tiling",
       "Value": -0.2,
+      "Name": "Tiling",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Adjustments"
@@ -96,6 +93,11 @@
     },
     {
       "_class": "TileAndOffset",
+      "DefaultTile": "1,1",
+      "DefaultOffset": "0,0",
+      "WrapTo01": false,
+      "Identifier": "6",
+      "Position": "-1584,-160",
       "Coords": {
         "Identifier": "1",
         "Output": "Output"
@@ -107,12 +109,7 @@
       "Offset": {
         "Identifier": "4",
         "Output": "Result"
-      },
-      "DefaultTile": "1,1",
-      "DefaultOffset": "0,0",
-      "WrapTo01": false,
-      "Identifier": "6",
-      "Position": "-1584,-160"
+      }
     },
     {
       "_class": "Time",
@@ -121,19 +118,20 @@
     },
     {
       "_class": "SimplexNoise",
+      "Identifier": "8",
+      "Position": "-1344,-160",
       "Coords": {
         "Identifier": "6",
         "Output": "Result"
-      },
-      "Identifier": "8",
-      "Position": "-1344,-160"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Gap Opacity",
       "Value": 0.5,
+      "Name": "Gap Opacity",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Adjustments"
@@ -149,8 +147,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Master Opacity",
       "Value": 0.5,
+      "Name": "Master Opacity",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Adjustments"
@@ -164,18 +163,20 @@
     },
     {
       "_class": "Step",
-      "Input": {
-        "Identifier": "8",
-        "Output": "Result"
-      },
-      "Edge": {},
       "DefaultInput": 0,
       "DefaultEdge": 0.005,
       "Identifier": "11",
-      "Position": "-1040,-160"
+      "Position": "-1040,-160",
+      "Input": {
+        "Identifier": "8",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "12",
+      "Position": "-720,-176",
       "A": {
         "Identifier": "9",
         "Output": "Result"
@@ -187,15 +188,13 @@
       "C": {
         "Identifier": "10",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "12",
-      "Position": "-720,-176"
+      }
     },
     {
       "_class": "Float4",
-      "Name": "Colour",
       "Value": "0,448.0834,500,1",
+      "Name": "Colour",
+      "IsAttribute": false,
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {
@@ -212,6 +211,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "14",
+      "Position": "-464,-384",
       "A": {
         "Identifier": "13",
         "Output": "Result"
@@ -219,18 +222,15 @@
       "B": {
         "Identifier": "15",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "14",
-      "Position": "-464,-384"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 25,
-      "Name": "Colour Strength",
       "Value": 5,
+      "Name": "Colour Strength",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Colour"

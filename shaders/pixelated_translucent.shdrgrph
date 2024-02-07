@@ -5,6 +5,10 @@
   "nodes": [
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "0",
+      "Position": "1168,144",
       "A": {
         "Identifier": "21",
         "Output": "Result"
@@ -12,26 +16,24 @@
       "B": {
         "Identifier": "7",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "0",
-      "Position": "1168,144"
+      }
     },
     {
       "_class": "Subtract",
-      "A": {},
-      "B": {
-        "Identifier": "3",
-        "Output": "Result"
-      },
       "DefaultA": 1,
       "DefaultB": 0,
       "Identifier": "1",
-      "Position": "1184,416"
+      "Position": "1184,416",
+      "B": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "2",
+      "Position": "1312,304",
       "A": {
         "Identifier": "0",
         "Output": "Result"
@@ -43,18 +45,11 @@
       "C": {
         "Identifier": "1",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "2",
-      "Position": "1312,304"
+      }
     },
     {
       "_class": "TextureSampler",
-      "Coords": {
-        "Identifier": "9",
-        "Output": "Result"
-      },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_mask_png_2e162a21.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -67,28 +62,31 @@
         "Priority": 4,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "3",
-      "Position": "784,432"
-    },
-    {
-      "_class": "TransformNormal",
-      "Input": {
-        "Identifier": "5",
-        "Output": "Result"
-      },
-      "DecodeNormal": true,
-      "Identifier": "4",
-      "Position": "1152,624"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "784,432",
       "Coords": {
         "Identifier": "9",
         "Output": "Result"
-      },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_normal_png_d1cf3df7.generated.vtex",
+      }
+    },
+    {
+      "_class": "TransformNormal",
+      "InputSpace": "Tangent",
+      "OutputSpace": "Tangent",
+      "DecodeNormal": true,
+      "Identifier": "4",
+      "Position": "1152,624",
+      "Input": {
+        "Identifier": "5",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -102,18 +100,19 @@
         "PrimaryGroup": {
           "Name": "Normal",
           "Priority": 1
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "5",
-      "Position": "784,624"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "784,624",
       "Coords": {
         "Identifier": "9",
         "Output": "Result"
-      },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_rough_png_aee0e5e.generated.vtex",
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -127,18 +126,19 @@
         "PrimaryGroup": {
           "Name": "Roughness",
           "Priority": 2
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "6",
-      "Position": "784,816"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "784,816",
       "Coords": {
         "Identifier": "9",
         "Output": "Result"
-      },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_color_png_2e4d779b.generated.vtex",
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -149,15 +149,21 @@
         "SrgbRead": true,
         "PrimaryGroup": {
           "Name": "Color"
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "7",
-      "Position": "784,240"
+      "Position": "784,240",
+      "Coords": {
+        "Identifier": "9",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Float2",
-      "Name": "Tiling",
       "Value": "1,1",
+      "Name": "Tiling",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Texture Coordinates",
@@ -169,6 +175,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "9",
+      "Position": "400,640",
       "A": {
         "Identifier": "10",
         "Output": "Result"
@@ -176,11 +186,7 @@
       "B": {
         "Identifier": "8",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "9",
-      "Position": "400,640"
+      }
     },
     {
       "_class": "TextureCoord",
@@ -191,6 +197,9 @@
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "11",
+      "Position": "1584,336",
       "A": {
         "Identifier": "7",
         "Output": "Result"
@@ -202,17 +211,15 @@
       "C": {
         "Identifier": "12",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "11",
-      "Position": "1584,336"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Model Tint Amount",
       "Value": 1,
+      "Name": "Model Tint Amount",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": "Color",
@@ -224,11 +231,7 @@
     },
     {
       "_class": "TextureSampler",
-      "Coords": {
-        "Identifier": "9",
-        "Output": "Result"
-      },
-      "Texture": "materials/hotspot/textures/painted_metal_hs_01a_metal_png_3646b48f.generated.vtex",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -242,27 +245,28 @@
         "PrimaryGroup": {
           "Name": "Metalness",
           "Priority": 3
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "13",
-      "Position": "784,1008"
-    },
-    {
-      "_class": "Saturate",
-      "Input": {
-        "Identifier": "17",
-        "Output": "Result"
-      },
-      "Identifier": "14",
-      "Position": "1712,1072"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "784,1008",
       "Coords": {
         "Identifier": "9",
         "Output": "Result"
-      },
-      "Texture": "materials/street/textures/chainlink_fence_trans_png_5c1d60df.generated.vtex",
+      }
+    },
+    {
+      "_class": "Saturate",
+      "Identifier": "14",
+      "Position": "1712,1072",
+      "Input": {
+        "Identifier": "17",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
       },
@@ -275,18 +279,28 @@
         "PrimaryGroup": {
           "Name": "Translucent",
           "Priority": 1
-        }
+        },
+        "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "15",
-      "Position": "784,1216"
+      "Position": "784,1216",
+      "Coords": {
+        "Identifier": "9",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "16",
+      "Position": "2096,496",
       "Albedo": {
         "Identifier": "11",
         "Output": "Result"
       },
-      "Emission": {},
       "Opacity": {
         "Identifier": "14",
         "Output": "Result"
@@ -302,17 +316,12 @@
       "Metalness": {
         "Identifier": "13",
         "Output": "Result"
-      },
-      "AmbientOcclusion": {},
-      "DefaultOpacity": 1,
-      "DefaultRoughness": 1,
-      "DefaultMetalness": 0,
-      "DefaultAmbientOcclusion": 1,
-      "Identifier": "16",
-      "Position": "2096,496"
+      }
     },
     {
       "_class": "SmoothStep",
+      "Identifier": "17",
+      "Position": "1488,1152",
       "Input": {
         "Identifier": "15",
         "Output": "Result"
@@ -324,16 +333,15 @@
       "Edge2": {
         "Identifier": "19",
         "Output": "Result"
-      },
-      "Identifier": "17",
-      "Position": "1488,1152"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Smooth Step Min",
       "Value": 0,
+      "Name": "Smooth Step Min",
+      "IsAttribute": false,
       "UI": {
         "Priority": 1,
         "PrimaryGroup": {
@@ -348,8 +356,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Smooth Step Max",
       "Value": 1,
+      "Name": "Smooth Step Max",
+      "IsAttribute": false,
       "UI": {
         "Priority": 2,
         "PrimaryGroup": {
@@ -367,6 +376,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "21",
+      "Position": "1024,-64",
       "A": {
         "Identifier": "23",
         "Output": "RGB"
@@ -374,16 +387,13 @@
       "B": {
         "Identifier": "22",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "21",
-      "Position": "1024,-64"
+      }
     },
     {
       "_class": "Float4",
-      "Name": "Color Tint",
       "Value": "1,1,1,1",
+      "Name": "Color Tint",
+      "IsAttribute": false,
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {

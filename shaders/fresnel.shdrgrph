@@ -5,6 +5,12 @@
   "nodes": [
     {
       "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "1344,-272",
       "Albedo": {
         "Identifier": "11",
         "Output": "Result"
@@ -16,17 +22,7 @@
       "Opacity": {
         "Identifier": "13",
         "Output": "Result"
-      },
-      "Normal": {},
-      "Roughness": {},
-      "Metalness": {},
-      "AmbientOcclusion": {},
-      "DefaultOpacity": 1,
-      "DefaultRoughness": 1,
-      "DefaultMetalness": 0,
-      "DefaultAmbientOcclusion": 1,
-      "Identifier": "0",
-      "Position": "1344,-272"
+      }
     },
     {
       "_class": "ViewDirection",
@@ -40,6 +36,8 @@
     },
     {
       "_class": "DotProduct",
+      "Identifier": "3",
+      "Position": "-240,16",
       "InputA": {
         "Identifier": "2",
         "Output": "Result"
@@ -47,16 +45,15 @@
       "InputB": {
         "Identifier": "1",
         "Output": "Result"
-      },
-      "Identifier": "3",
-      "Position": "-240,16"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "Remap In Min",
       "Value": 0.25,
+      "Name": "Remap In Min",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -67,17 +64,6 @@
     },
     {
       "_class": "RemapValue",
-      "A": {
-        "Identifier": "8",
-        "Output": "Result"
-      },
-      "B": {
-        "Identifier": "4",
-        "Output": "Result"
-      },
-      "C": {},
-      "D": {},
-      "E": {},
       "In": 0.5,
       "InMin": 0.3304424,
       "InMax": 1,
@@ -85,14 +71,23 @@
       "OutMax": 1,
       "Clamp": true,
       "Identifier": "5",
-      "Position": "464,16"
+      "Position": "464,16",
+      "A": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "4",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "",
       "Value": 1,
+      "Name": "",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -105,8 +100,9 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Name": "",
       "Value": 0,
+      "Name": "",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -117,6 +113,9 @@
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "8",
+      "Position": "208,-32",
       "A": {
         "Identifier": "6",
         "Output": "Result"
@@ -128,13 +127,14 @@
       "C": {
         "Identifier": "3",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "8",
-      "Position": "208,-32"
+      }
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "9",
+      "Position": "752,96",
       "A": {
         "Identifier": "5",
         "Output": "Result"
@@ -142,18 +142,15 @@
       "B": {
         "Identifier": "10",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "9",
-      "Position": "752,96"
+      }
     },
     {
       "_class": "Float",
       "Min": 0,
       "Max": 20,
-      "Name": "Emission Strength",
       "Value": 5,
+      "Name": "Emission Strength",
+      "IsAttribute": false,
       "UI": {
         "PrimaryGroup": {
           "Name": ""
@@ -164,8 +161,9 @@
     },
     {
       "_class": "Float4",
-      "Name": "Color",
       "Value": "1,1,1,1",
+      "Name": "Color",
+      "IsAttribute": false,
       "UI": {
         "Type": "Color",
         "PrimaryGroup": {
@@ -177,6 +175,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "12",
+      "Position": "1008,-224",
       "A": {
         "Identifier": "11",
         "Output": "Result"
@@ -184,14 +186,14 @@
       "B": {
         "Identifier": "9",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "12",
-      "Position": "1008,-224"
+      }
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "13",
+      "Position": "784,-96",
       "A": {
         "Identifier": "11",
         "Output": "A"
@@ -199,11 +201,7 @@
       "B": {
         "Identifier": "5",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "13",
-      "Position": "784,-96"
+      }
     }
   ]
 }

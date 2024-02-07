@@ -5,12 +5,16 @@
   "nodes": [
     {
       "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "864,-48",
       "Albedo": {
         "Identifier": "15",
         "Output": "Result"
       },
-      "Emission": {},
-      "Opacity": {},
       "Normal": {
         "Identifier": "7",
         "Output": "Result"
@@ -22,15 +26,7 @@
       "Metalness": {
         "Identifier": "8",
         "Output": "Result"
-      },
-      "AmbientOcclusion": {},
-      "DefaultOpacity": 1,
-      "DefaultRoughness": 1,
-      "DefaultMetalness": 0,
-      "DefaultAmbientOcclusion": 1,
-      "PositionOffset": {},
-      "Identifier": "0",
-      "Position": "864,-48"
+      }
     },
     {
       "_class": "TextureCoord",
@@ -41,6 +37,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "2",
+      "Position": "-560,112",
       "A": {
         "Identifier": "1",
         "Output": "Result"
@@ -48,11 +48,7 @@
       "B": {
         "Identifier": "3",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "2",
-      "Position": "-560,112"
+      }
     },
     {
       "_class": "Float2",
@@ -70,10 +66,6 @@
     },
     {
       "_class": "TextureSampler",
-      "Coords": {
-        "Identifier": "2",
-        "Output": "Result"
-      },
       "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
@@ -89,14 +81,14 @@
         "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "4",
-      "Position": "-176,-288"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "-176,-288",
       "Coords": {
         "Identifier": "2",
         "Output": "Result"
-      },
+      }
+    },
+    {
+      "_class": "TextureSampler",
       "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
@@ -115,14 +107,14 @@
         "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "5",
-      "Position": "-176,288"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "-176,288",
       "Coords": {
         "Identifier": "2",
         "Output": "Result"
-      },
+      }
+    },
+    {
+      "_class": "TextureSampler",
       "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
@@ -141,24 +133,26 @@
         "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "6",
-      "Position": "-176,96"
-    },
-    {
-      "_class": "TransformNormal",
-      "Input": {
-        "Identifier": "6",
-        "Output": "Result"
-      },
-      "DecodeNormal": true,
-      "Identifier": "7",
-      "Position": "192,96"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "-176,96",
       "Coords": {
         "Identifier": "2",
         "Output": "Result"
-      },
+      }
+    },
+    {
+      "_class": "TransformNormal",
+      "InputSpace": "Tangent",
+      "OutputSpace": "Tangent",
+      "DecodeNormal": true,
+      "Identifier": "7",
+      "Position": "192,96",
+      "Input": {
+        "Identifier": "6",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureSampler",
       "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
@@ -177,14 +171,14 @@
         "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "8",
-      "Position": "-176,480"
-    },
-    {
-      "_class": "TextureSampler",
+      "Position": "-176,480",
       "Coords": {
         "Identifier": "2",
         "Output": "Result"
-      },
+      }
+    },
+    {
+      "_class": "TextureSampler",
       "Image": "materials/dev/white_color.tga",
       "Sampler": {
         "Filter": "Point"
@@ -202,7 +196,11 @@
         "CreateInput": "CreateInputTexture2D"
       },
       "Identifier": "9",
-      "Position": "-176,-96"
+      "Position": "-176,-96",
+      "Coords": {
+        "Identifier": "2",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Float4",
@@ -224,6 +222,9 @@
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "11",
+      "Position": "352,-224",
       "A": {
         "Identifier": "13",
         "Output": "Result"
@@ -235,25 +236,25 @@
       "C": {
         "Identifier": "12",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "11",
-      "Position": "352,-224"
+      }
     },
     {
       "_class": "Subtract",
-      "A": {},
-      "B": {
-        "Identifier": "9",
-        "Output": "Result"
-      },
       "DefaultA": 1,
       "DefaultB": 0,
       "Identifier": "12",
-      "Position": "224,-112"
+      "Position": "224,-112",
+      "B": {
+        "Identifier": "9",
+        "Output": "Result"
+      }
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "13",
+      "Position": "224,-336",
       "A": {
         "Identifier": "17",
         "Output": "Result"
@@ -261,11 +262,7 @@
       "B": {
         "Identifier": "4",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "13",
-      "Position": "224,-336"
+      }
     },
     {
       "_class": "Float",
@@ -285,6 +282,9 @@
     },
     {
       "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "15",
+      "Position": "624,-192",
       "A": {
         "Identifier": "4",
         "Output": "Result"
@@ -296,10 +296,7 @@
       "C": {
         "Identifier": "14",
         "Output": "Result"
-      },
-      "Fraction": 0.5,
-      "Identifier": "15",
-      "Position": "624,-192"
+      }
     },
     {
       "_class": "VertexColor",
@@ -308,6 +305,10 @@
     },
     {
       "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "17",
+      "Position": "64,-496",
       "A": {
         "Identifier": "16",
         "Output": "RGB"
@@ -315,11 +316,7 @@
       "B": {
         "Identifier": "10",
         "Output": "Result"
-      },
-      "DefaultA": 0,
-      "DefaultB": 1,
-      "Identifier": "17",
-      "Position": "64,-496"
+      }
     }
   ]
 }
