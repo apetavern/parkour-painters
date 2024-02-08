@@ -18,8 +18,8 @@
 								to = "models/outfits/nerd/accessories/nerd_belt1/materials/nerd_belt1.vmat"
 							},
 						]
-						use_global_default = false
-						global_default_material = ""
+						use_global_default = true
+						global_default_material = "models/outfits/nerd/accessories/nerd_belt1/materials/nerd_belt1.vmat"
 					},
 				]
 			},
@@ -39,11 +39,8 @@
 						parent_bone = ""
 						import_filter = 
 						{
-							exclude_by_default = true
-							exception_list = 
-							[
-								"mesh_001",
-							]
+							exclude_by_default = false
+							exception_list = [  ]
 						}
 					},
 				]

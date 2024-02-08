@@ -2,41 +2,31 @@
 
 Layer0
 {
-	shader "shaders/pixel.shader"
+	shader "shaders/pixelated.shader"
 
 	//---- Texture Filtering ----
 	F_TEXTURE_FILTERING 3 // Point Sample
 
 	//---- Color ----
+	Color "materials/street/textures/road_01b_color.png"
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 1.000000]"
-
-	//---- Fade ----
-	g_flFadeExponent "1.000"
+	TintMask "materials/default/default_mask.tga"
 
 	//---- Fog ----
 	g_bFogEnabled "1"
 
-	//---- Lighting ----
-	g_flDirectionalLightmapMinZ "0.050"
-	g_flDirectionalLightmapStrength "1.000"
+	//---- Metalness ----
+	Metallic "materials/default/default_metal.tga"
 
-	//---- Material ----
-	g_flTintColor "[1.000000 1.000000 1.000000 0.000000]"
-	TextureAmbientOcclusion "materials/default/default_ao.tga"
-	TextureBlendMask "materials/default/default_blend.tga"
-	TextureColor "materials/street/textures/road_01b_color.png"
-	TextureMetalness "materials/default/default_metal.tga"
-	TextureNormal "materials/street/textures/road_01b_normal.png"
-	TextureRoughness "materials/street/textures/road_01b_rough.png"
-	TextureTintMask "materials/default/default.tga"
+	//---- Normal ----
+	Normal "materials/street/textures/road_01b_normal.png"
+
+	//---- Roughness ----
+	Roughness "materials/street/textures/road_01b_rough.png"
 
 	//---- Texture Coordinates ----
-	g_nScaleTexCoordUByModelScaleAxis "0"
-	g_nScaleTexCoordVByModelScaleAxis "0"
-	g_vTexCoordOffset "[0.000 0.000]"
-	g_vTexCoordScale "[1.000 1.000]"
-	g_vTexCoordScrollSpeed "[0.000 0.000]"
+	g_vTiling "[1.000 1.000]"
 
 	SystemAttributes
 	{

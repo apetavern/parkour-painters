@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/dissolve.shader_c"
+	shader "shaders/dissolve.shader"
 
 	//---- Color ----
 	Color "materials/sprays/textures/yakuza_kanji_01a_color.png"

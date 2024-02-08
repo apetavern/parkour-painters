@@ -14,7 +14,7 @@
 						remaps = 
 						[
 							{
-								from = "mesh.034.vmat"
+								from = "phong1.vmat"
 								to = "models/outfits/nerd/feet/nerd_shoes1/materials/nerd_shoes1.vmat"
 							},
 						]
@@ -39,11 +39,8 @@
 						parent_bone = ""
 						import_filter = 
 						{
-							exclude_by_default = true
-							exception_list = 
-							[
-								"Mesh_034",
-							]
+							exclude_by_default = false
+							exception_list = [  ]
 						}
 					},
 				]

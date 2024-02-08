@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/projected_decals.shader_c"
+	shader "shaders/projected_decals.shader"
 
 	//---- Decal ----
 	F_ALPHA_MODE 1 // Cutoff
