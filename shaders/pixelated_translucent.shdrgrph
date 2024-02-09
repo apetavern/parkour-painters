@@ -217,7 +217,7 @@
       "_class": "Float",
       "Min": 0,
       "Max": 1,
-      "Value": 1,
+      "Value": 0,
       "Name": "Model Tint Amount",
       "IsAttribute": false,
       "UI": {

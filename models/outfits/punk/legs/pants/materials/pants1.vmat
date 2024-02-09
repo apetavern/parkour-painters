@@ -12,7 +12,7 @@ Layer0
 
 	//---- Color ----
 	Color "models/outfits/punk/legs/pants/materials/pants1_color.png"
-	g_flModelTintAmount "1.000"
+	g_flModelTintAmount "0.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 1.000000]"
 	TintMask "materials/default/default_mask.tga"
 

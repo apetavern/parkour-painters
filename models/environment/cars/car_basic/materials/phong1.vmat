@@ -2,13 +2,13 @@
 
 Layer0
 {
-	shader "shaders/pixelated_fakereflect.shader_c"
+	shader "shaders/pixelated_fakereflect.shader"
 
 	g_flFakeReflectMultiplier "6.000"
 
 	//---- Color ----
 	Color "models/environment/cars/car_basic/materials/phong1_color.png"
-	g_flModelTintAmount "1.000"
+	g_flModelTintAmount "0.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
 	reflect "materials/vfx/fakereflect.png"
 	TintMask "models/environment/cars/car_basic/materials/tintmask.png"
