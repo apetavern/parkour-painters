@@ -1,0 +1,25 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "suit_open",
+      "Type": "model",
+      "Org": "apetavern",
+      "Ident": "suit_open",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/outfits/yakuza/torso/suit_open.vmdl"
+      }
+    }
+  }
+}

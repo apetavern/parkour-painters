@@ -1,0 +1,25 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "tank_shirt",
+      "Type": "model",
+      "Org": "apetavern",
+      "Ident": "tank_shirt",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/outfits/90s/torso/tank_shirt.vmdl"
+      }
+    }
+  }
+}

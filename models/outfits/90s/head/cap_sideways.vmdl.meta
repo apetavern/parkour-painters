@@ -1,0 +1,25 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "cap_sideways",
+      "Type": "model",
+      "Org": "apetavern",
+      "Ident": "cap_sideways",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/outfits/90s/head/cap_sideways.vmdl"
+      }
+    }
+  }
+}

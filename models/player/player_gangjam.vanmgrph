@@ -63279,7 +63279,7 @@
 			m_bEnabled = false
 		},
 		{
-			m_name = "models/entities/melee_weapons/melee_weapons.vmdl"
+			m_name = "models/entities/boomblaster.vmdl"
 			m_bEnabled = true
 		},
 		{

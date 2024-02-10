@@ -1,0 +1,25 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "loose_pants",
+      "Type": "model",
+      "Org": "apetavern",
+      "Ident": "loose_pants",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/outfits/90s/legs/loose_pants.vmdl"
+      }
+    }
+  }
+}

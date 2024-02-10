@@ -1,0 +1,31 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/pixelated_fakereflect.shader"
+
+	g_flFakeReflectMultiplier "6.000"
+
+	//---- Color ----
+	Color "models/environment/cars/car_basic/materials/copskin/phong1_color.png"
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	reflect "materials/vfx/fakereflect.png"
+	TintMask "models/environment/cars/car_basic/materials/tintmask.png"
+	windowmap "models/environment/cars/car_basic/materials/windowmask.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	Metallic "models/environment/cars/car_basic/materials/phong1_metal.png"
+
+	//---- Normal ----
+	Normal "models/environment/cars/car_basic/materials/phong1_normal.png"
+
+	//---- Roughness ----
+	Roughness "models/environment/cars/car_basic/materials/copskin/phong1_rough.png"
+
+	//---- Texture Coordinates ----
+	g_vTiling "[1.000 1.000]"
+}

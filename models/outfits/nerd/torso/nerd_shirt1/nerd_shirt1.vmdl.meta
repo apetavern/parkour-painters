@@ -1,0 +1,25 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "nerd_shirt1",
+      "Type": "model",
+      "Org": "apetavern",
+      "Ident": "nerd_shirt1",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/outfits/nerd/torso/nerd_shirt1/nerd_shirt1.vmdl"
+      }
+    }
+  }
+}
