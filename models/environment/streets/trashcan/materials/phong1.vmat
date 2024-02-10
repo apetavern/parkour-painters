@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/pixelated.shader"
+	shader "shaders/pixelated_translucent_masked.shader"
 
 	//---- Blending ----
 	F_ADDITIVE_BLEND 1
@@ -33,4 +33,11 @@ Layer0
 
 	//---- Texture Coordinates ----
 	g_vTiling "[1.000 1.000]"
+
+	//---- Translucent ----
+	g_flAlphaTestReference "0.500"
+	g_flAntiAliasedEdgeStrength "1.000"
+	g_flSmoothStepMax "1.000"
+	g_flSmoothStepMin "0.000"
+	Translucency "models/environment/streets/trashcan/materials/phong1_opacity.png"
 }
