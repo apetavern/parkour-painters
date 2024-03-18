@@ -2,13 +2,12 @@
   "Title": "Parkour Painters",
   "Type": "content",
   "Org": "apetavern",
-  "Ident": "parkour_painters",
-  "Tags": null,
+  "Ident": "parkour_painters-dev",
+  "Tags": "retro movement arcade freerunning graffiti 90s",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
   "Resources": null,
-  "MenuResources": null,
   "HasCode": true,
   "CodePath": "/code/",
   "PackageReferences": [],
@@ -153,57 +152,6 @@
         "Step": 0.01
       }
     ],
-    "Collision": {
-      "Defaults": {
-        "solid": "Collide",
-        "trigger": "Trigger",
-        "ladder": "Ignore",
-        "water": "Trigger",
-        "player": "Collide"
-      },
-      "Pairs": [
-        {
-          "a": "solid",
-          "b": "solid",
-          "r": "Collide"
-        },
-        {
-          "a": "trigger",
-          "b": "playerclip",
-          "r": "Ignore"
-        },
-        {
-          "a": "trigger",
-          "b": "solid",
-          "r": "Trigger"
-        },
-        {
-          "a": "solid",
-          "b": "trigger",
-          "r": "Collide"
-        },
-        {
-          "a": "playerclip",
-          "b": "solid",
-          "r": "Collide"
-        },
-        {
-          "a": "player",
-          "b": "player",
-          "r": "Ignore"
-        },
-        {
-          "a": "solid",
-          "b": "player",
-          "r": "Collide"
-        },
-        {
-          "a": "trigger",
-          "b": "player",
-          "r": "Trigger"
-        }
-      ]
-    },
     "Summary": "Parkour Painters is a team-based game where you spray to win!",
     "Description": "**Parkour Painters**\n\nApe Tavern\u0027s submission for the Three Thieves Game Jam (2023).\n\n**How To Play**\n\nRun, jump, grind, and hang to find spots to graffiti for your gang! The gang with the most graffiti spots by the end of the game is the winner. You can spray over another gang\u0027s graffiti to take points back.\n\nThere are powerups and secondary weapons to help you get a victory along the way. Good luck!\n\n**Controls**\n\n1 - Equip Spray Can\n2 - Equip Secondary\nWASD - Move\nSpace - Jump\nShift - Dash\nLeft Click - Fire\nE - Guide\nTab - Playerlist",
     "Public": true,

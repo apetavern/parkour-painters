@@ -1,7 +1,24 @@
 {
-  "cloud_packages": [],
-  "game_packages": [
-    "apetavern.parkour_painters"
-  ],
-  "addon_packages": []
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "dev_gym",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "dev_gym",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Metadata": {
+        "SingleAssetSource": "maps/dev_gym.vmap"
+      }
+    }
+  }
 }

@@ -1,0 +1,94 @@
+{
+  "__guid": "0d65eb39-5038-4b0c-b421-2e5597e2456c",
+  "GameObjects": [
+    {
+      "__guid": "7b304373-8173-4b7c-a881-11835017e5eb",
+      "Name": "Main Camera",
+      "Position": "-300,0,100",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__guid": "b1e26aac-8ef8-495a-b0d4-23115c8800e4",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
+      "__guid": "ea731646-794d-4157-9c78-3cec5fa6c03e",
+      "Name": "Directional Light",
+      "Position": "0,0,128",
+      "Rotation": "-0.04995021,0.3794096,-0.1205905,0.9159757",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "__guid": "c96efb46-8808-4904-a74b-586742da8fee",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.90698,0.97829,1,1",
+          "Shadows": true,
+          "SkyColor": "0.22326,0.21043,0.18276,1"
+        }
+      ]
+    },
+    {
+      "__guid": "1af2aacd-c5d2-497d-8528-9f935f67bd22",
+      "Name": "Map",
+      "Position": "0,0,100",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MapInstance",
+          "__guid": "df9a716c-83ff-4de6-acd3-3d8f09958975",
+          "MapName": "maps/dev_gym.vmap",
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "dev_gym",
+  "Description": "",
+  "LastSaved": "2024-03-18T22:46:52.6321964\u002B00:00",
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}
