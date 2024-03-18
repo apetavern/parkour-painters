@@ -1,44 +1,29 @@
-# Sandbox
-code/accesslist.txt
-Properties
-.intermediate
+
+# This file describes files and paths that should not be tracked by Git version control
+# https://git-scm.com/docs/gitignore
+
+# Auto-generated code editor files
+.vs/*
+.vscode/*
 *.csproj
-*.bat
+obj/*
+Properties/*
+code/obj/*
+code/Properties/*
+*.sln
 
-# User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+# Editor Projects
+code/Editor/obj/*
+code/Editor/Properties/*
+code/Editor/*.sln
+code/Editor/.vs/*
+code/Editor/.vscode/*
 
-# Build results
-[Oo]bj/
-.vs/
-
-# VRAD artifacts
-_bakeresourcecache/
-*_bakeresourcecache.vpk
-
-# Compiled files
-*.vanmgrph_c
-*.vmat_c
-*.vmdl_c
-*.vsnd_c
-*.vtex_c
-*.zip
-*.vpcf_c
-*.vpost_c
-*.sound_c
-*.csg_c
-*.csgmat_c
-*.prefab_c
-*.tsta_c
-*.tlvl_c
-*.clothing_c
-*.clothc_c
-*.group_c
+# Auto-generated asset related files
+*.generated.*
+*.*_c
+*.los
+*.vpk
 
 # Allowlist
-!*_dev.vpk
-!models/citizen_clothes/*/*
+dev_gym.vpk
