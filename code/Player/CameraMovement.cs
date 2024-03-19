@@ -24,7 +24,7 @@ public sealed class CameraMovement : Component
 		eyeAngles.pitch += Input.MouseDelta.y * 0.1f;
 		eyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
 		eyeAngles.roll = 0f;
-		eyeAngles.pitch = eyeAngles.pitch.Clamp( -89.9f, 89.9f );
+		eyeAngles.pitch = eyeAngles.pitch.Clamp( -50f, 75f );
 		Head.Transform.Rotation = eyeAngles.ToRotation();
 
 		//Set the current camera offset
