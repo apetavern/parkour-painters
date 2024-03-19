@@ -156,8 +156,7 @@
     "Description": "**Parkour Painters**\n\nApe Tavern\u0027s submission for the Three Thieves Game Jam (2023).\n\n**How To Play**\n\nRun, jump, grind, and hang to find spots to graffiti for your gang! The gang with the most graffiti spots by the end of the game is the winner. You can spray over another gang\u0027s graffiti to take points back.\n\nThere are powerups and secondary weapons to help you get a victory along the way. Good luck!\n\n**Controls**\n\n1 - Equip Spray Can\n2 - Equip Secondary\nWASD - Move\nSpace - Jump\nShift - Dash\nLeft Click - Fire\nE - Guide\nTab - Playerlist",
     "Public": true,
     "ControlModes": {
-      "Keyboard": true,
-      "Gamepad": true
+      "Keyboard": true
     },
     "ReplaceTags": "multiplayer retro movement competitive gangjam",
     "InputSettings": {
@@ -261,8 +260,19 @@
           "KeyboardCode": "e",
           "GamepadCode": "DpadSouth",
           "GroupName": "UI"
+        },
+        {
+          "Name": "Duck",
+          "KeyboardCode": "CTRL",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Run",
+          "KeyboardCode": "SHIFT",
+          "GroupName": "Other"
         }
-      ]
+      ],
+      "__guid": "46ffe280-9022-43a1-adca-655cbd1d6114"
     }
   }
 }

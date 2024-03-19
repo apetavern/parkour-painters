@@ -18,6 +18,25 @@
         "StepHeight": 18
       },
       {
+        "__type": "CitizenAnimationHelper",
+        "__guid": "95a54d73-18b4-4e48-a26e-d12ce91d2930",
+        "BodyWeight": 1,
+        "EyeSource": {
+          "_type": "gameobject",
+          "go": "9aafca9c-3c1c-4821-ab64-6dc7cffc6701"
+        },
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "Height": 1,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "component_id": "efe6d3b7-c312-4c0f-8ca9-f8b71f14a7e7",
+          "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
         "__type": "PlayerMovement",
         "__guid": "08baaf32-ad64-4c90-a83f-b62ea46a671f",
         "AirControl": 0.1,
@@ -25,7 +44,7 @@
           "_type": "gameobject",
           "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda"
         },
-        "CrouchSpeed": 90,
+        "CrouchSpeed": 100,
         "GroundControl": 4,
         "Head": {
           "_type": "gameobject",
@@ -33,8 +52,8 @@
         },
         "JumpForce": 400,
         "MaxForce": 50,
-        "RunSpeed": 290,
-        "Speed": 160
+        "RunSpeed": 500,
+        "Speed": 300
       }
     ],
     "Children": [
@@ -63,15 +82,27 @@
             "Viewport": "0,0,1,1",
             "ZFar": 10000,
             "ZNear": 10
+          },
+          {
+            "__type": "CameraMovement",
+            "__guid": "4e055b62-b8f1-4388-89fc-4f6ec0e32c9e",
+            "Body": {
+              "_type": "gameobject",
+              "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda"
+            },
+            "Distance": 150,
+            "Head": {
+              "_type": "gameobject",
+              "go": "9aafca9c-3c1c-4821-ab64-6dc7cffc6701"
+            },
+            "Player": {
+              "_type": "component",
+              "component_id": "08baaf32-ad64-4c90-a83f-b62ea46a671f",
+              "go": "dea1cf22-01cd-4b21-80a5-3cf63d2cc1de",
+              "component_type": "PlayerMovement"
+            }
           }
         ]
-      },
-      {
-        "__guid": "9aafca9c-3c1c-4821-ab64-6dc7cffc6701",
-        "Name": "Head",
-        "Position": "0,0,64",
-        "Enabled": true,
-        "NetworkMode": 2
       },
       {
         "__guid": "db9908e7-a45f-45d2-ada8-ed27249d1cda",
@@ -89,6 +120,13 @@
             "Tint": "1,1,1,1"
           }
         ]
+      },
+      {
+        "__guid": "9aafca9c-3c1c-4821-ab64-6dc7cffc6701",
+        "Name": "Head",
+        "Position": "0,0,64",
+        "Enabled": true,
+        "NetworkMode": 2
       }
     ]
   },
