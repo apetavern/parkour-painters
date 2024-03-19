@@ -4,7 +4,7 @@ using Sandbox.Citizen;
 public sealed class PlayerMovement : Component
 {
 	// Movement Properties
-	[Property] public float GroundControl { get; set; } = 4.0f;
+	[Property] public float GroundControl { get; set; } = 4f;
 	[Property] public float AirControl { get; set; } = 0.1f;
 	[Property] public float MaxForce { get; set; } = 50f;
 	[Property] public float Speed { get; set; } = 300f;
@@ -107,7 +107,7 @@ public sealed class PlayerMovement : Component
 
 		if ( rotateDifference > 50f || characterController.Velocity.Length > 10f )
 		{
-			Body.Transform.Rotation = Rotation.Lerp( Body.Transform.Rotation, targetAngle, Time.Delta * 2f );
+			Body.Transform.Rotation = Rotation.Lerp( Body.Transform.Rotation, targetAngle, Time.Delta * 10f );
 		}
 	}
 
