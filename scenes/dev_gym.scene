@@ -62,6 +62,14 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "bfcf3146-bf60-452c-b4b4-dc3116f0aa2a",
+      "Name": "playercontroller",
+      "Tags": "player",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/player/playercontroller.prefab"
     }
   ],
   "SceneProperties": {
@@ -87,7 +95,7 @@
   },
   "Title": "dev_gym",
   "Description": "",
-  "LastSaved": "2024-03-18T22:46:52.6321964\u002B00:00",
+  "LastSaved": "2024-03-18T23:25:43.5767406\u002B00:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []
