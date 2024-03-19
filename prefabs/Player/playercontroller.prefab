@@ -54,6 +54,16 @@
         "MaxForce": 50,
         "RunSpeed": 500,
         "Speed": 300
+      },
+      {
+        "__type": "ApplyLocalClothing",
+        "__guid": "d3a04fe0-4cf6-4e0b-8d4b-c79d87028061",
+        "BodyTarget": {
+          "_type": "component",
+          "component_id": "efe6d3b7-c312-4c0f-8ca9-f8b71f14a7e7",
+          "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda",
+          "component_type": "SkinnedModelRenderer"
+        }
       }
     ],
     "Children": [
