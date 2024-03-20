@@ -1,5 +1,3 @@
-using Sandbox;
-
 public sealed class CameraMovement : Component
 {
 	//Properties
@@ -7,6 +5,9 @@ public sealed class CameraMovement : Component
 	[Property] public GameObject Body { get; set; }
 	[Property] public GameObject Head { get; set; }
 	[Property] public float Distance { get; set; } = 150f;
+
+	[Sync]
+	public Vector3 AimAngles { get; set; }
 
 	//Variables
 	private CameraComponent Camera;
@@ -26,6 +27,7 @@ public sealed class CameraMovement : Component
 		eyeAngles.roll = 0f;
 		eyeAngles.pitch = eyeAngles.pitch.Clamp( -50f, 75f );
 		Head.Transform.Rotation = eyeAngles.ToRotation();
+		AimAngles = eyeAngles.ToRotation().Forward;
 
 		//Set the current camera offset
 		var targetOffset = Vector3.Zero;

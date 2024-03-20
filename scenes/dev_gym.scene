@@ -5,7 +5,6 @@
       "__guid": "7b304373-8173-4b7c-a881-11835017e5eb",
       "Name": "Main Camera",
       "Position": "-300,0,100",
-      "Enabled": true,
       "NetworkMode": 2,
       "Components": [
         {
@@ -95,7 +94,7 @@
   },
   "Title": "dev_gym",
   "Description": "",
-  "LastSaved": "2024-03-19T02:19:48.5637155\u002B00:00",
+  "LastSaved": "2024-03-19T21:26:39.5953669-05:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []

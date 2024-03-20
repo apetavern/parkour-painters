@@ -4,7 +4,7 @@
     "Name": "playercontroller",
     "Tags": "player",
     "Enabled": true,
-    "NetworkMode": 2,
+    "NetworkMode": 1,
     "Components": [
       {
         "__type": "CharacterController",
@@ -43,6 +43,12 @@
         "Body": {
           "_type": "gameobject",
           "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda"
+        },
+        "Camera": {
+          "_type": "component",
+          "component_id": "1651a004-26e6-4c54-af09-d9d5544baaea",
+          "go": "7df8a65f-69f1-4efa-a832-6be0e83fc938",
+          "component_type": "CameraMovement"
         },
         "CrouchSpeed": 100,
         "GroundControl": 4,
@@ -95,7 +101,7 @@
           },
           {
             "__type": "CameraMovement",
-            "__guid": "4e055b62-b8f1-4388-89fc-4f6ec0e32c9e",
+            "__guid": "1651a004-26e6-4c54-af09-d9d5544baaea",
             "Body": {
               "_type": "gameobject",
               "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda"

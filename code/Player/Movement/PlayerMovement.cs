@@ -1,4 +1,3 @@
-using Sandbox;
 using Sandbox.Citizen;
 
 public sealed class PlayerMovement : Component
@@ -15,11 +14,15 @@ public sealed class PlayerMovement : Component
 	// Object References
 	[Property] public GameObject Head { get; set; }
 	[Property] public GameObject Body { get; set; }
+	[Property] public CameraMovement Camera { get; set; }
+
+
+	[Sync] public PlayerMovementState MoveState { get; set; } = PlayerMovementState.Walking;
 
 	// Member Variables
 	public Vector3 WishVelocity = Vector3.Zero;
-	public bool IsCrouching = false;
-	public bool IsSprinting = false;
+	[Sync] public bool IsCrouching { get; set; } = false;
+	[Sync] public bool IsSprinting { get; set; } = false;
 
 	private CharacterController characterController;
 	private CitizenAnimationHelper animationHelper;
@@ -32,13 +35,21 @@ public sealed class PlayerMovement : Component
 
 	protected override void OnUpdate()
 	{
+		RotateBody();
 		// Set our sprinting and crouching states
 		UpdateCrouch();
+		UpdateAnimations();
+
+		if ( IsProxy )
+		{
+			return;
+		}
+
+
+		//TODO: Move to a process input function
 		IsSprinting = Input.Down( "Run" );
 		if ( Input.Pressed( "Jump" ) ) Jump();
-		RotateBody();
 
-		UpdateAnimations();
 	}
 
 	protected override void OnFixedUpdate()
@@ -51,18 +62,34 @@ public sealed class PlayerMovement : Component
 	{
 		WishVelocity = 0;
 
-		var rot = Head.Transform.Rotation;
-		if ( Input.Down( "Forward" ) ) WishVelocity += rot.Forward;
-		if ( Input.Down( "Backward" ) ) WishVelocity += rot.Backward;
-		if ( Input.Down( "Left" ) ) WishVelocity += rot.Left;
-		if ( Input.Down( "Right" ) ) WishVelocity += rot.Right;
+		switch ( MoveState )
+		{
+			case PlayerMovementState.Walking:
 
-		WishVelocity = WishVelocity.WithZ( 0 );
-		if ( !WishVelocity.IsNearZeroLength ) WishVelocity = WishVelocity.Normal;
+				WishVelocity = GroundMovement( WishVelocity );
+				break;
+			default:
+				WishVelocity = GroundMovement( WishVelocity );
+				break;
+		}
+	}
 
-		if ( IsCrouching ) WishVelocity *= CrouchSpeed;
-		else if ( IsSprinting ) WishVelocity *= RunSpeed;
-		else WishVelocity *= Speed;
+	public Vector3 GroundMovement( Vector3 wishVelocity )
+	{
+		var rot = Rotation.LookAt( Camera.AimAngles );
+		if ( Input.Down( "Forward" ) ) wishVelocity += rot.Forward;
+		if ( Input.Down( "Backward" ) ) wishVelocity += rot.Backward;
+		if ( Input.Down( "Left" ) ) wishVelocity += rot.Left;
+		if ( Input.Down( "Right" ) ) wishVelocity += rot.Right;
+
+		wishVelocity = wishVelocity.WithZ( 0 );
+		if ( !wishVelocity.IsNearZeroLength ) wishVelocity = wishVelocity.Normal;
+
+		if ( IsCrouching ) wishVelocity *= CrouchSpeed;
+		else if ( IsSprinting ) wishVelocity *= RunSpeed;
+		else wishVelocity *= Speed;
+
+		return wishVelocity;
 	}
 
 	void Move()
