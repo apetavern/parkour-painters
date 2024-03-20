@@ -1,0 +1,94 @@
+{
+  "__guid": "58b4559c-647d-4bbd-9b51-447672548c04",
+  "GameObjects": [
+    {
+      "__guid": "c516da2d-3ae0-45a5-a96f-0aabb4e6c04c",
+      "Name": "Main Camera",
+      "Position": "388.7804,-383.8831,138.8671",
+      "Rotation": "-0.04152606,-0.009297473,-0.986053,-0.1608987",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__guid": "acd6c49e-ff0d-4117-88cf-aa2c166c7b84",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 70,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 2000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
+      "__guid": "e304ab28-dcb9-4658-b382-80c07929583e",
+      "Name": "Directional Light",
+      "Position": "114.7645,0,128",
+      "Rotation": "0.5576419,-0.4822293,-0.6671797,-0.1065916",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "__guid": "68ec32db-b596-4990-9244-53ea50e74529",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.90698,0.97829,1,1",
+          "Shadows": true,
+          "SkyColor": "0.22326,0.21043,0.18276,1"
+        }
+      ]
+    },
+    {
+      "__guid": "f3e4a0ab-ee85-4772-98ac-dd537495444b",
+      "Name": "Map",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MapInstance",
+          "__guid": "ada2089d-dc65-4daf-95f2-748c0b7f4c87",
+          "MapName": "maps/pp_menu.vmap",
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "main_menu",
+  "Description": "",
+  "LastSaved": "2024-03-20T22:30:23.0871459\u002B00:00",
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}

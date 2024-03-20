@@ -1,22 +1,24 @@
 {
   "publish": {
+    "Allowed": true,
     "Enabled": false,
     "ProjectConfig": {
-      "Title": null,
-      "Type": null,
-      "Org": null,
-      "Ident": null,
+      "Title": "pp_menu",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "pp_menu",
       "Tags": null,
       "Schema": 0,
       "HasAssets": false,
       "AssetsPath": null,
       "Resources": null,
-      "MenuResources": null,
       "HasCode": false,
       "CodePath": null,
       "PackageReferences": [],
       "EditorReferences": [],
-      "Metadata": {}
+      "Metadata": {
+        "SingleAssetSource": "maps/pp_menu.vmap"
+      }
     }
   }
 }
