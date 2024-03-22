@@ -1,0 +1,13 @@
+PlayerHUD {
+    position: absolute;
+    padding-top: 20px;
+    padding-left: 50px;
+
+    .timer {
+        flex-direction: row;
+        font-size: 65px;
+        font-family: Sarpanch;
+        font-weight: bold;
+        color: #fff;
+    }
+}

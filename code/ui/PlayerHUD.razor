@@ -1,0 +1,29 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="timer">
+		@GetTimeString()
+	</div>
+</root>
+
+@code
+{
+	[Property] LevelManager LevelManager { get; set; }
+
+	string GetTimeString()
+	{
+		var time = LevelManager.RemainingTime;
+		var minutes = (int)time / 60;
+		var seconds = (int)time % 60;
+		return $"{minutes:00}:{seconds:00}";
+	}
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash()
+	{
+		return System.HashCode.Combine(GetTimeString());
+	}
+}
