@@ -1,0 +1,26 @@
+PreGame {
+    position: absolute;
+    top: 512px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .button {
+        font-size: 65px;
+        font-family: Sarpanch;
+        font-weight: bold;
+        color: #fff;
+        background-color: #000000de;
+        pointer-events: all;
+        border-radius: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &.hidden {
+        opacity: 0;
+    }
+}

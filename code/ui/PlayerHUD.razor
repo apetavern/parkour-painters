@@ -10,11 +10,11 @@
 
 @code
 {
-	[Property] LevelManager LevelManager { get; set; }
+	[Property] GameManager GameManager { get; set; }
 
 	string GetTimeString()
 	{
-		var time = LevelManager.RemainingTime;
+		var time = GameManager.RemainingTime;
 		var minutes = (int)time / 60;
 		var seconds = (int)time % 60;
 		return $"{minutes:00}:{seconds:00}";

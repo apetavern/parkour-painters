@@ -71,20 +71,6 @@
       "__Prefab": "prefabs/player/playercontroller.prefab"
     },
     {
-      "__guid": "ad5b7f57-3d82-41b5-951f-3587f7cb0f70",
-      "Name": "LevelManager",
-      "Position": "12.12695,72.61779,98.78424",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "LevelManager",
-          "__guid": "46f48b28-8578-46a4-8930-34f489e389a8",
-          "RemainingTime": 65
-        }
-      ]
-    },
-    {
       "__guid": "c2a09c2a-779b-4ac2-8112-9a7c94807fc3",
       "Name": "PlayerHUD",
       "Enabled": true,
@@ -101,12 +87,35 @@
         {
           "__type": "PlayerHUD",
           "__guid": "51618295-d814-4d1d-af2a-a0b2cf04981d",
-          "LevelManager": {
+          "GameManager": {
             "_type": "component",
-            "component_id": "46f48b28-8578-46a4-8930-34f489e389a8",
-            "go": "ad5b7f57-3d82-41b5-951f-3587f7cb0f70",
-            "component_type": "LevelManager"
+            "component_id": "93afd9cb-b2b8-40f3-9ec9-81e1702ff59d",
+            "go": "dce1c0b3-ffe8-4baa-9bd3-2ee40740b3ba",
+            "component_type": "GameManager"
           }
+        },
+        {
+          "__type": "PreGame",
+          "__guid": "f00a39c3-1ac4-4f35-b8fa-572b9637b93a",
+          "GameManager": {
+            "_type": "component",
+            "component_id": "93afd9cb-b2b8-40f3-9ec9-81e1702ff59d",
+            "go": "dce1c0b3-ffe8-4baa-9bd3-2ee40740b3ba",
+            "component_type": "GameManager"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "dce1c0b3-ffe8-4baa-9bd3-2ee40740b3ba",
+      "Name": "GameManager",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "GameManager",
+          "__guid": "93afd9cb-b2b8-40f3-9ec9-81e1702ff59d",
+          "RemainingTime": 75
         }
       ]
     }
@@ -134,7 +143,7 @@
   },
   "Title": "dev_gym",
   "Description": "",
-  "LastSaved": "2024-03-22T21:52:45.6665948\u002B00:00",
+  "LastSaved": "2024-03-24T00:21:21.803887\u002B00:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []
