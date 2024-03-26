@@ -62,6 +62,27 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "ea1d8c44-9906-4116-af8d-7927d72eb65f",
+      "Name": "Screen",
+      "Position": "336.278,-234.275,188.9365",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__guid": "6e2af696-ce6e-435b-b6a5-bac88a146ca7",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "MainMenu",
+          "__guid": "e3955cda-000a-4e7a-b284-f6e3b797638b"
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -87,7 +108,7 @@
   },
   "Title": "main_menu",
   "Description": "",
-  "LastSaved": "2024-03-20T22:30:23.0871459\u002B00:00",
+  "LastSaved": "2024-03-26T20:14:52.953055\u002B00:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []

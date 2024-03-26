@@ -273,6 +273,8 @@
         }
       ],
       "__guid": "46ffe280-9022-43a1-adca-655cbd1d6114"
-    }
+    },
+    "StartupScene": "scenes/main_menu.scene",
+    "LaunchMode": "Normal"
   }
 }

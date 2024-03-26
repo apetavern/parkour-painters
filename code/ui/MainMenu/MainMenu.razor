@@ -1,0 +1,19 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="button" onclick=@OpenDevScene>Dev Gym</div>
+</root>
+
+@code
+{
+	void OpenDevScene()
+	{
+		Game.ActiveScene.LoadFromFile( "scenes/dev_gym.scene" );
+	}
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( "" );
+}
