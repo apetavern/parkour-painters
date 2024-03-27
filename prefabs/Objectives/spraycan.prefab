@@ -1,0 +1,47 @@
+{
+  "RootObject": {
+    "__guid": "7a4cc660-8798-4256-9cd1-35f37c51e2cc",
+    "Name": "spraycan",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Children": [
+      {
+        "__guid": "8cff3241-6d7b-4f1c-922f-4cc6286a1b20",
+        "Name": "Object",
+        "Position": "0,0,16",
+        "Rotation": "0.3826835,0,0,0.9238795",
+        "Scale": "2,2,2",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "ModelRenderer",
+            "__guid": "43dc11ad-93dd-4355-96cb-ce22c3a2ff56",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/entities/spray_paint/spray_paint.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "Bobbing",
+            "__guid": "09ebbca0-1884-4d86-b835-ffa414be78eb",
+            "UseRandomRotation": false
+          },
+          {
+            "__type": "ModelCollider",
+            "__guid": "748a8060-bcb3-43e8-b926-3c73d26ad394",
+            "IsTrigger": true,
+            "Model": "models/entities/spray_paint/spray_paint.vmdl",
+            "Static": false
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}

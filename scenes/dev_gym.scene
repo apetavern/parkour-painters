@@ -1,5 +1,5 @@
 {
-  "__guid": "2272e1ca-c4a9-4788-826e-24f5be581c3e",
+  "__guid": "4af4102e-4271-481d-841a-b5831a67ce0f",
   "GameObjects": [
     {
       "__guid": "7b304373-8173-4b7c-a881-11835017e5eb",
@@ -118,6 +118,14 @@
           "RemainingTime": 75
         }
       ]
+    },
+    {
+      "__guid": "7979490e-383a-4f92-a10c-eaa89a1c17a7",
+      "Name": "spraycan",
+      "Position": "64,64,0",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/objectives/spraycan.prefab"
     }
   ],
   "SceneProperties": {
@@ -143,7 +151,7 @@
   },
   "Title": "dev_gym",
   "Description": "",
-  "LastSaved": "2024-03-24T00:21:21.803887\u002B00:00",
+  "LastSaved": "2024-03-27T03:24:34.1375512\u002B00:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []
