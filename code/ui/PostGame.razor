@@ -1,0 +1,26 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="results">
+	<h1>Results</h1>
+	<p>Spraycans:</p>
+	</div>
+</root>
+
+@code
+{
+	protected override void OnStart()
+	{
+		AddClass("hidden");
+	}
+
+	protected override void OnFixedUpdate()
+	{
+		if (GameManager.Instance.State == GameState.PostGame)
+			RemoveClass("hidden");
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( "MyStringValue" );
+}

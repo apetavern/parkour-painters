@@ -7,7 +7,7 @@
     "Children": [
       {
         "__guid": "8cff3241-6d7b-4f1c-922f-4cc6286a1b20",
-        "Name": "Object",
+        "Name": "Model",
         "Position": "0,0,16",
         "Rotation": "0.3826835,0,0,0.9238795",
         "Scale": "2,2,2",
@@ -23,15 +23,21 @@
             "Tint": "1,1,1,1"
           },
           {
+            "__type": "Collectable",
+            "__guid": "cb97e672-6d45-4375-b4af-0503ff473a76",
+            "CollectableType": "Spraycan"
+          },
+          {
             "__type": "Bobbing",
             "__guid": "09ebbca0-1884-4d86-b835-ffa414be78eb",
             "UseRandomRotation": false
           },
           {
-            "__type": "ModelCollider",
-            "__guid": "748a8060-bcb3-43e8-b926-3c73d26ad394",
+            "__type": "BoxCollider",
+            "__guid": "4b885156-4387-4078-9d18-5897387dab5b",
+            "Center": "0,0,5",
             "IsTrigger": true,
-            "Model": "models/entities/spray_paint/spray_paint.vmdl",
+            "Scale": "10,10,10",
             "Static": false
           }
         ]

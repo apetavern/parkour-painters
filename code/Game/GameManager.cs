@@ -10,9 +10,16 @@ public enum GameState
 
 public sealed class GameManager : Component
 {
+	public static GameManager Instance { get; set; }
+
 	public GameState State { get; set; }
 
 	[Property] public float RemainingTime { get; set; }
+
+	protected override void OnStart()
+	{
+		Instance = this;
+	}
 
 	protected override void OnAwake()
 	{

@@ -1,0 +1,29 @@
+PostGame {
+    position: absolute;
+    top: 128px;
+    left: 256px;
+    right: 256px;
+    bottom: 128px;
+    background-color: #000000d2;
+
+    .results {
+        flex-direction: column;
+        padding: 25px;
+        font-family: Sarpanch;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    h1 {
+        font-size: 75px;
+    }
+
+    p {
+        font-family: "Azeret Mono";
+        font-size: 40px;
+    }
+
+    &.hidden {
+        opacity: 0;
+    }
+}

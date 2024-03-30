@@ -103,6 +103,10 @@
             "go": "dce1c0b3-ffe8-4baa-9bd3-2ee40740b3ba",
             "component_type": "GameManager"
           }
+        },
+        {
+          "__type": "PostGame",
+          "__guid": "689a7749-38c6-4b08-8a6b-bbbbc6e726fb"
         }
       ]
     },
@@ -115,7 +119,7 @@
         {
           "__type": "GameManager",
           "__guid": "93afd9cb-b2b8-40f3-9ec9-81e1702ff59d",
-          "RemainingTime": 75
+          "RemainingTime": 65
         }
       ]
     },
@@ -123,6 +127,22 @@
       "__guid": "7979490e-383a-4f92-a10c-eaa89a1c17a7",
       "Name": "spraycan",
       "Position": "64,64,0",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/objectives/spraycan.prefab"
+    },
+    {
+      "__guid": "b2fd0da8-30f6-42d5-b8ca-54196e45251f",
+      "Name": "spraycan (1)",
+      "Position": "130.8837,64,0",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/objectives/spraycan.prefab"
+    },
+    {
+      "__guid": "bb5784ba-26a0-40eb-ab98-12cfdead483b",
+      "Name": "spraycan (2)",
+      "Position": "211.2614,64,0",
       "Enabled": true,
       "NetworkMode": 2,
       "__Prefab": "prefabs/objectives/spraycan.prefab"
@@ -151,7 +171,7 @@
   },
   "Title": "dev_gym",
   "Description": "",
-  "LastSaved": "2024-03-27T03:24:34.1375512\u002B00:00",
+  "LastSaved": "2024-03-30T21:36:21.2763412\u002B00:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []

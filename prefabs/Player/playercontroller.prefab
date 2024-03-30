@@ -70,6 +70,14 @@
           "go": "db9908e7-a45f-45d2-ada8-ed27249d1cda",
           "component_type": "SkinnedModelRenderer"
         }
+      },
+      {
+        "__type": "BoxCollider",
+        "__guid": "f51c72e5-fa63-46ee-9c99-77cd689abc06",
+        "Center": "0,0,36",
+        "IsTrigger": false,
+        "Scale": "25,25,72",
+        "Static": false
       }
     ],
     "Children": [
