@@ -13,6 +13,7 @@ public sealed class GameManager : Component
 	public static GameManager Instance { get; set; }
 
 	public GameState State { get; set; }
+	public int CollectableCount { get; set; }
 
 	[Property] public float RemainingTime { get; set; }
 

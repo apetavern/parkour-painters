@@ -119,7 +119,7 @@
         {
           "__type": "GameManager",
           "__guid": "93afd9cb-b2b8-40f3-9ec9-81e1702ff59d",
-          "RemainingTime": 65
+          "RemainingTime": 64
         }
       ]
     },
@@ -171,7 +171,7 @@
   },
   "Title": "dev_gym",
   "Description": "",
-  "LastSaved": "2024-03-30T21:36:21.2763412\u002B00:00",
+  "LastSaved": "2024-03-30T23:17:26.9092123\u002B00:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": []

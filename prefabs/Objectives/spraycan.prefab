@@ -23,9 +23,12 @@
             "Tint": "1,1,1,1"
           },
           {
-            "__type": "Collectable",
-            "__guid": "cb97e672-6d45-4375-b4af-0503ff473a76",
-            "CollectableType": "Spraycan"
+            "__type": "BoxCollider",
+            "__guid": "4b885156-4387-4078-9d18-5897387dab5b",
+            "Center": "0,0,5",
+            "IsTrigger": true,
+            "Scale": "10,10,10",
+            "Static": false
           },
           {
             "__type": "Bobbing",
@@ -33,12 +36,9 @@
             "UseRandomRotation": false
           },
           {
-            "__type": "BoxCollider",
-            "__guid": "4b885156-4387-4078-9d18-5897387dab5b",
-            "Center": "0,0,5",
-            "IsTrigger": true,
-            "Scale": "10,10,10",
-            "Static": false
+            "__type": "Collectable",
+            "__guid": "cb97e672-6d45-4375-b4af-0503ff473a76",
+            "CollectableType": "Spraycan"
           }
         ]
       }

@@ -12,6 +12,7 @@ public sealed class Collectable : Component, Component.ITriggerListener
 
 	void ITriggerListener.OnTriggerEnter( Collider other )
 	{
+		GameManager.Instance.CollectableCount++;
 		GameObject.Destroy();
 	}
 }
