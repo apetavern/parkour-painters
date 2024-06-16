@@ -1,0 +1,25 @@
+{
+  "cloud_packages": [],
+  "game_packages": [
+    "apetavern.parkour_painters"
+  ],
+  "addon_packages": [],
+  "publish": {
+    "Allowed": true,
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Parkour Painters - Rooftops",
+      "Type": "map",
+      "Org": "apetavern",
+      "Ident": "pp_rooftops",
+      "Tags": null,
+      "Schema": 0,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "maps/pp_rooftops.vmap"
+      }
+    }
+  }
+}

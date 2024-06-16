@@ -5,11 +5,7 @@
   "Ident": "parkour_painters-dev",
   "Tags": "retro movement arcade freerunning graffiti 90s",
   "Schema": 1,
-  "HasAssets": true,
-  "AssetsPath": "",
   "Resources": null,
-  "HasCode": true,
-  "CodePath": "/code/",
   "PackageReferences": [],
   "EditorReferences": null,
   "Metadata": {
