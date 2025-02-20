@@ -20,8 +20,10 @@ code/Editor/.vs/*
 code/Editor/.vscode/*
 
 # Auto-generated asset related files
+.sbox/*
 *.generated.*
 *.*_c
+!*.shader_c
 *.los
 *.vpk
 

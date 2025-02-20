@@ -2,12 +2,13 @@
   "Title": "Parkour Painters",
   "Type": "game",
   "Org": "apetavern",
-  "Ident": "parkour_painters-dev",
-  "Tags": "retro movement arcade freerunning graffiti 90s",
+  "Ident": "parkour_painters",
   "Schema": 1,
+  "IncludeSourceFiles": false,
   "Resources": null,
   "PackageReferences": [],
   "EditorReferences": null,
+  "IsWhitelistDisabled": false,
   "Metadata": {
     "MaxPlayers": 64,
     "MinPlayers": 1,
@@ -149,128 +150,13 @@
       }
     ],
     "Summary": "Parkour Painters is a team-based game where you spray to win!",
-    "Description": "**Parkour Painters**\n\nApe Tavern\u0027s submission for the Three Thieves Game Jam (2023).\n\n**How To Play**\n\nRun, jump, grind, and hang to find spots to graffiti for your gang! The gang with the most graffiti spots by the end of the game is the winner. You can spray over another gang\u0027s graffiti to take points back.\n\nThere are powerups and secondary weapons to help you get a victory along the way. Good luck!\n\n**Controls**\n\n1 - Equip Spray Can\n2 - Equip Secondary\nWASD - Move\nSpace - Jump\nShift - Dash\nLeft Click - Fire\nE - Guide\nTab - Playerlist",
+    "Description": "**Parkour Painters**\n\nApe Tavern's submission for the Three Thieves Game Jam (2023).\n\n**How To Play**\n\nRun, jump, grind, and hang to find spots to graffiti for your gang! The gang with the most graffiti spots by the end of the game is the winner. You can spray over another gang's graffiti to take points back.\n\nThere are powerups and secondary weapons to help you get a victory along the way. Good luck!\n\n**Controls**\n\n1 - Equip Spray Can\n2 - Equip Secondary\nWASD - Move\nSpace - Jump\nShift - Dash\nLeft Click - Fire\nE - Guide\nTab - Playerlist",
     "Public": true,
     "ControlModes": {
       "Keyboard": true
     },
     "ReplaceTags": "multiplayer retro movement competitive gangjam",
-    "InputSettings": {
-      "Actions": [
-        {
-          "Name": "forward",
-          "KeyboardCode": "w",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "backward",
-          "KeyboardCode": "s",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "left",
-          "KeyboardCode": "a",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "right",
-          "KeyboardCode": "d",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "jump",
-          "KeyboardCode": "space",
-          "GamepadCode": "A",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "dash",
-          "KeyboardCode": "shift",
-          "GamepadCode": "B",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "drop",
-          "KeyboardCode": "ctrl",
-          "GamepadCode": "LeftJoystickButton",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "primary_attack",
-          "KeyboardCode": "mouse1",
-          "GamepadCode": "RightTrigger",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "secondary_attack",
-          "KeyboardCode": "mouse2",
-          "GamepadCode": "LeftTrigger",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "slot0",
-          "KeyboardCode": "0",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "slot1",
-          "KeyboardCode": "1",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "slot2",
-          "KeyboardCode": "2",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "slot_next",
-          "KeyboardCode": "mouse4",
-          "GamepadCode": "SwitchLeftBumper",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "slot_prev",
-          "KeyboardCode": "mouse5",
-          "GamepadCode": "SwitchRightBumper",
-          "GroupName": "Carriable"
-        },
-        {
-          "Name": "chat",
-          "KeyboardCode": "enter",
-          "GroupName": "UI"
-        },
-        {
-          "Name": "voice",
-          "KeyboardCode": "v",
-          "GamepadCode": "X",
-          "GroupName": "UI"
-        },
-        {
-          "Name": "scoreboard",
-          "KeyboardCode": "tab",
-          "GamepadCode": "Y",
-          "GroupName": "UI"
-        },
-        {
-          "Name": "instructions",
-          "KeyboardCode": "e",
-          "GamepadCode": "DpadSouth",
-          "GroupName": "UI"
-        },
-        {
-          "Name": "Duck",
-          "KeyboardCode": "CTRL",
-          "GroupName": "Other"
-        },
-        {
-          "Name": "Run",
-          "KeyboardCode": "SHIFT",
-          "GroupName": "Other"
-        }
-      ],
-      "__guid": "46ffe280-9022-43a1-adca-655cbd1d6114"
-    },
-    "StartupScene": "scenes/main_menu.scene",
+    "StartupScene": "scenes/dev_gym.scene",
     "LaunchMode": "Normal"
   }
 }
