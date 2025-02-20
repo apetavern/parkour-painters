@@ -18,7 +18,7 @@
 								to = "models/outfits/nerd/torso/nerd_shirt1/materials/nerd_shirt1.vmat"
 							},
 							{
-								from = "cube.001.vmat"
+								from = "bowtie_low.vmat"
 								to = "models/outfits/nerd/accessories/nerd_bowtie1/materials/nerd_bowtie1.vmat"
 							},
 						]

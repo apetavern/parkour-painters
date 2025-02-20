@@ -1,7 +1,21 @@
 {
+  "IsSubgraph": false,
+  "Path": "shaders/powerup.shdrgrph",
   "Model": null,
+  "Title": null,
   "Description": "",
+  "Category": null,
+  "Icon": null,
+  "AddToNodeLibrary": false,
   "BlendMode": "Translucent",
+  "ShadingModel": "Lit",
+  "Domain": "Surface",
+  "PreviewSettings": {
+    "EnableShadows": true,
+    "ShowSkybox": true,
+    "BackgroundColor": "0,0,0,1",
+    "Tint": "1,1,1,1"
+  },
   "nodes": [
     {
       "_class": "Result",
@@ -10,7 +24,8 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "-288,-224",
+      "Position": "-288,-228",
+      "HandleOffsets": {},
       "Emission": {
         "Identifier": "14",
         "Output": "Result"
@@ -27,7 +42,8 @@
       "BlueOut": "Blue",
       "AlphaOut": "Alpha",
       "Identifier": "1",
-      "Position": "-1888,-208",
+      "Position": "-1884,-204",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "2",
         "Output": "Result"
@@ -36,7 +52,8 @@
     {
       "_class": "WorldPosition",
       "Identifier": "2",
-      "Position": "-2176,-208"
+      "Position": "-2172,-204",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -55,14 +72,16 @@
         }
       },
       "Identifier": "3",
-      "Position": "-2176,0"
+      "Position": "-2172,0",
+      "HandleOffsets": {}
     },
     {
       "_class": "Multiply",
       "DefaultA": 0,
       "DefaultB": 2.5,
       "Identifier": "4",
-      "Position": "-1888,-48",
+      "Position": "-1884,-48",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "7",
         "Output": "Result"
@@ -89,7 +108,8 @@
         }
       },
       "Identifier": "5",
-      "Position": "-1888,-128"
+      "Position": "-1884,-132",
+      "HandleOffsets": {}
     },
     {
       "_class": "TileAndOffset",
@@ -97,7 +117,8 @@
       "DefaultOffset": "0,0",
       "WrapTo01": false,
       "Identifier": "6",
-      "Position": "-1584,-160",
+      "Position": "-1584,-156",
+      "HandleOffsets": {},
       "Coords": {
         "Identifier": "1",
         "Output": "Output"
@@ -114,12 +135,14 @@
     {
       "_class": "Time",
       "Identifier": "7",
-      "Position": "-2176,-64"
+      "Position": "-2172,-60",
+      "HandleOffsets": {}
     },
     {
       "_class": "SimplexNoise",
       "Identifier": "8",
-      "Position": "-1344,-160",
+      "Position": "-1344,-156",
+      "HandleOffsets": {},
       "Coords": {
         "Identifier": "6",
         "Output": "Result"
@@ -141,7 +164,8 @@
         }
       },
       "Identifier": "9",
-      "Position": "-1040,-240"
+      "Position": "-1044,-240",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -159,14 +183,16 @@
         }
       },
       "Identifier": "10",
-      "Position": "-1040,-64"
+      "Position": "-1044,-60",
+      "HandleOffsets": {}
     },
     {
       "_class": "Step",
       "DefaultInput": 0,
       "DefaultEdge": 0.005,
       "Identifier": "11",
-      "Position": "-1040,-160",
+      "Position": "-1044,-156",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "8",
         "Output": "Result"
@@ -174,9 +200,12 @@
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 0.5,
       "Identifier": "12",
-      "Position": "-720,-176",
+      "Position": "-720,-180",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "9",
         "Output": "Result"
@@ -207,14 +236,16 @@
         }
       },
       "Identifier": "13",
-      "Position": "-832,-512"
+      "Position": "-828,-516",
+      "HandleOffsets": {}
     },
     {
       "_class": "Multiply",
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "14",
-      "Position": "-464,-384",
+      "Position": "-468,-384",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "13",
         "Output": "Result"
@@ -237,7 +268,8 @@
         }
       },
       "Identifier": "15",
-      "Position": "-832,-352"
+      "Position": "-828,-348",
+      "HandleOffsets": {}
     }
   ]
 }

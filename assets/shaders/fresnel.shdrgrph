@@ -1,7 +1,21 @@
 {
+  "IsSubgraph": false,
+  "Path": "shaders/fresnel.shdrgrph",
   "Model": "models/player/citizen_lod2.vmdl",
+  "Title": null,
   "Description": "",
+  "Category": null,
+  "Icon": null,
+  "AddToNodeLibrary": false,
   "BlendMode": "Translucent",
+  "ShadingModel": "Lit",
+  "Domain": "Surface",
+  "PreviewSettings": {
+    "EnableShadows": true,
+    "ShowSkybox": true,
+    "BackgroundColor": "0,0,0,1",
+    "Tint": "1,1,1,1"
+  },
   "nodes": [
     {
       "_class": "Result",
@@ -10,7 +24,8 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "1344,-272",
+      "Position": "1344,-276",
+      "HandleOffsets": {},
       "Albedo": {
         "Identifier": "11",
         "Output": "Result"
@@ -27,17 +42,20 @@
     {
       "_class": "ViewDirection",
       "Identifier": "1",
-      "Position": "-480,64"
+      "Position": "-480,60",
+      "HandleOffsets": {}
     },
     {
       "_class": "WorldNormal",
       "Identifier": "2",
-      "Position": "-480,0"
+      "Position": "-480,0",
+      "HandleOffsets": {}
     },
     {
       "_class": "DotProduct",
       "Identifier": "3",
-      "Position": "-240,16",
+      "Position": "-240,12",
+      "HandleOffsets": {},
       "InputA": {
         "Identifier": "2",
         "Output": "Result"
@@ -60,7 +78,8 @@
         }
       },
       "Identifier": "4",
-      "Position": "208,96"
+      "Position": "204,96",
+      "HandleOffsets": {}
     },
     {
       "_class": "RemapValue",
@@ -71,7 +90,8 @@
       "OutMax": 1,
       "Clamp": true,
       "Identifier": "5",
-      "Position": "464,16",
+      "Position": "468,12",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "8",
         "Output": "Result"
@@ -94,7 +114,8 @@
         }
       },
       "Identifier": "6",
-      "Position": "-48,-80"
+      "Position": "-48,-84",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -109,13 +130,17 @@
         }
       },
       "Identifier": "7",
-      "Position": "-48,-16"
+      "Position": "-48,-12",
+      "HandleOffsets": {}
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 0.5,
       "Identifier": "8",
-      "Position": "208,-32",
+      "Position": "204,-36",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "6",
         "Output": "Result"
@@ -134,7 +159,8 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "9",
-      "Position": "752,96",
+      "Position": "756,96",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "5",
         "Output": "Result"
@@ -157,7 +183,8 @@
         }
       },
       "Identifier": "10",
-      "Position": "464,192"
+      "Position": "468,192",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float4",
@@ -171,14 +198,16 @@
         }
       },
       "Identifier": "11",
-      "Position": "224,-272"
+      "Position": "228,-276",
+      "HandleOffsets": {}
     },
     {
       "_class": "Multiply",
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "12",
-      "Position": "1008,-224",
+      "Position": "1008,-228",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "11",
         "Output": "Result"
@@ -193,7 +222,8 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "13",
-      "Position": "784,-96",
+      "Position": "780,-96",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "11",
         "Output": "A"

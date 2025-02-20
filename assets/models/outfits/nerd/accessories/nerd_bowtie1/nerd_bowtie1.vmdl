@@ -14,7 +14,7 @@
 						remaps = 
 						[
 							{
-								from = "cube.001.vmat"
+								from = "bowtie_low.vmat"
 								to = "models/outfits/nerd/accessories/nerd_bowtie1/materials/nerd_bowtie1.vmat"
 							},
 						]
@@ -39,11 +39,8 @@
 						parent_bone = ""
 						import_filter = 
 						{
-							exclude_by_default = true
-							exception_list = 
-							[
-								"Cube_001",
-							]
+							exclude_by_default = false
+							exception_list = [  ]
 						}
 					},
 				]

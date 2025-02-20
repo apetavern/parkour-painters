@@ -14,11 +14,11 @@
 						remaps = 
 						[
 							{
-								from = "plane.003.vmat"
+								from = "hair_low.vmat"
 								to = "models/outfits/nerd/head/nerd_hair1/materials/nerd_hair1.vmat"
 							},
 							{
-								from = "circle.002.vmat"
+								from = "glasses_low.vmat"
 								to = "models/outfits/nerd/accessories/nerd_glasses1/materials/nerd_glasses1.vmat"
 							},
 						]
@@ -43,11 +43,8 @@
 						parent_bone = ""
 						import_filter = 
 						{
-							exclude_by_default = true
-							exception_list = 
-							[
-								"Plane_003",
-							]
+							exclude_by_default = false
+							exception_list = [  ]
 						}
 					},
 					{
@@ -62,12 +59,8 @@
 						parent_bone = ""
 						import_filter = 
 						{
-							exclude_by_default = true
-							exception_list = 
-							[
-								"Plane_003",
-								"Circle_002",
-							]
+							exclude_by_default = false
+							exception_list = [  ]
 						}
 					},
 				]
