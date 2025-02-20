@@ -5,20 +5,21 @@
   ],
   "addon_packages": [],
   "publish": {
-    "Allowed": true,
     "Enabled": true,
     "ProjectConfig": {
       "Title": "Parkour Painters - Rooftops",
       "Type": "map",
       "Org": "apetavern",
       "Ident": "pp_rooftops",
-      "Tags": null,
       "Schema": 0,
+      "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": null,
+      "EditorReferences": [],
+      "IsWhitelistDisabled": false,
       "Metadata": {
-        "SingleAssetSource": "maps/pp_rooftops.vmap"
+        "SingleAssetSource": "maps/pp_rooftops.vmap",
+        "ParentPackage": "apetavern.parkour_painters"
       }
     }
   }

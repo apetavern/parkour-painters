@@ -1,0 +1,190 @@
+{
+  "__guid": "28482aa8-c8b8-4444-940f-7971bc02c424",
+  "GameObjects": [
+    {
+      "__guid": "6bf08c38-d819-49d6-8530-fce933d3cb16",
+      "Flags": 0,
+      "Name": "Main Camera",
+      "Position": "-300,0,100",
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "d8aee4ab-aba5-4d39-9027-7b9b11565414",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
+      "__guid": "66c30edd-9d31-48c8-aa19-b112e19a5906",
+      "Flags": 0,
+      "Name": "Map",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "73f4ef6a-f2c2-4f85-9128-081e8fc019c2",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "maps/pp_rooftops.vmap",
+          "NoOrigin": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b8b0c146-4782-4c5e-a8ab-9a1d44dfbddd",
+      "Flags": 0,
+      "Name": "playercontroller",
+      "Position": "1659.133,1040.883,208",
+      "Rotation": "0,0,-0.9914448,0.1305264",
+      "Tags": "player",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/player/playercontroller.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "66d8d648-3da5-41f5-bde2-111efd29dc6d",
+      "Flags": 0,
+      "Name": "PlayerHUD",
+      "Position": "1659.133,1040.883,208",
+      "Rotation": "0,0,-0.9914448,0.1305264",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "f54653e9-cb4a-40af-9158-e344027ba413",
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
+        },
+        {
+          "__type": "PlayerHUD",
+          "__guid": "df9d1319-a0a6-4fd3-b87b-2082d43a30f2",
+          "GameManager": {
+            "_type": "component",
+            "component_id": "708dae96-35e5-4b69-a97e-7504f1a255a0",
+            "go": "dc5bb40d-cc08-4860-8c9d-a6ffd294d3de",
+            "component_type": "GameManager"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "PreGame",
+          "__guid": "02dd8d1c-060e-4920-8851-3b862c26077c",
+          "GameManager": {
+            "_type": "component",
+            "component_id": "708dae96-35e5-4b69-a97e-7504f1a255a0",
+            "go": "dc5bb40d-cc08-4860-8c9d-a6ffd294d3de",
+            "component_type": "GameManager"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "PostGame",
+          "__guid": "5785b2f7-33ba-4a6b-977e-f0061d9b9e12",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "dc5bb40d-cc08-4860-8c9d-a6ffd294d3de",
+      "Flags": 0,
+      "Name": "GameManager",
+      "Position": "1659.133,1040.883,208",
+      "Rotation": "0,0,-0.9914448,0.1305264",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "GameManager",
+          "__guid": "708dae96-35e5-4b69-a97e-7504f1a255a0",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RemainingTime": 64
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 2
+}
