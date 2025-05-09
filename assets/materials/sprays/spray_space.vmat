@@ -2,13 +2,18 @@
 
 Layer0
 {
-	shader "shaders/dissolve.shader_c"
+	shader "shaders/dissolve.shader"
 
 	//---- Color ----
 	Color "materials/default/default_color.tga"
 
 	//---- Fog ----
 	g_bFogEnabled "1"
+
+	//---- Glow ----
+	g_flGlowMix "0.000"
+	g_flGlowPower "0.000"
+	g_vGlowColor "[1.000000 1.000000 1.000000 1.000000]"
 
 	//---- Metalness ----
 	g_flMetallic "0.000"

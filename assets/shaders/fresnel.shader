@@ -12,7 +12,7 @@ FEATURES
 MODES
 {
 	Forward();
-	Depth();
+	Depth( S_MODE_DEPTH );
 	ToolsShadingComplexity( "tools_shading_complexity.shader" );
 }
 
@@ -72,6 +72,9 @@ PS
 {
 	#include "common/pixel.hlsl"
 	
+	DynamicCombo( D_RENDER_BACKFACES, 0..1, Sys( ALL ) );
+	RenderState( CullMode, D_RENDER_BACKFACES ? NONE : BACK );
+		
 	float4 g_vColor < UiType( Color ); UiGroup( ",0/,0/0" ); Default4( 1.00, 1.00, 1.00, 1.00 ); >;
 	float g_flRemapInMin < UiGroup( ",0/,0/0" ); Default1( 0.25 ); Range1( 0, 1 ); >;
 	float g_flEmissionStrength < UiGroup( ",0/,0/0" ); Default1( 5 ); Range1( 0, 20 ); >;

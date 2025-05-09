@@ -1,5 +1,25 @@
 {
   "cloud_packages": [],
   "game_packages": [],
-  "addon_packages": []
+  "addon_packages": [],
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Pp Rooftops Skybox",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "pprooftopsskybox",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Mounts": null,
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/prefabs/pp_rooftops_skybox.vmap",
+        "ParentPackage": "apetavern.parkour_painters"
+      }
+    }
+  }
 }

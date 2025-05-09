@@ -1,5 +1,25 @@
 {
   "cloud_packages": [],
   "game_packages": [],
-  "addon_packages": []
+  "addon_packages": [],
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Road 01B",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "road01b",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Mounts": null,
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/prefabs/road_01b.vmap",
+        "ParentPackage": "apetavern.parkour_painters"
+      }
+    }
+  }
 }

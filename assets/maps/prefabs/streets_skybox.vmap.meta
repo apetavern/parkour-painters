@@ -1,14 +1,11 @@
 {
-  "cloud_packages": [],
-  "game_packages": [],
-  "addon_packages": [],
   "publish": {
     "Enabled": false,
     "ProjectConfig": {
-      "Title": "Water Tank 01A",
+      "Title": "Streets Skybox",
       "Type": "map",
       "Org": "local",
-      "Ident": "watertank01a",
+      "Ident": "streetsskybox",
       "Schema": 0,
       "IncludeSourceFiles": false,
       "Resources": null,
@@ -17,7 +14,7 @@
       "Mounts": null,
       "IsStandaloneOnly": false,
       "Metadata": {
-        "SingleAssetSource": "maps/prefabs/water_tank_01a.vmap",
+        "SingleAssetSource": "maps/prefabs/streets_skybox.vmap",
         "ParentPackage": "apetavern.parkour_painters"
       }
     }

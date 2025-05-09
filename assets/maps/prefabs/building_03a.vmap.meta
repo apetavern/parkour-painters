@@ -1,5 +1,25 @@
 {
   "cloud_packages": [],
   "game_packages": [],
-  "addon_packages": []
+  "addon_packages": [],
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Building 03A",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "building03a",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Mounts": null,
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/prefabs/building_03a.vmap",
+        "ParentPackage": "apetavern.parkour_painters"
+      }
+    }
+  }
 }

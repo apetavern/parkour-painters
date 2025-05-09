@@ -1,5 +1,25 @@
 {
   "cloud_packages": [],
   "game_packages": [],
-  "addon_packages": []
+  "addon_packages": [],
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Trim 01F",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "trim01f",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Mounts": null,
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/prefabs/trim_01f.vmap",
+        "ParentPackage": "apetavern.parkour_painters"
+      }
+    }
+  }
 }

@@ -1,14 +1,11 @@
 {
-  "cloud_packages": [],
-  "game_packages": [],
-  "addon_packages": [],
   "publish": {
     "Enabled": false,
     "ProjectConfig": {
-      "Title": "Water Tank 01A",
+      "Title": "Building 04A",
       "Type": "map",
       "Org": "local",
-      "Ident": "watertank01a",
+      "Ident": "building04a",
       "Schema": 0,
       "IncludeSourceFiles": false,
       "Resources": null,
@@ -17,7 +14,7 @@
       "Mounts": null,
       "IsStandaloneOnly": false,
       "Metadata": {
-        "SingleAssetSource": "maps/prefabs/water_tank_01a.vmap",
+        "SingleAssetSource": "maps/prefabs/building_04a.vmap",
         "ParentPackage": "apetavern.parkour_painters"
       }
     }

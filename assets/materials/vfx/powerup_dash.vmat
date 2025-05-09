@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/powerup.shader_c"
+	shader "shaders/powerup.shader"
 
 	//---- Adjustments ----
 	g_flGapOpacity "0.500"

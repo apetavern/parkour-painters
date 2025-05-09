@@ -2,7 +2,7 @@
 
 Layer0
 {
-	shader "shaders/dissolve.shader_c"
+	shader "shaders/dissolve.shader"
 
 	//---- Color ----
 	Color "[1.000000 1.000000 1.000000 1.000000]"

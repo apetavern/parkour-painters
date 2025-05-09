@@ -1,24 +1,24 @@
 {
   "publish": {
-    "Allowed": true,
     "Enabled": true,
     "ProjectConfig": {
       "Title": "Parkour Painters - Streets",
       "Type": "map",
       "Org": "apetavern",
       "Ident": "pp_streets",
-      "Tags": null,
       "Schema": 0,
+      "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [
-        "apetavern.parkour_painters"
-      ],
+      "EditorReferences": [],
+      "Mounts": null,
+      "IsStandaloneOnly": false,
       "Metadata": {
         "SingleAssetSource": "maps/pp_streets.vmap",
         "Summary": "",
         "Description": "",
-        "Public": true
+        "Public": true,
+        "ParentPackage": "apetavern.parkour_painters"
       }
     }
   }

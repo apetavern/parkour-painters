@@ -3,9 +3,18 @@
   "GameObjects": [
     {
       "__guid": "6bf08c38-d819-49d6-8530-fce933d3cb16",
+      "__version": 1,
       "Flags": 0,
       "Name": "Main Camera",
       "Position": "-300,0,100",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": false,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.CameraComponent",
@@ -13,6 +22,7 @@
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
+          "FovAxis": "Horizontal",
           "IsMainCamera": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -30,13 +40,23 @@
           "ZFar": 10000,
           "ZNear": 10
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "66c30edd-9d31-48c8-aa19-b112e19a5906",
+      "__version": 1,
       "Flags": 0,
       "Name": "Map",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.MapInstance",
@@ -60,23 +80,68 @@
     },
     {
       "__guid": "b8b0c146-4782-4c5e-a8ab-9a1d44dfbddd",
-      "Flags": 0,
-      "Name": "playercontroller",
-      "Position": "1659.133,1040.883,208",
-      "Rotation": "0,0,-0.9914448,0.1305264",
-      "Tags": "player",
-      "Enabled": true,
-      "NetworkMode": 2,
+      "__version": 1,
       "__Prefab": "prefabs/player/playercontroller.prefab",
-      "__PrefabVariables": {}
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "dea1cf22-01cd-4b21-80a5-3cf63d2cc1de"
+            },
+            "Property": "Position",
+            "Value": "1659.133,1040.883,208"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "dea1cf22-01cd-4b21-80a5-3cf63d2cc1de"
+            },
+            "Property": "Rotation",
+            "Value": "0,0,-0.9914448,0.1305264"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "dea1cf22-01cd-4b21-80a5-3cf63d2cc1de"
+            },
+            "Property": "NetworkMode",
+            "Value": 2
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "dea1cf22-01cd-4b21-80a5-3cf63d2cc1de": "b8b0c146-4782-4c5e-a8ab-9a1d44dfbddd",
+        "7d0fc4fd-ea24-447a-b162-87880e5dced7": "d3c58dd2-7265-4305-97b7-5907600f042d",
+        "95a54d73-18b4-4e48-a26e-d12ce91d2930": "e792620f-b509-4fe1-b021-9527cdf6c05e",
+        "08baaf32-ad64-4c90-a83f-b62ea46a671f": "57bdb778-2d9d-40c4-b5ec-c546a234dd78",
+        "d3a04fe0-4cf6-4e0b-8d4b-c79d87028061": "31543e8d-0e83-4660-a855-a14d4e6b5691",
+        "f51c72e5-fa63-46ee-9c99-77cd689abc06": "1714510f-b499-4396-9135-3de9acde7ae4",
+        "7df8a65f-69f1-4efa-a832-6be0e83fc938": "731c0f89-c0a2-43b1-95cf-a6a0fcb8b199",
+        "e3cc13ba-dbd7-4a6a-8660-627cbbfa3f58": "baf21049-3c1e-4f06-bf60-851fba70acb7",
+        "1651a004-26e6-4c54-af09-d9d5544baaea": "282f61cc-a5e6-4cde-bf74-e25ebb8de1f1",
+        "db9908e7-a45f-45d2-ada8-ed27249d1cda": "c5eab0f8-4f98-4542-938b-a897d516884d",
+        "efe6d3b7-c312-4c0f-8ca9-f8b71f14a7e7": "b015dd70-7aee-4d75-9e28-daf9b5774a72",
+        "9aafca9c-3c1c-4821-ab64-6dc7cffc6701": "3c5028d2-007d-45d0-93bc-bdab07a59932"
+      }
     },
     {
       "__guid": "66d8d648-3da5-41f5-bde2-111efd29dc6d",
+      "__version": 1,
       "Flags": 0,
       "Name": "PlayerHUD",
       "Position": "1659.133,1040.883,208",
       "Rotation": "0,0,-0.9914448,0.1305264",
+      "Scale": "1,1,1",
+      "Tags": "",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.ScreenPanel",
@@ -91,6 +156,7 @@
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
           "ZIndex": 100
         },
         {
@@ -135,15 +201,23 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "dc5bb40d-cc08-4860-8c9d-a6ffd294d3de",
+      "__version": 1,
       "Flags": 0,
       "Name": "GameManager",
       "Position": "1659.133,1040.883,208",
       "Rotation": "0,0,-0.9914448,0.1305264",
+      "Scale": "1,1,1",
+      "Tags": "",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "GameManager",
@@ -156,18 +230,14 @@
           "OnComponentUpdate": null,
           "RemainingTime": 64
         }
-      ]
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
-    "FixedUpdateFrequency": 50,
-    "MaxFixedUpdates": 5,
-    "NetworkFrequency": 30,
     "NetworkInterpolation": true,
-    "PhysicsSubSteps": 1,
-    "ThreadedAnimation": true,
     "TimeScale": 1,
-    "UseFixedUpdate": true,
+    "WantsSystemScene": true,
     "Metadata": {},
     "NavMesh": {
       "Enabled": false,
@@ -182,9 +252,9 @@
       "IncludedBodies": ""
     }
   },
-  "ResourceVersion": 2,
+  "ResourceVersion": 3,
   "Title": null,
   "Description": null,
   "__references": [],
-  "__version": 2
+  "__version": 3
 }
