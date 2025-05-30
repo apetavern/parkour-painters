@@ -1,7 +1,7 @@
 {
   "cloud_packages": [],
   "game_packages": [
-    "apetavern.parkour_painters"
+    "facepunch.walker"
   ],
   "addon_packages": [],
   "publish": {
@@ -15,12 +15,17 @@
       "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [],
+      "EditorReferences": [
+        "facepunch.goback_material#103695"
+      ],
       "Mounts": null,
       "IsStandaloneOnly": false,
       "Metadata": {
         "SingleAssetSource": "maps/pp_rooftops.vmap",
-        "ParentPackage": "apetavern.parkour_painters"
+        "ParentPackage": "apetavern.parkour_painters",
+        "GameSupport": [
+          "facepunch.walker"
+        ]
       }
     }
   }

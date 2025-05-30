@@ -2,26 +2,36 @@
 
 Layer0
 {
-	shader "shaders/pixelated.shader"
+	shader "shaders/goback_material.shader"
 
 	//---- Color ----
-	Color "models/outfits/yakuza/hats/trilby/materials/phong1_color.png"
 	g_flModelTintAmount "0.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TintMask "materials/default/default_mask.tga"
+
+	//---- Fade ----
+	g_flFadeExponent "1.000"
 
 	//---- Fog ----
 	g_bFogEnabled "1"
 
-	//---- Metalness ----
-	Metallic "models/outfits/yakuza/hats/trilby/materials/phong1_metallic.png"
+	//---- Go Back Settings ----
+	g_flSnapScale "2.000"
+	g_RoundToDecimalPlace "0"
 
-	//---- Normal ----
-	Normal "models/outfits/yakuza/hats/trilby/materials/phong1_normal.png"
-
-	//---- Roughness ----
-	Roughness "models/outfits/yakuza/hats/trilby/materials/phong1_rough.png"
+	//---- Material ----
+	g_flTintColor "[1.000000 1.000000 1.000000 0.000000]"
+	TextureColor "models/outfits/yakuza/hats/trilby/materials/phong1_color.png"
+	TextureNormal "models/outfits/yakuza/hats/trilby/materials/phong1_normal.png"
+	TextureTintMask "materials/default/default.tga"
+	TextureTranslucency "materials/default/default_trans.tga"
 
 	//---- Texture Coordinates ----
-	g_vTiling "[1.000 1.000]"
+	g_nScaleTexCoordUByModelScaleAxis "0"
+	g_nScaleTexCoordVByModelScaleAxis "0"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	g_vTexCoordScrollSpeed "[0.000 0.000]"
+
+	//---- Translucent ----
+	g_vTranslucentScrollSpeed "[0.000 0.000]"
 }

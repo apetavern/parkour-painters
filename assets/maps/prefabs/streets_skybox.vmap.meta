@@ -10,7 +10,9 @@
       "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [],
+      "EditorReferences": [
+        "facepunch.goback_material#103695"
+      ],
       "Mounts": null,
       "IsStandaloneOnly": false,
       "Metadata": {
